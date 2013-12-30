@@ -43,7 +43,7 @@
 - (void)layoutSubviews
 {
     [super layoutSubviews];
-    self.textLabel.frame = self.bounds;
+    self.textLabel.frame = CGRectMake(0.0, 0.0, kSidePanelLeftWidth, self.bounds.size.height);
     _lineView.frame = CGRectMake(0.0, 0.0, 6.0, self.bounds.size.height-1.0);
     _selectedBgView.frame = CGRectMake(0.0, 0.0, self.bounds.size.width, self.bounds.size.height-1.0);
     _separatorView.frame = CGRectMake(0.0, self.bounds.size.height-1.0, self.bounds.size.width, 1.0);

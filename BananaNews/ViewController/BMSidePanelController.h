@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 龚涛. All rights reserved.
 //
 
-#import <IIViewDeckController.h>
+#import "IIViewDeckController.h"
 
 @interface BMSidePanelController : IIViewDeckController
 

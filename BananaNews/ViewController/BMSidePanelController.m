@@ -35,6 +35,7 @@
 	// Do any additional setup after loading the view.
     [self setLeftSize:320.0-kSidePanelLeftWidth];
     [self setRightSize:320.0-kSidePanelRightWidth];
+    self.centerhiddenInteractivity = IIViewDeckCenterHiddenNotUserInteractiveWithTapToClose;
 }
 
 - (void)didReceiveMemoryWarning

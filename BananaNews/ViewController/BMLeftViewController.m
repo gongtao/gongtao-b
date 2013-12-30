@@ -12,7 +12,7 @@
 
 #import "BMLeftViewCell.h"
 
-#import <IIViewDeckController.h>
+#import "IIViewDeckController.h"
 
 @interface BMLeftViewController ()
 
@@ -35,7 +35,7 @@
 	// Do any additional setup after loading the view.
     CGFloat y = IS_IOS7 ? 20.0 : 0.0;
     
-    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0.0, y, kSidePanelLeftWidth, 308.0)];
+    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0.0, y, 320.0, 308.0)];
     _tableView.bounces = NO;
     _tableView.dataSource = self;
     _tableView.delegate = self;
