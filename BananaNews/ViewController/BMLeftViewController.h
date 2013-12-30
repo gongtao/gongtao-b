@@ -9,11 +9,16 @@
 #import <UIKit/UIKit.h>
 
 @interface BMLeftViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+{
+    NSInteger _lastSelectedRow;
+}
 
 @property (nonatomic, strong) UITableView *tableView;
 
 @property (nonatomic, strong) NSArray *titleArray;
 
-@property (nonatomic, strong) NSArray *controllerArray;
+@property (nonatomic, strong) NSArray *controllerTitleArray;
+
+@property (nonatomic, strong) NSMutableDictionary *controllerDic;
 
 @end

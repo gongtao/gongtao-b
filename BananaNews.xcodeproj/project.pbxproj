@@ -26,6 +26,14 @@
 		42C7BB0118710E7F00BD6382 /* BMRightViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C7BB0018710E7F00BD6382 /* BMRightViewController.m */; };
 		42C7BB0618712BF700BD6382 /* BMLeftViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C7BB0518712BF700BD6382 /* BMLeftViewCell.m */; };
 		42C7BB0A1871447100BD6382 /* BMNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C7BB091871447100BD6382 /* BMNavigationController.m */; };
+		42C7BB0D1871545800BD6382 /* BMImageTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C7BB0C1871545800BD6382 /* BMImageTextViewController.m */; };
+		42C7BB101871547200BD6382 /* BMDynamicImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C7BB0F1871547200BD6382 /* BMDynamicImageViewController.m */; };
+		42C7BB131871548700BD6382 /* BMVideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C7BB121871548700BD6382 /* BMVideoViewController.m */; };
+		42C7BB161871549500BD6382 /* BMAudioViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C7BB151871549500BD6382 /* BMAudioViewController.m */; };
+		42C7BB19187154A200BD6382 /* BMShorEssayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C7BB18187154A200BD6382 /* BMShorEssayViewController.m */; };
+		42C7BB1C187154AF00BD6382 /* BMSubmissionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C7BB1B187154AF00BD6382 /* BMSubmissionViewController.m */; };
+		42C7BB1F18715D8000BD6382 /* BMRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C7BB1E18715D8000BD6382 /* BMRootViewController.m */; };
+		42C7BB2318715E3100BD6382 /* BMNavBackButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C7BB2218715E3100BD6382 /* BMNavBackButton.m */; };
 		CE8BC6AFDCC940D28D1B30C8 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 620E8C38B3E24A3191C52FA1 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -70,6 +78,22 @@
 		42C7BB0718712DA300BD6382 /* BMConstant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BMConstant.h; sourceTree = "<group>"; };
 		42C7BB081871447100BD6382 /* BMNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMNavigationController.h; sourceTree = "<group>"; };
 		42C7BB091871447100BD6382 /* BMNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMNavigationController.m; sourceTree = "<group>"; };
+		42C7BB0B1871545800BD6382 /* BMImageTextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMImageTextViewController.h; sourceTree = "<group>"; };
+		42C7BB0C1871545800BD6382 /* BMImageTextViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMImageTextViewController.m; sourceTree = "<group>"; };
+		42C7BB0E1871547200BD6382 /* BMDynamicImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMDynamicImageViewController.h; sourceTree = "<group>"; };
+		42C7BB0F1871547200BD6382 /* BMDynamicImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMDynamicImageViewController.m; sourceTree = "<group>"; };
+		42C7BB111871548700BD6382 /* BMVideoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMVideoViewController.h; sourceTree = "<group>"; };
+		42C7BB121871548700BD6382 /* BMVideoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMVideoViewController.m; sourceTree = "<group>"; };
+		42C7BB141871549500BD6382 /* BMAudioViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMAudioViewController.h; sourceTree = "<group>"; };
+		42C7BB151871549500BD6382 /* BMAudioViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMAudioViewController.m; sourceTree = "<group>"; };
+		42C7BB17187154A200BD6382 /* BMShorEssayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMShorEssayViewController.h; sourceTree = "<group>"; };
+		42C7BB18187154A200BD6382 /* BMShorEssayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMShorEssayViewController.m; sourceTree = "<group>"; };
+		42C7BB1A187154AF00BD6382 /* BMSubmissionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMSubmissionViewController.h; sourceTree = "<group>"; };
+		42C7BB1B187154AF00BD6382 /* BMSubmissionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMSubmissionViewController.m; sourceTree = "<group>"; };
+		42C7BB1D18715D8000BD6382 /* BMRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMRootViewController.h; sourceTree = "<group>"; };
+		42C7BB1E18715D8000BD6382 /* BMRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMRootViewController.m; sourceTree = "<group>"; };
+		42C7BB2118715E3100BD6382 /* BMNavBackButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMNavBackButton.h; sourceTree = "<group>"; };
+		42C7BB2218715E3100BD6382 /* BMNavBackButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMNavBackButton.m; sourceTree = "<group>"; };
 		620E8C38B3E24A3191C52FA1 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA26BFD3CEFE45ABAC84ECBE /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -182,12 +206,26 @@
 				42C7BB091871447100BD6382 /* BMNavigationController.m */,
 				42C7BAED18710C2000BD6382 /* BMSidePanelController.h */,
 				42C7BAEE18710C2000BD6382 /* BMSidePanelController.m */,
+				42C7BB1D18715D8000BD6382 /* BMRootViewController.h */,
+				42C7BB1E18715D8000BD6382 /* BMRootViewController.m */,
 				42C7BAF918710E6700BD6382 /* BMLeftViewController.h */,
 				42C7BAFA18710E6700BD6382 /* BMLeftViewController.m */,
 				42C7BAFF18710E7F00BD6382 /* BMRightViewController.h */,
 				42C7BB0018710E7F00BD6382 /* BMRightViewController.m */,
 				42C7BAFC18710E7300BD6382 /* BMHomeViewController.h */,
 				42C7BAFD18710E7300BD6382 /* BMHomeViewController.m */,
+				42C7BB0B1871545800BD6382 /* BMImageTextViewController.h */,
+				42C7BB0C1871545800BD6382 /* BMImageTextViewController.m */,
+				42C7BB0E1871547200BD6382 /* BMDynamicImageViewController.h */,
+				42C7BB0F1871547200BD6382 /* BMDynamicImageViewController.m */,
+				42C7BB111871548700BD6382 /* BMVideoViewController.h */,
+				42C7BB121871548700BD6382 /* BMVideoViewController.m */,
+				42C7BB141871549500BD6382 /* BMAudioViewController.h */,
+				42C7BB151871549500BD6382 /* BMAudioViewController.m */,
+				42C7BB17187154A200BD6382 /* BMShorEssayViewController.h */,
+				42C7BB18187154A200BD6382 /* BMShorEssayViewController.m */,
+				42C7BB1A187154AF00BD6382 /* BMSubmissionViewController.h */,
+				42C7BB1B187154AF00BD6382 /* BMSubmissionViewController.m */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -195,6 +233,7 @@
 		42C7BB0218712BBB00BD6382 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				42C7BB2018715E1300BD6382 /* Button */,
 				42C7BB0318712BBB00BD6382 /* Cell */,
 			);
 			path = View;
@@ -207,6 +246,15 @@
 				42C7BB0518712BF700BD6382 /* BMLeftViewCell.m */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		42C7BB2018715E1300BD6382 /* Button */ = {
+			isa = PBXGroup;
+			children = (
+				42C7BB2118715E3100BD6382 /* BMNavBackButton.h */,
+				42C7BB2218715E3100BD6382 /* BMNavBackButton.m */,
+			);
+			path = Button;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -343,10 +391,18 @@
 			files = (
 				42C7BB0618712BF700BD6382 /* BMLeftViewCell.m in Sources */,
 				42C7BB0118710E7F00BD6382 /* BMRightViewController.m in Sources */,
+				42C7BB1F18715D8000BD6382 /* BMRootViewController.m in Sources */,
+				42C7BB0D1871545800BD6382 /* BMImageTextViewController.m in Sources */,
+				42C7BB131871548700BD6382 /* BMVideoViewController.m in Sources */,
 				42C7BAEF18710C2000BD6382 /* BMSidePanelController.m in Sources */,
 				42C7BAC81871059100BD6382 /* AppDelegate.m in Sources */,
+				42C7BB161871549500BD6382 /* BMAudioViewController.m in Sources */,
 				42C7BAFE18710E7300BD6382 /* BMHomeViewController.m in Sources */,
 				42C7BAFB18710E6700BD6382 /* BMLeftViewController.m in Sources */,
+				42C7BB1C187154AF00BD6382 /* BMSubmissionViewController.m in Sources */,
+				42C7BB101871547200BD6382 /* BMDynamicImageViewController.m in Sources */,
+				42C7BB19187154A200BD6382 /* BMShorEssayViewController.m in Sources */,
+				42C7BB2318715E3100BD6382 /* BMNavBackButton.m in Sources */,
 				42C7BB0A1871447100BD6382 /* BMNavigationController.m in Sources */,
 				42C7BAC41871059100BD6382 /* main.m in Sources */,
 			);

@@ -1,18 +1,18 @@
 //
-//  BMHomeViewController.m
+//  BMImageTextViewController.m
 //  BananaNews
 //
 //  Created by 龚涛 on 12/30/13.
 //  Copyright (c) 2013 龚涛. All rights reserved.
 //
 
-#import "BMHomeViewController.h"
+#import "BMImageTextViewController.h"
 
-@interface BMHomeViewController ()
+@interface BMImageTextViewController ()
 
 @end
 
-@implementation BMHomeViewController
+@implementation BMImageTextViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -27,7 +27,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    self.view.backgroundColor = [UIColor yellowColor];
+    self.view.backgroundColor = [UIColor greenColor];
 }
 
 - (void)didReceiveMemoryWarning

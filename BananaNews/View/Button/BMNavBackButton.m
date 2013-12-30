@@ -1,0 +1,22 @@
+//
+//  BMNavBackButton.m
+//  BananaNews
+//
+//  Created by 龚涛 on 12/30/13.
+//  Copyright (c) 2013 龚涛. All rights reserved.
+//
+
+#import "BMNavBackButton.h"
+
+@implementation BMNavBackButton
+
+- (id)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    if (self) {
+        // Initialization code
+    }
+    return self;
+}
+
+@end

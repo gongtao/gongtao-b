@@ -8,7 +8,11 @@
 
 #import "BMLeftViewController.h"
 
+#import "BMNavigationController.h"
+
 #import "BMLeftViewCell.h"
+
+#import <IIViewDeckController.h>
 
 @interface BMLeftViewController ()
 
@@ -40,7 +44,17 @@
     
     self.titleArray = @[@"首      页", @"图      文", @"动      图", @"视      频",
                         @"音      频", @"短      文", @"投      稿"];
-    self.controllerArray = @[@"首页", @"图文", @"动图", @"视频", @"音频", @"短文", @"投稿"];
+    
+    self.controllerTitleArray = @[@"homeViewController", @"imageTextViewController",
+                                  @"dynamicImageViewController", @"videoViewController",
+                                  @"audioViewController", @"shorEssayViewController",
+                                  @"submissionViewController"];
+    
+    self.controllerDic = [[NSMutableDictionary alloc] initWithCapacity:7];
+    
+    self.controllerDic[@"0"] = self.viewDeckController.centerController;
+    
+    _lastSelectedRow = 0;
     
     [self.tableView reloadData];
     [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]
@@ -52,13 +66,33 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+    NSString *index = [NSString stringWithFormat:@"%i", _lastSelectedRow];
+    [self.controllerDic enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop){
+        if (![index isEqualToString:key]) {
+            [self.controllerDic removeObjectForKey:key];
+        }
+    }];
 }
 
 #pragma mark - UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    NSInteger row = [indexPath row];
+    if (_lastSelectedRow == row) {
+        _lastSelectedRow = row;
+    }
+    else {
+        NSString *index = [NSString stringWithFormat:@"%i", row];
+        BMNavigationController *nv = self.controllerDic[index];
+        if (!nv) {
+            nv = [[BMNavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:self.controllerTitleArray[row]]];
+            self.controllerDic[index] = nv;
+        }
+        _lastSelectedRow = row;
+        [self.viewDeckController setCenterController:nv];
+    }
+    [self.viewDeckController closeLeftViewAnimated:YES];
 }
 
 #pragma mark - UITableViewDataSource

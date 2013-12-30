@@ -50,10 +50,10 @@
             </objects>
             <point key="canvasLocation" x="-86" y="-273"/>
         </scene>
-        <!--View Controller-->
+        <!--Dynamic Image View Controller - 动图-->
         <scene sceneID="dI6-fq-3q5">
             <objects>
-                <viewController id="tLg-vl-JaZ" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="dynamicImageViewController" title="动图" id="tLg-vl-JaZ" customClass="BMDynamicImageViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="wDu-UI-00K"/>
                         <viewControllerLayoutGuide type="bottom" id="zTr-Ro-enx"/>
@@ -69,10 +69,10 @@
             </objects>
             <point key="canvasLocation" x="556" y="79"/>
         </scene>
-        <!--View Controller-->
+        <!--Video View Controller - 视频-->
         <scene sceneID="C05-yg-TF7">
             <objects>
-                <viewController id="nGb-7p-yh2" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="videoViewController" title="视频" id="nGb-7p-yh2" customClass="BMVideoViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="54a-7u-hwv"/>
                         <viewControllerLayoutGuide type="bottom" id="2sw-0F-2GK"/>
@@ -88,10 +88,10 @@
             </objects>
             <point key="canvasLocation" x="556" y="794"/>
         </scene>
-        <!--View Controller-->
+        <!--Submission View Controller - 投稿-->
         <scene sceneID="3wV-EV-YRF">
             <objects>
-                <viewController id="KZ9-Xi-Xgw" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="submissionViewController" title="投稿" id="KZ9-Xi-Xgw" customClass="BMSubmissionViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Fwl-nD-jvv"/>
                         <viewControllerLayoutGuide type="bottom" id="amp-N6-ALh"/>
@@ -107,10 +107,10 @@
             </objects>
             <point key="canvasLocation" x="1087" y="415"/>
         </scene>
-        <!--Home View Controller-->
+        <!--Home View Controller - 首页-->
         <scene sceneID="git-5g-Hgj">
             <objects>
-                <viewController storyboardIdentifier="homeViewController" id="ETj-u8-ZHO" customClass="BMHomeViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="homeViewController" title="首页" id="ETj-u8-ZHO" customClass="BMHomeViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="RWw-tG-nAv"/>
                         <viewControllerLayoutGuide type="bottom" id="Pzb-c6-f1O"/>
@@ -126,10 +126,10 @@
             </objects>
             <point key="canvasLocation" x="556" y="-1322"/>
         </scene>
-        <!--View Controller-->
+        <!--Audio View Controller - 音频-->
         <scene sceneID="rk6-kt-yuE">
             <objects>
-                <viewController id="mhA-ml-JPT" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="audioViewController" title="音频" id="mhA-ml-JPT" customClass="BMAudioViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="lym-9I-nHy"/>
                         <viewControllerLayoutGuide type="bottom" id="Wh3-1q-pzB"/>
@@ -183,10 +183,10 @@
             </objects>
             <point key="canvasLocation" x="-86" y="-986"/>
         </scene>
-        <!--View Controller-->
+        <!--Image Text View Controller - 图文-->
         <scene sceneID="tqh-6W-AMb">
             <objects>
-                <viewController id="L2s-5u-IAU" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="imageTextViewController" title="图文" id="L2s-5u-IAU" customClass="BMImageTextViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="N6k-UG-KhE"/>
                         <viewControllerLayoutGuide type="bottom" id="p3h-fj-Nrt"/>
@@ -202,10 +202,10 @@
             </objects>
             <point key="canvasLocation" x="556" y="-609"/>
         </scene>
-        <!--View Controller-->
+        <!--Shor Essay View Controller - 短文-->
         <scene sceneID="03v-fW-Ucf">
             <objects>
-                <viewController id="wiL-sJ-aFM" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="shorEssayViewController" title="短文" id="wiL-sJ-aFM" customClass="BMShorEssayViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="xXB-yc-MWA"/>
                         <viewControllerLayoutGuide type="bottom" id="BoW-Eb-k82"/>
