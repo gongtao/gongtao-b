@@ -24,6 +24,7 @@
 		42C7BAFB18710E6700BD6382 /* BMLeftViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C7BAFA18710E6700BD6382 /* BMLeftViewController.m */; };
 		42C7BAFE18710E7300BD6382 /* BMHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C7BAFD18710E7300BD6382 /* BMHomeViewController.m */; };
 		42C7BB0118710E7F00BD6382 /* BMRightViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C7BB0018710E7F00BD6382 /* BMRightViewController.m */; };
+		42C7BB0618712BF700BD6382 /* BMLeftViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C7BB0518712BF700BD6382 /* BMLeftViewCell.m */; };
 		CE8BC6AFDCC940D28D1B30C8 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 620E8C38B3E24A3191C52FA1 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -63,6 +64,9 @@
 		42C7BAFD18710E7300BD6382 /* BMHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMHomeViewController.m; sourceTree = "<group>"; };
 		42C7BAFF18710E7F00BD6382 /* BMRightViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMRightViewController.h; sourceTree = "<group>"; };
 		42C7BB0018710E7F00BD6382 /* BMRightViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMRightViewController.m; sourceTree = "<group>"; };
+		42C7BB0418712BF700BD6382 /* BMLeftViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMLeftViewCell.h; sourceTree = "<group>"; };
+		42C7BB0518712BF700BD6382 /* BMLeftViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMLeftViewCell.m; sourceTree = "<group>"; };
+		42C7BB0718712DA300BD6382 /* BMConstant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BMConstant.h; sourceTree = "<group>"; };
 		620E8C38B3E24A3191C52FA1 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA26BFD3CEFE45ABAC84ECBE /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -127,6 +131,7 @@
 		42C7BABD1871059100BD6382 /* BananaNews */ = {
 			isa = PBXGroup;
 			children = (
+				42C7BB0218712BBB00BD6382 /* View */,
 				42C7BAEC18710C0A00BD6382 /* ViewController */,
 				42C7BAC61871059100BD6382 /* AppDelegate.h */,
 				42C7BAC71871059100BD6382 /* AppDelegate.m */,
@@ -140,6 +145,7 @@
 		42C7BABE1871059100BD6382 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				42C7BB0718712DA300BD6382 /* BMConstant.h */,
 				42C7BABF1871059100BD6382 /* BananaNews-Info.plist */,
 				42C7BAC01871059100BD6382 /* InfoPlist.strings */,
 				42C7BAC31871059100BD6382 /* main.m */,
@@ -179,6 +185,23 @@
 				42C7BB0018710E7F00BD6382 /* BMRightViewController.m */,
 			);
 			path = ViewController;
+			sourceTree = "<group>";
+		};
+		42C7BB0218712BBB00BD6382 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				42C7BB0318712BBB00BD6382 /* Cell */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		42C7BB0318712BBB00BD6382 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				42C7BB0418712BF700BD6382 /* BMLeftViewCell.h */,
+				42C7BB0518712BF700BD6382 /* BMLeftViewCell.m */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -313,6 +336,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				42C7BB0618712BF700BD6382 /* BMLeftViewCell.m in Sources */,
 				42C7BB0118710E7F00BD6382 /* BMRightViewController.m in Sources */,
 				42C7BAEF18710C2000BD6382 /* BMSidePanelController.m in Sources */,
 				42C7BAC81871059100BD6382 /* AppDelegate.m in Sources */,
