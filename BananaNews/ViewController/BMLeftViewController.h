@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BMLeftViewController : UIViewController
+@interface BMLeftViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+
+@property (nonatomic, strong) UITableView *tableView;
+
+@property (nonatomic, strong) NSArray *titleArray;
+
+@property (nonatomic, strong) NSArray *controllerArray;
 
 @end

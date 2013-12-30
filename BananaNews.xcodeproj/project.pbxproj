@@ -25,6 +25,7 @@
 		42C7BAFE18710E7300BD6382 /* BMHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C7BAFD18710E7300BD6382 /* BMHomeViewController.m */; };
 		42C7BB0118710E7F00BD6382 /* BMRightViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C7BB0018710E7F00BD6382 /* BMRightViewController.m */; };
 		42C7BB0618712BF700BD6382 /* BMLeftViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C7BB0518712BF700BD6382 /* BMLeftViewCell.m */; };
+		42C7BB0A1871447100BD6382 /* BMNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C7BB091871447100BD6382 /* BMNavigationController.m */; };
 		CE8BC6AFDCC940D28D1B30C8 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 620E8C38B3E24A3191C52FA1 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -67,6 +68,8 @@
 		42C7BB0418712BF700BD6382 /* BMLeftViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMLeftViewCell.h; sourceTree = "<group>"; };
 		42C7BB0518712BF700BD6382 /* BMLeftViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMLeftViewCell.m; sourceTree = "<group>"; };
 		42C7BB0718712DA300BD6382 /* BMConstant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BMConstant.h; sourceTree = "<group>"; };
+		42C7BB081871447100BD6382 /* BMNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMNavigationController.h; sourceTree = "<group>"; };
+		42C7BB091871447100BD6382 /* BMNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMNavigationController.m; sourceTree = "<group>"; };
 		620E8C38B3E24A3191C52FA1 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA26BFD3CEFE45ABAC84ECBE /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -175,14 +178,16 @@
 		42C7BAEC18710C0A00BD6382 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				42C7BB081871447100BD6382 /* BMNavigationController.h */,
+				42C7BB091871447100BD6382 /* BMNavigationController.m */,
 				42C7BAED18710C2000BD6382 /* BMSidePanelController.h */,
 				42C7BAEE18710C2000BD6382 /* BMSidePanelController.m */,
 				42C7BAF918710E6700BD6382 /* BMLeftViewController.h */,
 				42C7BAFA18710E6700BD6382 /* BMLeftViewController.m */,
-				42C7BAFC18710E7300BD6382 /* BMHomeViewController.h */,
-				42C7BAFD18710E7300BD6382 /* BMHomeViewController.m */,
 				42C7BAFF18710E7F00BD6382 /* BMRightViewController.h */,
 				42C7BB0018710E7F00BD6382 /* BMRightViewController.m */,
+				42C7BAFC18710E7300BD6382 /* BMHomeViewController.h */,
+				42C7BAFD18710E7300BD6382 /* BMHomeViewController.m */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -342,6 +347,7 @@
 				42C7BAC81871059100BD6382 /* AppDelegate.m in Sources */,
 				42C7BAFE18710E7300BD6382 /* BMHomeViewController.m in Sources */,
 				42C7BAFB18710E6700BD6382 /* BMLeftViewController.m in Sources */,
+				42C7BB0A1871447100BD6382 /* BMNavigationController.m in Sources */,
 				42C7BAC41871059100BD6382 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -425,7 +431,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 			};
@@ -458,7 +464,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};

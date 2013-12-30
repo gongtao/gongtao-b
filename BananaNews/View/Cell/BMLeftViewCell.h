@@ -11,6 +11,8 @@
 @interface BMLeftViewCell : UITableViewCell
 {
     UIView *_lineView;
+    UIView *_selectedBgView;
+    UIView *_separatorView;
 }
 
 @end

@@ -35,6 +35,9 @@
 	// Do any additional setup after loading the view.
     self.allowRightSwipe = NO;
     self.allowLeftSwipe = NO;
+    [self setLeftFixedWidth:kSidePanelLeftWidth];
+    [self setRightFixedWidth:kSidePanelRightWidth];
+    NSLog(@"%f,%f", self.view.bounds.size.width, self.view.bounds.size.height);
 }
 
 - (void)didReceiveMemoryWarning
@@ -49,6 +52,22 @@
 
 - (UIBarButtonItem *)leftButtonForCenterPanel {
     return [[UIBarButtonItem alloc] initWithImage:[[self class] defaultImage] style:UIBarButtonItemStylePlain target:self action:@selector(toggleLeftPanel:)];
+}
+
+- (void)styleContainer:(UIView *)container animate:(BOOL)animate duration:(NSTimeInterval)duration {
+    UIBezierPath *shadowPath = [UIBezierPath bezierPathWithRoundedRect:container.bounds cornerRadius:0.0f];
+    if (animate) {
+        CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"shadowPath"];
+        animation.fromValue = (id)container.layer.shadowPath;
+        animation.toValue = (id)shadowPath.CGPath;
+        animation.duration = duration;
+        [container.layer addAnimation:animation forKey:@"shadowPath"];
+    }
+    container.layer.shadowPath = shadowPath.CGPath;
+    container.layer.shadowColor = [UIColor blackColor].CGColor;
+    container.layer.shadowRadius = 2.0f;
+    container.layer.shadowOpacity = 0.5f;
+    container.clipsToBounds = NO;
 }
 
 @end
