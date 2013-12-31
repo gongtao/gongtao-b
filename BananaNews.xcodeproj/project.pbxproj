@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		42C6D28F18725C3F00F796FB /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42C6D28E18725C3F00F796FB /* QuartzCore.framework */; };
+		42C6D29218725EC500F796FB /* BMDetailNewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C6D29118725EC500F796FB /* BMDetailNewsViewController.m */; };
+		42C6D2951872843800F796FB /* BMBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C6D2941872843800F796FB /* BMBaseViewController.m */; };
+		42C6D298187285EB00F796FB /* BMNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C6D297187285EB00F796FB /* BMNavigationBar.m */; };
 		42C7BAB81871059100BD6382 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42C7BAB71871059100BD6382 /* Foundation.framework */; };
 		42C7BABA1871059100BD6382 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42C7BAB91871059100BD6382 /* CoreGraphics.framework */; };
 		42C7BABC1871059100BD6382 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42C7BABB1871059100BD6382 /* UIKit.framework */; };
@@ -53,6 +56,12 @@
 
 /* Begin PBXFileReference section */
 		42C6D28E18725C3F00F796FB /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		42C6D29018725EC500F796FB /* BMDetailNewsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMDetailNewsViewController.h; sourceTree = "<group>"; };
+		42C6D29118725EC500F796FB /* BMDetailNewsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMDetailNewsViewController.m; sourceTree = "<group>"; };
+		42C6D2931872843800F796FB /* BMBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMBaseViewController.h; sourceTree = "<group>"; };
+		42C6D2941872843800F796FB /* BMBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMBaseViewController.m; sourceTree = "<group>"; };
+		42C6D296187285EB00F796FB /* BMNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMNavigationBar.h; sourceTree = "<group>"; };
+		42C6D297187285EB00F796FB /* BMNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMNavigationBar.m; sourceTree = "<group>"; };
 		42C7BAB41871059100BD6382 /* BananaNews.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BananaNews.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		42C7BAB71871059100BD6382 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		42C7BAB91871059100BD6382 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -220,6 +229,8 @@
 				42C7BB091871447100BD6382 /* BMNavigationController.m */,
 				42C7BAED18710C2000BD6382 /* BMSidePanelController.h */,
 				42C7BAEE18710C2000BD6382 /* BMSidePanelController.m */,
+				42C6D2931872843800F796FB /* BMBaseViewController.h */,
+				42C6D2941872843800F796FB /* BMBaseViewController.m */,
 				42C7BB1D18715D8000BD6382 /* BMRootViewController.h */,
 				42C7BB1E18715D8000BD6382 /* BMRootViewController.m */,
 				42C7BAF918710E6700BD6382 /* BMLeftViewController.h */,
@@ -240,6 +251,8 @@
 				42C7BB18187154A200BD6382 /* BMShorEssayViewController.m */,
 				42C7BB1A187154AF00BD6382 /* BMSubmissionViewController.h */,
 				42C7BB1B187154AF00BD6382 /* BMSubmissionViewController.m */,
+				42C6D29018725EC500F796FB /* BMDetailNewsViewController.h */,
+				42C6D29118725EC500F796FB /* BMDetailNewsViewController.m */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -249,6 +262,8 @@
 			children = (
 				42C7BB2018715E1300BD6382 /* Button */,
 				42C7BB0318712BBB00BD6382 /* Cell */,
+				42C6D296187285EB00F796FB /* BMNavigationBar.h */,
+				42C6D297187285EB00F796FB /* BMNavigationBar.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -429,10 +444,13 @@
 				42C7BB1F18715D8000BD6382 /* BMRootViewController.m in Sources */,
 				42C7BB0D1871545800BD6382 /* BMImageTextViewController.m in Sources */,
 				42C7BB131871548700BD6382 /* BMVideoViewController.m in Sources */,
+				42C6D2951872843800F796FB /* BMBaseViewController.m in Sources */,
 				42C7BAEF18710C2000BD6382 /* BMSidePanelController.m in Sources */,
 				42C7BAC81871059100BD6382 /* AppDelegate.m in Sources */,
+				42C6D298187285EB00F796FB /* BMNavigationBar.m in Sources */,
 				42C7BB161871549500BD6382 /* BMAudioViewController.m in Sources */,
 				42C7BB3118716F8A00BD6382 /* IIWrapController.m in Sources */,
+				42C6D29218725EC500F796FB /* BMDetailNewsViewController.m in Sources */,
 				42C7BAFE18710E7300BD6382 /* BMHomeViewController.m in Sources */,
 				42C7BAFB18710E6700BD6382 /* BMLeftViewController.m in Sources */,
 				42C7BB1C187154AF00BD6382 /* BMSubmissionViewController.m in Sources */,

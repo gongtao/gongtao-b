@@ -121,6 +121,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="yxY-d3-jVJ"/>
+                    <connections>
+                        <segue destination="ltn-Ax-bJb" kind="push" id="iaC-zj-NPx"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UT9-jZ-vKm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -163,6 +166,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NpY-Fe-oI3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-86" y="415"/>
+        </scene>
+        <!--Detail News View Controller - 文章详情-->
+        <scene sceneID="8o3-XZ-Qs0">
+            <objects>
+                <viewController storyboardIdentifier="detailNewsViewController" title="文章详情" id="ltn-Ax-bJb" customClass="BMDetailNewsViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Zub-zB-cNY"/>
+                        <viewControllerLayoutGuide type="bottom" id="ZP4-k7-SDZ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="7mW-qt-eyI">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="OoU-hZ-IVh"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BwP-cP-22j" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-508" y="-1417"/>
         </scene>
         <!--Left View Controller-->
         <scene sceneID="I9o-Q0-jaE">

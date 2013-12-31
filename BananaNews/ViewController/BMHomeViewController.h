@@ -6,8 +6,8 @@
 //  Copyright (c) 2013 龚涛. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "BMBaseViewController.h"
 
-@interface BMHomeViewController : UIViewController
+@interface BMHomeViewController : BMBaseViewController
 
 @end

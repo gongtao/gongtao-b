@@ -38,7 +38,7 @@
         [button setTitle:self.title forState:UIControlStateNormal];
         [button addTarget:self action:@selector(_backButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
         [button sizeToFit];
-        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:button];
+        self.customNavigationBar.leftView = button;
     }
 }
 
@@ -53,7 +53,7 @@
 - (void)_backButtonPressed:(id)sender
 {
     if ([self.navigationController viewControllers].count > 1) {
-        [self.navigationController popToRootViewControllerAnimated:YES];
+        [self.navigationController popViewControllerAnimated:YES];
     }
     else {
         [self.viewDeckController openLeftViewAnimated:YES];

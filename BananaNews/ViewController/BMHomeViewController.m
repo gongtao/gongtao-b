@@ -33,18 +33,21 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    self.view.backgroundColor = [UIColor greenColor];
     
-    self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"首页LOGO.png"]];
+    self.customNavigationBar.centerView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"首页LOGO.png"]];
     
     UIButton *leftButton = [[UIButton alloc] initWithFrame:CGRectMake(0.0, 0.0, 44.0, 44.0)];
     [leftButton setImage:[UIImage imageNamed:@"左侧导航按钮.png"] forState:UIControlStateNormal];
+    [leftButton setImage:[UIImage imageNamed:@"左侧导航按钮.png"] forState:UIControlStateHighlighted];
     [leftButton addTarget:self action:@selector(_leftButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:leftButton];
+    self.customNavigationBar.leftView = leftButton;
     
     UIButton *rightButton = [[UIButton alloc] initWithFrame:CGRectMake(0.0, 0.0, 44.0, 44.0)];
     [rightButton setImage:[UIImage imageNamed:@"右侧用户按钮.png"] forState:UIControlStateNormal];
+    [rightButton setImage:[UIImage imageNamed:@"右侧用户按钮.png"] forState:UIControlStateHighlighted];
     [rightButton addTarget:self action:@selector(_rightButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightButton];
+    self.customNavigationBar.rightView = rightButton;
 }
 
 - (void)didReceiveMemoryWarning
