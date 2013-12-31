@@ -12,6 +12,8 @@
 
 #import "IIViewDeckController.h"
 
+#import "BMSearchView.h"
+
 @interface BMLeftViewController ()
 
 @end
@@ -34,12 +36,16 @@
     self.view.backgroundColor = Color_SideBg;
     
     CGFloat y = IS_IOS7 ? 20.0 : 0.0;
-    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0.0, y, 320.0, 308.0)];
+    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0.0, y, 320.0, 365.0)];
     _tableView.bounces = NO;
     _tableView.dataSource = self;
     _tableView.delegate = self;
     [_tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+    _tableView.backgroundColor = Color_SideBg;
     [self.view addSubview:_tableView];
+    
+    BMSearchView *searchView = [[BMSearchView alloc] initWithFrame:CGRectMake(6.0, 323.0, 222.0, 40.0)];
+    [_tableView addSubview:searchView];
     
     self.titleArray = @[@"首      页", @"图      文", @"动      图", @"视      频",
                         @"音      频", @"短      文", @"投      稿"];

@@ -14,6 +14,7 @@
 		42C6D2A71872A11C00F796FB /* IISideController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C6D2A21872A11C00F796FB /* IISideController.m */; };
 		42C6D2A81872A11C00F796FB /* IIViewDeckController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C6D2A41872A11C00F796FB /* IIViewDeckController.m */; };
 		42C6D2A91872A11C00F796FB /* IIWrapController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C6D2A61872A11C00F796FB /* IIWrapController.m */; };
+		42C6D2AE1872AA8600F796FB /* BMSearchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C6D2AD1872AA8600F796FB /* BMSearchView.m */; };
 		42C7BAB81871059100BD6382 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42C7BAB71871059100BD6382 /* Foundation.framework */; };
 		42C7BABA1871059100BD6382 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42C7BAB91871059100BD6382 /* CoreGraphics.framework */; };
 		42C7BABC1871059100BD6382 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42C7BABB1871059100BD6382 /* UIKit.framework */; };
@@ -68,6 +69,8 @@
 		42C6D2A41872A11C00F796FB /* IIViewDeckController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IIViewDeckController.m; sourceTree = "<group>"; };
 		42C6D2A51872A11C00F796FB /* IIWrapController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IIWrapController.h; sourceTree = "<group>"; };
 		42C6D2A61872A11C00F796FB /* IIWrapController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IIWrapController.m; sourceTree = "<group>"; };
+		42C6D2AC1872AA8600F796FB /* BMSearchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMSearchView.h; sourceTree = "<group>"; };
+		42C6D2AD1872AA8600F796FB /* BMSearchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMSearchView.m; sourceTree = "<group>"; };
 		42C7BAB41871059100BD6382 /* BananaNews.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BananaNews.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		42C7BAB71871059100BD6382 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		42C7BAB91871059100BD6382 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -157,6 +160,22 @@
 			path = ViewDeck;
 			sourceTree = "<group>";
 		};
+		42C6D2AA1872A79F00F796FB /* Modal */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Modal;
+			sourceTree = "<group>";
+		};
+		42C6D2AB1872AA5C00F796FB /* TextField */ = {
+			isa = PBXGroup;
+			children = (
+				42C6D2AC1872AA8600F796FB /* BMSearchView.h */,
+				42C6D2AD1872AA8600F796FB /* BMSearchView.m */,
+			);
+			path = TextField;
+			sourceTree = "<group>";
+		};
 		42C7BAAB1871059100BD6382 = {
 			isa = PBXGroup;
 			children = (
@@ -193,6 +212,7 @@
 		42C7BABD1871059100BD6382 /* BananaNews */ = {
 			isa = PBXGroup;
 			children = (
+				42C6D2AA1872A79F00F796FB /* Modal */,
 				42C7BB0218712BBB00BD6382 /* View */,
 				42C7BAEC18710C0A00BD6382 /* ViewController */,
 				42C7BB2418716DE700BD6382 /* ThirdParty */,
@@ -273,6 +293,7 @@
 		42C7BB0218712BBB00BD6382 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				42C6D2AB1872AA5C00F796FB /* TextField */,
 				42C7BB2018715E1300BD6382 /* Button */,
 				42C7BB0318712BBB00BD6382 /* Cell */,
 				42C6D296187285EB00F796FB /* BMNavigationBar.h */,
@@ -445,6 +466,7 @@
 				42C7BB0D1871545800BD6382 /* BMImageTextViewController.m in Sources */,
 				42C6D2A71872A11C00F796FB /* IISideController.m in Sources */,
 				42C7BB131871548700BD6382 /* BMVideoViewController.m in Sources */,
+				42C6D2AE1872AA8600F796FB /* BMSearchView.m in Sources */,
 				42C6D2951872843800F796FB /* BMBaseViewController.m in Sources */,
 				42C7BAEF18710C2000BD6382 /* BMSidePanelController.m in Sources */,
 				42C6D2A81872A11C00F796FB /* IIViewDeckController.m in Sources */,
