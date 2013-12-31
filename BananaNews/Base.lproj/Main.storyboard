@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="L81-R6-vap">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="Sfj-nP-m1z">
     <dependencies>
         <deployment defaultVersion="1536" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
@@ -8,7 +8,8 @@
         <!--Side Panel Controller-->
         <scene sceneID="q35-kb-pDl">
             <objects>
-                <viewController storyboardIdentifier="BMSidePanelController" id="L81-R6-vap" customClass="BMSidePanelController" sceneMemberID="viewController">
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HN0-8d-lRi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController storyboardIdentifier="sidePanelController" id="L81-R6-vap" customClass="BMSidePanelController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="f0M-s1-5ij"/>
                         <viewControllerLayoutGuide type="bottom" id="13Z-jd-eES"/>
@@ -18,37 +19,21 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="x41-gt-Gf6"/>
                     <connections>
                         <segue destination="lgB-Pg-7T9" kind="push" identifier="leftNav" id="RrF-FX-2Gc"/>
-                        <segue destination="LR5-9u-vnG" kind="push" identifier="centerNav" id="wvW-eB-gXg"/>
                         <segue destination="OMd-h1-WxU" kind="push" identifier="rightNav" id="rbj-29-X7x"/>
+                        <segue destination="ETj-u8-ZHO" kind="push" id="RFR-Gm-UL4"/>
+                        <segue destination="L2s-5u-IAU" kind="push" id="kBB-hd-tEs"/>
+                        <segue destination="tLg-vl-JaZ" kind="push" id="Ss2-km-j6s"/>
+                        <segue destination="nGb-7p-yh2" kind="push" id="8Gz-3V-gFg"/>
+                        <segue destination="mhA-ml-JPT" kind="push" id="I5Q-iJ-Whn"/>
+                        <segue destination="wiL-sJ-aFM" kind="push" id="Ef8-iI-f0S"/>
+                        <segue destination="KZ9-Xi-Xgw" kind="push" id="9s6-a0-qSG"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="HN0-8d-lRi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-683" y="-273"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="ew0-3y-IM5">
-            <objects>
-                <navigationController storyboardIdentifier="navigationController" definesPresentationContext="YES" id="LR5-9u-vnG" customClass="BMNavigationController" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="uPK-re-Aig"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="AJ2-T7-VXF">
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="ETj-u8-ZHO" kind="relationship" relationship="rootViewController" id="c6x-gW-8SL"/>
-                        <segue destination="L2s-5u-IAU" kind="push" id="DHG-Sh-IbP"/>
-                        <segue destination="tLg-vl-JaZ" kind="push" id="Fgn-1V-x5x"/>
-                        <segue destination="nGb-7p-yh2" kind="push" id="gPN-Sn-W8m"/>
-                        <segue destination="mhA-ml-JPT" kind="push" id="CD8-Zf-GCw"/>
-                        <segue destination="wiL-sJ-aFM" kind="push" id="YXo-LK-J9o"/>
-                        <segue destination="KZ9-Xi-Xgw" kind="push" id="iKh-hZ-wFa"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="UBH-Yv-M7W" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-86" y="-273"/>
+            <point key="canvasLocation" x="5" y="-269"/>
         </scene>
         <!--Dynamic Image View Controller - 动图-->
         <scene sceneID="dI6-fq-3q5">
@@ -67,7 +52,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fTy-f0-c5C" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="556" y="79"/>
+            <point key="canvasLocation" x="1284" y="83"/>
         </scene>
         <!--Video View Controller - 视频-->
         <scene sceneID="C05-yg-TF7">
@@ -86,7 +71,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dpy-H7-hgF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="556" y="794"/>
+            <point key="canvasLocation" x="1284" y="798"/>
         </scene>
         <!--Submission View Controller - 投稿-->
         <scene sceneID="3wV-EV-YRF">
@@ -105,7 +90,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dva-Bc-86e" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1087" y="415"/>
+            <point key="canvasLocation" x="1815" y="419"/>
         </scene>
         <!--Home View Controller - 首页-->
         <scene sceneID="git-5g-Hgj">
@@ -121,13 +106,10 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="yxY-d3-jVJ"/>
-                    <connections>
-                        <segue destination="ltn-Ax-bJb" kind="push" id="iaC-zj-NPx"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UT9-jZ-vKm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="556" y="-1322"/>
+            <point key="canvasLocation" x="1284" y="-1306"/>
         </scene>
         <!--Audio View Controller - 音频-->
         <scene sceneID="rk6-kt-yuE">
@@ -146,7 +128,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Tu-aK-7Ie" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1087" y="-986"/>
+            <point key="canvasLocation" x="1815" y="-982"/>
         </scene>
         <!--Right View Controller-->
         <scene sceneID="AEy-4k-Alx">
@@ -165,7 +147,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NpY-Fe-oI3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-86" y="415"/>
+            <point key="canvasLocation" x="642" y="399"/>
         </scene>
         <!--Detail News View Controller - 文章详情-->
         <scene sceneID="8o3-XZ-Qs0">
@@ -184,7 +166,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BwP-cP-22j" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-508" y="-1417"/>
+            <point key="canvasLocation" x="2544" y="-1289"/>
         </scene>
         <!--Left View Controller-->
         <scene sceneID="I9o-Q0-jaE">
@@ -203,7 +185,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3hQ-Bg-6cP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-86" y="-986"/>
+            <point key="canvasLocation" x="642" y="-982"/>
         </scene>
         <!--Image Text View Controller - 图文-->
         <scene sceneID="tqh-6W-AMb">
@@ -222,7 +204,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Swc-RS-xyt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="556" y="-609"/>
+            <point key="canvasLocation" x="1284" y="-605"/>
         </scene>
         <!--Shor Essay View Controller - 短文-->
         <scene sceneID="03v-fW-Ucf">
@@ -241,7 +223,22 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Z8G-DN-nYc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1087" y="-273"/>
+            <point key="canvasLocation" x="1815" y="-269"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="icP-Md-QtA">
+            <objects>
+                <navigationController storyboardIdentifier="navigationController" definesPresentationContext="YES" id="Sfj-nP-m1z" customClass="BMNavigationController" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ecp-Tk-ioU">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="L81-R6-vap" kind="relationship" relationship="rootViewController" id="80o-rA-Tdu"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3gh-xz-v2E" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-484" y="-269"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

@@ -14,28 +14,18 @@
 
 @implementation BMSidePanelController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
-- (void)awakeFromNib {
-    [self setLeftController:[self.storyboard instantiateViewControllerWithIdentifier:@"leftViewController"]];
-    [self setCenterController:[self.storyboard instantiateViewControllerWithIdentifier:@"navigationController"]];
-    [self setRightController:[self.storyboard instantiateViewControllerWithIdentifier:@"rightViewController"]];
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     [self setLeftSize:320.0-kSidePanelLeftWidth];
     [self setRightSize:320.0-kSidePanelRightWidth];
+    
     self.centerhiddenInteractivity = IIViewDeckCenterHiddenNotUserInteractiveWithTapToClose;
+    
+    [self setCenterController:[self.storyboard instantiateViewControllerWithIdentifier:@"homeViewController"]];
+    [self setLeftController:[self.storyboard instantiateViewControllerWithIdentifier:@"leftViewController"]];
+    [self setRightController:[self.storyboard instantiateViewControllerWithIdentifier:@"rightViewController"]];
 }
 
 - (void)didReceiveMemoryWarning

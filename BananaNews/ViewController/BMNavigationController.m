@@ -43,20 +43,13 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    if (IS_IOS7) {
-        self.navigationBar.barTintColor = Color_Yellow;
-        self.navigationBar.translucent = NO;
-    } else {
-        self.navigationBar.tintColor = Color_Yellow;
-    }
-    
     self.screenShotsList = [[NSMutableArray alloc] initWithCapacity:2];
     self.canDragBack = YES;
     
     self.recognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(paningGestureReceive:)];
-    [self.recognizer delaysTouchesBegan];
-    self.recognizer.enabled = NO;
+//    [self.recognizer delaysTouchesBegan];
     [self.view addGestureRecognizer:self.recognizer];
+    self.recognizer.enabled = NO;
 }
 
 - (void)didReceiveMemoryWarning

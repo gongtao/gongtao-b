@@ -10,12 +10,14 @@
 #define BananaNews_BMConstant_h
 
 #define kSidePanelLeftWidth     232.0
-#define kSidePanelRightWidth    195.0
+#define kSidePanelRightWidth    230.0
 
 #define IS_IOS7 ([[[UIDevice currentDevice]systemVersion] floatValue] >= 7.0)
 
 #define Color_Yellow        [UIColor colorWithHexString:@"ebdb01"]
-#define Color_GayLine       [UIColor colorWithHexString:@"bababa"]
-#define Color_CellBg        [UIColor colorWithHexString:@"00ff00"]
+#define Color_GayLine       [UIColor colorWithHexString:@"dcdcdc"]
+#define Color_CellBg        [UIColor colorWithHexString:@"e4e4df"]
+#define Color_SideBg        [UIColor colorWithHexString:@"f3f3f3"]
+#define Color_ContentBg     [UIColor colorWithHexString:@"f7f7f7"]
 
 #endif

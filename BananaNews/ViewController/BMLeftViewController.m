@@ -33,8 +33,9 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    CGFloat y = IS_IOS7 ? 20.0 : 0.0;
+    self.view.backgroundColor = Color_SideBg;
     
+    CGFloat y = IS_IOS7 ? 20.0 : 0.0;
     _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0.0, y, 320.0, 308.0)];
     _tableView.bounces = NO;
     _tableView.dataSource = self;
@@ -84,13 +85,23 @@
     }
     else {
         NSString *index = [NSString stringWithFormat:@"%i", row];
-        BMNavigationController *nv = self.controllerDic[index];
-        if (!nv) {
-            nv = [[BMNavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:self.controllerTitleArray[row]]];
-            self.controllerDic[index] = nv;
+        UIViewController *vc = self.controllerDic[index];
+        if (!vc) {
+            vc = [self.storyboard instantiateViewControllerWithIdentifier:self.controllerTitleArray[row]];
+            self.controllerDic[index] = vc;
         }
+        
+        BMLeftViewCell *cell = (BMLeftViewCell *)[tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:_lastSelectedRow inSection:0]];
+        if (cell) {
+            cell.isCurrent = NO;
+        }
+        cell = (BMLeftViewCell *)[tableView cellForRowAtIndexPath:indexPath];
+        if (cell) {
+            cell.isCurrent = YES;
+        }
+        
         _lastSelectedRow = row;
-        [self.viewDeckController setCenterController:nv];
+        [self.viewDeckController setCenterController:vc];
     }
     [self.viewDeckController closeLeftViewAnimated:YES];
 }
@@ -107,6 +118,7 @@
     
     NSUInteger row = [indexPath row];
     cell.textLabel.text = self.titleArray[row];
+    cell.isCurrent = (_lastSelectedRow == row);
     
     return cell;
 }

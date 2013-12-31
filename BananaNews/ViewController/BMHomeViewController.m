@@ -33,8 +33,6 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    self.view.backgroundColor = [UIColor greenColor];
-    
     self.customNavigationBar.centerView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"首页LOGO.png"]];
     
     UIButton *leftButton = [[UIButton alloc] initWithFrame:CGRectMake(0.0, 0.0, 44.0, 44.0)];

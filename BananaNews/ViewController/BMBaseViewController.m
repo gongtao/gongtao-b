@@ -29,6 +29,8 @@
 	// Do any additional setup after loading the view.
     self.navigationController.navigationBarHidden = YES;
     
+    self.view.backgroundColor = Color_ContentBg;
+    
     self.customNavigationBar = [[BMNavigationBar alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, IS_IOS7?64.0:44.0)];
     self.customNavigationBar.backgroundColor = Color_Yellow;
     [self.view addSubview:self.customNavigationBar];

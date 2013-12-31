@@ -15,4 +15,6 @@
     UIView *_separatorView;
 }
 
+@property (nonatomic, assign) BOOL isCurrent;
+
 @end
