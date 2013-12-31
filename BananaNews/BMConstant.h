@@ -14,7 +14,7 @@
 
 #define IS_IOS7 ([[[UIDevice currentDevice]systemVersion] floatValue] >= 7.0)
 
-#define Color_Yellow        [UIColor colorWithHexString:@"ff0000"]
+#define Color_Yellow        [UIColor colorWithHexString:@"ebdb01"]
 #define Color_GayLine       [UIColor colorWithHexString:@"bababa"]
 #define Color_CellBg        [UIColor colorWithHexString:@"00ff00"]
 

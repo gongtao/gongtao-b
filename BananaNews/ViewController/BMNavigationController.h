@@ -10,4 +10,7 @@
 
 @interface BMNavigationController : UINavigationController
 
+// Enable the drag to back interaction, Defalt is YES.
+@property (nonatomic,assign) BOOL canDragBack;
+
 @end

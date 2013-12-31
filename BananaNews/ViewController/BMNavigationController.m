@@ -7,6 +7,7 @@
 //
 
 #import "BMNavigationController.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface BMNavigationController ()
 

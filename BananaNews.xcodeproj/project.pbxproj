@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		42C6D28F18725C3F00F796FB /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42C6D28E18725C3F00F796FB /* QuartzCore.framework */; };
 		42C7BAB81871059100BD6382 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42C7BAB71871059100BD6382 /* Foundation.framework */; };
 		42C7BABA1871059100BD6382 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42C7BAB91871059100BD6382 /* CoreGraphics.framework */; };
 		42C7BABC1871059100BD6382 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42C7BABB1871059100BD6382 /* UIKit.framework */; };
@@ -51,6 +52,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		42C6D28E18725C3F00F796FB /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		42C7BAB41871059100BD6382 /* BananaNews.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BananaNews.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		42C7BAB71871059100BD6382 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		42C7BAB91871059100BD6382 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -112,6 +114,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				42C6D28F18725C3F00F796FB /* QuartzCore.framework in Frameworks */,
 				42C7BABA1871059100BD6382 /* CoreGraphics.framework in Frameworks */,
 				42C7BABC1871059100BD6382 /* UIKit.framework in Frameworks */,
 				42C7BAB81871059100BD6382 /* Foundation.framework in Frameworks */,
@@ -155,6 +158,7 @@
 		42C7BAB61871059100BD6382 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				42C6D28E18725C3F00F796FB /* QuartzCore.framework */,
 				42C7BAB71871059100BD6382 /* Foundation.framework */,
 				42C7BAB91871059100BD6382 /* CoreGraphics.framework */,
 				42C7BABB1871059100BD6382 /* UIKit.framework */,
