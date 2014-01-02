@@ -8,10 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BMLeftViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+#import "BMSearchView.h"
+
+@interface BMLeftViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>
 {
     NSInteger _lastSelectedRow;
 }
+
+@property (nonatomic, strong) BMSearchView *searchView;
 
 @property (nonatomic, strong) UITableView *tableView;
 

@@ -18,7 +18,7 @@
         self.contentView.backgroundColor = Color_SideBg;
         self.textLabel.textAlignment = NSTextAlignmentCenter;
         self.textLabel.font = [UIFont systemFontOfSize:17.0];
-        self.textLabel.textColor = [UIColor colorWithHexString:@"666666"];
+        self.textLabel.textColor = Color_SideFont;
         self.selectionStyle = UITableViewCellSelectionStyleNone;
         
         _separatorView = [[UIView alloc] init];

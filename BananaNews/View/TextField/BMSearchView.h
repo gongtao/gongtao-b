@@ -10,4 +10,8 @@
 
 @interface BMSearchView : UIView
 
+@property (nonatomic, strong) UIButton *searchButton;
+
+@property (nonatomic, strong) UITextField *textField;
+
 @end

@@ -12,9 +12,9 @@
 
 #import "IIViewDeckController.h"
 
-#import "BMSearchView.h"
-
 @interface BMLeftViewController ()
+
+- (void)_searchButtonPressed:(id)sender;
 
 @end
 
@@ -44,8 +44,10 @@
     _tableView.backgroundColor = Color_SideBg;
     [self.view addSubview:_tableView];
     
-    BMSearchView *searchView = [[BMSearchView alloc] initWithFrame:CGRectMake(6.0, 323.0, 222.0, 40.0)];
-    [_tableView addSubview:searchView];
+    _searchView = [[BMSearchView alloc] initWithFrame:CGRectMake(8.0, 323.0, 216.0, 40.0)];
+    _searchView.textField.delegate = self;
+    [_searchView.searchButton addTarget:self action:@selector(_searchButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    [_tableView addSubview:_searchView];
     
     self.titleArray = @[@"首      页", @"图      文", @"动      图", @"视      频",
                         @"音      频", @"短      文", @"投      稿"];
@@ -77,6 +79,13 @@
             [self.controllerDic removeObjectForKey:key];
         }
     }];
+}
+
+#pragma mark - Private
+
+- (void)_searchButtonPressed:(id)sender
+{
+    [self.view endEditing:YES];
 }
 
 #pragma mark - UITableViewDelegate
@@ -140,6 +149,14 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return 7;
+}
+
+#pragma mark - UITextFieldDelegate
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [self _searchButtonPressed:nil];
+    return YES;
 }
 
 @end

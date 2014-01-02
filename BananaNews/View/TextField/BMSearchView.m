@@ -18,6 +18,18 @@
         self.backgroundColor = Color_CellBg;
         self.layer.borderColor = Color_GayLine.CGColor;
         self.layer.borderWidth = 1.0;
+        
+        _textField = [[UITextField alloc] initWithFrame:CGRectMake(7.0, 0.0, frame.size.width-32.0, frame.size.height)];
+        _textField.font = [UIFont systemFontOfSize:14.0];
+        _textField.placeholder = @"搜索更多";
+        _textField.textColor = Color_SideFont;
+        _textField.returnKeyType = UIReturnKeySearch;
+        [self addSubview:_textField];
+        
+        _searchButton = [[UIButton alloc] initWithFrame:CGRectMake(frame.size.width-25.0, (frame.size.height-25.0)/2, 25.0, 25.0)];
+        [_searchButton setImage:[UIImage imageNamed:@"搜索.png"] forState:UIControlStateNormal];
+        [_searchButton setImage:[UIImage imageNamed:@"搜索按下.png"] forState:UIControlStateHighlighted];
+        [self addSubview:_searchButton];
     }
     return self;
 }

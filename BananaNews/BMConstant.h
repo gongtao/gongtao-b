@@ -19,5 +19,6 @@
 #define Color_CellBg        [UIColor colorWithHexString:@"e4e4df"]
 #define Color_SideBg        [UIColor colorWithHexString:@"f3f3f3"]
 #define Color_ContentBg     [UIColor colorWithHexString:@"f7f7f7"]
+#define Color_SideFont      [UIColor colorWithHexString:@"666666"]
 
 #endif
