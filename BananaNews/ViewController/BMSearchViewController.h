@@ -8,6 +8,8 @@
 
 #import "BMRootViewController.h"
 
-@interface BMSearchViewController : BMRootViewController
+@interface BMSearchViewController : BMRootViewController <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>
+
+@property (nonatomic, strong) UITableView *tableView;
 
 @end

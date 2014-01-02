@@ -26,7 +26,7 @@
         _textField.returnKeyType = UIReturnKeySearch;
         [self addSubview:_textField];
         
-        _searchButton = [[UIButton alloc] initWithFrame:CGRectMake(frame.size.width-25.0, (frame.size.height-25.0)/2, 25.0, 25.0)];
+        _searchButton = [[UIButton alloc] initWithFrame:CGRectMake(frame.size.width-32.0, (frame.size.height-40.0)/2, 40.0, 40.0)];
         [_searchButton setImage:[UIImage imageNamed:@"搜索.png"] forState:UIControlStateNormal];
         [_searchButton setImage:[UIImage imageNamed:@"搜索按下.png"] forState:UIControlStateHighlighted];
         [self addSubview:_searchButton];
