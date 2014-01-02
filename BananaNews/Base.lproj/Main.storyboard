@@ -30,6 +30,7 @@
                         <segue destination="wiL-sJ-aFM" kind="push" id="Ef8-iI-f0S"/>
                         <segue destination="KZ9-Xi-Xgw" kind="push" id="9s6-a0-qSG"/>
                         <segue destination="0ZV-i9-61Y" kind="push" id="jLb-hT-p45"/>
+                        <segue destination="GuA-35-eFD" kind="push" id="9Ja-t8-rsm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HN0-8d-lRi" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -150,6 +151,25 @@
             </objects>
             <point key="canvasLocation" x="1819" y="-1306"/>
         </scene>
+        <!--Collect View Controller - 收藏-->
+        <scene sceneID="ND9-mm-1Ow">
+            <objects>
+                <viewController storyboardIdentifier="collectViewController" title="收藏" id="GuA-35-eFD" customClass="BMCollectViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="0la-zi-Buf"/>
+                        <viewControllerLayoutGuide type="bottom" id="RHr-cK-7SE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="VbH-Pf-sO2">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="7ga-HD-2Dx"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aWJ-kV-rBt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2339" y="-1306"/>
+        </scene>
         <!--Right View Controller-->
         <scene sceneID="AEy-4k-Alx">
             <objects>
@@ -167,7 +187,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NpY-Fe-oI3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="642" y="399"/>
+            <point key="canvasLocation" x="642" y="798"/>
         </scene>
         <!--Detail News View Controller - 文章详情-->
         <scene sceneID="8o3-XZ-Qs0">
@@ -186,7 +206,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BwP-cP-22j" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2396" y="-1145"/>
+            <point key="canvasLocation" x="-380" y="-1217"/>
         </scene>
         <!--Left View Controller-->
         <scene sceneID="I9o-Q0-jaE">
@@ -205,7 +225,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3hQ-Bg-6cP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="642" y="-982"/>
+            <point key="canvasLocation" x="642" y="-1306"/>
         </scene>
         <!--Image Text View Controller - 图文-->
         <scene sceneID="tqh-6W-AMb">

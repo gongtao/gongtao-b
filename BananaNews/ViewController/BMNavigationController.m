@@ -47,7 +47,6 @@
     self.canDragBack = YES;
     
     self.recognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(paningGestureReceive:)];
-//    [self.recognizer delaysTouchesBegan];
     [self.view addGestureRecognizer:self.recognizer];
     self.recognizer.enabled = NO;
 }
@@ -90,6 +89,8 @@
             blackMask.alpha = 0.6;
             [self.backgroundView addSubview:blackMask];
         }
+        
+        [self moveViewWithX:0.0];
         
         self.backgroundView.hidden = NO;
         
@@ -154,6 +155,14 @@
     
     blackMask.alpha = 0.4 - (x/800);
     
+    frame = self.backgroundView.frame;
+    if (IS_IOS7) {
+        frame.origin.x = (320.0-kSidePanelRightWidth) * (x/320.0-1.0);
+    }
+    else {
+        frame.origin.x = x - frame.size.width;
+    }
+    self.backgroundView.frame = frame;
 }
 
 #pragma mark - Gesture Recognizer -
@@ -184,6 +193,8 @@
             blackMask.alpha = 0.6;
             [self.backgroundView addSubview:blackMask];
         }
+        
+        [self moveViewWithX:0.0];
         
         self.backgroundView.hidden = NO;
         

@@ -45,6 +45,7 @@
 		CE8BC6AFDCC940D28D1B30C8 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 620E8C38B3E24A3191C52FA1 /* libPods.a */; };
 		D821E84C18751228005C1604 /* BMSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D821E84B18751228005C1604 /* BMSearchViewController.m */; };
 		D821E85218752D02005C1604 /* BMCustomButton.m in Sources */ = {isa = PBXBuildFile; fileRef = D821E85118752D02005C1604 /* BMCustomButton.m */; };
+		D821E855187560AF005C1604 /* BMCollectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D821E854187560AF005C1604 /* BMCollectViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -125,6 +126,8 @@
 		D821E84B18751228005C1604 /* BMSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMSearchViewController.m; sourceTree = "<group>"; };
 		D821E85018752D02005C1604 /* BMCustomButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMCustomButton.h; sourceTree = "<group>"; };
 		D821E85118752D02005C1604 /* BMCustomButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMCustomButton.m; sourceTree = "<group>"; };
+		D821E853187560AF005C1604 /* BMCollectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMCollectViewController.h; sourceTree = "<group>"; };
+		D821E854187560AF005C1604 /* BMCollectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMCollectViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -294,6 +297,8 @@
 				D821E84B18751228005C1604 /* BMSearchViewController.m */,
 				42C6D29018725EC500F796FB /* BMDetailNewsViewController.h */,
 				42C6D29118725EC500F796FB /* BMDetailNewsViewController.m */,
+				D821E853187560AF005C1604 /* BMCollectViewController.h */,
+				D821E854187560AF005C1604 /* BMCollectViewController.m */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -486,6 +491,7 @@
 				42C7BB161871549500BD6382 /* BMAudioViewController.m in Sources */,
 				42C6D29218725EC500F796FB /* BMDetailNewsViewController.m in Sources */,
 				42C7BAFE18710E7300BD6382 /* BMHomeViewController.m in Sources */,
+				D821E855187560AF005C1604 /* BMCollectViewController.m in Sources */,
 				D821E84C18751228005C1604 /* BMSearchViewController.m in Sources */,
 				42C7BAFB18710E6700BD6382 /* BMLeftViewController.m in Sources */,
 				42C7BB1C187154AF00BD6382 /* BMSubmissionViewController.m in Sources */,

@@ -25,4 +25,8 @@
 
 @property (nonatomic, strong) NSMutableDictionary *controllerDic;
 
+- (void)selectVCAtIndex:(NSUInteger)row;
+
+- (void)deselectVC;
+
 @end

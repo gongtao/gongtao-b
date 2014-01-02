@@ -83,6 +83,50 @@
     }];
 }
 
+#pragma mark - Public
+
+- (void)selectVCAtIndex:(NSUInteger)row
+{
+    if (_lastSelectedRow == row) {
+        _lastSelectedRow = row;
+    }
+    else {
+        NSString *index = [NSString stringWithFormat:@"%i", row];
+        UIViewController *vc = self.controllerDic[index];
+        if (!vc) {
+            vc = [self.storyboard instantiateViewControllerWithIdentifier:self.controllerTitleArray[row]];
+            self.controllerDic[index] = vc;
+        }
+        
+        BMLeftViewCell *cell = nil;
+        if (-1 != _lastSelectedRow) {
+            cell = (BMLeftViewCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:_lastSelectedRow inSection:0]];
+            if (cell) {
+                cell.isCurrent = NO;
+            }
+        }
+        cell = (BMLeftViewCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:row inSection:0]];
+        if (cell) {
+            cell.isCurrent = YES;
+        }
+        
+        _lastSelectedRow = row;
+        [self.viewDeckController setCenterController:vc];
+    }
+}
+
+- (void)deselectVC
+{
+    BMLeftViewCell *cell = nil;
+    if (-1 != _lastSelectedRow) {
+        cell = (BMLeftViewCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:_lastSelectedRow inSection:0]];
+        if (cell) {
+            cell.isCurrent = NO;
+        }
+    }
+    _lastSelectedRow = -1;
+}
+
 #pragma mark - Private
 
 - (void)_searchButtonPressed:(id)sender
@@ -100,30 +144,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSInteger row = [indexPath row];
-    if (_lastSelectedRow == row) {
-        _lastSelectedRow = row;
-    }
-    else {
-        NSString *index = [NSString stringWithFormat:@"%i", row];
-        UIViewController *vc = self.controllerDic[index];
-        if (!vc) {
-            vc = [self.storyboard instantiateViewControllerWithIdentifier:self.controllerTitleArray[row]];
-            self.controllerDic[index] = vc;
-        }
-        
-        BMLeftViewCell *cell = (BMLeftViewCell *)[tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:_lastSelectedRow inSection:0]];
-        if (cell) {
-            cell.isCurrent = NO;
-        }
-        cell = (BMLeftViewCell *)[tableView cellForRowAtIndexPath:indexPath];
-        if (cell) {
-            cell.isCurrent = YES;
-        }
-        
-        _lastSelectedRow = row;
-        [self.viewDeckController setCenterController:vc];
-    }
+    [self selectVCAtIndex:[indexPath row]];
     [self.viewDeckController closeLeftViewAnimated:YES];
 }
 

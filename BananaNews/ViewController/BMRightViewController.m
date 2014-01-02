@@ -8,11 +8,23 @@
 
 #import "BMRightViewController.h"
 
+#import "BMLeftViewController.h"
+
+#import "IIViewDeckController.h"
+
 #import "BMCustomButton.h"
 
 #define kLoginButtonWidth       130.0
 
 @interface BMRightViewController ()
+
+- (void)_loginButtonPressed:(id)sender;
+
+- (void)_submitButtonPressed:(id)sender;
+
+- (void)_collectButtonPressed:(id)sender;
+
+- (void)_settingButtonPressed:(id)sender;
 
 @end
 
@@ -52,6 +64,7 @@
     loginButton.titleLabel.font = [UIFont systemFontOfSize:14.0];
     [loginButton setTitleColor:Color_SideFont forState:UIControlStateNormal];
     loginButton.titleLabel.textAlignment = NSTextAlignmentCenter;
+    [loginButton addTarget:self action:@selector(_loginButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:loginButton];
     
     offset = (kSidePanelRightWidth-146.0)/2;
@@ -65,6 +78,7 @@
     submitButton.titleLabel.font = [UIFont systemFontOfSize:12.0];
     [submitButton setTitleColor:Color_SideFont forState:UIControlStateNormal];
     submitButton.titleLabel.textAlignment = NSTextAlignmentCenter;
+    [submitButton addTarget:self action:@selector(_submitButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:submitButton];
     
     BMCustomButton *collectButton = [[BMCustomButton alloc] initWithFrame:CGRectMake(CGRectGetMaxX(submitButton.frame)+30.0, y, 58.0, 63.0)];
@@ -76,6 +90,7 @@
     collectButton.titleLabel.font = [UIFont systemFontOfSize:12.0];
     [collectButton setTitleColor:Color_SideFont forState:UIControlStateNormal];
     collectButton.titleLabel.textAlignment = NSTextAlignmentCenter;
+    [collectButton addTarget:self action:@selector(_collectButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:collectButton];
     
     y = self.view.frame.size.height-32.0;
@@ -87,6 +102,7 @@
     [settingButton setTitle:@"设置" forState:UIControlStateNormal];
     settingButton.titleLabel.font = [UIFont systemFontOfSize:10.0];
     [settingButton setTitleColor:Color_SideFont forState:UIControlStateNormal];
+    [settingButton addTarget:self action:@selector(_settingButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:settingButton];
     
     NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
@@ -107,6 +123,32 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - Private
 
+- (void)_loginButtonPressed:(id)sender
+{
+    
+}
+
+- (void)_submitButtonPressed:(id)sender
+{
+    BMLeftViewController *leftVC = (BMLeftViewController *)self.viewDeckController.leftController;
+    [leftVC selectVCAtIndex:6];
+    [self.viewDeckController closeRightViewAnimated:YES];
+}
+
+- (void)_collectButtonPressed:(id)sender
+{
+    BMLeftViewController *leftVC = (BMLeftViewController *)self.viewDeckController.leftController;
+    [leftVC deselectVC];
+    UIViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"collectViewController"];
+    self.viewDeckController.centerController = vc;
+    [self.viewDeckController closeRightViewAnimated:YES];
+}
+
+- (void)_settingButtonPressed:(id)sender
+{
+    
+}
 
 @end
