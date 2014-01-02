@@ -41,7 +41,7 @@
     
     UIControl *searchView = [[UIControl alloc] initWithFrame:CGRectMake(8.0, y+4.0, 216.0, 36.0)];
     searchView.backgroundColor = Color_CellBg;
-    searchView.layer.borderColor = Color_GayLine.CGColor;
+    searchView.layer.borderColor = Color_GrayLine.CGColor;
     searchView.layer.borderWidth = 1.0;
     [searchView addTarget:self action:@selector(_searchButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:searchView];
@@ -58,7 +58,7 @@
     [searchView addSubview:imageView];
     
     UIView *separatorView = [[UIView alloc] initWithFrame:CGRectMake(0.0, y+43.5, 320.0, 1.0)];
-    separatorView.backgroundColor = Color_GayLine;
+    separatorView.backgroundColor = Color_GrayLine;
     [self.view addSubview:separatorView];
     
     _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0.0, y+44.5, 320.0, 308.0)];

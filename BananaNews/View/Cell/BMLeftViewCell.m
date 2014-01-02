@@ -22,7 +22,7 @@
         self.selectionStyle = UITableViewCellSelectionStyleNone;
         
         _separatorView = [[UIView alloc] init];
-        _separatorView.backgroundColor = Color_GayLine;
+        _separatorView.backgroundColor = Color_GrayLine;
         [self.contentView insertSubview:_separatorView belowSubview:self.textLabel];
         
         _selectedBgView = [[UIView alloc] init];

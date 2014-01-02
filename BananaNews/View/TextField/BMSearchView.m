@@ -16,7 +16,7 @@
     if (self) {
         // Initialization code
         self.backgroundColor = Color_CellBg;
-        self.layer.borderColor = Color_GayLine.CGColor;
+        self.layer.borderColor = Color_GrayLine.CGColor;
         self.layer.borderWidth = 1.0;
         
         _textField = [[UITextField alloc] initWithFrame:CGRectMake(7.0, (frame.size.height-18.0)/2, frame.size.width-32.0, 18.0)];

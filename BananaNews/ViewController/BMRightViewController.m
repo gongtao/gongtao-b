@@ -114,6 +114,7 @@
     label.textColor = Color_SideFont;
     label.font = [UIFont systemFontOfSize:10.0];
     label.textAlignment = NSTextAlignmentRight;
+    label.backgroundColor = [UIColor clearColor];
     [self.view addSubview:label];
 }
 
