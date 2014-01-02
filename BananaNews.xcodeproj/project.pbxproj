@@ -44,6 +44,7 @@
 		42C7BB2318715E3100BD6382 /* BMNavBackButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C7BB2218715E3100BD6382 /* BMNavBackButton.m */; };
 		CE8BC6AFDCC940D28D1B30C8 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 620E8C38B3E24A3191C52FA1 /* libPods.a */; };
 		D821E84C18751228005C1604 /* BMSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D821E84B18751228005C1604 /* BMSearchViewController.m */; };
+		D821E85218752D02005C1604 /* BMCustomButton.m in Sources */ = {isa = PBXBuildFile; fileRef = D821E85118752D02005C1604 /* BMCustomButton.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -122,6 +123,8 @@
 		CA26BFD3CEFE45ABAC84ECBE /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		D821E84A18751228005C1604 /* BMSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMSearchViewController.h; sourceTree = "<group>"; };
 		D821E84B18751228005C1604 /* BMSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMSearchViewController.m; sourceTree = "<group>"; };
+		D821E85018752D02005C1604 /* BMCustomButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMCustomButton.h; sourceTree = "<group>"; };
+		D821E85118752D02005C1604 /* BMCustomButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMCustomButton.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -321,6 +324,8 @@
 			children = (
 				42C7BB2118715E3100BD6382 /* BMNavBackButton.h */,
 				42C7BB2218715E3100BD6382 /* BMNavBackButton.m */,
+				D821E85018752D02005C1604 /* BMCustomButton.h */,
+				D821E85118752D02005C1604 /* BMCustomButton.m */,
 			);
 			path = Button;
 			sourceTree = "<group>";
@@ -467,6 +472,7 @@
 			files = (
 				42C7BB0618712BF700BD6382 /* BMLeftViewCell.m in Sources */,
 				42C7BB0118710E7F00BD6382 /* BMRightViewController.m in Sources */,
+				D821E85218752D02005C1604 /* BMCustomButton.m in Sources */,
 				42C7BB1F18715D8000BD6382 /* BMRootViewController.m in Sources */,
 				42C7BB0D1871545800BD6382 /* BMImageTextViewController.m in Sources */,
 				42C6D2A71872A11C00F796FB /* IISideController.m in Sources */,
