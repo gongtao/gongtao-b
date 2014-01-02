@@ -10,7 +10,7 @@
 #define BananaNews_BMConstant_h
 
 #define kSidePanelLeftWidth     232.0
-#define kSidePanelRightWidth    230.0
+#define kSidePanelRightWidth    220.0
 
 #define IS_IOS7 ([[[UIDevice currentDevice]systemVersion] floatValue] >= 7.0)
 

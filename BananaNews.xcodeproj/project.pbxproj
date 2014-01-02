@@ -43,6 +43,7 @@
 		42C7BB1F18715D8000BD6382 /* BMRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C7BB1E18715D8000BD6382 /* BMRootViewController.m */; };
 		42C7BB2318715E3100BD6382 /* BMNavBackButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C7BB2218715E3100BD6382 /* BMNavBackButton.m */; };
 		CE8BC6AFDCC940D28D1B30C8 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 620E8C38B3E24A3191C52FA1 /* libPods.a */; };
+		D821E84C18751228005C1604 /* BMSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D821E84B18751228005C1604 /* BMSearchViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -119,6 +120,8 @@
 		42C7BB2218715E3100BD6382 /* BMNavBackButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMNavBackButton.m; sourceTree = "<group>"; };
 		620E8C38B3E24A3191C52FA1 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA26BFD3CEFE45ABAC84ECBE /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		D821E84A18751228005C1604 /* BMSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMSearchViewController.h; sourceTree = "<group>"; };
+		D821E84B18751228005C1604 /* BMSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMSearchViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -284,6 +287,8 @@
 				42C7BB18187154A200BD6382 /* BMShorEssayViewController.m */,
 				42C7BB1A187154AF00BD6382 /* BMSubmissionViewController.h */,
 				42C7BB1B187154AF00BD6382 /* BMSubmissionViewController.m */,
+				D821E84A18751228005C1604 /* BMSearchViewController.h */,
+				D821E84B18751228005C1604 /* BMSearchViewController.m */,
 				42C6D29018725EC500F796FB /* BMDetailNewsViewController.h */,
 				42C6D29118725EC500F796FB /* BMDetailNewsViewController.m */,
 			);
@@ -475,6 +480,7 @@
 				42C7BB161871549500BD6382 /* BMAudioViewController.m in Sources */,
 				42C6D29218725EC500F796FB /* BMDetailNewsViewController.m in Sources */,
 				42C7BAFE18710E7300BD6382 /* BMHomeViewController.m in Sources */,
+				D821E84C18751228005C1604 /* BMSearchViewController.m in Sources */,
 				42C7BAFB18710E6700BD6382 /* BMLeftViewController.m in Sources */,
 				42C7BB1C187154AF00BD6382 /* BMSubmissionViewController.m in Sources */,
 				42C7BB101871547200BD6382 /* BMDynamicImageViewController.m in Sources */,

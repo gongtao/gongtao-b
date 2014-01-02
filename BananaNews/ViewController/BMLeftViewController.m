@@ -8,6 +8,8 @@
 
 #import "BMLeftViewController.h"
 
+#import "BMSearchViewController.h"
+
 #import "BMLeftViewCell.h"
 
 #import "IIViewDeckController.h"
@@ -36,7 +38,7 @@
     self.view.backgroundColor = Color_SideBg;
     
     CGFloat y = IS_IOS7 ? 20.0 : 0.0;
-    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0.0, y, 320.0, 365.0)];
+    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0.0, y, 320.0, 308.0)];
     _tableView.bounces = NO;
     _tableView.dataSource = self;
     _tableView.delegate = self;
@@ -44,10 +46,10 @@
     _tableView.backgroundColor = Color_SideBg;
     [self.view addSubview:_tableView];
     
-    _searchView = [[BMSearchView alloc] initWithFrame:CGRectMake(8.0, 323.0, 216.0, 40.0)];
+    _searchView = [[BMSearchView alloc] initWithFrame:CGRectMake(8.0, y+323.0, 216.0, 40.0)];
     _searchView.textField.delegate = self;
     [_searchView.searchButton addTarget:self action:@selector(_searchButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-    [_tableView addSubview:_searchView];
+    [self.view addSubview:_searchView];
     
     self.titleArray = @[@"首      页", @"图      文", @"动      图", @"视      频",
                         @"音      频", @"短      文", @"投      稿"];
@@ -86,6 +88,12 @@
 - (void)_searchButtonPressed:(id)sender
 {
     [self.view endEditing:YES];
+    NSString *text = _searchView.textField.text;
+    if (!text || text.length <= 0) {
+        return;
+    }
+    BMSearchViewController *vc = (BMSearchViewController *)[self.storyboard instantiateViewControllerWithIdentifier:@"searchViewController"];
+    self.viewDeckController.centerController = vc;
 }
 
 #pragma mark - UITableViewDelegate

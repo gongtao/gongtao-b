@@ -8,6 +8,14 @@
 
 #import "BMSidePanelController.h"
 
+@interface IIViewDeckController (Custom)
+
+- (void)notifyWillOpenSide:(IIViewDeckSide)viewDeckSide animated:(BOOL)animated;
+
+- (void)notifyWillCloseSide:(IIViewDeckSide)viewDeckSide animated:(BOOL)animated;
+
+@end
+
 @interface BMSidePanelController ()
 
 @end
@@ -32,6 +40,18 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)notifyWillOpenSide:(IIViewDeckSide)viewDeckSide animated:(BOOL)animated
+{
+    [self.view endEditing:YES];
+    [super notifyWillOpenSide:viewDeckSide animated:animated];
+}
+
+- (void)notifyWillCloseSide:(IIViewDeckSide)viewDeckSide animated:(BOOL)animated
+{
+    [self.view endEditing:YES];
+    [super notifyWillCloseSide:viewDeckSide animated:animated];
 }
 
 @end
