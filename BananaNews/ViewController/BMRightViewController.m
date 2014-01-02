@@ -148,7 +148,11 @@
 
 - (void)_settingButtonPressed:(id)sender
 {
-    
+    BMLeftViewController *leftVC = (BMLeftViewController *)self.viewDeckController.leftController;
+    [leftVC deselectVC];
+    UIViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"settingViewController"];
+    self.viewDeckController.centerController = vc;
+    [self.viewDeckController closeRightViewAnimated:YES];
 }
 
 @end

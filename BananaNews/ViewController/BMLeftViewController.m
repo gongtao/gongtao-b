@@ -38,18 +38,37 @@
     self.view.backgroundColor = Color_SideBg;
     
     CGFloat y = IS_IOS7 ? 20.0 : 0.0;
-    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0.0, y, 320.0, 308.0)];
+    
+    UIControl *searchView = [[UIControl alloc] initWithFrame:CGRectMake(8.0, y+4.0, 216.0, 36.0)];
+    searchView.backgroundColor = Color_CellBg;
+    searchView.layer.borderColor = Color_GayLine.CGColor;
+    searchView.layer.borderWidth = 1.0;
+    [searchView addTarget:self action:@selector(_searchButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:searchView];
+    
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(7.0, 0.0, searchView.frame.size.width-32.0, 36.0)];
+    label.font = [UIFont systemFontOfSize:14.0];
+    label.text = @"搜索更多";
+    label.textColor = Color_SideFont;
+    label.backgroundColor = [UIColor clearColor];
+    [searchView addSubview:label];
+    
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(searchView.frame.size.width-25.0, (searchView.frame.size.height-25.0)/2, 25.0, 25.0)];
+    imageView.image = [UIImage imageNamed:@"搜索.png"];
+    [searchView addSubview:imageView];
+    
+    UIView *separatorView = [[UIView alloc] initWithFrame:CGRectMake(0.0, y+43.5, 320.0, 1.0)];
+    separatorView.backgroundColor = Color_GayLine;
+    [self.view addSubview:separatorView];
+    
+    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0.0, y+44.5, 320.0, 308.0)];
     _tableView.bounces = NO;
     _tableView.dataSource = self;
     _tableView.delegate = self;
     [_tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     _tableView.backgroundColor = Color_SideBg;
+    _tableView.scrollsToTop = NO;
     [self.view addSubview:_tableView];
-    
-    _searchView = [[BMSearchView alloc] initWithFrame:CGRectMake(8.0, y+323.0, 216.0, 40.0)];
-    _searchView.textField.delegate = self;
-    [_searchView.searchButton addTarget:self action:@selector(_searchButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:_searchView];
     
     self.titleArray = @[@"首      页", @"图      文", @"动      图", @"视      频",
                         @"音      频", @"短      文", @"投      稿"];
@@ -131,13 +150,9 @@
 
 - (void)_searchButtonPressed:(id)sender
 {
-    [self.view endEditing:YES];
-    NSString *text = _searchView.textField.text;
-    if (!text || text.length <= 0) {
-        return;
-    }
     BMSearchViewController *vc = (BMSearchViewController *)[self.storyboard instantiateViewControllerWithIdentifier:@"searchViewController"];
     self.viewDeckController.centerController = vc;
+    [self.viewDeckController closeLeftViewAnimated:YES];
 }
 
 #pragma mark - UITableViewDelegate
@@ -178,14 +193,6 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return 7;
-}
-
-#pragma mark - UITextFieldDelegate
-
-- (BOOL)textFieldShouldReturn:(UITextField *)textField
-{
-    [self _searchButtonPressed:nil];
-    return YES;
 }
 
 @end

@@ -10,12 +10,10 @@
 
 #import "BMSearchView.h"
 
-@interface BMLeftViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>
+@interface BMLeftViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 {
     NSInteger _lastSelectedRow;
 }
-
-@property (nonatomic, strong) BMSearchView *searchView;
 
 @property (nonatomic, strong) UITableView *tableView;
 
