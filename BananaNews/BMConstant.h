@@ -9,6 +9,8 @@
 #ifndef BananaNews_BMConstant_h
 #define BananaNews_BMConstant_h
 
+#define kBaseURL [NSURL URLWithString:@"http://115.29.43.107/site/wp_api/v1"]
+
 #define kSidePanelLeftWidth     232.0
 #define kSidePanelRightWidth    220.0
 

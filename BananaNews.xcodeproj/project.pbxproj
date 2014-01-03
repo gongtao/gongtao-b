@@ -42,12 +42,14 @@
 		42C7BB1C187154AF00BD6382 /* BMSubmissionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C7BB1B187154AF00BD6382 /* BMSubmissionViewController.m */; };
 		42C7BB1F18715D8000BD6382 /* BMRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C7BB1E18715D8000BD6382 /* BMRootViewController.m */; };
 		42C7BB2318715E3100BD6382 /* BMNavBackButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C7BB2218715E3100BD6382 /* BMNavBackButton.m */; };
+		42E8681718764A1A00B02A0B /* Database.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 42E8681518764A1A00B02A0B /* Database.xcdatamodeld */; };
+		42E8681A18764A2500B02A0B /* BMNewsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 42E8681918764A2500B02A0B /* BMNewsManager.m */; };
+		42E8681E187657C500B02A0B /* BMListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42E8681D187657C500B02A0B /* BMListViewController.m */; };
 		CE8BC6AFDCC940D28D1B30C8 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 620E8C38B3E24A3191C52FA1 /* libPods.a */; };
 		D821E84C18751228005C1604 /* BMSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D821E84B18751228005C1604 /* BMSearchViewController.m */; };
 		D821E85218752D02005C1604 /* BMCustomButton.m in Sources */ = {isa = PBXBuildFile; fileRef = D821E85118752D02005C1604 /* BMCustomButton.m */; };
 		D821E855187560AF005C1604 /* BMCollectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D821E854187560AF005C1604 /* BMCollectViewController.m */; };
 		D821E85818757A80005C1604 /* BMSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D821E85718757A80005C1604 /* BMSettingViewController.m */; };
-		D821E85A18759932005C1604 /* Database.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D821E85918759932005C1604 /* Database.xcdatamodeld */; };
 		D821E85E18759AC6005C1604 /* BMUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = D821E85D18759AC6005C1604 /* BMUtils.m */; };
 /* End PBXBuildFile section */
 
@@ -123,6 +125,11 @@
 		42C7BB1E18715D8000BD6382 /* BMRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMRootViewController.m; sourceTree = "<group>"; };
 		42C7BB2118715E3100BD6382 /* BMNavBackButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMNavBackButton.h; sourceTree = "<group>"; };
 		42C7BB2218715E3100BD6382 /* BMNavBackButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMNavBackButton.m; sourceTree = "<group>"; };
+		42E8681618764A1A00B02A0B /* Database.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Database.xcdatamodel; sourceTree = "<group>"; };
+		42E8681818764A2500B02A0B /* BMNewsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMNewsManager.h; sourceTree = "<group>"; };
+		42E8681918764A2500B02A0B /* BMNewsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMNewsManager.m; sourceTree = "<group>"; };
+		42E8681C187657C500B02A0B /* BMListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMListViewController.h; sourceTree = "<group>"; };
+		42E8681D187657C500B02A0B /* BMListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMListViewController.m; sourceTree = "<group>"; };
 		620E8C38B3E24A3191C52FA1 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA26BFD3CEFE45ABAC84ECBE /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		D821E84A18751228005C1604 /* BMSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMSearchViewController.h; sourceTree = "<group>"; };
@@ -176,14 +183,6 @@
 			path = ViewDeck;
 			sourceTree = "<group>";
 		};
-		42C6D2AA1872A79F00F796FB /* Modal */ = {
-			isa = PBXGroup;
-			children = (
-				D821E85918759932005C1604 /* Database.xcdatamodeld */,
-			);
-			path = Modal;
-			sourceTree = "<group>";
-		};
 		42C6D2AB1872AA5C00F796FB /* TextField */ = {
 			isa = PBXGroup;
 			children = (
@@ -229,8 +228,8 @@
 		42C7BABD1871059100BD6382 /* BananaNews */ = {
 			isa = PBXGroup;
 			children = (
+				42E8681418764A1A00B02A0B /* Modal */,
 				D821E85B18759A82005C1604 /* Utils */,
-				42C6D2AA1872A79F00F796FB /* Modal */,
 				42C7BB0218712BBB00BD6382 /* View */,
 				42C7BAEC18710C0A00BD6382 /* ViewController */,
 				42C7BB2418716DE700BD6382 /* ThirdParty */,
@@ -276,6 +275,7 @@
 		42C7BAEC18710C0A00BD6382 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				42E8681B1876579F00B02A0B /* subViewController */,
 				42C7BB081871447100BD6382 /* BMNavigationController.h */,
 				42C7BB091871447100BD6382 /* BMNavigationController.m */,
 				42C7BAED18710C2000BD6382 /* BMSidePanelController.h */,
@@ -352,6 +352,25 @@
 				42C6D2A01872A11C00F796FB /* ViewDeck */,
 			);
 			path = ThirdParty;
+			sourceTree = "<group>";
+		};
+		42E8681418764A1A00B02A0B /* Modal */ = {
+			isa = PBXGroup;
+			children = (
+				42E8681518764A1A00B02A0B /* Database.xcdatamodeld */,
+				42E8681818764A2500B02A0B /* BMNewsManager.h */,
+				42E8681918764A2500B02A0B /* BMNewsManager.m */,
+			);
+			path = Modal;
+			sourceTree = "<group>";
+		};
+		42E8681B1876579F00B02A0B /* subViewController */ = {
+			isa = PBXGroup;
+			children = (
+				42E8681C187657C500B02A0B /* BMListViewController.h */,
+				42E8681D187657C500B02A0B /* BMListViewController.m */,
+			);
+			path = subViewController;
 			sourceTree = "<group>";
 		};
 		D821E85B18759A82005C1604 /* Utils */ = {
@@ -510,15 +529,17 @@
 				42C7BAC81871059100BD6382 /* AppDelegate.m in Sources */,
 				42C6D298187285EB00F796FB /* BMNavigationBar.m in Sources */,
 				42C7BB161871549500BD6382 /* BMAudioViewController.m in Sources */,
-				D821E85A18759932005C1604 /* Database.xcdatamodeld in Sources */,
 				42C6D29218725EC500F796FB /* BMDetailNewsViewController.m in Sources */,
 				42C7BAFE18710E7300BD6382 /* BMHomeViewController.m in Sources */,
 				D821E855187560AF005C1604 /* BMCollectViewController.m in Sources */,
 				D821E84C18751228005C1604 /* BMSearchViewController.m in Sources */,
+				42E8681A18764A2500B02A0B /* BMNewsManager.m in Sources */,
 				42C7BAFB18710E6700BD6382 /* BMLeftViewController.m in Sources */,
 				42C7BB1C187154AF00BD6382 /* BMSubmissionViewController.m in Sources */,
 				42C7BB101871547200BD6382 /* BMDynamicImageViewController.m in Sources */,
+				42E8681718764A1A00B02A0B /* Database.xcdatamodeld in Sources */,
 				42C7BB19187154A200BD6382 /* BMShorEssayViewController.m in Sources */,
+				42E8681E187657C500B02A0B /* BMListViewController.m in Sources */,
 				42C7BB2318715E3100BD6382 /* BMNavBackButton.m in Sources */,
 				42C7BB0A1871447100BD6382 /* BMNavigationController.m in Sources */,
 				D821E85818757A80005C1604 /* BMSettingViewController.m in Sources */,
@@ -748,12 +769,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		D821E85918759932005C1604 /* Database.xcdatamodeld */ = {
+		42E8681518764A1A00B02A0B /* Database.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				42E8681618764A1A00B02A0B /* Database.xcdatamodel */,
 			);
-			name = Database.xcdatamodeld;
-			path = ../../Database.xcdatamodeld;
+			currentVersion = 42E8681618764A1A00B02A0B /* Database.xcdatamodel */;
+			path = Database.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

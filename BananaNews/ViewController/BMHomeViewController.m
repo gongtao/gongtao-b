@@ -10,6 +10,8 @@
 
 #import "IIViewDeckController.h"
 
+#import "BMNewsManager.h"
+
 @interface BMHomeViewController ()
 
 - (void)_leftButtonPressed:(id)sender;
@@ -46,6 +48,8 @@
     [rightButton setImage:[UIImage imageNamed:@"右侧用户按钮.png"] forState:UIControlStateHighlighted];
     [rightButton addTarget:self action:@selector(_rightButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     self.customNavigationBar.rightView = rightButton;
+    
+    [[BMNewsManager sharedManager] getDownloadList:0 page:0 success:nil failure:nil];
 }
 
 - (void)didReceiveMemoryWarning
