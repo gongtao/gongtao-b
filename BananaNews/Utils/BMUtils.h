@@ -14,4 +14,8 @@
 
 + (NSDate *)dateFromString:(NSString *)str;
 
++ (NSString *)stringFromDate:(NSDate *)date;
+
++ (NSString *)stringIntervalFromNow:(NSDate *)date;
+
 @end

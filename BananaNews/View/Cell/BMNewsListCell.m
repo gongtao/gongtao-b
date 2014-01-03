@@ -8,6 +8,8 @@
 
 #import "BMNewsListCell.h"
 
+#import "BMUtils.h"
+
 @implementation BMNewsListCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -40,6 +42,21 @@
         _lineView2 = [[UIView alloc] init];
         _lineView2.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"虚线.png"]];
         [_newsContentView addSubview:_lineView2];
+        
+        _timeLabel = [[UILabel alloc] init];
+        _timeLabel.backgroundColor = [UIColor clearColor];
+        _timeLabel.font = Font_NewsSmall;
+        _timeLabel.textColor = Color_NewsSmallFont;
+        [_newsContentView addSubview:_timeLabel];
+        
+        _dingButton = [[BMCustomButton alloc] init];
+        _dingButton.imageRect = CGRectMake(6.0, 6.0, 18.0, 18.0);
+        _dingButton.titleRect = CGRectMake(26.0, 0.0, 39.0, 30.0);
+        _dingButton.titleLabel.font = Font_NewsSmall;
+        [_dingButton setTitleColor:Color_NewsSmallFont forState:UIControlStateNormal];
+        [_newsContentView addSubview:_dingButton];
+        
+        _type = BMNewsListCellNormal;
     }
     return self;
 }
@@ -72,7 +89,18 @@
         y += 1.0;
     }
     
+    _timeLabel.frame = CGRectMake(9.0, y, 100.0, 30.0);
+    _timeLabel.text = [BMUtils stringIntervalFromNow:news.ndate];
     
+    if (BMNewsListCellNormal == _type) {
+        _dingButton.frame = CGRectMake(167.0, y, 65.0, 30.0);
+    }
+    else {
+        
+    }
+    [_dingButton setImage:[UIImage imageNamed:@"未赞.png"] forState:UIControlStateNormal];
+    [_dingButton setImage:[UIImage imageNamed:@"未赞按下.png"] forState:UIControlStateHighlighted];
+    [_dingButton setTitle:@"(999+)" forState:UIControlStateNormal];
 }
 
 @end
