@@ -111,6 +111,8 @@
     NSString *title = dic[@"title"];
     if (title && (NSNull *)title != [NSNull null]) {
         news.title = title;
+        CGSize size = [title sizeWithFont:Font_NewsTitle constrainedToSize:CGSizeMake(294.0, NSUIntegerMax)];
+        news.text_height = [NSNumber numberWithFloat:size.height];
     }
     
     NSNumber *comment_count = dic[@"comment_count"];

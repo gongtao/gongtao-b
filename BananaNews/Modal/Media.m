@@ -7,14 +7,15 @@
 //
 
 #import "Media.h"
+#import "News.h"
 
 
 @implementation Media
 
-@dynamic mid;
-@dynamic type;
 @dynamic large;
+@dynamic mid;
 @dynamic small;
+@dynamic type;
 @dynamic news;
 
 @end

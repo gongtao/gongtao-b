@@ -16,6 +16,7 @@
 @property (nonatomic, retain) NSNumber * comment_count;
 @property (nonatomic, retain) NSDate * ndate;
 @property (nonatomic, retain) NSNumber * nid;
+@property (nonatomic, retain) NSNumber * text_height;
 @property (nonatomic, retain) NSString * title;
 @property (nonatomic, retain) Author *author;
 @property (nonatomic, retain) NSOrderedSet *medias;

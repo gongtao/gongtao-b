@@ -9,20 +9,21 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
+@class News;
 
 @interface Media : NSManagedObject
 
-@property (nonatomic, retain) NSNumber * mid;
-@property (nonatomic, retain) NSString * type;
 @property (nonatomic, retain) NSString * large;
+@property (nonatomic, retain) NSNumber * mid;
 @property (nonatomic, retain) NSString * small;
+@property (nonatomic, retain) NSString * type;
 @property (nonatomic, retain) NSSet *news;
 @end
 
 @interface Media (CoreDataGeneratedAccessors)
 
-- (void)addNewsObject:(NSManagedObject *)value;
-- (void)removeNewsObject:(NSManagedObject *)value;
+- (void)addNewsObject:(News *)value;
+- (void)removeNewsObject:(News *)value;
 - (void)addNews:(NSSet *)values;
 - (void)removeNews:(NSSet *)values;
 

@@ -8,6 +8,8 @@
 
 #import "BMListViewController.h"
 
+#import "BMNewsListCell.h"
+
 @interface BMListViewController ()
 
 @end
@@ -27,6 +29,9 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    self.rowAnimation = UITableViewRowAnimationNone;
+    self.tableView.backgroundColor = [UIColor clearColor];
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
 
 - (void)didReceiveMemoryWarning
@@ -47,10 +52,30 @@
     return request;
 }
 
-- (void)configCell:(UITableViewCell *)cell cellForRowAtIndexPath:(NSIndexPath *)indexPath fetchedResultsController:(NSFetchedResultsController *)fetchedResultsController
+#pragma mark - UITableViewDataSource
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    News *news = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    if (!news.medias || news.medias.count == 0) {
+        return news.text_height.floatValue+52.0;
+    }
+    return news.text_height.floatValue+64.0;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath fetchedResultsController:(NSFetchedResultsController *)fetchedResultsController
+{
+    static NSString *CellIdentifier = @"ListCell";
+    BMNewsListCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    
+    if (!cell) {
+        cell = [[BMNewsListCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    }
+    
     News *news = [fetchedResultsController objectAtIndexPath:indexPath];
-    cell.textLabel.text = news.title;
+    [cell configCellNews:news];
+    
+    return cell;
 }
 
 @end

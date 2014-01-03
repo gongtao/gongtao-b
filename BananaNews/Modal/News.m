@@ -16,6 +16,7 @@
 @dynamic comment_count;
 @dynamic ndate;
 @dynamic nid;
+@dynamic text_height;
 @dynamic title;
 @dynamic author;
 @dynamic medias;

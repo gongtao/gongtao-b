@@ -7,14 +7,15 @@
 //
 
 #import "Author.h"
+#import "News.h"
 
 
 @implementation Author
 
-@dynamic avatar;
-@dynamic username;
 @dynamic aid;
+@dynamic avatar;
 @dynamic nickname;
+@dynamic username;
 @dynamic news;
 
 @end

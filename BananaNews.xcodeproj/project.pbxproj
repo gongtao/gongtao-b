@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		425C53CB18769E6A000D1C78 /* Author.m in Sources */ = {isa = PBXBuildFile; fileRef = 425C53CA18769E6A000D1C78 /* Author.m */; };
+		425C53CE18769E6B000D1C78 /* Media.m in Sources */ = {isa = PBXBuildFile; fileRef = 425C53CD18769E6B000D1C78 /* Media.m */; };
+		425C53D118769E6B000D1C78 /* News.m in Sources */ = {isa = PBXBuildFile; fileRef = 425C53D018769E6B000D1C78 /* News.m */; };
 		42C6D28F18725C3F00F796FB /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42C6D28E18725C3F00F796FB /* QuartzCore.framework */; };
 		42C6D29218725EC500F796FB /* BMDetailNewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C6D29118725EC500F796FB /* BMDetailNewsViewController.m */; };
 		42C6D2951872843800F796FB /* BMBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C6D2941872843800F796FB /* BMBaseViewController.m */; };
@@ -42,12 +45,10 @@
 		42C7BB1C187154AF00BD6382 /* BMSubmissionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C7BB1B187154AF00BD6382 /* BMSubmissionViewController.m */; };
 		42C7BB1F18715D8000BD6382 /* BMRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C7BB1E18715D8000BD6382 /* BMRootViewController.m */; };
 		42C7BB2318715E3100BD6382 /* BMNavBackButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C7BB2218715E3100BD6382 /* BMNavBackButton.m */; };
+		42CA255618769C4A00FB1764 /* BMNewsListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 42CA255518769C4A00FB1764 /* BMNewsListCell.m */; };
 		42E8681718764A1A00B02A0B /* Database.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 42E8681518764A1A00B02A0B /* Database.xcdatamodeld */; };
 		42E8681A18764A2500B02A0B /* BMNewsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 42E8681918764A2500B02A0B /* BMNewsManager.m */; };
 		42E8681E187657C500B02A0B /* BMListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42E8681D187657C500B02A0B /* BMListViewController.m */; };
-		42E868221876757C00B02A0B /* Media.m in Sources */ = {isa = PBXBuildFile; fileRef = 42E868211876757B00B02A0B /* Media.m */; };
-		42E868251876757C00B02A0B /* Author.m in Sources */ = {isa = PBXBuildFile; fileRef = 42E868241876757C00B02A0B /* Author.m */; };
-		42E868281876757C00B02A0B /* News.m in Sources */ = {isa = PBXBuildFile; fileRef = 42E868271876757C00B02A0B /* News.m */; };
 		CE8BC6AFDCC940D28D1B30C8 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 620E8C38B3E24A3191C52FA1 /* libPods.a */; };
 		D821E84C18751228005C1604 /* BMSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D821E84B18751228005C1604 /* BMSearchViewController.m */; };
 		D821E85218752D02005C1604 /* BMCustomButton.m in Sources */ = {isa = PBXBuildFile; fileRef = D821E85118752D02005C1604 /* BMCustomButton.m */; };
@@ -67,6 +68,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		425C53C918769E6A000D1C78 /* Author.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Author.h; sourceTree = "<group>"; };
+		425C53CA18769E6A000D1C78 /* Author.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Author.m; sourceTree = "<group>"; };
+		425C53CC18769E6B000D1C78 /* Media.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Media.h; sourceTree = "<group>"; };
+		425C53CD18769E6B000D1C78 /* Media.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Media.m; sourceTree = "<group>"; };
+		425C53CF18769E6B000D1C78 /* News.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = News.h; sourceTree = "<group>"; };
+		425C53D018769E6B000D1C78 /* News.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = News.m; sourceTree = "<group>"; };
 		42C6D28E18725C3F00F796FB /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		42C6D29018725EC500F796FB /* BMDetailNewsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMDetailNewsViewController.h; sourceTree = "<group>"; };
 		42C6D29118725EC500F796FB /* BMDetailNewsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMDetailNewsViewController.m; sourceTree = "<group>"; };
@@ -128,17 +135,13 @@
 		42C7BB1E18715D8000BD6382 /* BMRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMRootViewController.m; sourceTree = "<group>"; };
 		42C7BB2118715E3100BD6382 /* BMNavBackButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMNavBackButton.h; sourceTree = "<group>"; };
 		42C7BB2218715E3100BD6382 /* BMNavBackButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMNavBackButton.m; sourceTree = "<group>"; };
+		42CA255418769C4A00FB1764 /* BMNewsListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMNewsListCell.h; sourceTree = "<group>"; };
+		42CA255518769C4A00FB1764 /* BMNewsListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMNewsListCell.m; sourceTree = "<group>"; };
 		42E8681618764A1A00B02A0B /* Database.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Database.xcdatamodel; sourceTree = "<group>"; };
 		42E8681818764A2500B02A0B /* BMNewsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMNewsManager.h; sourceTree = "<group>"; };
 		42E8681918764A2500B02A0B /* BMNewsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMNewsManager.m; sourceTree = "<group>"; };
 		42E8681C187657C500B02A0B /* BMListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMListViewController.h; sourceTree = "<group>"; };
 		42E8681D187657C500B02A0B /* BMListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMListViewController.m; sourceTree = "<group>"; };
-		42E868201876757B00B02A0B /* Media.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Media.h; sourceTree = "<group>"; };
-		42E868211876757B00B02A0B /* Media.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Media.m; sourceTree = "<group>"; };
-		42E868231876757C00B02A0B /* Author.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Author.h; sourceTree = "<group>"; };
-		42E868241876757C00B02A0B /* Author.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Author.m; sourceTree = "<group>"; };
-		42E868261876757C00B02A0B /* News.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = News.h; sourceTree = "<group>"; };
-		42E868271876757C00B02A0B /* News.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = News.m; sourceTree = "<group>"; };
 		620E8C38B3E24A3191C52FA1 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA26BFD3CEFE45ABAC84ECBE /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		D821E84A18751228005C1604 /* BMSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMSearchViewController.h; sourceTree = "<group>"; };
@@ -340,6 +343,8 @@
 			children = (
 				42C7BB0418712BF700BD6382 /* BMLeftViewCell.h */,
 				42C7BB0518712BF700BD6382 /* BMLeftViewCell.m */,
+				42CA255418769C4A00FB1764 /* BMNewsListCell.h */,
+				42CA255518769C4A00FB1764 /* BMNewsListCell.m */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -367,14 +372,14 @@
 			isa = PBXGroup;
 			children = (
 				42E8681518764A1A00B02A0B /* Database.xcdatamodeld */,
-				42E868261876757C00B02A0B /* News.h */,
-				42E868271876757C00B02A0B /* News.m */,
-				42E868231876757C00B02A0B /* Author.h */,
-				42E868241876757C00B02A0B /* Author.m */,
-				42E868201876757B00B02A0B /* Media.h */,
-				42E868211876757B00B02A0B /* Media.m */,
 				42E8681818764A2500B02A0B /* BMNewsManager.h */,
 				42E8681918764A2500B02A0B /* BMNewsManager.m */,
+				425C53CF18769E6B000D1C78 /* News.h */,
+				425C53D018769E6B000D1C78 /* News.m */,
+				425C53CC18769E6B000D1C78 /* Media.h */,
+				425C53CD18769E6B000D1C78 /* Media.m */,
+				425C53C918769E6A000D1C78 /* Author.h */,
+				425C53CA18769E6A000D1C78 /* Author.m */,
 			);
 			path = Modal;
 			sourceTree = "<group>";
@@ -531,11 +536,11 @@
 			files = (
 				42C7BB0618712BF700BD6382 /* BMLeftViewCell.m in Sources */,
 				42C7BB0118710E7F00BD6382 /* BMRightViewController.m in Sources */,
-				42E868221876757C00B02A0B /* Media.m in Sources */,
 				D821E85218752D02005C1604 /* BMCustomButton.m in Sources */,
 				42C7BB1F18715D8000BD6382 /* BMRootViewController.m in Sources */,
 				42C7BB0D1871545800BD6382 /* BMImageTextViewController.m in Sources */,
 				42C6D2A71872A11C00F796FB /* IISideController.m in Sources */,
+				42CA255618769C4A00FB1764 /* BMNewsListCell.m in Sources */,
 				42C7BB131871548700BD6382 /* BMVideoViewController.m in Sources */,
 				D821E85E18759AC6005C1604 /* BMUtils.m in Sources */,
 				42C6D2AE1872AA8600F796FB /* BMSearchView.m in Sources */,
@@ -544,12 +549,12 @@
 				42C6D2A81872A11C00F796FB /* IIViewDeckController.m in Sources */,
 				42C7BAC81871059100BD6382 /* AppDelegate.m in Sources */,
 				42C6D298187285EB00F796FB /* BMNavigationBar.m in Sources */,
+				425C53D118769E6B000D1C78 /* News.m in Sources */,
 				42C7BB161871549500BD6382 /* BMAudioViewController.m in Sources */,
 				42C6D29218725EC500F796FB /* BMDetailNewsViewController.m in Sources */,
-				42E868251876757C00B02A0B /* Author.m in Sources */,
+				425C53CB18769E6A000D1C78 /* Author.m in Sources */,
 				42C7BAFE18710E7300BD6382 /* BMHomeViewController.m in Sources */,
 				D821E855187560AF005C1604 /* BMCollectViewController.m in Sources */,
-				42E868281876757C00B02A0B /* News.m in Sources */,
 				D821E84C18751228005C1604 /* BMSearchViewController.m in Sources */,
 				42E8681A18764A2500B02A0B /* BMNewsManager.m in Sources */,
 				42C7BAFB18710E6700BD6382 /* BMLeftViewController.m in Sources */,
@@ -562,6 +567,7 @@
 				42C7BB0A1871447100BD6382 /* BMNavigationController.m in Sources */,
 				D821E85818757A80005C1604 /* BMSettingViewController.m in Sources */,
 				42C7BAC41871059100BD6382 /* main.m in Sources */,
+				425C53CE18769E6B000D1C78 /* Media.m in Sources */,
 				42C6D2A91872A11C00F796FB /* IIWrapController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

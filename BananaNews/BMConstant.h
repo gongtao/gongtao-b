@@ -16,6 +16,8 @@
 
 #define IS_IOS7 ([[[UIDevice currentDevice]systemVersion] floatValue] >= 7.0)
 
+#define Font_NewsTitle      [UIFont systemFontOfSize:14.0]
+
 #define Color_Yellow        [UIColor colorWithHexString:@"ebdb01"]
 #define Color_GrayLine      [UIColor colorWithHexString:@"dcdcdc"]
 #define Color_CellBg        [UIColor colorWithHexString:@"e4e4df"]
@@ -23,5 +25,6 @@
 #define Color_ContentBg     [UIColor colorWithHexString:@"f7f7f7"]
 #define Color_SideFont      [UIColor colorWithHexString:@"666666"]
 #define Color_GrayFont      [UIColor colorWithHexString:@"c6c6c6"]
+#define Color_NewsFont      [UIColor colorWithHexString:@"333333"]
 
 #endif
