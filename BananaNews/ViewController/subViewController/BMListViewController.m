@@ -35,4 +35,22 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - Override
+
+- (NSFetchRequest *)fetchRequest
+{
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:News_Entity inManagedObjectContext:[self managedObjectContext]];
+    [request setEntity:entity];
+    NSSortDescriptor *sortDesciptor = [NSSortDescriptor sortDescriptorWithKey:kNid ascending:NO];
+    [request setSortDescriptors:[NSArray arrayWithObject:sortDesciptor]];
+    return request;
+}
+
+- (void)configCell:(UITableViewCell *)cell cellForRowAtIndexPath:(NSIndexPath *)indexPath fetchedResultsController:(NSFetchedResultsController *)fetchedResultsController
+{
+    News *news = [fetchedResultsController objectAtIndexPath:indexPath];
+    cell.textLabel.text = news.title;
+}
+
 @end

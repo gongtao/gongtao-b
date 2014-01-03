@@ -8,6 +8,8 @@
 
 #import "BMHomeViewController.h"
 
+#import "BMListViewController.h"
+
 #import "IIViewDeckController.h"
 
 #import "BMNewsManager.h"
@@ -50,6 +52,16 @@
     self.customNavigationBar.rightView = rightButton;
     
     [[BMNewsManager sharedManager] getDownloadList:0 page:0 success:nil failure:nil];
+    
+    CGRect frame = self.view.bounds;
+    frame.origin.y = CGRectGetMaxY(self.customNavigationBar.frame);
+    frame.size.height -= frame.origin.y;
+    
+    BMListViewController *listVC = [[BMListViewController alloc] init];
+    listVC.view.frame = frame;
+    listVC.tableView.frame = listVC.view.bounds;
+    [self addChildViewController:listVC];
+    [self.view addSubview:listVC.view];
 }
 
 - (void)didReceiveMemoryWarning

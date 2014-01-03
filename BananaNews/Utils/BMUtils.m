@@ -18,4 +18,13 @@
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
 }
 
++ (NSDate *)dateFromString:(NSString *)str
+{
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    NSString *dateStr = [[[str stringByReplacingOccurrencesOfString:@"T" withString:@" "] componentsSeparatedByString:@"+"] objectAtIndex:0];
+    [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    NSDate *date=[formatter dateFromString:dateStr];
+    return date;
+}
+
 @end

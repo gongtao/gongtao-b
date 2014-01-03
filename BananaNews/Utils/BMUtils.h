@@ -12,4 +12,6 @@
 
 + (NSURL *)applicationDocumentsDirectory;
 
++ (NSDate *)dateFromString:(NSString *)str;
+
 @end
