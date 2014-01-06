@@ -36,6 +36,8 @@
 {
     self = [super init];
     if (self) {
+        _configFilePath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"config.json"];
+        
         _manager = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:kBaseURL];
         _manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/html", nil];
         [_manager.operationQueue setMaxConcurrentOperationCount:3];
@@ -71,6 +73,59 @@
     }
     
     return result;
+}
+
+- (void)configInit:(void (^)(void))finished
+{
+    if (![[NSFileManager defaultManager] fileExistsAtPath:_configFilePath]) {
+        NSString *path = [[NSBundle mainBundle] pathForResource:@"Config" ofType:@"json"];
+        NSData *data = [[NSData alloc] initWithContentsOfFile:path];
+        
+        NSError *error;
+        NSArray *array = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+        if (error) {
+            NSLog(@"config error: %@", error.localizedDescription);
+            abort();
+        }
+        
+        NSString *jsonString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        NSError *e;
+        [jsonString writeToFile:_configFilePath atomically:YES encoding:NSUTF8StringEncoding error:&e];
+        if (e) {
+            NSLog(@"config error: %@", e);
+            abort();
+        }
+        
+        NSManagedObjectContext *temporaryContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
+        temporaryContext.parentContext = [self managedObjectContext];
+        
+        [temporaryContext performBlock:^{
+            
+            NSArray *nCategoryArray = [self getAllNewsCategory:temporaryContext];
+            [nCategoryArray enumerateObjectsUsingBlock:^(NewsCategory *obj, NSUInteger idx, BOOL *stop){
+                [temporaryContext deleteObject:obj];
+            }];
+            
+            [array enumerateObjectsUsingBlock:^(NSDictionary *obj, NSUInteger idx, BOOL *stop){
+                NewsCategory *newsCategory = [self createNewsCategory:obj context:temporaryContext];
+                newsCategory.cid = [NSNumber numberWithInteger:idx];
+            }];
+            
+            [self saveContext:temporaryContext];
+            // save parent to disk asynchronously
+            [temporaryContext.parentContext performBlock:^{
+                [self saveContext:temporaryContext.parentContext];
+                if (finished) {
+                    finished();
+                }
+            }];
+        }];
+    }
+    else {
+        if (finished) {
+            finished();
+        }
+    }
 }
 
 #pragma mark - Interface
@@ -256,6 +311,11 @@
                 }];
             }];
         }
+        else {
+            if (success) {
+                success(nil);
+            }
+        }
     };
     
     void (^requestFailure)(AFHTTPRequestOperation *, NSError *) = ^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -275,33 +335,64 @@
 {
     void (^requestSuccess)(AFHTTPRequestOperation *, id) = ^(AFHTTPRequestOperation *operation, id responseObject) {
         if (responseObject != [NSNull null]) {
-            NSLog(@"%@", responseObject);
+//            NSLog(@"%@", responseObject);
             
-            NSManagedObjectContext *temporaryContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
-            temporaryContext.parentContext = [self managedObjectContext];
+            __block NSArray *array = (NSArray *)responseObject;
+            NSData *data = [NSJSONSerialization dataWithJSONObject:array options:NSJSONWritingPrettyPrinted error:nil];
+            NSError *error;
+            NSString *cacheStr = [NSString stringWithContentsOfFile:_configFilePath encoding:NSUTF8StringEncoding error:&error];
+            if (error) {
+                NSLog(@"config error: %@", error.localizedDescription);
+                abort();
+            }
             
-            [temporaryContext performBlock:^{
+            NSString *str = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+            if (![str isEqualToString:cacheStr]) {
+                NSLog(@"haha");
                 
-                NSArray *nCategoryArray = [self getAllNewsCategory:temporaryContext];
-                [nCategoryArray enumerateObjectsUsingBlock:^(NewsCategory *obj, NSUInteger idx, BOOL *stop){
-                    [temporaryContext deleteObject:obj];
-                }];
+                NSError *e;
+                [str writeToFile:_configFilePath atomically:YES encoding:NSUTF8StringEncoding error:&e];
+                if (e) {
+                    NSLog(@"config error: %@", e.localizedDescription);
+                    abort();
+                }
                 
-                NSArray *array = (NSArray *)responseObject;
-                [array enumerateObjectsUsingBlock:^(NSDictionary *obj, NSUInteger idx, BOOL *stop){
-                    NewsCategory *newsCategory = [self createNewsCategory:obj context:temporaryContext];
-                    newsCategory.cid = [NSNumber numberWithInteger:idx];
-                }];
+                NSManagedObjectContext *temporaryContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
+                temporaryContext.parentContext = [self managedObjectContext];
                 
-                [self saveContext:temporaryContext];
-                // save parent to disk asynchronously
-                [temporaryContext.parentContext performBlock:^{
-                    [self saveContext:temporaryContext.parentContext];
-                    if (success) {
-                        success();
-                    }
+                [temporaryContext performBlock:^{
+                    
+                    NSArray *nCategoryArray = [self getAllNewsCategory:temporaryContext];
+                    [nCategoryArray enumerateObjectsUsingBlock:^(NewsCategory *obj, NSUInteger idx, BOOL *stop){
+                        [temporaryContext deleteObject:obj];
+                    }];
+                    
+                    array = (NSArray *)responseObject;
+                    [array enumerateObjectsUsingBlock:^(NSDictionary *obj, NSUInteger idx, BOOL *stop){
+                        NewsCategory *newsCategory = [self createNewsCategory:obj context:temporaryContext];
+                        newsCategory.cid = [NSNumber numberWithInteger:idx];
+                    }];
+                    
+                    [self saveContext:temporaryContext];
+                    // save parent to disk asynchronously
+                    [temporaryContext.parentContext performBlock:^{
+                        [self saveContext:temporaryContext.parentContext];
+                        if (success) {
+                            success();
+                        }
+                    }];
                 }];
-            }];
+            }
+            else {
+                if (success) {
+                    success();
+                }
+            }
+        }
+        else {
+            if (success) {
+                success();
+            }
         }
     };
     

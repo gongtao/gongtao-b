@@ -36,10 +36,12 @@
     [self setRightController:[self.storyboard instantiateViewControllerWithIdentifier:@"rightViewController"]];
     
     //获取配置信息
-    [[BMNewsManager sharedManager] getConfigSuccess:^(void){
-        [[BMNewsManager sharedManager] getDownloadList:0 page:0 success:nil failure:nil];
-    }
-                                            failure:nil];
+    [[BMNewsManager sharedManager] configInit:^(void){
+        [[BMNewsManager sharedManager] getConfigSuccess:^(void){
+            [[BMNewsManager sharedManager] getDownloadList:0 page:0 success:nil failure:nil];
+        }
+                                                failure:nil];
+    }];
 }
 
 - (void)didReceiveMemoryWarning

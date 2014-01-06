@@ -161,7 +161,7 @@
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:NewsCategory_Entity inManagedObjectContext:[self managedObjectContext]];
     [request setEntity:entity];
-    NSSortDescriptor *sortDesciptor = [NSSortDescriptor sortDescriptorWithKey:kCid ascending:NO];
+    NSSortDescriptor *sortDesciptor = [NSSortDescriptor sortDescriptorWithKey:kCid ascending:YES];
     [request setSortDescriptors:[NSArray arrayWithObject:sortDesciptor]];
     return request;
 }
@@ -189,6 +189,15 @@
     cell.isCurrent = (_lastSelectedRow == row);
     
     return cell;
+}
+
+- (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath
+{
+    NSIndexPath *indexPath1 = [NSIndexPath indexPathForRow:[indexPath row]+1 inSection:[indexPath section]];
+    
+    NSIndexPath *indexPath2 = [NSIndexPath indexPathForRow:[newIndexPath row]+1 inSection:[newIndexPath section]];
+    
+    [super controller:controller didChangeObject:anObject atIndexPath:indexPath1 forChangeType:type newIndexPath:indexPath2];
 }
 
 #pragma mark - UITableViewDelegate

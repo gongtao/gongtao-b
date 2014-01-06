@@ -13,6 +13,7 @@
 		42C58447187A649A00D919EB /* NewsCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C58446187A649A00D919EB /* NewsCategory.m */; };
 		42C5844A187A73A700D919EB /* BMCategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C58449187A73A700D919EB /* BMCategoryViewController.m */; };
 		42C5844D187A762600D919EB /* BMSubmissionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C5844C187A762600D919EB /* BMSubmissionViewController.m */; };
+		42C5844F187A8B5700D919EB /* Config.json in Resources */ = {isa = PBXBuildFile; fileRef = 42C5844E187A8B5700D919EB /* Config.json */; };
 		42C6D28F18725C3F00F796FB /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42C6D28E18725C3F00F796FB /* QuartzCore.framework */; };
 		42C6D29218725EC500F796FB /* BMDetailNewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C6D29118725EC500F796FB /* BMDetailNewsViewController.m */; };
 		42C6D2951872843800F796FB /* BMBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C6D2941872843800F796FB /* BMBaseViewController.m */; };
@@ -77,6 +78,7 @@
 		42C58449187A73A700D919EB /* BMCategoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMCategoryViewController.m; sourceTree = "<group>"; };
 		42C5844B187A762600D919EB /* BMSubmissionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMSubmissionViewController.h; sourceTree = "<group>"; };
 		42C5844C187A762600D919EB /* BMSubmissionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMSubmissionViewController.m; sourceTree = "<group>"; };
+		42C5844E187A8B5700D919EB /* Config.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Config.json; sourceTree = "<group>"; };
 		42C6D28E18725C3F00F796FB /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		42C6D29018725EC500F796FB /* BMDetailNewsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMDetailNewsViewController.h; sourceTree = "<group>"; };
 		42C6D29118725EC500F796FB /* BMDetailNewsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMDetailNewsViewController.m; sourceTree = "<group>"; };
@@ -253,6 +255,7 @@
 				42C7BAC01871059100BD6382 /* InfoPlist.strings */,
 				42C7BAC31871059100BD6382 /* main.m */,
 				42C7BAC51871059100BD6382 /* BananaNews-Prefix.pch */,
+				42C5844E187A8B5700D919EB /* Config.json */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -466,6 +469,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				42C7BAD01871059100BD6382 /* Images.xcassets in Resources */,
+				42C5844F187A8B5700D919EB /* Config.json in Resources */,
 				42C7BAC21871059100BD6382 /* InfoPlist.strings in Resources */,
 				42C7BACB1871059100BD6382 /* Main.storyboard in Resources */,
 			);

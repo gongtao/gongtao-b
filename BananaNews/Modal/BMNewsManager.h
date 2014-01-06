@@ -28,12 +28,17 @@
 #define kCid                    @"cid"
 
 @interface BMNewsManager : NSObject
+{
+    NSString *_configFilePath;
+}
 
 + (BMNewsManager *)sharedManager;
 
 - (NSManagedObjectContext *)managedObjectContext;
 
 - (BOOL)saveContext:(NSManagedObjectContext *)context;
+
+- (void)configInit:(void (^)(void))finished;
 
 //Interface
 
