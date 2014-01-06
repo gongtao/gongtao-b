@@ -134,7 +134,8 @@
 - (void)_submitButtonPressed:(id)sender
 {
     BMLeftViewController *leftVC = (BMLeftViewController *)self.viewDeckController.leftController;
-    [leftVC selectVCAtIndex:6];
+    int row = [[[leftVC.fetchedResultsController sections] objectAtIndex:0] numberOfObjects]+1;
+    [leftVC selectVCAtIndex:row];
     [self.viewDeckController closeRightViewAnimated:YES];
 }
 

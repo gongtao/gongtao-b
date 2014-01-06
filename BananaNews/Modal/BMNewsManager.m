@@ -325,7 +325,7 @@
         }
     };
     
-    AFHTTPRequestOperation *op = [_manager GET:@"posts" parameters:nil success:requestSuccess failure:requestFailure];
+    AFHTTPRequestOperation *op = [_manager GET:@"http://115.29.43.107/site/wp_api/v1/posts" parameters:nil success:requestSuccess failure:requestFailure];
     NSLog(@"request: %@", op.request.URL.absoluteString);
     return op;
 }
