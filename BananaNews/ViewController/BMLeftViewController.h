@@ -6,20 +6,14 @@
 //  Copyright (c) 2013 龚涛. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import <GTTableViewController.h>
 
 #import "BMSearchView.h"
 
-@interface BMLeftViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@interface BMLeftViewController : GTTableViewController
 {
     NSInteger _lastSelectedRow;
 }
-
-@property (nonatomic, strong) UITableView *tableView;
-
-@property (nonatomic, strong) NSArray *titleArray;
-
-@property (nonatomic, strong) NSArray *controllerTitleArray;
 
 @property (nonatomic, strong) NSMutableDictionary *controllerDic;
 

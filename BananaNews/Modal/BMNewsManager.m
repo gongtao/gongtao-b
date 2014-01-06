@@ -74,6 +74,13 @@
 }
 
 #pragma mark - Interface
+- (void)createConfigFromNetworking:(NSDictionary *)dic context:(NSManagedObjectContext *)context
+{
+    if (!context) {
+        context = [self managedObjectContext];
+    }
+    
+}
 
 - (void)createNewsFromNetworking:(NSDictionary *)dic context:(NSManagedObjectContext *)context
 {
@@ -92,6 +99,7 @@
 
 #pragma mark - Database
 
+//News
 - (News *)createNews:(NSDictionary *)dic context:(NSManagedObjectContext *)context
 {
     NSNumber *nid = dic[@"id"];
@@ -164,6 +172,64 @@
     return nil;
 }
 
+//NewsCategory
+- (NewsCategory *)createNewsCategory:(NSDictionary *)dic context:(NSManagedObjectContext *)context
+{
+    NSString *cid = dic[@"category_id"];
+    
+    if (!cid || (NSNull *)cid == [NSNull null]) {
+        NSLog(@"NewsCategory: cid null");
+        return nil;
+    }
+    
+    NewsCategory *newsCategory = [self getNewsCategoryById:cid context:context];
+    
+    if (!newsCategory) {
+        newsCategory = [NSEntityDescription insertNewObjectForEntityForName:NewsCategory_Entity inManagedObjectContext:context];
+        newsCategory.category_id = cid;
+    }
+    
+    NSString *name = dic[@"name"];
+    if (name && (NSNull *)name != [NSNull null]) {
+        newsCategory.cname = name;
+    }
+    
+    return newsCategory;
+}
+
+- (NewsCategory *)getNewsCategoryById:(NSString *)cid context:(NSManagedObjectContext *)context
+{
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:NewsCategory_Entity inManagedObjectContext:context];
+    
+    [request setEntity:entity];
+    [request setPredicate:[NSPredicate predicateWithFormat:@"%K == %i", kCategoryId, cid]];
+    
+    NSError *error;
+    NSArray *results = [context executeFetchRequest:request error:&error];
+    
+    if (!error && results.count > 0) {
+        return results[0];
+    }
+    return nil;
+}
+
+- (NSArray *)getAllNewsCategory:(NSManagedObjectContext *)context
+{
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:NewsCategory_Entity inManagedObjectContext:context];
+    
+    [request setEntity:entity];
+    
+    NSError *error;
+    NSArray *results = [context executeFetchRequest:request error:&error];
+    
+    if (!error && results.count > 0) {
+        return results;
+    }
+    return nil;
+}
+
 #pragma mark - Networking
 
 - (AFHTTPRequestOperation *)getDownloadList:(NSUInteger)type
@@ -184,11 +250,11 @@
                 // save parent to disk asynchronously
                 [temporaryContext.parentContext performBlock:^{
                     [self saveContext:temporaryContext.parentContext];
+                    if (success) {
+                        success(nil);
+                    }
                 }];
             }];
-        }
-        if (success) {
-            success(nil);
         }
     };
     
@@ -200,6 +266,53 @@
     };
     
     AFHTTPRequestOperation *op = [_manager GET:@"posts" parameters:nil success:requestSuccess failure:requestFailure];
+    NSLog(@"request: %@", op.request.URL.absoluteString);
+    return op;
+}
+
+- (AFHTTPRequestOperation *)getConfigSuccess:(void (^)(void))success
+                                     failure:(void (^)(NSError *error))failure
+{
+    void (^requestSuccess)(AFHTTPRequestOperation *, id) = ^(AFHTTPRequestOperation *operation, id responseObject) {
+        if (responseObject != [NSNull null]) {
+            NSLog(@"%@", responseObject);
+            
+            NSManagedObjectContext *temporaryContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
+            temporaryContext.parentContext = [self managedObjectContext];
+            
+            [temporaryContext performBlock:^{
+                
+                NSArray *nCategoryArray = [self getAllNewsCategory:temporaryContext];
+                [nCategoryArray enumerateObjectsUsingBlock:^(NewsCategory *obj, NSUInteger idx, BOOL *stop){
+                    [temporaryContext deleteObject:obj];
+                }];
+                
+                NSArray *array = (NSArray *)responseObject;
+                [array enumerateObjectsUsingBlock:^(NSDictionary *obj, NSUInteger idx, BOOL *stop){
+                    NewsCategory *newsCategory = [self createNewsCategory:obj context:temporaryContext];
+                    newsCategory.cid = [NSNumber numberWithInteger:idx];
+                }];
+                
+                [self saveContext:temporaryContext];
+                // save parent to disk asynchronously
+                [temporaryContext.parentContext performBlock:^{
+                    [self saveContext:temporaryContext.parentContext];
+                    if (success) {
+                        success();
+                    }
+                }];
+            }];
+        }
+    };
+    
+    void (^requestFailure)(AFHTTPRequestOperation *, NSError *) = ^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+        if (failure) {
+            failure(error);
+        }
+    };
+    
+    AFHTTPRequestOperation *op = [_manager GET:@"http://115.29.43.107/site/api/v1/index.php/category/getCategoryLeft" parameters:nil success:requestSuccess failure:requestFailure];
     NSLog(@"request: %@", op.request.URL.absoluteString);
     return op;
 }

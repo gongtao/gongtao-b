@@ -51,8 +51,6 @@
     [rightButton addTarget:self action:@selector(_rightButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     self.customNavigationBar.rightView = rightButton;
     
-    [[BMNewsManager sharedManager] getDownloadList:0 page:0 success:nil failure:nil];
-    
     CGRect frame = self.view.bounds;
     frame.origin.y = CGRectGetMaxY(self.customNavigationBar.frame);
     frame.size.height -= frame.origin.y;

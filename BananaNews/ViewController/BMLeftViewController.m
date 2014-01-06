@@ -61,30 +61,21 @@
     separatorView.backgroundColor = Color_GrayLine;
     [self.view addSubview:separatorView];
     
-    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0.0, y+44.5, 320.0, 308.0)];
-    _tableView.bounces = NO;
-    _tableView.dataSource = self;
-    _tableView.delegate = self;
-    [_tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-    _tableView.backgroundColor = Color_SideBg;
-    _tableView.scrollsToTop = NO;
-    [self.view addSubview:_tableView];
+    self.tableView.frame = CGRectMake(0.0, y+44.5, 320.0, self.view.frame.size.height-y-44.5);
+    self.tableView.bounces = NO;
+    [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+    self.tableView.backgroundColor = Color_SideBg;
+    self.tableView.scrollsToTop = NO;
     
-    self.titleArray = @[@"首      页", @"图      文", @"动      图", @"视      频",
-                        @"音      频", @"短      文", @"投      稿"];
+//    self.titleArray = @[@"首      页", @"图      文", @"动      图", @"视      频",
+//                        @"音      频", @"短      文", @"投      稿"];
     
-    self.controllerTitleArray = @[@"homeViewController", @"imageTextViewController",
-                                  @"dynamicImageViewController", @"videoViewController",
-                                  @"audioViewController", @"shorEssayViewController",
-                                  @"submissionViewController"];
-    
-    self.controllerDic = [[NSMutableDictionary alloc] initWithCapacity:7];
+    self.controllerDic = [[NSMutableDictionary alloc] init];
     
     self.controllerDic[@"0"] = self.viewDeckController.centerController;
     
     _lastSelectedRow = 0;
     
-    [self.tableView reloadData];
     [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]
                                 animated:NO
                           scrollPosition:UITableViewScrollPositionTop];
@@ -95,11 +86,9 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
     NSString *index = [NSString stringWithFormat:@"%i", _lastSelectedRow];
-    [self.controllerDic enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop){
-        if (![index isEqualToString:key]) {
-            [self.controllerDic removeObjectForKey:key];
-        }
-    }];
+    UIViewController *vc = self.controllerDic[index];
+    [self.controllerDic removeAllObjects];
+    self.controllerDic[index] = vc;
 }
 
 #pragma mark - Public
@@ -113,7 +102,17 @@
         NSString *index = [NSString stringWithFormat:@"%i", row];
         UIViewController *vc = self.controllerDic[index];
         if (!vc) {
-            vc = [self.storyboard instantiateViewControllerWithIdentifier:self.controllerTitleArray[row]];
+            if (row == [[[self.fetchedResultsController sections] objectAtIndex:0] numberOfObjects]+1) {
+                vc = [self.storyboard instantiateViewControllerWithIdentifier:@"submissionViewController"];
+            }
+            else if (row == 0) {
+                vc = [self.storyboard instantiateViewControllerWithIdentifier:@"homeViewController"];
+            }
+            else {
+                NewsCategory *newsCategory = [self.fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:row-1 inSection:0]];
+                vc = [self.storyboard instantiateViewControllerWithIdentifier:@"categoryViewController"];
+                vc.title = newsCategory.cname;
+            }
             self.controllerDic[index] = vc;
         }
         
@@ -155,6 +154,43 @@
     [self.viewDeckController closeLeftViewAnimated:YES];
 }
 
+#pragma mark - Override
+
+- (NSFetchRequest *)fetchRequest
+{
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:NewsCategory_Entity inManagedObjectContext:[self managedObjectContext]];
+    [request setEntity:entity];
+    NSSortDescriptor *sortDesciptor = [NSSortDescriptor sortDescriptorWithKey:kCid ascending:NO];
+    [request setSortDescriptors:[NSArray arrayWithObject:sortDesciptor]];
+    return request;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath fetchedResultsController:(NSFetchedResultsController *)fetchedResultsController
+{
+    static NSString *CellIdentifier = @"BMLeftCell";
+    BMLeftViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    
+    if (!cell) {
+        cell = [[BMLeftViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    }
+    
+    int row = [indexPath row];
+    if (row == [[[self.fetchedResultsController sections] objectAtIndex:[indexPath section]] numberOfObjects]+1) {
+        cell.textLabel.text = @"投稿";
+    }
+    else if (row == 0) {
+        cell.textLabel.text = @"首页";
+    }
+    else {
+        NewsCategory *newsCategory = [fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:row-1 inSection:0]];
+        cell.textLabel.text = newsCategory.cname;
+    }
+    cell.isCurrent = (_lastSelectedRow == row);
+    
+    return cell;
+}
+
 #pragma mark - UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -165,34 +201,14 @@
 
 #pragma mark - UITableViewDataSource
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    static NSString *identifier = @"BMLeftCell";
-    BMLeftViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
-    if (!cell) {
-        cell = [[BMLeftViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
-    }
-    
-    NSUInteger row = [indexPath row];
-    cell.textLabel.text = self.titleArray[row];
-    cell.isCurrent = (_lastSelectedRow == row);
-    
-    return cell;
-}
-
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 44.0;
 }
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return 1;
-}
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 7;
+    return [[[self.fetchedResultsController sections] objectAtIndex:section] numberOfObjects]+2;
 }
 
 @end

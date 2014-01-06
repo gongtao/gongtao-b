@@ -52,17 +52,6 @@
     return request;
 }
 
-#pragma mark - UITableViewDataSource
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    News *news = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    if (!news.medias || news.medias.count == 0) {
-        return news.text_height.floatValue+52.0;
-    }
-    return news.text_height.floatValue+64.0;
-}
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath fetchedResultsController:(NSFetchedResultsController *)fetchedResultsController
 {
     static NSString *CellIdentifier = @"ListCell";
@@ -76,6 +65,17 @@
     [cell configCellNews:news];
     
     return cell;
+}
+
+#pragma mark - UITableViewDataSource
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    News *news = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    if (!news.medias || news.medias.count == 0) {
+        return news.text_height.floatValue+52.0;
+    }
+    return news.text_height.floatValue+64.0;
 }
 
 @end

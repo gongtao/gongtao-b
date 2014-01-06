@@ -48,6 +48,29 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)setTitle:(NSString *)title
+{
+    [super setTitle:title];
+    if (title && title.length>0) {
+        BMNavBackButton *button = nil;
+        if (self.customNavigationBar.leftView) {
+            button = (BMNavBackButton *)self.customNavigationBar.leftView;
+            [button setTitle:self.title forState:UIControlStateNormal];
+            [button sizeToFit];
+        }
+        else {
+            button = [[BMNavBackButton alloc] init];
+            [button setTitle:self.title forState:UIControlStateNormal];
+            [button addTarget:self action:@selector(_backButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+            [button sizeToFit];
+            self.customNavigationBar.leftView = button;
+        }
+    }
+    else {
+        self.customNavigationBar.leftView = nil;
+    }
+}
+
 #pragma mark - Private
 
 - (void)_backButtonPressed:(id)sender

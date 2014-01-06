@@ -18,8 +18,14 @@
 
 #import "Media.h"
 
-#define News_Entity         @"News"
-#define kNid                @"nid"
+#import "NewsCategory.h"
+
+#define News_Entity             @"News"
+#define kNid                    @"nid"
+
+#define NewsCategory_Entity     @"NewsCategory"
+#define kCategoryId             @"category_id"
+#define kCid                    @"cid"
 
 @interface BMNewsManager : NSObject
 
@@ -31,6 +37,8 @@
 
 //Interface
 
+- (void)createConfigFromNetworking:(NSDictionary *)dic context:(NSManagedObjectContext *)context;
+
 - (void)createNewsFromNetworking:(NSDictionary *)dic context:(NSManagedObjectContext *)context;
 
 //Database
@@ -41,11 +49,20 @@
 
 - (NSArray *)getAllNews:(NSManagedObjectContext *)context;
 
+- (NewsCategory *)createNewsCategory:(NSDictionary *)dic context:(NSManagedObjectContext *)context;
+
+- (NewsCategory *)getNewsCategoryById:(NSString *)cid context:(NSManagedObjectContext *)context;
+
+- (NSArray *)getAllNewsCategory:(NSManagedObjectContext *)context;
+
 //Networking
 
 - (AFHTTPRequestOperation *)getDownloadList:(NSUInteger)type
                                        page:(NSUInteger)page
                                     success:(void (^)(NSArray *array))success
                                     failure:(void (^)(NSError *error))failure;
+
+- (AFHTTPRequestOperation *)getConfigSuccess:(void (^)(void))success
+                                     failure:(void (^)(NSError *error))failure;
 
 @end

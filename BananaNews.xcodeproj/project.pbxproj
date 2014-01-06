@@ -10,6 +10,9 @@
 		425C53CB18769E6A000D1C78 /* Author.m in Sources */ = {isa = PBXBuildFile; fileRef = 425C53CA18769E6A000D1C78 /* Author.m */; };
 		425C53CE18769E6B000D1C78 /* Media.m in Sources */ = {isa = PBXBuildFile; fileRef = 425C53CD18769E6B000D1C78 /* Media.m */; };
 		425C53D118769E6B000D1C78 /* News.m in Sources */ = {isa = PBXBuildFile; fileRef = 425C53D018769E6B000D1C78 /* News.m */; };
+		42C58447187A649A00D919EB /* NewsCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C58446187A649A00D919EB /* NewsCategory.m */; };
+		42C5844A187A73A700D919EB /* BMCategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C58449187A73A700D919EB /* BMCategoryViewController.m */; };
+		42C5844D187A762600D919EB /* BMSubmissionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C5844C187A762600D919EB /* BMSubmissionViewController.m */; };
 		42C6D28F18725C3F00F796FB /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42C6D28E18725C3F00F796FB /* QuartzCore.framework */; };
 		42C6D29218725EC500F796FB /* BMDetailNewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C6D29118725EC500F796FB /* BMDetailNewsViewController.m */; };
 		42C6D2951872843800F796FB /* BMBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C6D2941872843800F796FB /* BMBaseViewController.m */; };
@@ -37,12 +40,6 @@
 		42C7BB0118710E7F00BD6382 /* BMRightViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C7BB0018710E7F00BD6382 /* BMRightViewController.m */; };
 		42C7BB0618712BF700BD6382 /* BMLeftViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C7BB0518712BF700BD6382 /* BMLeftViewCell.m */; };
 		42C7BB0A1871447100BD6382 /* BMNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C7BB091871447100BD6382 /* BMNavigationController.m */; };
-		42C7BB0D1871545800BD6382 /* BMImageTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C7BB0C1871545800BD6382 /* BMImageTextViewController.m */; };
-		42C7BB101871547200BD6382 /* BMDynamicImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C7BB0F1871547200BD6382 /* BMDynamicImageViewController.m */; };
-		42C7BB131871548700BD6382 /* BMVideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C7BB121871548700BD6382 /* BMVideoViewController.m */; };
-		42C7BB161871549500BD6382 /* BMAudioViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C7BB151871549500BD6382 /* BMAudioViewController.m */; };
-		42C7BB19187154A200BD6382 /* BMShorEssayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C7BB18187154A200BD6382 /* BMShorEssayViewController.m */; };
-		42C7BB1C187154AF00BD6382 /* BMSubmissionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C7BB1B187154AF00BD6382 /* BMSubmissionViewController.m */; };
 		42C7BB1F18715D8000BD6382 /* BMRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C7BB1E18715D8000BD6382 /* BMRootViewController.m */; };
 		42C7BB2318715E3100BD6382 /* BMNavBackButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C7BB2218715E3100BD6382 /* BMNavBackButton.m */; };
 		42CA255618769C4A00FB1764 /* BMNewsListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 42CA255518769C4A00FB1764 /* BMNewsListCell.m */; };
@@ -74,6 +71,12 @@
 		425C53CD18769E6B000D1C78 /* Media.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Media.m; sourceTree = "<group>"; };
 		425C53CF18769E6B000D1C78 /* News.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = News.h; sourceTree = "<group>"; };
 		425C53D018769E6B000D1C78 /* News.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = News.m; sourceTree = "<group>"; };
+		42C58445187A649A00D919EB /* NewsCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsCategory.h; sourceTree = "<group>"; };
+		42C58446187A649A00D919EB /* NewsCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsCategory.m; sourceTree = "<group>"; };
+		42C58448187A73A700D919EB /* BMCategoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMCategoryViewController.h; sourceTree = "<group>"; };
+		42C58449187A73A700D919EB /* BMCategoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMCategoryViewController.m; sourceTree = "<group>"; };
+		42C5844B187A762600D919EB /* BMSubmissionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMSubmissionViewController.h; sourceTree = "<group>"; };
+		42C5844C187A762600D919EB /* BMSubmissionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMSubmissionViewController.m; sourceTree = "<group>"; };
 		42C6D28E18725C3F00F796FB /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		42C6D29018725EC500F796FB /* BMDetailNewsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMDetailNewsViewController.h; sourceTree = "<group>"; };
 		42C6D29118725EC500F796FB /* BMDetailNewsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMDetailNewsViewController.m; sourceTree = "<group>"; };
@@ -119,18 +122,6 @@
 		42C7BB0718712DA300BD6382 /* BMConstant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BMConstant.h; sourceTree = "<group>"; };
 		42C7BB081871447100BD6382 /* BMNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMNavigationController.h; sourceTree = "<group>"; };
 		42C7BB091871447100BD6382 /* BMNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMNavigationController.m; sourceTree = "<group>"; };
-		42C7BB0B1871545800BD6382 /* BMImageTextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMImageTextViewController.h; sourceTree = "<group>"; };
-		42C7BB0C1871545800BD6382 /* BMImageTextViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMImageTextViewController.m; sourceTree = "<group>"; };
-		42C7BB0E1871547200BD6382 /* BMDynamicImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMDynamicImageViewController.h; sourceTree = "<group>"; };
-		42C7BB0F1871547200BD6382 /* BMDynamicImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMDynamicImageViewController.m; sourceTree = "<group>"; };
-		42C7BB111871548700BD6382 /* BMVideoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMVideoViewController.h; sourceTree = "<group>"; };
-		42C7BB121871548700BD6382 /* BMVideoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMVideoViewController.m; sourceTree = "<group>"; };
-		42C7BB141871549500BD6382 /* BMAudioViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMAudioViewController.h; sourceTree = "<group>"; };
-		42C7BB151871549500BD6382 /* BMAudioViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMAudioViewController.m; sourceTree = "<group>"; };
-		42C7BB17187154A200BD6382 /* BMShorEssayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMShorEssayViewController.h; sourceTree = "<group>"; };
-		42C7BB18187154A200BD6382 /* BMShorEssayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMShorEssayViewController.m; sourceTree = "<group>"; };
-		42C7BB1A187154AF00BD6382 /* BMSubmissionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMSubmissionViewController.h; sourceTree = "<group>"; };
-		42C7BB1B187154AF00BD6382 /* BMSubmissionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMSubmissionViewController.m; sourceTree = "<group>"; };
 		42C7BB1D18715D8000BD6382 /* BMRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMRootViewController.h; sourceTree = "<group>"; };
 		42C7BB1E18715D8000BD6382 /* BMRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMRootViewController.m; sourceTree = "<group>"; };
 		42C7BB2118715E3100BD6382 /* BMNavBackButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMNavBackButton.h; sourceTree = "<group>"; };
@@ -302,18 +293,10 @@
 				42C7BB0018710E7F00BD6382 /* BMRightViewController.m */,
 				42C7BAFC18710E7300BD6382 /* BMHomeViewController.h */,
 				42C7BAFD18710E7300BD6382 /* BMHomeViewController.m */,
-				42C7BB0B1871545800BD6382 /* BMImageTextViewController.h */,
-				42C7BB0C1871545800BD6382 /* BMImageTextViewController.m */,
-				42C7BB0E1871547200BD6382 /* BMDynamicImageViewController.h */,
-				42C7BB0F1871547200BD6382 /* BMDynamicImageViewController.m */,
-				42C7BB111871548700BD6382 /* BMVideoViewController.h */,
-				42C7BB121871548700BD6382 /* BMVideoViewController.m */,
-				42C7BB141871549500BD6382 /* BMAudioViewController.h */,
-				42C7BB151871549500BD6382 /* BMAudioViewController.m */,
-				42C7BB17187154A200BD6382 /* BMShorEssayViewController.h */,
-				42C7BB18187154A200BD6382 /* BMShorEssayViewController.m */,
-				42C7BB1A187154AF00BD6382 /* BMSubmissionViewController.h */,
-				42C7BB1B187154AF00BD6382 /* BMSubmissionViewController.m */,
+				42C58448187A73A700D919EB /* BMCategoryViewController.h */,
+				42C58449187A73A700D919EB /* BMCategoryViewController.m */,
+				42C5844B187A762600D919EB /* BMSubmissionViewController.h */,
+				42C5844C187A762600D919EB /* BMSubmissionViewController.m */,
 				D821E84A18751228005C1604 /* BMSearchViewController.h */,
 				D821E84B18751228005C1604 /* BMSearchViewController.m */,
 				42C6D29018725EC500F796FB /* BMDetailNewsViewController.h */,
@@ -380,6 +363,8 @@
 				425C53CD18769E6B000D1C78 /* Media.m */,
 				425C53C918769E6A000D1C78 /* Author.h */,
 				425C53CA18769E6A000D1C78 /* Author.m */,
+				42C58445187A649A00D919EB /* NewsCategory.h */,
+				42C58446187A649A00D919EB /* NewsCategory.m */,
 			);
 			path = Modal;
 			sourceTree = "<group>";
@@ -536,12 +521,11 @@
 			files = (
 				42C7BB0618712BF700BD6382 /* BMLeftViewCell.m in Sources */,
 				42C7BB0118710E7F00BD6382 /* BMRightViewController.m in Sources */,
+				42C5844A187A73A700D919EB /* BMCategoryViewController.m in Sources */,
 				D821E85218752D02005C1604 /* BMCustomButton.m in Sources */,
 				42C7BB1F18715D8000BD6382 /* BMRootViewController.m in Sources */,
-				42C7BB0D1871545800BD6382 /* BMImageTextViewController.m in Sources */,
 				42C6D2A71872A11C00F796FB /* IISideController.m in Sources */,
 				42CA255618769C4A00FB1764 /* BMNewsListCell.m in Sources */,
-				42C7BB131871548700BD6382 /* BMVideoViewController.m in Sources */,
 				D821E85E18759AC6005C1604 /* BMUtils.m in Sources */,
 				42C6D2AE1872AA8600F796FB /* BMSearchView.m in Sources */,
 				42C6D2951872843800F796FB /* BMBaseViewController.m in Sources */,
@@ -550,18 +534,16 @@
 				42C7BAC81871059100BD6382 /* AppDelegate.m in Sources */,
 				42C6D298187285EB00F796FB /* BMNavigationBar.m in Sources */,
 				425C53D118769E6B000D1C78 /* News.m in Sources */,
-				42C7BB161871549500BD6382 /* BMAudioViewController.m in Sources */,
 				42C6D29218725EC500F796FB /* BMDetailNewsViewController.m in Sources */,
 				425C53CB18769E6A000D1C78 /* Author.m in Sources */,
+				42C5844D187A762600D919EB /* BMSubmissionViewController.m in Sources */,
+				42C58447187A649A00D919EB /* NewsCategory.m in Sources */,
 				42C7BAFE18710E7300BD6382 /* BMHomeViewController.m in Sources */,
 				D821E855187560AF005C1604 /* BMCollectViewController.m in Sources */,
 				D821E84C18751228005C1604 /* BMSearchViewController.m in Sources */,
 				42E8681A18764A2500B02A0B /* BMNewsManager.m in Sources */,
 				42C7BAFB18710E6700BD6382 /* BMLeftViewController.m in Sources */,
-				42C7BB1C187154AF00BD6382 /* BMSubmissionViewController.m in Sources */,
-				42C7BB101871547200BD6382 /* BMDynamicImageViewController.m in Sources */,
 				42E8681718764A1A00B02A0B /* Database.xcdatamodeld in Sources */,
-				42C7BB19187154A200BD6382 /* BMShorEssayViewController.m in Sources */,
 				42E8681E187657C500B02A0B /* BMListViewController.m in Sources */,
 				42C7BB2318715E3100BD6382 /* BMNavBackButton.m in Sources */,
 				42C7BB0A1871447100BD6382 /* BMNavigationController.m in Sources */,

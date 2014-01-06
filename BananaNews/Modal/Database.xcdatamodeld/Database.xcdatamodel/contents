@@ -23,9 +23,15 @@
         <relationship name="author" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Author" inverseName="news" inverseEntity="Author" syncable="YES"/>
         <relationship name="medias" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Media" inverseName="news" inverseEntity="Media" syncable="YES"/>
     </entity>
+    <entity name="NewsCategory" representedClassName="Category" syncable="YES">
+        <attribute name="category_id" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="cid" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="cname" attributeType="String" syncable="YES"/>
+    </entity>
     <elements>
         <element name="Author" positionX="0" positionY="0" width="0" height="0"/>
         <element name="Media" positionX="0" positionY="0" width="0" height="0"/>
         <element name="News" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="NewsCategory" positionX="0" positionY="0" width="0" height="0"/>
     </elements>
 </model>

@@ -1,18 +1,18 @@
 //
-//  BMImageTextViewController.m
+//  BMCategoryViewController.m
 //  BananaNews
 //
-//  Created by 龚涛 on 12/30/13.
-//  Copyright (c) 2013 龚涛. All rights reserved.
+//  Created by 龚涛 on 1/6/14.
+//  Copyright (c) 2014 龚涛. All rights reserved.
 //
 
-#import "BMImageTextViewController.h"
+#import "BMCategoryViewController.h"
 
-@interface BMImageTextViewController ()
+@interface BMCategoryViewController ()
 
 @end
 
-@implementation BMImageTextViewController
+@implementation BMCategoryViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {

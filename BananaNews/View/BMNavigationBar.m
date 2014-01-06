@@ -27,9 +27,11 @@
             _leftView = nil;
         }
         _leftView = leftView;
-        CGRect frame = _leftView.bounds;
-        [self addSubview:_leftView];
-        _leftView.center = CGPointMake(frame.size.width/2.0, self.frame.size.height-22.0);
+        if (_leftView) {
+            CGRect frame = _leftView.bounds;
+            [self addSubview:_leftView];
+            _leftView.center = CGPointMake(frame.size.width/2.0, self.frame.size.height-22.0);
+        }
     }
 }
 
