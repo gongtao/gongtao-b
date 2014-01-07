@@ -50,11 +50,22 @@
         [_newsContentView addSubview:_timeLabel];
         
         _dingButton = [[BMCustomButton alloc] init];
-        _dingButton.imageRect = CGRectMake(6.0, 6.0, 18.0, 18.0);
-        _dingButton.titleRect = CGRectMake(26.0, 0.0, 39.0, 30.0);
+        _dingButton.imageRect = CGRectMake(0.0, 0.0, 30.0, 30.0);
+        _dingButton.titleRect = CGRectMake(30.0, 0.0, 39.0, 30.0);
+        [_dingButton setImage:[UIImage imageNamed:@"赞.png"] forState:UIControlStateNormal];
+        [_dingButton setImage:[UIImage imageNamed:@"赞按下.png"] forState:UIControlStateHighlighted];
         _dingButton.titleLabel.font = Font_NewsSmall;
         [_dingButton setTitleColor:Color_NewsSmallFont forState:UIControlStateNormal];
         [_newsContentView addSubview:_dingButton];
+        
+        _shareButton = [[BMCustomButton alloc] init];
+        _shareButton.imageRect = CGRectMake(0.0, 0.0, 30.0, 30.0);
+        _shareButton.titleRect = CGRectMake(30.0, 0.0, 39.0, 30.0);
+        [_shareButton setImage:[UIImage imageNamed:@"分享按钮.png"] forState:UIControlStateNormal];
+        [_shareButton setImage:[UIImage imageNamed:@"分享按钮按下.png"] forState:UIControlStateHighlighted];
+        _shareButton.titleLabel.font = Font_NewsSmall;
+        [_shareButton setTitleColor:Color_NewsSmallFont forState:UIControlStateNormal];
+        [_newsContentView addSubview:_shareButton];
         
         _type = BMNewsListCellNormal;
     }
@@ -93,14 +104,26 @@
     _timeLabel.text = [BMUtils stringIntervalFromNow:news.ndate];
     
     if (BMNewsListCellNormal == _type) {
-        _dingButton.frame = CGRectMake(167.0, y, 65.0, 30.0);
+        _dingButton.frame = CGRectMake(160.0, y, 69.0, 30.0);
+        _shareButton.frame = CGRectMake(235.0, y, 69.0, 30.0);
     }
     else {
+        if (!_collectButton) {
+            _collectButton = [[UIButton alloc] init];
+            [self.contentView addSubview:_collectButton];
+        }
         
+        [_collectButton setImage:[UIImage imageNamed:@"未收藏.png"] forState:UIControlStateNormal];
+        [_collectButton setImage:[UIImage imageNamed:@"未收藏按下.png"] forState:UIControlStateHighlighted];
+        
+        _dingButton.frame = CGRectMake(125.0, y, 69.0, 30.0);
+        _shareButton.frame = CGRectMake(200.0, y, 69.0, 30.0);
+        _shareButton.frame = CGRectMake(275.0, y, 30.0, 30.0);
     }
-    [_dingButton setImage:[UIImage imageNamed:@"未赞.png"] forState:UIControlStateNormal];
-    [_dingButton setImage:[UIImage imageNamed:@"未赞按下.png"] forState:UIControlStateHighlighted];
+    
     [_dingButton setTitle:@"(999+)" forState:UIControlStateNormal];
+    
+    [_shareButton setTitle:@"(999+)" forState:UIControlStateNormal];
 }
 
 @end

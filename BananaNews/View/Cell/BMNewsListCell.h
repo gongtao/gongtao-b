@@ -31,7 +31,7 @@ typedef enum {
 
 @property (nonatomic, strong) BMCustomButton *shareButton;
 
-@property (nonatomic, strong) BMCustomButton *collectButton;
+@property (nonatomic, strong) UIButton *collectButton;
 
 @property (nonatomic, assign) BMNewsListCellType type;
 

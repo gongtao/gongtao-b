@@ -8,6 +8,10 @@
 
 #import "GTTableViewController.h"
 
+#import "BMNewsListCell.h"
+
 @interface BMListViewController : GTTableViewController
+
+@property (nonatomic, assign) BMNewsListCellType type;
 
 @end

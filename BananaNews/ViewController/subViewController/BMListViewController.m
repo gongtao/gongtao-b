@@ -8,8 +8,6 @@
 
 #import "BMListViewController.h"
 
-#import "BMNewsListCell.h"
-
 @interface BMListViewController ()
 
 @end
@@ -32,6 +30,7 @@
     self.rowAnimation = UITableViewRowAnimationNone;
     self.tableView.backgroundColor = [UIColor clearColor];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    _type = BMNewsListCellNormal;
 }
 
 - (void)didReceiveMemoryWarning
@@ -59,6 +58,7 @@
     
     if (!cell) {
         cell = [[BMNewsListCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell.type = self.type;
     }
     
     News *news = [fetchedResultsController objectAtIndexPath:indexPath];
