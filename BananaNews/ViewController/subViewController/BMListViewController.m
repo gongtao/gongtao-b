@@ -75,7 +75,7 @@
     if (!news.medias || news.medias.count == 0) {
         return news.text_height.floatValue+52.0;
     }
-    return news.text_height.floatValue+64.0;
+    return news.text_height.floatValue+news.image_height.floatValue+64.0;
 }
 
 @end

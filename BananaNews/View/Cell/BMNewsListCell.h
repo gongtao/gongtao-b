@@ -23,6 +23,8 @@ typedef enum {
     UIView *_lineView2;
     
     UILabel *_timeLabel;
+    
+    NSMutableArray *_imageArray;
 }
 
 @property (nonatomic, strong) UILabel *newsTitleLabel;

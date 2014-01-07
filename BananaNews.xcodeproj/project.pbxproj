@@ -53,6 +53,7 @@
 		D8491C40187BEEFD001A5A3A /* Author.m in Sources */ = {isa = PBXBuildFile; fileRef = D8491C3F187BEEFD001A5A3A /* Author.m */; };
 		D8491C43187BEEFD001A5A3A /* News.m in Sources */ = {isa = PBXBuildFile; fileRef = D8491C42187BEEFD001A5A3A /* News.m */; };
 		D8491C4C187BEF4D001A5A3A /* NewsCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = D8491C4B187BEF4D001A5A3A /* NewsCategory.m */; };
+		D8EA5913187C0FD500EEB573 /* BMNewsImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = D8EA5912187C0FD500EEB573 /* BMNewsImageView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -147,6 +148,8 @@
 		D8491C42187BEEFD001A5A3A /* News.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = News.m; sourceTree = "<group>"; };
 		D8491C4A187BEF4D001A5A3A /* NewsCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsCategory.h; sourceTree = "<group>"; };
 		D8491C4B187BEF4D001A5A3A /* NewsCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsCategory.m; sourceTree = "<group>"; };
+		D8EA5911187C0FD500EEB573 /* BMNewsImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMNewsImageView.h; sourceTree = "<group>"; };
+		D8EA5912187C0FD500EEB573 /* BMNewsImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMNewsImageView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -320,6 +323,8 @@
 				42C7BB0318712BBB00BD6382 /* Cell */,
 				42C6D296187285EB00F796FB /* BMNavigationBar.h */,
 				42C6D297187285EB00F796FB /* BMNavigationBar.m */,
+				D8EA5911187C0FD500EEB573 /* BMNewsImageView.h */,
+				D8EA5912187C0FD500EEB573 /* BMNewsImageView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -550,6 +555,7 @@
 				42C7BAFB18710E6700BD6382 /* BMLeftViewController.m in Sources */,
 				42E8681718764A1A00B02A0B /* Database.xcdatamodeld in Sources */,
 				42E8681E187657C500B02A0B /* BMListViewController.m in Sources */,
+				D8EA5913187C0FD500EEB573 /* BMNewsImageView.m in Sources */,
 				42C7BB2318715E3100BD6382 /* BMNavBackButton.m in Sources */,
 				42C7BB0A1871447100BD6382 /* BMNavigationController.m in Sources */,
 				D821E85818757A80005C1604 /* BMSettingViewController.m in Sources */,

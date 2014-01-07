@@ -27,6 +27,15 @@
 #define kCategoryId             @"category_id"
 #define kCid                    @"cid"
 
+#define Media_Entity            @"Media"
+#define kMid                    @"mid"
+#define kSmall                  @"small"
+#define kSmallWidth             @"small_width"
+#define kSmallHeight            @"small_height"
+#define kLarge                  @"large"
+#define kLargeWidth             @"large_width"
+#define kLargeHeight            @"large_height"
+
 @interface BMNewsManager : NSObject
 {
     NSString *_configFilePath;
@@ -53,6 +62,10 @@
 - (News *)getNewsById:(NSUInteger)nid context:(NSManagedObjectContext *)context;
 
 - (NSArray *)getAllNews:(NSManagedObjectContext *)context;
+
+- (Media *)createMedia:(NSDictionary *)dic context:(NSManagedObjectContext *)context;
+
+- (Media *)getMediaById:(NSUInteger)mid context:(NSManagedObjectContext *)context;
 
 - (NewsCategory *)createNewsCategory:(NSDictionary *)dic context:(NSManagedObjectContext *)context;
 

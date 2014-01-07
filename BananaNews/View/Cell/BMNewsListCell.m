@@ -10,6 +10,10 @@
 
 #import "BMUtils.h"
 
+#import "BMNewsImageView.h"
+
+#import <UIImageView+WebCache.h>
+
 @implementation BMNewsListCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -67,6 +71,8 @@
         [_shareButton setTitleColor:Color_NewsSmallFont forState:UIControlStateNormal];
         [_newsContentView addSubview:_shareButton];
         
+        _imageArray = [[NSMutableArray alloc] init];
+        
         _type = BMNewsListCellNormal;
     }
     return self;
@@ -79,23 +85,102 @@
     _newsTitleLabel.text = news.title;
     _newsTitleLabel.frame = CGRectMake(6.0, 6.0, 296.0, textHeight);
     
-    CGFloat y = CGRectGetMaxY(_newsTitleLabel.frame)+5.0;
+    __block CGFloat y = CGRectGetMaxY(_newsTitleLabel.frame)+5.0;
     _lineView1.frame = CGRectMake(6.0, y, 296.0, 1.0);
     
     if (!news.medias || news.medias.count == 0) {
         _newsContentView.frame = CGRectMake(6.0, 5.0, 308.0, textHeight+42.0);
-        
         y += 1.0;
         _lineView2.hidden = YES;
     }
     else {
+        textHeight += news.image_height.floatValue;
         _newsContentView.frame = CGRectMake(6.0, 5.0, 308.0, textHeight+54.0);
         
         y += 6.0;
         
-#warning 添加图片
+        int count = news.medias.count;
+        while (_imageArray.count > count) {
+            UIView *view = [_imageArray lastObject];
+            [view removeFromSuperview];
+            [_imageArray removeLastObject];
+        }
+        while (_imageArray.count < count) {
+            BMNewsImageView *view = [[BMNewsImageView alloc] initWithFrame:CGRectZero];
+            [_newsContentView addSubview:view];
+            [_imageArray addObject:view];
+        }
+        [_imageArray enumerateObjectsUsingBlock:^(BMNewsImageView *obj, NSUInteger idx, BOOL *stop){
+            obj.imageView.image = nil;
+            obj.alpha = 0.0;
+        }];
         
-        _lineView1.frame = CGRectMake(6.0, y, 296.0, 1.0);
+        if (count == 1) {
+            [_imageArray enumerateObjectsUsingBlock:^(BMNewsImageView *obj, NSUInteger idx, BOOL *stop){
+                Media *media = news.medias[0];
+                CGFloat w = media.small_width.floatValue;
+                if (w > kCellSingleImgWidth) {
+                    w = kCellSingleImgWidth;
+                }
+                CGFloat h = media.small_height.floatValue;
+                if (h > kCellSingleImgHeight) {
+                    h = kCellSingleImgHeight;
+                }
+                obj.frame = CGRectMake(6.0, y, w, h);
+                [obj setImageSize:CGSizeMake(media.small_width.floatValue, media.small_height.floatValue)];
+                __block BMNewsImageView *imageView = obj;
+                [obj.imageView setImageWithURL:[NSURL URLWithString:media.small] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType){
+                    [UIView animateWithDuration:0.3 animations:^(void){
+                        imageView.alpha = 1.0;
+                    }];
+                }];
+                y += h;
+            }];
+        }
+        else if (count>1 && count<5) {
+            __block CGFloat x = 6.0;
+            [_imageArray enumerateObjectsUsingBlock:^(BMNewsImageView *obj, NSUInteger idx, BOOL *stop){
+                Media *media = news.medias[idx];
+                if (3 == idx) {
+                    y += kCellMediumImgHeight+4.0;
+                    x = 6.0;
+                }
+                obj.frame = CGRectMake(x, y, kCellMediumImgWidth, kCellMediumImgHeight);
+                [obj setImageSize:CGSizeMake(media.small_width.floatValue, media.small_height.floatValue)];
+                __block BMNewsImageView *imageView = obj;
+                [obj.imageView setImageWithURL:[NSURL URLWithString:media.small] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType){
+                    [UIView animateWithDuration:0.3 animations:^(void){
+                        imageView.alpha = 1.0;
+                    }];
+                }];
+                x += kCellMediumImgWidth+4.0;
+            }];
+            y += kCellMediumImgHeight;
+        }
+        else if (count>4) {
+            __block CGFloat x = 6.0;
+            y -= kCellMediumImgHeight+4.0;
+            [_imageArray enumerateObjectsUsingBlock:^(BMNewsImageView *obj, NSUInteger idx, BOOL *stop){
+                Media *media = news.medias[idx];
+                if (idx%3 == 0) {
+                    y += kCellMediumImgHeight+4.0;
+                    x = 6.0;
+                }
+                obj.frame = CGRectMake(x, y, kCellMediumImgWidth, kCellMediumImgHeight);
+                [obj setImageSize:CGSizeMake(media.small_width.floatValue, media.small_height.floatValue)];
+                __block BMNewsImageView *imageView = obj;
+                [obj.imageView setImageWithURL:[NSURL URLWithString:media.small] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType){
+                    [UIView animateWithDuration:0.3 animations:^(void){
+                        imageView.alpha = 1.0;
+                    }];
+                }];
+                x += kCellMediumImgWidth+4.0;
+            }];
+            y += kCellMediumImgHeight;
+        }
+        
+        y += 6.0;
+        _lineView2.frame = CGRectMake(6.0, y, 296.0, 1.0);
         _lineView2.hidden = NO;
         y += 1.0;
     }

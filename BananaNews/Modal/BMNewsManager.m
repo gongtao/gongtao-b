@@ -188,6 +188,36 @@
         news.ndate = [BMUtils dateFromString:date];
     }
     
+    NSArray *mediaArray= dic[@"media"];
+    NSMutableArray *medias = [[NSMutableArray alloc] init];
+    if (mediaArray && (NSNull *)mediaArray != [NSNull null]) {
+        [mediaArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop){
+            Media *media = [self createMedia:obj context:context];
+            [medias addObject:media];
+        }];
+        news.medias = [[NSOrderedSet alloc] initWithArray:medias];
+    }
+    
+    CGFloat h = 0.0;
+    if (medias.count == 1) {
+        Media *media = medias[0];
+        h = media.small_height.floatValue;
+        if (h > kCellSingleImgHeight) {
+            h = kCellSingleImgHeight;
+        }
+    }
+    else if (medias.count>1 && medias.count<3) {
+        h = kCellMediumImgHeight;
+    }
+    else if (medias.count>2 && medias.count<5) {
+        h = kCellMediumImgHeight*2+4.0;
+    }
+    else if (medias.count>4) {
+        int count = medias.count/3+((medias.count%3==0)?0:1);
+        h = (kCellSmallImgHeight+3.0)*count-3.0;
+    }
+    news.image_height = [NSNumber numberWithFloat:h];
+    
     return news;
 }
 
@@ -223,6 +253,60 @@
     
     if (!error && results.count > 0) {
         return results;
+    }
+    return nil;
+}
+
+- (Media *)createMedia:(NSDictionary *)dic context:(NSManagedObjectContext *)context
+{
+    NSNumber *mid = dic[@"id"];
+    
+    if (!mid || (NSNull *)mid == [NSNull null]) {
+        NSLog(@"News: nid null");
+        return nil;
+    }
+    
+    Media *media = [self getMediaById:mid.integerValue context:context];
+    
+    if (!media) {
+        media = [NSEntityDescription insertNewObjectForEntityForName:Media_Entity inManagedObjectContext:context];
+        media.mid = mid;
+    }
+    
+    NSString *type = dic[@"mime_type"];
+    if (type && (NSNull *)type != [NSNull null]) {
+        media.type = type;
+    }
+    
+    NSArray *array = dic[@"sizes"];
+    if (array && (NSNull *)array != [NSNull null]) {
+        for (NSDictionary *obj in array) {
+            NSString *size = obj[@"name"];
+            if ([size isEqualToString:@"medium"]) {
+                media.small = obj[@"url"];
+                media.small_width = obj[@"width"];
+                media.small_height = obj[@"height"];
+                break;
+            }
+        }
+    }
+    
+    return media;
+}
+
+- (Media *)getMediaById:(NSUInteger)mid context:(NSManagedObjectContext *)context
+{
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:Media_Entity inManagedObjectContext:context];
+    
+    [request setEntity:entity];
+    [request setPredicate:[NSPredicate predicateWithFormat:@"%K == %i", kMid, mid]];
+    
+    NSError *error;
+    NSArray *results = [context executeFetchRequest:request error:&error];
+    
+    if (!error && results.count > 0) {
+        return results[0];
     }
     return nil;
 }

@@ -14,6 +14,15 @@
 #define kSidePanelLeftWidth     232.0
 #define kSidePanelRightWidth    220.0
 
+#define kCellSingleImgWidth     296.0
+#define kCellSingleImgHeight    180.0
+
+#define kCellMediumImgWidth     130.0
+#define kCellMediumImgHeight    85.0
+
+#define kCellSmallImgWidth      96.0
+#define kCellSmallImgHeight     56.0
+
 #define IS_IOS7 ([[[UIDevice currentDevice]systemVersion] floatValue] >= 7.0)
 
 #define Font_NewsTitle      [UIFont systemFontOfSize:14.0]
