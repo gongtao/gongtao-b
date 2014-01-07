@@ -85,7 +85,7 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-    NSString *index = [NSString stringWithFormat:@"%i", _lastSelectedRow];
+    NSString *index = [NSString stringWithFormat:@"%li", (long)_lastSelectedRow];
     UIViewController *vc = self.controllerDic[index];
     [self.controllerDic removeAllObjects];
     self.controllerDic[index] = vc;
@@ -99,7 +99,7 @@
         _lastSelectedRow = row;
     }
     else {
-        NSString *index = [NSString stringWithFormat:@"%i", row];
+        NSString *index = [NSString stringWithFormat:@"%lu", (unsigned long)row];
         UIViewController *vc = self.controllerDic[index];
         if (!vc) {
             if (row == [[[self.fetchedResultsController sections] objectAtIndex:0] numberOfObjects]+1) {
@@ -175,7 +175,7 @@
         cell = [[BMLeftViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
-    int row = [indexPath row];
+    NSInteger row = [indexPath row];
     if (row == [[[self.fetchedResultsController sections] objectAtIndex:[indexPath section]] numberOfObjects]+1) {
         cell.textLabel.text = @"投稿";
     }
