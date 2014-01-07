@@ -2,8 +2,8 @@
 //  Media.h
 //  BananaNews
 //
-//  Created by 龚涛 on 1/3/14.
-//  Copyright (c) 2014 龚涛. All rights reserved.
+//  Created by 龚 涛 on 14-1-7.
+//  Copyright (c) 2014年 龚涛. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -17,6 +17,10 @@
 @property (nonatomic, retain) NSNumber * mid;
 @property (nonatomic, retain) NSString * small;
 @property (nonatomic, retain) NSString * type;
+@property (nonatomic, retain) NSNumber * large_height;
+@property (nonatomic, retain) NSNumber * large_width;
+@property (nonatomic, retain) NSNumber * small_height;
+@property (nonatomic, retain) NSNumber * small_width;
 @property (nonatomic, retain) NSSet *news;
 @end
 

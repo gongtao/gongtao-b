@@ -9,13 +9,18 @@
     </entity>
     <entity name="Media" representedClassName="Media" syncable="YES">
         <attribute name="large" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="large_height" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="large_width" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="mid" attributeType="Integer 64" defaultValueString="0" indexed="YES" syncable="YES"/>
         <attribute name="small" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="small_height" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="small_width" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="type" attributeType="String" syncable="YES"/>
         <relationship name="news" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="News" inverseName="medias" inverseEntity="News" syncable="YES"/>
     </entity>
     <entity name="News" representedClassName="News" syncable="YES">
         <attribute name="comment_count" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="image_height" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="ndate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="nid" attributeType="Integer 64" defaultValueString="0" indexed="YES" syncable="YES"/>
         <attribute name="text_height" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
