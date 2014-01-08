@@ -108,7 +108,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    int row = [indexPath row];
+    NSInteger row = [indexPath row];
     UITableViewCell *cell = nil;
     if (0 == row) {
         static NSString *searchIdentifier = @"searchCell";
