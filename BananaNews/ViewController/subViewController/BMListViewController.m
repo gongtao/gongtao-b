@@ -8,6 +8,8 @@
 
 #import "BMListViewController.h"
 
+#import "BMDetailNewsViewController.h"
+
 @interface BMListViewController ()
 
 @property (nonatomic, strong) NSFetchRequest *fetchRequest;
@@ -80,6 +82,15 @@
     [cell configCellNews:news];
     
     return cell;
+}
+
+#pragma mark - UITableViewDelegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    BMDetailNewsViewController *vc = [self.parentViewController.storyboard instantiateViewControllerWithIdentifier:@"detailNewsViewController"];
+    vc.news = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma mark - UITableViewDataSource

@@ -43,6 +43,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="cUy-QY-C6i"/>
+                    <connections>
+                        <segue destination="ltn-Ax-bJb" kind="push" id="JV7-PX-ixq"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hoe-Vb-7Uo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -81,6 +84,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="yxY-d3-jVJ"/>
+                    <connections>
+                        <segue destination="ltn-Ax-bJb" kind="push" id="cDc-kb-Rlv"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UT9-jZ-vKm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -100,6 +106,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="7ga-HD-2Dx"/>
+                    <connections>
+                        <segue destination="ltn-Ax-bJb" kind="push" id="WTX-o8-Tfr"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aWJ-kV-rBt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -148,10 +157,10 @@
             </objects>
             <point key="canvasLocation" x="642" y="470"/>
         </scene>
-        <!--Detail News View Controller - 文章详情-->
+        <!--Detail News View Controller-->
         <scene sceneID="8o3-XZ-Qs0">
             <objects>
-                <viewController storyboardIdentifier="detailNewsViewController" title="文章详情" id="ltn-Ax-bJb" customClass="BMDetailNewsViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="detailNewsViewController" id="ltn-Ax-bJb" customClass="BMDetailNewsViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Zub-zB-cNY"/>
                         <viewControllerLayoutGuide type="bottom" id="ZP4-k7-SDZ"/>
@@ -165,7 +174,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BwP-cP-22j" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-380" y="-1217"/>
+            <point key="canvasLocation" x="2440" y="-269"/>
         </scene>
         <!--Category View Controller-->
         <scene sceneID="2Mq-6g-jmT">
@@ -181,6 +190,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="W7z-oi-ZpP"/>
+                    <connections>
+                        <segue destination="ltn-Ax-bJb" kind="push" id="0pB-4H-zBL"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cqR-cq-7yP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -233,6 +245,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="WTX-o8-Tfr"/>
         <segue reference="a0T-qp-7PQ"/>
         <segue reference="xJg-Zy-Hda"/>
     </inferredMetricsTieBreakers>

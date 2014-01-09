@@ -33,13 +33,19 @@
 {
     [super viewDidLoad];
     
-    if (self.title && self.title.length>0) {
-        BMNavBackButton *button = [[BMNavBackButton alloc] init];
-        [button setTitle:self.title forState:UIControlStateNormal];
-        [button addTarget:self action:@selector(_backButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-        [button sizeToFit];
-        self.customNavigationBar.leftView = button;
-    }
+    BMNavBackButton *button = [[BMNavBackButton alloc] init];
+    [button setTitle:self.title forState:UIControlStateNormal];
+    [button addTarget:self action:@selector(_backButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    [button sizeToFit];
+    self.customNavigationBar.leftView = button;
+    
+//    if (self.title && self.title.length>0) {
+//        BMNavBackButton *button = [[BMNavBackButton alloc] init];
+//        [button setTitle:self.title forState:UIControlStateNormal];
+//        [button addTarget:self action:@selector(_backButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+//        [button sizeToFit];
+//        self.customNavigationBar.leftView = button;
+//    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -65,9 +71,6 @@
             [button sizeToFit];
             self.customNavigationBar.leftView = button;
         }
-    }
-    else {
-        self.customNavigationBar.leftView = nil;
     }
 }
 

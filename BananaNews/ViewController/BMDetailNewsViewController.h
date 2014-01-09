@@ -10,4 +10,6 @@
 
 @interface BMDetailNewsViewController : BMRootViewController
 
+@property (nonatomic, strong) News *news;
+
 @end
