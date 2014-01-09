@@ -20,8 +20,18 @@
 
 #import "NewsCategory.h"
 
+#import "Comment.h"
+
+#import "User.h"
+
 #define News_Entity             @"News"
 #define kNid                    @"nid"
+
+#define Comment_Entity          @"Comment"
+#define kCommentDate            @"date"
+
+#define User_Entity             @"User"
+#define kUid                    @"uid"
 
 #define NewsCategory_Entity     @"NewsCategory"
 #define kCategoryId             @"category_id"
@@ -72,6 +82,10 @@
 - (NewsCategory *)getNewsCategoryById:(NSString *)cid context:(NSManagedObjectContext *)context;
 
 - (NSArray *)getAllNewsCategory:(NSManagedObjectContext *)context;
+
+- (User *)createUser:(NSDictionary *)dic context:(NSManagedObjectContext *)context;
+
+- (User *)getUserById:(NSUInteger)uid context:(NSManagedObjectContext *)context;
 
 //Networking
 

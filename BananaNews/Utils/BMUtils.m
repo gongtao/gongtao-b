@@ -44,16 +44,16 @@
         return [BMUtils stringFromDate:date];
     }
     else if ([components month] > 0) {
-        return [NSString stringWithFormat:@"%ui个月前", [components month]];
+        return [NSString stringWithFormat:@"%u个月前", [components month]];
     }
     else if ([components day] > 0) {
-        return [NSString stringWithFormat:@"%ui天前", [components day]];
+        return [NSString stringWithFormat:@"%u天前", [components day]];
     }
     else if ([components hour] > 0) {
-        return [NSString stringWithFormat:@"%ui小时前", [components hour]];
+        return [NSString stringWithFormat:@"%u小时前", [components hour]];
     }
     else if ([components minute] > 0) {
-        return [NSString stringWithFormat:@"%ui分钟前", [components minute]];
+        return [NSString stringWithFormat:@"%u分钟前", [components minute]];
     }
     return @"现在";
 }

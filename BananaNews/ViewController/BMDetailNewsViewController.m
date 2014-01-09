@@ -8,6 +8,8 @@
 
 #import "BMDetailNewsViewController.h"
 
+#import "BMDetailViewController.h"
+
 @interface BMDetailNewsViewController ()
 
 @end
@@ -27,6 +29,12 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    CGFloat y = self.customNavigationBar.frame.size.height;
+    BMDetailViewController *vc = [[BMDetailViewController alloc] initWithRequest:self.news];
+    vc.view.frame = CGRectMake(0.0, y, 320.0, self.view.frame.size.height-y);
+    vc.tableView.frame = vc.view.bounds;
+    [self addChildViewController:vc];
+    [self.view addSubview:vc.view];
 }
 
 - (void)didReceiveMemoryWarning

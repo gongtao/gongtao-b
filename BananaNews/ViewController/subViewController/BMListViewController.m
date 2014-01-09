@@ -33,6 +33,7 @@
     if (self) {
         // Custom initialization
         self.fetchRequest = request;
+        self.fetchRequest.fetchBatchSize = 10;
     }
     return self;
 }

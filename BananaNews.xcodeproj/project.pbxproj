@@ -40,6 +40,13 @@
 		42C7BB1F18715D8000BD6382 /* BMRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C7BB1E18715D8000BD6382 /* BMRootViewController.m */; };
 		42C7BB2318715E3100BD6382 /* BMNavBackButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C7BB2218715E3100BD6382 /* BMNavBackButton.m */; };
 		42CA255618769C4A00FB1764 /* BMNewsListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 42CA255518769C4A00FB1764 /* BMNewsListCell.m */; };
+		42D05F76187E417700DC5E7E /* BMDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42D05F75187E417700DC5E7E /* BMDetailViewController.m */; };
+		42D05F7C187E45B900DC5E7E /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = 42D05F7B187E45B900DC5E7E /* Comment.m */; };
+		42D05F7F187E45B900DC5E7E /* Author.m in Sources */ = {isa = PBXBuildFile; fileRef = 42D05F7E187E45B900DC5E7E /* Author.m */; };
+		42D05F82187E45B900DC5E7E /* Media.m in Sources */ = {isa = PBXBuildFile; fileRef = 42D05F81187E45B900DC5E7E /* Media.m */; };
+		42D05F85187E45B900DC5E7E /* NewsCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 42D05F84187E45B900DC5E7E /* NewsCategory.m */; };
+		42D05F88187E578A00DC5E7E /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 42D05F87187E578A00DC5E7E /* User.m */; };
+		42D05F8B187E578B00DC5E7E /* News.m in Sources */ = {isa = PBXBuildFile; fileRef = 42D05F8A187E578B00DC5E7E /* News.m */; };
 		42E8681718764A1A00B02A0B /* Database.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 42E8681518764A1A00B02A0B /* Database.xcdatamodeld */; };
 		42E8681A18764A2500B02A0B /* BMNewsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 42E8681918764A2500B02A0B /* BMNewsManager.m */; };
 		42E8681E187657C500B02A0B /* BMListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42E8681D187657C500B02A0B /* BMListViewController.m */; };
@@ -49,10 +56,6 @@
 		D821E855187560AF005C1604 /* BMCollectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D821E854187560AF005C1604 /* BMCollectViewController.m */; };
 		D821E85818757A80005C1604 /* BMSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D821E85718757A80005C1604 /* BMSettingViewController.m */; };
 		D821E85E18759AC6005C1604 /* BMUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = D821E85D18759AC6005C1604 /* BMUtils.m */; };
-		D8491C3D187BEEFC001A5A3A /* Media.m in Sources */ = {isa = PBXBuildFile; fileRef = D8491C3C187BEEFC001A5A3A /* Media.m */; };
-		D8491C40187BEEFD001A5A3A /* Author.m in Sources */ = {isa = PBXBuildFile; fileRef = D8491C3F187BEEFD001A5A3A /* Author.m */; };
-		D8491C43187BEEFD001A5A3A /* News.m in Sources */ = {isa = PBXBuildFile; fileRef = D8491C42187BEEFD001A5A3A /* News.m */; };
-		D8491C4C187BEF4D001A5A3A /* NewsCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = D8491C4B187BEF4D001A5A3A /* NewsCategory.m */; };
 		D8EA5913187C0FD500EEB573 /* BMNewsImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = D8EA5912187C0FD500EEB573 /* BMNewsImageView.m */; };
 /* End PBXBuildFile section */
 
@@ -123,6 +126,20 @@
 		42C7BB2218715E3100BD6382 /* BMNavBackButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMNavBackButton.m; sourceTree = "<group>"; };
 		42CA255418769C4A00FB1764 /* BMNewsListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMNewsListCell.h; sourceTree = "<group>"; };
 		42CA255518769C4A00FB1764 /* BMNewsListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMNewsListCell.m; sourceTree = "<group>"; };
+		42D05F74187E417700DC5E7E /* BMDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMDetailViewController.h; sourceTree = "<group>"; };
+		42D05F75187E417700DC5E7E /* BMDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMDetailViewController.m; sourceTree = "<group>"; };
+		42D05F7A187E45B900DC5E7E /* Comment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Comment.h; sourceTree = "<group>"; };
+		42D05F7B187E45B900DC5E7E /* Comment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Comment.m; sourceTree = "<group>"; };
+		42D05F7D187E45B900DC5E7E /* Author.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Author.h; sourceTree = "<group>"; };
+		42D05F7E187E45B900DC5E7E /* Author.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Author.m; sourceTree = "<group>"; };
+		42D05F80187E45B900DC5E7E /* Media.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Media.h; sourceTree = "<group>"; };
+		42D05F81187E45B900DC5E7E /* Media.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Media.m; sourceTree = "<group>"; };
+		42D05F83187E45B900DC5E7E /* NewsCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsCategory.h; sourceTree = "<group>"; };
+		42D05F84187E45B900DC5E7E /* NewsCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsCategory.m; sourceTree = "<group>"; };
+		42D05F86187E578A00DC5E7E /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		42D05F87187E578A00DC5E7E /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		42D05F89187E578B00DC5E7E /* News.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = News.h; sourceTree = "<group>"; };
+		42D05F8A187E578B00DC5E7E /* News.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = News.m; sourceTree = "<group>"; };
 		42E8681618764A1A00B02A0B /* Database.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Database.xcdatamodel; sourceTree = "<group>"; };
 		42E8681818764A2500B02A0B /* BMNewsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMNewsManager.h; sourceTree = "<group>"; };
 		42E8681918764A2500B02A0B /* BMNewsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMNewsManager.m; sourceTree = "<group>"; };
@@ -140,14 +157,6 @@
 		D821E85718757A80005C1604 /* BMSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMSettingViewController.m; sourceTree = "<group>"; };
 		D821E85C18759AC6005C1604 /* BMUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMUtils.h; sourceTree = "<group>"; };
 		D821E85D18759AC6005C1604 /* BMUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMUtils.m; sourceTree = "<group>"; };
-		D8491C3B187BEEFC001A5A3A /* Media.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Media.h; sourceTree = "<group>"; };
-		D8491C3C187BEEFC001A5A3A /* Media.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Media.m; sourceTree = "<group>"; };
-		D8491C3E187BEEFD001A5A3A /* Author.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Author.h; sourceTree = "<group>"; };
-		D8491C3F187BEEFD001A5A3A /* Author.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Author.m; sourceTree = "<group>"; };
-		D8491C41187BEEFD001A5A3A /* News.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = News.h; sourceTree = "<group>"; };
-		D8491C42187BEEFD001A5A3A /* News.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = News.m; sourceTree = "<group>"; };
-		D8491C4A187BEF4D001A5A3A /* NewsCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsCategory.h; sourceTree = "<group>"; };
-		D8491C4B187BEF4D001A5A3A /* NewsCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsCategory.m; sourceTree = "<group>"; };
 		D8EA5911187C0FD500EEB573 /* BMNewsImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMNewsImageView.h; sourceTree = "<group>"; };
 		D8EA5912187C0FD500EEB573 /* BMNewsImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMNewsImageView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -365,14 +374,18 @@
 				42E8681518764A1A00B02A0B /* Database.xcdatamodeld */,
 				42E8681818764A2500B02A0B /* BMNewsManager.h */,
 				42E8681918764A2500B02A0B /* BMNewsManager.m */,
-				D8491C41187BEEFD001A5A3A /* News.h */,
-				D8491C42187BEEFD001A5A3A /* News.m */,
-				D8491C3E187BEEFD001A5A3A /* Author.h */,
-				D8491C3F187BEEFD001A5A3A /* Author.m */,
-				D8491C3B187BEEFC001A5A3A /* Media.h */,
-				D8491C3C187BEEFC001A5A3A /* Media.m */,
-				D8491C4A187BEF4D001A5A3A /* NewsCategory.h */,
-				D8491C4B187BEF4D001A5A3A /* NewsCategory.m */,
+				42D05F89187E578B00DC5E7E /* News.h */,
+				42D05F8A187E578B00DC5E7E /* News.m */,
+				42D05F86187E578A00DC5E7E /* User.h */,
+				42D05F87187E578A00DC5E7E /* User.m */,
+				42D05F83187E45B900DC5E7E /* NewsCategory.h */,
+				42D05F84187E45B900DC5E7E /* NewsCategory.m */,
+				42D05F80187E45B900DC5E7E /* Media.h */,
+				42D05F81187E45B900DC5E7E /* Media.m */,
+				42D05F7D187E45B900DC5E7E /* Author.h */,
+				42D05F7E187E45B900DC5E7E /* Author.m */,
+				42D05F7A187E45B900DC5E7E /* Comment.h */,
+				42D05F7B187E45B900DC5E7E /* Comment.m */,
 			);
 			path = Modal;
 			sourceTree = "<group>";
@@ -382,6 +395,8 @@
 			children = (
 				42E8681C187657C500B02A0B /* BMListViewController.h */,
 				42E8681D187657C500B02A0B /* BMListViewController.m */,
+				42D05F74187E417700DC5E7E /* BMDetailViewController.h */,
+				42D05F75187E417700DC5E7E /* BMDetailViewController.m */,
 			);
 			path = subViewController;
 			sourceTree = "<group>";
@@ -529,13 +544,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				42C7BB0618712BF700BD6382 /* BMLeftViewCell.m in Sources */,
-				D8491C43187BEEFD001A5A3A /* News.m in Sources */,
 				42C7BB0118710E7F00BD6382 /* BMRightViewController.m in Sources */,
-				D8491C4C187BEF4D001A5A3A /* NewsCategory.m in Sources */,
-				D8491C3D187BEEFC001A5A3A /* Media.m in Sources */,
+				42D05F8B187E578B00DC5E7E /* News.m in Sources */,
 				42C5844A187A73A700D919EB /* BMCategoryViewController.m in Sources */,
 				D821E85218752D02005C1604 /* BMCustomButton.m in Sources */,
 				42C7BB1F18715D8000BD6382 /* BMRootViewController.m in Sources */,
+				42D05F76187E417700DC5E7E /* BMDetailViewController.m in Sources */,
+				42D05F85187E45B900DC5E7E /* NewsCategory.m in Sources */,
 				42C6D2A71872A11C00F796FB /* IISideController.m in Sources */,
 				42CA255618769C4A00FB1764 /* BMNewsListCell.m in Sources */,
 				D821E85E18759AC6005C1604 /* BMUtils.m in Sources */,
@@ -544,15 +559,17 @@
 				42C7BAEF18710C2000BD6382 /* BMSidePanelController.m in Sources */,
 				42C6D2A81872A11C00F796FB /* IIViewDeckController.m in Sources */,
 				42C7BAC81871059100BD6382 /* AppDelegate.m in Sources */,
-				D8491C40187BEEFD001A5A3A /* Author.m in Sources */,
+				42D05F88187E578A00DC5E7E /* User.m in Sources */,
 				42C6D298187285EB00F796FB /* BMNavigationBar.m in Sources */,
 				42C6D29218725EC500F796FB /* BMDetailNewsViewController.m in Sources */,
+				42D05F7F187E45B900DC5E7E /* Author.m in Sources */,
 				42C5844D187A762600D919EB /* BMSubmissionViewController.m in Sources */,
 				42C7BAFE18710E7300BD6382 /* BMHomeViewController.m in Sources */,
 				D821E855187560AF005C1604 /* BMCollectViewController.m in Sources */,
 				D821E84C18751228005C1604 /* BMSearchViewController.m in Sources */,
 				42E8681A18764A2500B02A0B /* BMNewsManager.m in Sources */,
 				42C7BAFB18710E6700BD6382 /* BMLeftViewController.m in Sources */,
+				42D05F7C187E45B900DC5E7E /* Comment.m in Sources */,
 				42E8681718764A1A00B02A0B /* Database.xcdatamodeld in Sources */,
 				42E8681E187657C500B02A0B /* BMListViewController.m in Sources */,
 				D8EA5913187C0FD500EEB573 /* BMNewsImageView.m in Sources */,
@@ -560,6 +577,7 @@
 				42C7BB0A1871447100BD6382 /* BMNavigationController.m in Sources */,
 				D821E85818757A80005C1604 /* BMSettingViewController.m in Sources */,
 				42C7BAC41871059100BD6382 /* main.m in Sources */,
+				42D05F82187E45B900DC5E7E /* Media.m in Sources */,
 				42C6D2A91872A11C00F796FB /* IIWrapController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

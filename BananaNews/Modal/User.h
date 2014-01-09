@@ -1,5 +1,5 @@
 //
-//  Author.h
+//  User.h
 //  BananaNews
 //
 //  Created by 龚涛 on 1/9/14.
@@ -11,16 +11,15 @@
 
 @class News;
 
-@interface Author : NSManagedObject
+@interface User : NSManagedObject
 
-@property (nonatomic, retain) NSNumber * aid;
+@property (nonatomic, retain) NSNumber * uid;
 @property (nonatomic, retain) NSString * avatar;
-@property (nonatomic, retain) NSString * nickname;
-@property (nonatomic, retain) NSString * username;
+@property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSSet *news;
 @end
 
-@interface Author (CoreDataGeneratedAccessors)
+@interface User (CoreDataGeneratedAccessors)
 
 - (void)addNewsObject:(News *)value;
 - (void)removeNewsObject:(News *)value;

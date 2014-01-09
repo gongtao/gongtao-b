@@ -1,21 +1,20 @@
 //
-//  Author.m
+//  User.m
 //  BananaNews
 //
 //  Created by 龚涛 on 1/9/14.
 //  Copyright (c) 2014 龚涛. All rights reserved.
 //
 
-#import "Author.h"
+#import "User.h"
 #import "News.h"
 
 
-@implementation Author
+@implementation User
 
-@dynamic aid;
+@dynamic uid;
 @dynamic avatar;
-@dynamic nickname;
-@dynamic username;
+@dynamic name;
 @dynamic news;
 
 @end

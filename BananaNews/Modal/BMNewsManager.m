@@ -188,6 +188,11 @@
         news.ndate = [BMUtils dateFromString:date];
     }
     
+    NSDictionary *author = dic[@"author"];
+    if (author && (NSNull *)author != [NSNull null]) {
+        news.user = [self createUser:author context:context];
+    }
+    
     NSArray *mediaArray= dic[@"media"];
     NSMutableArray *medias = [[NSMutableArray alloc] init];
     if (mediaArray && (NSNull *)mediaArray != [NSNull null]) {
@@ -288,6 +293,12 @@
                 media.small_height = obj[@"height"];
                 break;
             }
+            if ([size isEqualToString:@"full"]) {
+                media.large = obj[@"url"];
+                media.large_width = obj[@"width"];
+                media.large_height = obj[@"height"];
+                break;
+            }
         }
     }
     
@@ -365,6 +376,52 @@
     
     if (!error && results.count > 0) {
         return results;
+    }
+    return nil;
+}
+
+- (User *)createUser:(NSDictionary *)dic context:(NSManagedObjectContext *)context
+{
+    NSNumber *uid = dic[@"id"];
+    
+    if (!uid || (NSNull *)uid == [NSNull null]) {
+        NSLog(@"User: uid null");
+        return nil;
+    }
+    
+    User *user = [self getUserById:uid.integerValue context:context];
+    
+    if (!user) {
+        user = [NSEntityDescription insertNewObjectForEntityForName:User_Entity inManagedObjectContext:context];
+        user.uid = uid;
+    }
+    
+    NSString *name = dic[@"nicename"];
+    if (name && (NSNull *)name != [NSNull null]) {
+        user.name = name;
+    }
+    
+    NSArray *avatar = dic[@"avatar"];
+    if (avatar && (NSNull *)avatar != [NSNull null] && avatar.count>0) {
+        user.avatar = avatar[0][@"url"];
+    }
+    
+    return user;
+}
+
+- (User *)getUserById:(NSUInteger)uid context:(NSManagedObjectContext *)context
+{
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:User_Entity inManagedObjectContext:context];
+    
+    [request setEntity:entity];
+    [request setPredicate:[NSPredicate predicateWithFormat:@"%K == %i", kUid, uid]];
+    
+    NSError *error;
+    NSArray *results = [context executeFetchRequest:request error:&error];
+    
+    if (!error && results.count > 0) {
+        return results[0];
     }
     return nil;
 }

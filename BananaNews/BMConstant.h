@@ -34,6 +34,7 @@
 #define Color_GrayLine      [UIColor colorWithHexString:@"dcdcdc"]
 #define Color_CellBg        [UIColor colorWithHexString:@"e4e4df"]
 #define Color_SideBg        [UIColor colorWithHexString:@"f3f3f3"]
+#define Color_DetalInputBg  [UIColor colorWithHexString:@"ecece7"]
 #define Color_ContentBg     [UIColor colorWithHexString:@"f7f7f7"]
 #define Color_SideFont      [UIColor colorWithHexString:@"666666"]
 #define Color_GrayFont      [UIColor colorWithHexString:@"c6c6c6"]
