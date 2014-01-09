@@ -12,6 +12,8 @@
 
 #import <SDImageCache.h>
 
+#import <MobClick.h>
+
 @implementation AppDelegate
 
 @synthesize managedObjectContext = _managedObjectContext;
@@ -22,6 +24,17 @@
 {
     // Override point for customization after application launch.
     [application setStatusBarHidden:NO];
+    
+    //App Store
+    [MobClick startWithAppkey:kAppKey reportPolicy:BATCH channelId:nil];
+    
+    //检查版本更新
+    [MobClick checkUpdate];
+    
+#ifdef DEBUG
+    [MobClick setLogEnabled:YES];
+#endif
+    
     return YES;
 }
 							

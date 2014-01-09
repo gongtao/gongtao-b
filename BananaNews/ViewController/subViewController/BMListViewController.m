@@ -10,6 +10,8 @@
 
 @interface BMListViewController ()
 
+@property (nonatomic, strong) NSFetchRequest *fetchRequest;
+
 @end
 
 @implementation BMListViewController
@@ -19,6 +21,16 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+    }
+    return self;
+}
+
+- (id)initWithRequest:(NSFetchRequest *)request
+{
+    self = [super initWithNibName:nil bundle:nil];
+    if (self) {
+        // Custom initialization
+        self.fetchRequest = request;
     }
     return self;
 }
@@ -43,6 +55,9 @@
 
 - (NSFetchRequest *)fetchRequest
 {
+    if (_fetchRequest) {
+        return _fetchRequest;
+    }
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:News_Entity inManagedObjectContext:[self managedObjectContext]];
     [request setEntity:entity];

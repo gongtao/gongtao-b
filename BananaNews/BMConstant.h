@@ -9,7 +9,11 @@
 #ifndef BananaNews_BMConstant_h
 #define BananaNews_BMConstant_h
 
-#define kBaseURL [NSURL URLWithString:@"http://115.29.43.107/site/wp_api/v1"]
+#define kAppKey     @"52cc8b8a56240b6c8c023b74"
+
+#define kBaseURL    [NSURL URLWithString:@"http://115.29.43.107/site/wp_api/v1"]
+
+#define IS_IOS7     ([[[UIDevice currentDevice]systemVersion] floatValue] >= 7.0)
 
 #define kSidePanelLeftWidth     232.0
 #define kSidePanelRightWidth    220.0
@@ -22,8 +26,6 @@
 
 #define kCellSmallImgWidth      96.0
 #define kCellSmallImgHeight     56.0
-
-#define IS_IOS7 ([[[UIDevice currentDevice]systemVersion] floatValue] >= 7.0)
 
 #define Font_NewsTitle      [UIFont systemFontOfSize:14.0]
 #define Font_NewsSmall      [UIFont systemFontOfSize:10.0]
