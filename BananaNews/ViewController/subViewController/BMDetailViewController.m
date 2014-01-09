@@ -54,6 +54,9 @@
     self.rowAnimation = UITableViewRowAnimationNone;
     self.tableView.backgroundColor = [UIColor clearColor];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    UIEdgeInsets insets = self.tableView.contentInset;
+    insets.bottom += 40.0;
+    self.tableView.contentInset = insets;
     
     [self _initNewsCell];
 }

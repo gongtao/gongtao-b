@@ -291,13 +291,13 @@
                 media.small = obj[@"url"];
                 media.small_width = obj[@"width"];
                 media.small_height = obj[@"height"];
-                break;
+                continue;
             }
             if ([size isEqualToString:@"full"]) {
                 media.large = obj[@"url"];
                 media.large_width = obj[@"width"];
                 media.large_height = obj[@"height"];
-                break;
+                continue;
             }
         }
     }
@@ -489,8 +489,6 @@
             
             NSString *str = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
             if (![str isEqualToString:cacheStr]) {
-                NSLog(@"haha");
-                
                 NSError *e;
                 [str writeToFile:_configFilePath atomically:YES encoding:NSUTF8StringEncoding error:&e];
                 if (e) {

@@ -8,7 +8,7 @@
 
 #import "BMRootViewController.h"
 
-@interface BMDetailNewsViewController : BMRootViewController
+@interface BMDetailNewsViewController : BMRootViewController <UITextViewDelegate>
 
 @property (nonatomic, strong) News *news;
 
