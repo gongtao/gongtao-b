@@ -166,6 +166,11 @@
     return request;
 }
 
+- (NSString *)cacheName
+{
+    return @"LeftCache";
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath fetchedResultsController:(NSFetchedResultsController *)fetchedResultsController
 {
     static NSString *CellIdentifier = @"BMLeftCell";

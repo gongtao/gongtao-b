@@ -14,6 +14,6 @@
 
 @property (nonatomic, assign) BMNewsListCellType type;
 
-- (id)initWithRequest:(NSFetchRequest *)request;
+- (id)initWithRequest:(NSFetchRequest *)request cacheName:(NSString *)cache;
 
 @end

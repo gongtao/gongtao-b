@@ -36,6 +36,7 @@
 #define Color_SideBg        [UIColor colorWithHexString:@"f3f3f3"]
 #define Color_DetalInputBg  [UIColor colorWithHexString:@"ccecece7"]
 #define Color_ContentBg     [UIColor colorWithHexString:@"f7f7f7"]
+#define Color_TabBarBg      [UIColor colorWithHexString:@"ecece7"]
 #define Color_SideFont      [UIColor colorWithHexString:@"666666"]
 #define Color_GrayFont      [UIColor colorWithHexString:@"c6c6c6"]
 #define Color_NewsFont      [UIColor colorWithHexString:@"333333"]

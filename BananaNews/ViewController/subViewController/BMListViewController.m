@@ -11,6 +11,9 @@
 #import "BMDetailNewsViewController.h"
 
 @interface BMListViewController ()
+{
+    NSString *_cache;
+}
 
 @property (nonatomic, strong) NSFetchRequest *fetchRequest;
 
@@ -27,13 +30,14 @@
     return self;
 }
 
-- (id)initWithRequest:(NSFetchRequest *)request
+- (id)initWithRequest:(NSFetchRequest *)request cacheName:(NSString *)cache
 {
     self = [super initWithNibName:nil bundle:nil];
     if (self) {
         // Custom initialization
-        self.fetchRequest = request;
-        self.fetchRequest.fetchBatchSize = 10;
+        _fetchRequest = request;
+        _fetchRequest.fetchBatchSize = 10;
+        _cache = cache;
     }
     return self;
 }
@@ -67,6 +71,11 @@
     NSSortDescriptor *sortDesciptor = [NSSortDescriptor sortDescriptorWithKey:kNid ascending:NO];
     [request setSortDescriptors:[NSArray arrayWithObject:sortDesciptor]];
     return request;
+}
+
+- (NSString *)cacheName
+{
+    return _cache;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath fetchedResultsController:(NSFetchedResultsController *)fetchedResultsController

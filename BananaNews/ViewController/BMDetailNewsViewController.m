@@ -64,9 +64,9 @@
     [button setImage:[UIImage imageNamed:@"详情页评论.png"] forState:UIControlStateNormal];
     [button setImage:[UIImage imageNamed:@"详情页评论.png"] forState:UIControlStateHighlighted];
     [button addTarget:self action:@selector(_comment:) forControlEvents:UIControlEventTouchUpInside];
-    [button setTitle:[NSString stringWithFormat:@"(%@)", self.news.comment_count] forState:UIControlStateNormal];
+    [button setTitle:[NSString stringWithFormat:@"%@", self.news.comment_count] forState:UIControlStateNormal];
     [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    button.titleLabel.font = Font_NewsSmall;
+    button.titleLabel.font = [UIFont systemFontOfSize:9.0];
     button.titleLabel.textAlignment = NSTextAlignmentCenter;
     self.customNavigationBar.rightView = button;
     

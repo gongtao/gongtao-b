@@ -8,13 +8,15 @@
 
 #import "BMHomeViewController.h"
 
-#import "BMListViewController.h"
+#import "BMPageViewController.h"
 
 #import "IIViewDeckController.h"
 
 #import "BMNewsManager.h"
 
 @interface BMHomeViewController ()
+
+@property (nonatomic, strong) BMPageViewController *pageVC;
 
 - (void)_leftButtonPressed:(id)sender;
 
@@ -55,17 +57,23 @@
     frame.origin.y = CGRectGetMaxY(self.customNavigationBar.frame);
     frame.size.height -= frame.origin.y;
     
-    BMListViewController *listVC = [[BMListViewController alloc] init];
-    listVC.view.frame = frame;
-    listVC.tableView.frame = listVC.view.bounds;
-    [self addChildViewController:listVC];
-    [self.view addSubview:listVC.view];
+    _pageVC = [[BMPageViewController alloc] init];
+    _pageVC.view.frame = frame;
+    _pageVC.pageView.frame = CGRectMake(0.0, 32.0, 320.0, frame.size.height-32.0);
+    [self addChildViewController:_pageVC];
+    [self.view addSubview:_pageVC.view];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [_pageVC viewDidAppear:animated];
 }
 
 #pragma mark - Private

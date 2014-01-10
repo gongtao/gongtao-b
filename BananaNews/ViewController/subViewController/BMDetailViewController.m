@@ -150,10 +150,17 @@
         }];
     }
     y += 8.0;
-    BMCustomButton *button = [[BMCustomButton alloc] initWithFrame:CGRectMake(103.0, y, 90.0, 35.0)];
-    button.titleRect = CGRectMake(35.0, 0.0, 50.0, 35.0);
-    [button setBackgroundImage:[UIImage imageNamed:@"详情页赞.png"] forState:UIControlStateNormal];
-    [button setBackgroundImage:[UIImage imageNamed:@"详情页赞按下.png"] forState:UIControlStateHighlighted];
+    
+    NSString *dingCount = @"1000000000000";
+    CGSize size = [dingCount sizeWithFont:Font_NewsTitle];
+    if (size.width < 50.0) {
+        size.width = 50.0;
+    }
+    CGFloat w = size.width+40.0;
+    BMCustomButton *button = [[BMCustomButton alloc] initWithFrame:CGRectMake(148.0-w/2.0, y, w, 35.0)];
+    button.titleRect = CGRectMake(35.0, 0.0, size.width, 35.0);
+    [button setBackgroundImage:[[UIImage imageNamed:@"详情页赞.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(17.5, 45.0, 17.5, 45.0)] forState:UIControlStateNormal];
+    [button setBackgroundImage:[[UIImage imageNamed:@"详情页赞按下.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(17.5, 45.0, 17.5, 45.0)] forState:UIControlStateHighlighted];
     [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [button setTitle:@"999+" forState:UIControlStateNormal];
     button.titleLabel.font = Font_NewsTitle;
