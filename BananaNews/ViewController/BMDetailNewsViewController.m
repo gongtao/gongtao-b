@@ -20,6 +20,8 @@
 
 @property (nonatomic, strong) UITextView *textView;
 
+@property (nonatomic, strong) UIButton *sendButton;
+
 - (void)_comment:(id)sender;
 
 - (void)_collect:(id)sender;
@@ -116,11 +118,24 @@
     commentLabel.textAlignment = NSTextAlignmentCenter;
     [_inputView addSubview:commentLabel];
     
+    UIButton *cancelButton = [[UIButton alloc] initWithFrame:CGRectMake(6.0, 0.0, 25.0, 35.0)];
+    [cancelButton setImage:[UIImage imageNamed:@"详情页关闭.png"] forState:UIControlStateNormal];
+    [cancelButton setImage:[UIImage imageNamed:@"详情页关闭按下.png"] forState:UIControlStateHighlighted];
+    [cancelButton addTarget:self action:@selector(_cancelInput:) forControlEvents:UIControlEventTouchUpInside];
+    [_inputView addSubview:cancelButton];
+    
+    _sendButton = [[UIButton alloc] initWithFrame:CGRectMake(289.0, 0.0, 25.0, 35.0)];
+    [_sendButton setImage:[UIImage imageNamed:@"详情页确定.png"] forState:UIControlStateNormal];
+    [_sendButton setImage:[UIImage imageNamed:@"详情页确定按下.png"] forState:UIControlStateHighlighted];
+    [_sendButton setImage:[UIImage imageNamed:@"详情页确定不可点状态.png"] forState:UIControlStateDisabled];
+    [_sendButton addTarget:self action:@selector(_send:) forControlEvents:UIControlEventTouchUpInside];
+    _sendButton.enabled = NO;
+    [_inputView addSubview:_sendButton];
+    
     _textView = [[UITextView alloc] initWithFrame:CGRectMake(6.0, 35.0, 308.0, 96.0)];
     _textView.delegate = self;
     _textView.font = Font_NewsTitle;
     _textView.textColor = Color_NewsFont;
-    _textView.returnKeyType = UIReturnKeySend;
     [_inputView addSubview:_textView];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
@@ -185,7 +200,7 @@
 
 - (void)_send:(id)sender
 {
-    
+    NSLog(@"send");
 }
 
 - (void)_cancelInput:(id)sender
@@ -207,6 +222,11 @@
 - (BOOL)textViewShouldBeginEditing:(UITextView *)textView
 {
     return YES;
+}
+
+- (void)textViewDidChange:(UITextView *)textView
+{
+    _sendButton.enabled = (textView.text.length>0);
 }
 
 @end
