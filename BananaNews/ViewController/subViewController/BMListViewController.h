@@ -10,7 +10,14 @@
 
 #import "BMNewsListCell.h"
 
-@interface BMListViewController : GTTableViewController
+#import "EGORefreshTableHeaderView.h"
+
+@interface BMListViewController : GTTableViewController <EGORefreshTableHeaderDelegate>
+{
+    EGORefreshTableHeaderView *_refreshHeaderView;
+    
+    BOOL _reloading;
+}
 
 @property (nonatomic, assign) BMNewsListCellType type;
 

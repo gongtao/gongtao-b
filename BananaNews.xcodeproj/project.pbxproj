@@ -61,6 +61,7 @@
 		D8EA5913187C0FD500EEB573 /* BMNewsImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = D8EA5912187C0FD500EEB573 /* BMNewsImageView.m */; };
 		D8EA59191880B0C800EEB573 /* GTCyclePageView.m in Sources */ = {isa = PBXBuildFile; fileRef = D8EA59161880B0C800EEB573 /* GTCyclePageView.m */; };
 		D8EA591A1880B0C800EEB573 /* GTCyclePageViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D8EA59181880B0C800EEB573 /* GTCyclePageViewCell.m */; };
+		D8EA591E1881381E00EEB573 /* EGORefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = D8EA591D1881381E00EEB573 /* EGORefreshTableHeaderView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -171,6 +172,8 @@
 		D8EA59161880B0C800EEB573 /* GTCyclePageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTCyclePageView.m; sourceTree = "<group>"; };
 		D8EA59171880B0C800EEB573 /* GTCyclePageViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTCyclePageViewCell.h; sourceTree = "<group>"; };
 		D8EA59181880B0C800EEB573 /* GTCyclePageViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTCyclePageViewCell.m; sourceTree = "<group>"; };
+		D8EA591C1881381E00EEB573 /* EGORefreshTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGORefreshTableHeaderView.h; sourceTree = "<group>"; };
+		D8EA591D1881381E00EEB573 /* EGORefreshTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGORefreshTableHeaderView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -375,6 +378,7 @@
 		42C7BB2418716DE700BD6382 /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
+				D8EA591B1881381E00EEB573 /* EGORefreshTableHeaderView */,
 				D8EA59141880B0C800EEB573 /* GTCyclePageView */,
 				42C6D2A01872A11C00F796FB /* ViewDeck */,
 			);
@@ -436,6 +440,15 @@
 				D8EA59181880B0C800EEB573 /* GTCyclePageViewCell.m */,
 			);
 			path = GTCyclePageView;
+			sourceTree = "<group>";
+		};
+		D8EA591B1881381E00EEB573 /* EGORefreshTableHeaderView */ = {
+			isa = PBXGroup;
+			children = (
+				D8EA591C1881381E00EEB573 /* EGORefreshTableHeaderView.h */,
+				D8EA591D1881381E00EEB573 /* EGORefreshTableHeaderView.m */,
+			);
+			path = EGORefreshTableHeaderView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -582,6 +595,7 @@
 				42C6D2A71872A11C00F796FB /* IISideController.m in Sources */,
 				42CA255618769C4A00FB1764 /* BMNewsListCell.m in Sources */,
 				D821E85E18759AC6005C1604 /* BMUtils.m in Sources */,
+				D8EA591E1881381E00EEB573 /* EGORefreshTableHeaderView.m in Sources */,
 				42C6D2AE1872AA8600F796FB /* BMSearchView.m in Sources */,
 				42C6D2951872843800F796FB /* BMBaseViewController.m in Sources */,
 				42C7BAEF18710C2000BD6382 /* BMSidePanelController.m in Sources */,

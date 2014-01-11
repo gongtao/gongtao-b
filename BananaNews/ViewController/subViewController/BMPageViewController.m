@@ -83,8 +83,9 @@
         [self addChildViewController:listVC];
         [cell addSubview:listVC.view];
         
+        cell.viewController = listVC;
+        
         count++;
-        NSLog(@"%i", count);
     }
     return cell;
 }

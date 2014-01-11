@@ -67,9 +67,6 @@
     self.tableView.backgroundColor = Color_SideBg;
     self.tableView.scrollsToTop = NO;
     
-//    self.titleArray = @[@"首      页", @"图      文", @"动      图", @"视      频",
-//                        @"音      频", @"短      文", @"投      稿"];
-    
     self.controllerDic = [[NSMutableDictionary alloc] init];
     
     self.controllerDic[@"0"] = self.viewDeckController.centerController;

@@ -10,9 +10,11 @@
 
 @interface GTCyclePageViewCell : UIView
 
-@property (nonatomic, retain) NSString *cellIdentifier;
+@property (nonatomic, strong) NSString *cellIdentifier;
 
 @property (nonatomic, assign) NSUInteger page;
+
+@property (nonatomic, strong) UIViewController *viewController;
 
 - (id)initWithReuseIdentifier:(NSString *)cellIdentifier;
 
