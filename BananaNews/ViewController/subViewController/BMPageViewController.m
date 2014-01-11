@@ -32,6 +32,7 @@
     _tabViewController = [[BMTabViewController alloc] initWithNibName:nil bundle:nil];
     _tabViewController.view.frame = CGRectMake(0.0, 0.0, 320.0, 32.0);
     _tabViewController.scrollView.frame = CGRectMake(0.0, 0.0, 320.0, 32.0);
+    _tabViewController.delegate = self;
     [self addChildViewController:_tabViewController];
     [self.view addSubview:_tabViewController.view];
     
@@ -50,7 +51,7 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [_pageView reloadData];
+    [_tabViewController selectPage:0];
 }
 
 #pragma mark - GTCyclePageViewDataSource
@@ -92,7 +93,14 @@
 
 - (void)didPageChangedCyclePageView:(GTCyclePageView *)cyclePageView
 {
-    NSLog(@"page:%u", cyclePageView.currentPage);
+    [_tabViewController setPage:cyclePageView.currentPage];
+}
+
+#pragma mark - BMTabViewControllerDelegate
+
+- (void)didSelectTab:(BMTabViewController *)tabViewController index:(NSUInteger)index
+{
+    [_pageView setCurrentPage:index];
 }
 
 @end

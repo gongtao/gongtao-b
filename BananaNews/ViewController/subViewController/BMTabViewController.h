@@ -8,8 +8,22 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol BMTabViewControllerDelegate;
+
 @interface BMTabViewController : UIViewController
 
+@property (nonatomic, assign) NSUInteger page;
+
 @property (nonatomic, strong) UIScrollView *scrollView;
+
+@property (nonatomic, weak) id<BMTabViewControllerDelegate> delegate;
+
+- (void)selectPage:(NSUInteger)page;
+
+@end
+
+@protocol BMTabViewControllerDelegate <NSObject>
+
+- (void)didSelectTab:(BMTabViewController *)tabViewController index:(NSUInteger)index;
 
 @end

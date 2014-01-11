@@ -12,7 +12,7 @@
 
 #import "GTCyclePageView.h"
 
-@interface BMPageViewController : UIViewController <GTCyclePageViewDataSource, GTCyclePageViewDelegate>
+@interface BMPageViewController : UIViewController <GTCyclePageViewDataSource, GTCyclePageViewDelegate, BMTabViewControllerDelegate>
 
 @property (nonatomic, strong) BMTabViewController *tabViewController;
 

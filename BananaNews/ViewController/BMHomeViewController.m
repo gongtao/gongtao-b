@@ -57,7 +57,7 @@
     frame.origin.y = CGRectGetMaxY(self.customNavigationBar.frame);
     frame.size.height -= frame.origin.y;
     
-    _pageVC = [[BMPageViewController alloc] init];
+    _pageVC = [self.storyboard instantiateViewControllerWithIdentifier:@"pageViewController"];
     _pageVC.view.frame = frame;
     _pageVC.pageView.frame = CGRectMake(0.0, 32.0, 320.0, frame.size.height-32.0);
     [self addChildViewController:_pageVC];

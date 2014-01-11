@@ -55,9 +55,10 @@
         _scrollView.backgroundColor = [UIColor clearColor];
         _scrollView.bounces = NO;
         _scrollView.delegate = self;
+        _scrollView.scrollsToTop = NO;
         [self addSubview:_scrollView];
         
-        _currentPage = 0;
+        _currentPage = NSUIntegerMax;
         
         _reuseDic = [[NSMutableDictionary alloc] init];
         _usingArray = [[NSMutableArray alloc] initWithCapacity:3];
