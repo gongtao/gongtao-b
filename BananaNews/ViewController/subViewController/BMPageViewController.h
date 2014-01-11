@@ -10,7 +10,7 @@
 
 #import "BMTabViewController.h"
 
-#import <GTCyclePageView.h>
+#import "GTCyclePageView.h"
 
 @interface BMPageViewController : UIViewController <GTCyclePageViewDataSource, GTCyclePageViewDelegate>
 

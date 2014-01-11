@@ -57,7 +57,7 @@
 
 - (NSUInteger)numberOfPagesInCyclePageView:(GTCyclePageView *)cyclePageView
 {
-    return 5;
+    return 7;
 }
 
 - (GTCyclePageViewCell *)cyclePageView:(GTCyclePageView *)cyclePageView index:(NSUInteger)index
@@ -92,12 +92,7 @@
 
 - (void)didPageChangedCyclePageView:(GTCyclePageView *)cyclePageView
 {
-    
-}
-
-- (void)cyclePageView:(GTCyclePageView *)cyclePageView didTouchCellAtIndex:(NSUInteger)index
-{
-    
+    NSLog(@"page:%u", cyclePageView.currentPage);
 }
 
 @end

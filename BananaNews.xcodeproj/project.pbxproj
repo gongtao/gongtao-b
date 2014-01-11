@@ -59,6 +59,8 @@
 		D821E85818757A80005C1604 /* BMSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D821E85718757A80005C1604 /* BMSettingViewController.m */; };
 		D821E85E18759AC6005C1604 /* BMUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = D821E85D18759AC6005C1604 /* BMUtils.m */; };
 		D8EA5913187C0FD500EEB573 /* BMNewsImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = D8EA5912187C0FD500EEB573 /* BMNewsImageView.m */; };
+		D8EA59191880B0C800EEB573 /* GTCyclePageView.m in Sources */ = {isa = PBXBuildFile; fileRef = D8EA59161880B0C800EEB573 /* GTCyclePageView.m */; };
+		D8EA591A1880B0C800EEB573 /* GTCyclePageViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D8EA59181880B0C800EEB573 /* GTCyclePageViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -165,6 +167,10 @@
 		D821E85D18759AC6005C1604 /* BMUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMUtils.m; sourceTree = "<group>"; };
 		D8EA5911187C0FD500EEB573 /* BMNewsImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMNewsImageView.h; sourceTree = "<group>"; };
 		D8EA5912187C0FD500EEB573 /* BMNewsImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMNewsImageView.m; sourceTree = "<group>"; };
+		D8EA59151880B0C800EEB573 /* GTCyclePageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTCyclePageView.h; sourceTree = "<group>"; };
+		D8EA59161880B0C800EEB573 /* GTCyclePageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTCyclePageView.m; sourceTree = "<group>"; };
+		D8EA59171880B0C800EEB573 /* GTCyclePageViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTCyclePageViewCell.h; sourceTree = "<group>"; };
+		D8EA59181880B0C800EEB573 /* GTCyclePageViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTCyclePageViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -369,6 +375,7 @@
 		42C7BB2418716DE700BD6382 /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
+				D8EA59141880B0C800EEB573 /* GTCyclePageView */,
 				42C6D2A01872A11C00F796FB /* ViewDeck */,
 			);
 			path = ThirdParty;
@@ -418,6 +425,17 @@
 				D821E85D18759AC6005C1604 /* BMUtils.m */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		D8EA59141880B0C800EEB573 /* GTCyclePageView */ = {
+			isa = PBXGroup;
+			children = (
+				D8EA59151880B0C800EEB573 /* GTCyclePageView.h */,
+				D8EA59161880B0C800EEB573 /* GTCyclePageView.m */,
+				D8EA59171880B0C800EEB573 /* GTCyclePageViewCell.h */,
+				D8EA59181880B0C800EEB573 /* GTCyclePageViewCell.m */,
+			);
+			path = GTCyclePageView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -575,6 +593,7 @@
 				42C6D29218725EC500F796FB /* BMDetailNewsViewController.m in Sources */,
 				42D05F7F187E45B900DC5E7E /* Author.m in Sources */,
 				42C5844D187A762600D919EB /* BMSubmissionViewController.m in Sources */,
+				D8EA59191880B0C800EEB573 /* GTCyclePageView.m in Sources */,
 				42C7BAFE18710E7300BD6382 /* BMHomeViewController.m in Sources */,
 				42E3AD71187F885100ADFAD9 /* BMTabViewController.m in Sources */,
 				D821E855187560AF005C1604 /* BMCollectViewController.m in Sources */,
@@ -587,6 +606,7 @@
 				D8EA5913187C0FD500EEB573 /* BMNewsImageView.m in Sources */,
 				42C7BB2318715E3100BD6382 /* BMNavBackButton.m in Sources */,
 				42C7BB0A1871447100BD6382 /* BMNavigationController.m in Sources */,
+				D8EA591A1880B0C800EEB573 /* GTCyclePageViewCell.m in Sources */,
 				D821E85818757A80005C1604 /* BMSettingViewController.m in Sources */,
 				42C7BAC41871059100BD6382 /* main.m in Sources */,
 				42D05F82187E45B900DC5E7E /* Media.m in Sources */,
