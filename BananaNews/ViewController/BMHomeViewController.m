@@ -60,8 +60,8 @@
     _pageVC = [self.storyboard instantiateViewControllerWithIdentifier:@"pageViewController"];
     _pageVC.view.frame = frame;
     _pageVC.pageView.frame = CGRectMake(0.0, 32.0, 320.0, frame.size.height-32.0);
-    [self addChildViewController:_pageVC];
     [self.view addSubview:_pageVC.view];
+    [self addChildViewController:_pageVC];
 }
 
 - (void)didReceiveMemoryWarning

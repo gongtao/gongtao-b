@@ -36,12 +36,10 @@
     _scrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
     _scrollView.backgroundColor = Color_TabBar;
     _scrollView.scrollsToTop = NO;
-    _scrollView.userInteractionEnabled = YES;
     [self.view addSubview:_scrollView];
     
     _scrollBgView = [[UIView alloc] init];
     _scrollBgView.backgroundColor = Color_GrayLine;
-    _scrollBgView.userInteractionEnabled = YES;
     [_scrollView addSubview:_scrollBgView];
     
     _page = -1;

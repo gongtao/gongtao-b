@@ -29,12 +29,12 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    _tabViewController = [[BMTabViewController alloc] initWithNibName:nil bundle:nil];
+    _tabViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"tabViewController"];
     _tabViewController.view.frame = CGRectMake(0.0, 0.0, 320.0, 32.0);
     _tabViewController.scrollView.frame = CGRectMake(0.0, 0.0, 320.0, 32.0);
     _tabViewController.delegate = self;
-    [self addChildViewController:_tabViewController];
     [self.view addSubview:_tabViewController.view];
+    [self addChildViewController:_tabViewController];
     
     _pageView = [[GTCyclePageView alloc] init];
     _pageView.dataSource = self;
@@ -93,6 +93,7 @@
 
 - (void)didPageChangedCyclePageView:(GTCyclePageView *)cyclePageView
 {
+    NSLog(@"page:%u", cyclePageView.currentPage);
     [_tabViewController setPage:cyclePageView.currentPage];
 }
 

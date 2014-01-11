@@ -149,6 +149,7 @@
 
 - (void)_searchButtonPressed:(id)sender
 {
+    [self deselectVC];
     BMSearchViewController *vc = (BMSearchViewController *)[self.storyboard instantiateViewControllerWithIdentifier:@"searchViewController"];
     self.viewDeckController.centerController = vc;
     [self.viewDeckController closeLeftViewAnimated:YES];
