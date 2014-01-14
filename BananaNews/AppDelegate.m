@@ -33,6 +33,8 @@
     [UMSocialData setAppKey:kAppKey];
     [UMSocialConfig setSupportSinaSSO:YES];
     
+    [UMSocialConfig setSnsPlatformNames:@[UMShareToSina, UMShareToQQ]];
+    
     //检查版本更新
     [MobClick checkUpdate];
     

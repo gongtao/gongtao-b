@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BMRightViewController : UIViewController
+#import "BMSNSLoginView.h"
+
+@interface BMRightViewController : UIViewController <BMSNSLoginViewDelegate>
 
 @end

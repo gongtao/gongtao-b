@@ -19,6 +19,9 @@
 #define kLoginButtonWidth       130.0
 
 @interface BMRightViewController ()
+{
+    BMCustomButton *_loginButton;
+}
 
 - (void)_loginButtonPressed:(id)sender;
 
@@ -51,26 +54,28 @@
     
     UIImage *image = [UIImage imageNamed:@"右侧未登录头像.png"];
     NSString *title = @"登 录";
-    if (NO) {
-#warning 登陆
+    if ([[NSUserDefaults standardUserDefaults] objectForKey:kLoginKey]) {
         image = [UIImage imageNamed:@"右侧已登录头像.png"];
+        NSDictionary *snsAccountDic = [UMSocialAccountManager socialAccountDictionary];
+        UMSocialAccountEntity *sinaAccount = [snsAccountDic valueForKey:UMShareToSina];
+        title = sinaAccount.userName;
     }
     
     CGFloat offset = (kLoginButtonWidth-75.0)/2;
-    BMCustomButton *loginButton = [[BMCustomButton alloc] initWithFrame:CGRectMake(320.0-(kSidePanelRightWidth+kLoginButtonWidth)/2, y, kLoginButtonWidth, 100.0)];
-    loginButton.imageRect = CGRectMake(offset, 0.0, 75.0, 75.0);
-    loginButton.titleRect = CGRectMake(0.0, 75.0, kLoginButtonWidth, 25.0);
-    [loginButton setImage:image forState:UIControlStateNormal];
-    [loginButton setImage:image forState:UIControlStateHighlighted];
-    [loginButton setTitle:title forState:UIControlStateNormal];
-    loginButton.titleLabel.font = [UIFont systemFontOfSize:14.0];
-    [loginButton setTitleColor:Color_SideFont forState:UIControlStateNormal];
-    loginButton.titleLabel.textAlignment = NSTextAlignmentCenter;
-    [loginButton addTarget:self action:@selector(_loginButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:loginButton];
+    _loginButton = [[BMCustomButton alloc] initWithFrame:CGRectMake(320.0-(kSidePanelRightWidth+kLoginButtonWidth)/2, y, kLoginButtonWidth, 100.0)];
+    _loginButton.imageRect = CGRectMake(offset, 0.0, 75.0, 75.0);
+    _loginButton.titleRect = CGRectMake(0.0, 75.0, kLoginButtonWidth, 25.0);
+    [_loginButton setImage:image forState:UIControlStateNormal];
+    [_loginButton setImage:image forState:UIControlStateHighlighted];
+    [_loginButton setTitle:title forState:UIControlStateNormal];
+    _loginButton.titleLabel.font = [UIFont systemFontOfSize:14.0];
+    [_loginButton setTitleColor:Color_SideFont forState:UIControlStateNormal];
+    _loginButton.titleLabel.textAlignment = NSTextAlignmentCenter;
+    [_loginButton addTarget:self action:@selector(_loginButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:_loginButton];
     
     offset = (kSidePanelRightWidth-146.0)/2;
-    y = CGRectGetMaxY(loginButton.frame)+35.0;
+    y = CGRectGetMaxY(_loginButton.frame)+35.0;
     BMCustomButton *submitButton = [[BMCustomButton alloc] initWithFrame:CGRectMake(320.0-kSidePanelRightWidth+offset, y, 58.0, 63.0)];
     submitButton.imageRect = CGRectMake(9.0, 0.0, 40.0, 40.0);
     submitButton.titleRect = CGRectMake(0.0, 40.0, 58.0, 23.0);
@@ -130,15 +135,21 @@
 
 - (void)_loginButtonPressed:(id)sender
 {
-    NSLog(@"haha");
-//    [[UMSocialDataService defaultDataService] requestBindToSnsWithType:UMShareToSina completion:^(UMSocialResponseEntity *response){
-//        NSLog(@"user data:%@", response.data);
-//        NSLog(@"error:%@", response.message);
-//        NSLog(@"error:%@", response.error);
-//        NSLog(@"error type:%i", response.responseCode);
-//    }];
-    
-    [UMSocialSnsService presentSnsIconSheetView:self.parentViewController appKey:nil shareText:@"haha" shareImage:nil shareToSnsNames:@[UMShareToSina] delegate:nil];
+    if ([[NSUserDefaults standardUserDefaults] objectForKey:kLoginKey]) {
+#warning 显示个人信息
+    }
+    else {
+        if ([UMSocialAccountManager isOauthWithPlatform:UMShareToSina] ||
+            [UMSocialAccountManager isOauthWithPlatform:UMShareToQQ]) {
+#warning 网站登陆
+//            [UMSocialSnsService presentSnsIconSheetView:self.parentViewController appKey:nil shareText:@"haha" shareImage:nil shareToSnsNames:nil delegate:nil];
+        }
+        else {
+            BMSNSLoginView *loginView = [[BMSNSLoginView alloc] initWithFrame:self.view.bounds];
+            loginView.delegate = self;
+            [loginView showInView:self.parentViewController.view];
+        }
+    }
 }
 
 - (void)_submitButtonPressed:(id)sender
@@ -165,6 +176,23 @@
     UIViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"settingViewController"];
     self.viewDeckController.centerController = vc;
     [self.viewDeckController closeRightViewAnimated:YES];
+}
+
+#pragma mark - BMSNSLoginViewDelegate
+
+- (void)didSelectSNS:(NSUInteger)index
+{
+    NSString *sns = UMShareToSina;
+    if (1 == index) {
+        sns = UMShareToQQ;
+    }
+    UMSocialSnsPlatform *snsPlatform = [UMSocialSnsPlatformManager getSocialPlatformWithName:sns];
+    snsPlatform.loginClickHandler(self,[UMSocialControllerService defaultControllerService],YES,^(UMSocialResponseEntity *response){
+        NSLog(@"response is %@",response);
+        NSDictionary *snsAccountDic = [UMSocialAccountManager socialAccountDictionary];
+        UMSocialAccountEntity *sinaAccount = [snsAccountDic valueForKey:UMShareToSina];
+        [_loginButton setTitle:sinaAccount.userName forState:UIControlStateNormal];
+    });
 }
 
 @end
