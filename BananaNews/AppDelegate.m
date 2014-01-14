@@ -14,6 +14,8 @@
 
 #import <MobClick.h>
 
+#import "UMSocial.h"
+
 @implementation AppDelegate
 
 @synthesize managedObjectContext = _managedObjectContext;
@@ -27,6 +29,9 @@
     
     //App Store
     [MobClick startWithAppkey:kAppKey reportPolicy:BATCH channelId:nil];
+    
+    [UMSocialData setAppKey:kAppKey];
+    [UMSocialConfig setSupportSinaSSO:YES];
     
     //检查版本更新
     [MobClick checkUpdate];
@@ -57,12 +62,25 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
-    // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    [UMSocialSnsService applicationDidBecomeActive];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
+{
+    return  [UMSocialSnsService handleOpenURL:url wxApiDelegate:nil];
+}
+
+- (BOOL)application:(UIApplication *)application
+            openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication
+         annotation:(id)annotation
+{
+    return  [UMSocialSnsService handleOpenURL:url wxApiDelegate:nil];
 }
 
 - (void)applicationDidReceiveMemoryWarning:(UIApplication *)application

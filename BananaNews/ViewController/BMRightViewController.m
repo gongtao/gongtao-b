@@ -14,6 +14,8 @@
 
 #import "BMCustomButton.h"
 
+#import "UMSocial.h"
+
 #define kLoginButtonWidth       130.0
 
 @interface BMRightViewController ()
@@ -128,7 +130,15 @@
 
 - (void)_loginButtonPressed:(id)sender
 {
+    NSLog(@"haha");
+//    [[UMSocialDataService defaultDataService] requestBindToSnsWithType:UMShareToSina completion:^(UMSocialResponseEntity *response){
+//        NSLog(@"user data:%@", response.data);
+//        NSLog(@"error:%@", response.message);
+//        NSLog(@"error:%@", response.error);
+//        NSLog(@"error type:%i", response.responseCode);
+//    }];
     
+    [UMSocialSnsService presentSnsIconSheetView:self.parentViewController appKey:nil shareText:@"haha" shareImage:nil shareToSnsNames:@[UMShareToSina] delegate:nil];
 }
 
 - (void)_submitButtonPressed:(id)sender

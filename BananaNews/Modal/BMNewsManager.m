@@ -435,7 +435,7 @@
 {
     void (^requestSuccess)(AFHTTPRequestOperation *, id) = ^(AFHTTPRequestOperation *operation, id responseObject) {
         if (responseObject != [NSNull null]) {
-//            NSLog(@"%@", responseObject);
+            NSLog(@"%@", responseObject);
             
             NSManagedObjectContext *temporaryContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
             temporaryContext.parentContext = [self managedObjectContext];

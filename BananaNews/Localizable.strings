@@ -1,0 +1,13 @@
+/* 
+  Localizable.strings
+  BananaNews
+
+  Created by 龚涛 on 1/14/14.
+  Copyright (c) 2014 龚涛. All rights reserved.
+*/
+
+"Release to refresh..." = "释放立即刷新";
+
+"Pull down to refresh..." = "下拉刷新";
+
+"Loading..." = "正在努力加载中";

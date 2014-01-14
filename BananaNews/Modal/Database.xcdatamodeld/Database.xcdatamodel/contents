@@ -27,9 +27,12 @@
     </entity>
     <entity name="News" representedClassName="News" syncable="YES">
         <attribute name="comment_count" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="fa_count" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="image_height" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="like_count" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="ndate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="nid" attributeType="Integer 64" defaultValueString="0" indexed="YES" syncable="YES"/>
+        <attribute name="share_count" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="text_height" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="title" attributeType="String" syncable="YES"/>
         <relationship name="author" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Author" inverseName="news" inverseEntity="Author" syncable="YES"/>
@@ -50,10 +53,10 @@
     </entity>
     <elements>
         <element name="Author" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Comment" positionX="0" positionY="0" width="0" height="0"/>
         <element name="Media" positionX="0" positionY="0" width="0" height="0"/>
         <element name="News" positionX="0" positionY="0" width="0" height="0"/>
         <element name="NewsCategory" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="Comment" positionX="0" positionY="0" width="0" height="0"/>
         <element name="User" positionX="0" positionY="0" width="0" height="0"/>
     </elements>
 </model>
