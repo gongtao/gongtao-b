@@ -32,15 +32,17 @@
         [self addSubview:_contentView];
         
         BMSNSLoginButton *button1 = [[BMSNSLoginButton alloc] initWithFrame:CGRectMake(0.0, 0.0, 183.0, 55.0)];
-        button1.titleLabel.text = @"新浪微博登陆";
+        button1.titleLabel.text = @"新浪微博登录";
         [button1 addTarget:self action:@selector(selectSNS:) forControlEvents:UIControlEventTouchUpInside];
         button1.tag = 0;
+        button1.imageView.image = [UIImage imageNamed:@"新浪logo.png"];
         [_contentView addSubview:button1];
         
         BMSNSLoginButton *button2 = [[BMSNSLoginButton alloc] initWithFrame:CGRectMake(0.0, 56.0, 183.0, 55.0)];
         button2.titleLabel.text = @"腾讯QQ登陆";
         [button2 addTarget:self action:@selector(selectSNS:) forControlEvents:UIControlEventTouchUpInside];
         button2.tag = 1;
+        button2.imageView.image = [UIImage imageNamed:@"QQlogo.png"];
         [_contentView addSubview:button2];
         
         self.alpha = 0.0;
