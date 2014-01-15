@@ -206,9 +206,9 @@
         _shareButton.frame = CGRectMake(275.0, y, 30.0, 30.0);
     }
     
-    [_dingButton setTitle:@"(999+)" forState:UIControlStateNormal];
+    [_dingButton setTitle:[NSString stringWithFormat:@"(%@)", news.like_count] forState:UIControlStateNormal];
     
-    [_shareButton setTitle:@"(999+)" forState:UIControlStateNormal];
+    [_shareButton setTitle:[NSString stringWithFormat:@"(%@)", news.share_count] forState:UIControlStateNormal];
 }
 
 @end

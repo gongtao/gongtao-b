@@ -151,18 +151,18 @@
     }
     y += 8.0;
     
-    NSString *dingCount = @"1000000000000";
+    NSString *dingCount = [NSString stringWithFormat:@"(%@)", self.news.like_count];
     CGSize size = [dingCount sizeWithFont:Font_NewsTitle];
     if (size.width < 50.0) {
         size.width = 50.0;
     }
     CGFloat w = size.width+40.0;
     BMCustomButton *button = [[BMCustomButton alloc] initWithFrame:CGRectMake(148.0-w/2.0, y, w, 35.0)];
-    button.titleRect = CGRectMake(35.0, 0.0, size.width, 35.0);
+    button.titleRect = CGRectMake(40.0, 0.0, size.width, 33.0);
     [button setBackgroundImage:[[UIImage imageNamed:@"详情页赞.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(17.5, 45.0, 17.5, 45.0)] forState:UIControlStateNormal];
     [button setBackgroundImage:[[UIImage imageNamed:@"详情页赞按下.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(17.5, 45.0, 17.5, 45.0)] forState:UIControlStateHighlighted];
     [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [button setTitle:@"999+" forState:UIControlStateNormal];
+    [button setTitle:dingCount forState:UIControlStateNormal];
     button.titleLabel.font = Font_NewsTitle;
     [button addTarget:self action:@selector(_ding:) forControlEvents:UIControlEventTouchUpInside];
     [newsContentView addSubview:button];

@@ -183,6 +183,21 @@
         news.comment_count = comment_count;
     }
     
+    NSNumber *like_count = dic[@"like_count"];
+    if (like_count && (NSNull *)like_count != [NSNull null]) {
+        news.like_count = like_count;
+    }
+    
+    NSNumber *fa_count = dic[@"fa_count"];
+    if (fa_count && (NSNull *)fa_count != [NSNull null]) {
+        news.fa_count = fa_count;
+    }
+    
+    NSNumber *share_count = dic[@"share_count"];
+    if (share_count && (NSNull *)share_count != [NSNull null]) {
+        news.share_count = share_count;
+    }
+    
     NSString *date = dic[@"date"];
     if (date && (NSNull *)date != [NSNull null]) {
         news.ndate = [BMUtils dateFromString:date];

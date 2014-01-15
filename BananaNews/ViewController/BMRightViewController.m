@@ -189,9 +189,10 @@
     UMSocialSnsPlatform *snsPlatform = [UMSocialSnsPlatformManager getSocialPlatformWithName:sns];
     snsPlatform.loginClickHandler(self,[UMSocialControllerService defaultControllerService],YES,^(UMSocialResponseEntity *response){
         NSLog(@"response is %@",response);
-        NSDictionary *snsAccountDic = [UMSocialAccountManager socialAccountDictionary];
-        UMSocialAccountEntity *sinaAccount = [snsAccountDic valueForKey:UMShareToSina];
-        [_loginButton setTitle:sinaAccount.userName forState:UIControlStateNormal];
+#warning 网站登陆
+//        NSDictionary *snsAccountDic = [UMSocialAccountManager socialAccountDictionary];
+//        UMSocialAccountEntity *sinaAccount = [snsAccountDic valueForKey:UMShareToSina];
+//        [_loginButton setTitle:sinaAccount.userName forState:UIControlStateNormal];
     });
 }
 
