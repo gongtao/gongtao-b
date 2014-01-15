@@ -8,6 +8,8 @@
 
 #import "BMSettingViewController.h"
 
+#import "BMFeedbackViewController.h"
+
 @interface BMSettingViewController ()
 
 @end
@@ -27,6 +29,8 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    BMFeedbackViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"feedbackViewController"];
+    [self.parentViewController.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)didReceiveMemoryWarning

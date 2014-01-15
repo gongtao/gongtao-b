@@ -94,6 +94,10 @@
                                     success:(void (^)(NSArray *array))success
                                     failure:(void (^)(NSError *error))failure;
 
+- (AFHTTPRequestOperation *)getCommentsByNews:(News *)news
+                                      success:(void (^)(void))success
+                                      failure:(void (^)(NSError *error))failure;
+
 - (AFHTTPRequestOperation *)getConfigSuccess:(void (^)(void))success
                                      failure:(void (^)(NSError *error))failure;
 

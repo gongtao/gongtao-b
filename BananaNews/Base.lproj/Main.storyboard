@@ -168,10 +168,32 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="9bM-JB-OaF"/>
+                    <connections>
+                        <segue destination="9yW-45-bNG" kind="push" id="la6-cE-QOr"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PQm-J9-bA7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1819" y="1186"/>
+        </scene>
+        <!--Feedback View Controller - 意见反馈-->
+        <scene sceneID="LI8-9Z-Q7I">
+            <objects>
+                <viewController storyboardIdentifier="feedbackViewController" title="意见反馈" id="9yW-45-bNG" customClass="BMFeedbackViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="8w3-hv-SxZ"/>
+                        <viewControllerLayoutGuide type="bottom" id="Bqj-y1-lTp"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="wNS-SL-qgy">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="6m3-To-S3c"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TZG-cZ-gpE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2375" y="1186"/>
         </scene>
         <!--Right View Controller-->
         <scene sceneID="AEy-4k-Alx">
