@@ -39,7 +39,7 @@
     [MobClick checkUpdate];
     
 #ifdef DEBUG
-    [MobClick setLogEnabled:YES];
+//    [MobClick setLogEnabled:YES];
 #endif
     
     return YES;

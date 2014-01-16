@@ -8,12 +8,13 @@
 
 #import "BMFeedbackViewController.h"
 
-//#import "JKNewsServerInterface.h"
-//#import "ASIFormDataRequest.h"
 #import "L_FeedbackTableViewCell.h"
+
 #import "R_FeedbackTableViewCell.h"
 
 #import <QuartzCore/QuartzCore.h>
+
+#define kBottomBarHeight    44.0
 
 @interface BMFeedbackViewController ()
 
@@ -51,7 +52,7 @@
     _feedbackView.backgroundColor = [UIColor clearColor];
     [self.view addSubview:_feedbackView];
     
-    self.mToolBar = [[UIToolbar alloc] initWithFrame:CGRectMake(0., _feedbackView.frame.size.height-44., _feedbackView.frame.size.width, 44.)];
+    self.mToolBar = [[UIToolbar alloc] initWithFrame:CGRectMake(0., _feedbackView.frame.size.height-kBottomBarHeight, _feedbackView.frame.size.width, kBottomBarHeight)];
     [self.mToolBar setBackgroundImage:[UIImage imageNamed:@"城市选择背景.png"] forToolbarPosition:UIToolbarPositionAny barMetrics:UIBarMetricsDefault];
     self.mToolBar.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
     [_feedbackView addSubview:self.mToolBar];
@@ -77,15 +78,11 @@
     
     [self.mToolBar setItems:@[editBtnItem, doneBtnItem]];
     
-    self.mTableView = [[UITableView alloc] initWithFrame:CGRectMake(0.0, 0.0, _feedbackView.frame.size.width, _feedbackView.frame.size.height-44.0)];
-    self.mTableView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
+    self.mTableView = [[UITableView alloc] initWithFrame:CGRectMake(0.0, 0.0, _feedbackView.frame.size.width, _feedbackView.frame.size.height-kBottomBarHeight-1.0)];
     self.mTableView.delegate = self;
     self.mTableView.dataSource = self;
     self.mTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.mTableView.backgroundColor = [UIColor clearColor];
-    UIView *footer = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, self.mTableView.frame.size.width, 5.)];
-    footer.backgroundColor = [UIColor clearColor];
-    self.mTableView.tableFooterView = footer;
     [_feedbackView addSubview:self.mTableView];
     
     feedbackClient = [UMFeedback sharedInstance];
@@ -97,7 +94,7 @@
     
     [self.view bringSubviewToFront:self.customNavigationBar];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillChangeFrameNotification object:nil];
 }
 
 - (void)didReceiveMemoryWarning
@@ -109,11 +106,12 @@
 -(void)keyboardWillShow:(NSNotification*)notification
 {
     NSDictionary *info = [notification userInfo];
-    CGSize kbSize=[[info objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size;
+    CGFloat keyY=[[info objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].origin.y;
     
     [UIView animateWithDuration:0.2 animations:^{
         CGFloat y = CGRectGetMaxY(self.customNavigationBar.frame);
-        _feedbackView.frame = CGRectMake(0.0, y, self.view.frame.size.width, self.view.frame.size.height-kbSize.height-y);
+        _feedbackView.frame = CGRectMake(0.0, y, self.view.frame.size.width, keyY-y);
+        _mTableView.frame = CGRectMake(0.0, 0.0, _feedbackView.frame.size.width, _feedbackView.frame.size.height-kBottomBarHeight-1.0);
         if (self.mTableView.contentOffset.y + self.mTableView.frame.size.height < self.mTableView.contentSize.height) {
             self.mTableView.contentOffset = CGPointMake(0.0, self.mTableView.contentSize.height-self.mTableView.frame.size.height);
         }
@@ -129,10 +127,6 @@
         
         [feedbackClient post:dictionary];
         [self.mTextField resignFirstResponder];
-        
-        [UIView animateWithDuration:0.2 animations:^{
-            _feedbackView.frame = self.view.bounds;
-        }];
         
     }
     else {

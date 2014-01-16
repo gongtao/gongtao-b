@@ -1035,8 +1035,6 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					/Users/gongtao/Desktop/github_workspace/BananaNews/BananaNews/ThirdParty/UmengSocial/UMSocial_Sdk_Extra_Frameworks/TencentOpenAPI,
-					/Users/gongtao/Desktop/github_workspace/BananaNews/BananaNews/ThirdParty/UmengSocial3.3.2/UMSocial_Sdk_Extra_Frameworks/TencentOpenAPI,
 					/Users/gongtou/Desktop/BananaNews/BananaNews/ThirdParty/UmengSocial3.3.3/UMSocial_Sdk_Extra_Frameworks/TencentOpenAPI,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1060,8 +1058,6 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					/Users/gongtao/Desktop/github_workspace/BananaNews/BananaNews/ThirdParty/UmengSocial/UMSocial_Sdk_Extra_Frameworks/TencentOpenAPI,
-					/Users/gongtao/Desktop/github_workspace/BananaNews/BananaNews/ThirdParty/UmengSocial3.3.2/UMSocial_Sdk_Extra_Frameworks/TencentOpenAPI,
 					/Users/gongtou/Desktop/BananaNews/BananaNews/ThirdParty/UmengSocial3.3.3/UMSocial_Sdk_Extra_Frameworks/TencentOpenAPI,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
