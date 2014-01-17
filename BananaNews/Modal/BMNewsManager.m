@@ -152,6 +152,24 @@
     }];
 }
 
+- (void)createCommentsFromNetworking:(NSDictionary *)dic news:(News *)news context:(NSManagedObjectContext *)context
+{
+    if (!context) {
+        context = [self managedObjectContext];
+    }
+    NSArray *array = dic[@"comments"];
+    if (!array || (NSNull *)array == [NSNull null]) {
+        return;
+    }
+    News *newsNew = [self getNewsById:news.nid.integerValue context:context];
+    NSMutableArray *comments = [[NSMutableArray alloc] init];
+    [array enumerateObjectsUsingBlock:^(NSDictionary *obj, NSUInteger idx, BOOL *stop){
+        Comment *comment = [self createComment:obj context:context];
+        [comments addObject:comment];
+    }];
+    newsNew.comments = [[NSOrderedSet alloc] initWithArray:comments];
+}
+
 #pragma mark - Database
 
 //News
@@ -441,6 +459,70 @@
     return nil;
 }
 
+- (Comment *)createComment:(NSDictionary *)dic context:(NSManagedObjectContext *)context
+{
+    NSNumber *cid = dic[@"id"];
+    
+    if (!cid || (NSNull *)cid == [NSNull null]) {
+        NSLog(@"User: uid null");
+        return nil;
+    }
+    
+    Comment *comment = [self getCommentById:cid.integerValue context:context];
+    
+    if (!comment) {
+        comment = [NSEntityDescription insertNewObjectForEntityForName:Comment_Entity inManagedObjectContext:context];
+        comment.cid = cid;
+    }
+    
+    NSString *content = dic[@"content"];
+    if (content && (NSNull *)content != [NSNull null]) {
+        comment.content = content;
+    }
+    
+    NSString *date = dic[@"date"];
+    if (date && (NSNull *)date != [NSNull null]) {
+        comment.date = [BMUtils dateFromString:date];
+    }
+    
+    NSMutableDictionary *userDic = [[NSMutableDictionary alloc] init];
+    NSNumber *uid = dic[@"user"];
+    if (uid && (NSNull *)uid != [NSNull null]) {
+        userDic[@"id"] = uid;
+    }
+    
+    NSString *name = dic[@"author"];
+    if (name && (NSNull *)name != [NSNull null]) {
+        userDic[@"nicename"] = name;
+    }
+    
+    NSArray *avatar = dic[@"avatar"];
+    if (avatar && (NSNull *)avatar != [NSNull null]) {
+        userDic[@"avatar"] = avatar;
+    }
+    
+    comment.author = [self createUser:userDic context:context];
+    
+    return comment;
+}
+
+- (Comment *)getCommentById:(NSUInteger)cid context:(NSManagedObjectContext *)context
+{
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:Comment_Entity inManagedObjectContext:context];
+    
+    [request setEntity:entity];
+    [request setPredicate:[NSPredicate predicateWithFormat:@"%K == %i", kCommentId, cid]];
+    
+    NSError *error;
+    NSArray *results = [context executeFetchRequest:request error:&error];
+    
+    if (!error && results.count > 0) {
+        return results[0];
+    }
+    return nil;
+}
+
 #pragma mark - Networking
 
 - (AFHTTPRequestOperation *)getDownloadList:(NSUInteger)type
@@ -481,7 +563,7 @@
         }
     };
     
-    AFHTTPRequestOperation *op = [_manager GET:@"http://115.29.43.107/site/wp_api/v1/posts" parameters:nil success:requestSuccess failure:requestFailure];
+    AFHTTPRequestOperation *op = [_manager GET:@"wp_api/v1/posts" parameters:nil success:requestSuccess failure:requestFailure];
     NSLog(@"request: %@", op.request.URL.absoluteString);
     return op;
 }
@@ -494,60 +576,20 @@
         if (responseObject != [NSNull null]) {
             NSLog(@"%@", responseObject);
             
-//            __block NSArray *array = (NSArray *)responseObject;
-//            NSData *data = [NSJSONSerialization dataWithJSONObject:array options:NSJSONWritingPrettyPrinted error:nil];
-//            NSError *error;
-//            NSString *cacheStr = [NSString stringWithContentsOfFile:_configFilePath encoding:NSUTF8StringEncoding error:&error];
-//            if (error) {
-//                NSLog(@"config error: %@", error.localizedDescription);
-//                abort();
-//            }
-//            
-//            NSString *str = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-//            if (![str isEqualToString:cacheStr]) {
-//                NSError *e;
-//                [str writeToFile:_configFilePath atomically:YES encoding:NSUTF8StringEncoding error:&e];
-//                if (e) {
-//                    NSLog(@"config error: %@", e.localizedDescription);
-//                    abort();
-//                }
-//                
-//                NSManagedObjectContext *temporaryContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
-//                temporaryContext.parentContext = [self managedObjectContext];
-//                
-//                [temporaryContext performBlock:^{
-//                    
-//                    NSArray *nCategoryArray = [self getAllNewsCategory:temporaryContext];
-//                    [nCategoryArray enumerateObjectsUsingBlock:^(NewsCategory *obj, NSUInteger idx, BOOL *stop){
-//                        [temporaryContext deleteObject:obj];
-//                    }];
-//                    
-//                    array = (NSArray *)responseObject;
-//                    [array enumerateObjectsUsingBlock:^(NSDictionary *obj, NSUInteger idx, BOOL *stop){
-//                        NewsCategory *newsCategory = [self createNewsCategory:obj context:temporaryContext];
-//                        newsCategory.cid = [NSNumber numberWithInteger:idx];
-//                    }];
-//                    
-//                    [self saveContext:temporaryContext];
-//                    // save parent to disk asynchronously
-//                    [temporaryContext.parentContext performBlock:^{
-//                        [self saveContext:temporaryContext.parentContext];
-//                        if (success) {
-//                            success();
-//                        }
-//                    }];
-//                }];
-//            }
-//            else {
-//                if (success) {
-//                    success();
-//                }
-//            }
-//        }
-//        else {
-//            if (success) {
-//                success();
-//            }
+            NSManagedObjectContext *temporaryContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
+            temporaryContext.parentContext = [self managedObjectContext];
+            
+            [temporaryContext performBlock:^{
+                [self createCommentsFromNetworking:responseObject news:news context:temporaryContext];
+                [self saveContext:temporaryContext];
+                // save parent to disk asynchronously
+                [temporaryContext.parentContext performBlock:^{
+                    [self saveContext:temporaryContext.parentContext];
+                    if (success) {
+                        success();
+                    }
+                }];
+            }];
         }
     };
     
@@ -558,7 +600,7 @@
         }
     };
     
-    AFHTTPRequestOperation *op = [_manager GET:[NSString stringWithFormat:@"http://115.29.43.107/site/wp_api/v1/post/%@/comments", news.nid] parameters:nil success:requestSuccess failure:requestFailure];
+    AFHTTPRequestOperation *op = [_manager GET:[NSString stringWithFormat:@"wp_api/v1/posts/%@/comments", news.nid] parameters:nil success:requestSuccess failure:requestFailure];
     NSLog(@"request: %@", op.request.URL.absoluteString);
     return op;
 }
@@ -634,7 +676,36 @@
         }
     };
     
-    AFHTTPRequestOperation *op = [_manager GET:@"http://115.29.43.107/site/api/v1/index.php/category/getCategoryLeft" parameters:nil success:requestSuccess failure:requestFailure];
+    AFHTTPRequestOperation *op = [_manager GET:@"api/v1/index.php/category/getCategoryLeft" parameters:nil success:requestSuccess failure:requestFailure];
+    NSLog(@"request: %@", op.request.URL.absoluteString);
+    return op;
+}
+
+- (AFHTTPRequestOperation *)userLogin:(NSDictionary *)param
+                              success:(void (^)(void))success
+                              failure:(void (^)(NSError *error))failure
+{
+    
+    void (^requestSuccess)(AFHTTPRequestOperation *, id) = ^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"%@", responseObject);
+//        if (responseObject != [NSNull null]) {
+//            NSLog(@"%@", responseObject);
+//        }
+//        else {
+//            if (success) {
+//                success();
+//            }
+//        }
+    };
+    
+    void (^requestFailure)(AFHTTPRequestOperation *, NSError *) = ^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+        NSLog(@"data: %@", operation.responseString);
+        if (failure) {
+            failure(error);
+        }
+    };
+    AFHTTPRequestOperation *op = [_manager POST:@"wp_api/v1/users/login" parameters:param success:requestSuccess failure:requestFailure];
     NSLog(@"request: %@", op.request.URL.absoluteString);
     return op;
 }

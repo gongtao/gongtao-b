@@ -2,14 +2,14 @@
 //  News.h
 //  BananaNews
 //
-//  Created by 龚涛 on 1/14/14.
+//  Created by 龚涛 on 1/17/14.
 //  Copyright (c) 2014 龚涛. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class Author, Comment, Media, User;
+@class Comment, Media, User;
 
 @interface News : NSManagedObject
 
@@ -22,7 +22,6 @@
 @property (nonatomic, retain) NSNumber * like_count;
 @property (nonatomic, retain) NSNumber * share_count;
 @property (nonatomic, retain) NSNumber * fa_count;
-@property (nonatomic, retain) Author *author;
 @property (nonatomic, retain) NSOrderedSet *comments;
 @property (nonatomic, retain) NSOrderedSet *medias;
 @property (nonatomic, retain) User *user;

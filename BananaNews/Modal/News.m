@@ -2,12 +2,11 @@
 //  News.m
 //  BananaNews
 //
-//  Created by 龚涛 on 1/14/14.
+//  Created by 龚涛 on 1/17/14.
 //  Copyright (c) 2014 龚涛. All rights reserved.
 //
 
 #import "News.h"
-#import "Author.h"
 #import "Comment.h"
 #import "Media.h"
 #import "User.h"
@@ -24,7 +23,6 @@
 @dynamic like_count;
 @dynamic share_count;
 @dynamic fa_count;
-@dynamic author;
 @dynamic comments;
 @dynamic medias;
 @dynamic user;

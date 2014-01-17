@@ -14,8 +14,6 @@
 
 #import "News.h"
 
-#import "Author.h"
-
 #import "Media.h"
 
 #import "NewsCategory.h"
@@ -29,6 +27,7 @@
 
 #define Comment_Entity          @"Comment"
 #define kCommentDate            @"date"
+#define kCommentId              @"cid"
 
 #define User_Entity             @"User"
 #define kUid                    @"uid"
@@ -59,35 +58,46 @@
 
 - (void)configInit:(void (^)(void))finished;
 
-//Interface
+/** Interface **/
 
 - (void)createConfigFromNetworking:(NSDictionary *)dic context:(NSManagedObjectContext *)context;
 
 - (void)createNewsFromNetworking:(NSDictionary *)dic context:(NSManagedObjectContext *)context;
 
-//Database
+- (void)createCommentsFromNetworking:(NSDictionary *)dic news:(News *)news context:(NSManagedObjectContext *)context;
 
+/** Database **/
+
+//News
 - (News *)createNews:(NSDictionary *)dic context:(NSManagedObjectContext *)context;
 
 - (News *)getNewsById:(NSUInteger)nid context:(NSManagedObjectContext *)context;
 
 - (NSArray *)getAllNews:(NSManagedObjectContext *)context;
 
+//Media
 - (Media *)createMedia:(NSDictionary *)dic context:(NSManagedObjectContext *)context;
 
 - (Media *)getMediaById:(NSUInteger)mid context:(NSManagedObjectContext *)context;
 
+//NewsCategory
 - (NewsCategory *)createNewsCategory:(NSDictionary *)dic context:(NSManagedObjectContext *)context;
 
 - (NewsCategory *)getNewsCategoryById:(NSString *)cid context:(NSManagedObjectContext *)context;
 
 - (NSArray *)getAllNewsCategory:(NSManagedObjectContext *)context;
 
+//User
 - (User *)createUser:(NSDictionary *)dic context:(NSManagedObjectContext *)context;
 
 - (User *)getUserById:(NSUInteger)uid context:(NSManagedObjectContext *)context;
 
-//Networking
+//Comment
+- (Comment *)createComment:(NSDictionary *)dic context:(NSManagedObjectContext *)context;
+
+- (Comment *)getCommentById:(NSUInteger)cid context:(NSManagedObjectContext *)context;
+
+/** Networking **/
 
 - (AFHTTPRequestOperation *)getDownloadList:(NSUInteger)type
                                        page:(NSUInteger)page
@@ -100,5 +110,9 @@
 
 - (AFHTTPRequestOperation *)getConfigSuccess:(void (^)(void))success
                                      failure:(void (^)(NSError *error))failure;
+
+- (AFHTTPRequestOperation *)userLogin:(NSDictionary *)param
+                              success:(void (^)(void))success
+                              failure:(void (^)(NSError *error))failure;
 
 @end

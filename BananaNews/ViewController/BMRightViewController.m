@@ -31,6 +31,8 @@
 
 - (void)_settingButtonPressed:(id)sender;
 
+- (void)_loginToSite;
+
 @end
 
 @implementation BMRightViewController
@@ -54,10 +56,11 @@
     
     UIImage *image = [UIImage imageNamed:@"右侧未登录头像.png"];
     NSString *title = @"登 录";
-    if ([[NSUserDefaults standardUserDefaults] objectForKey:kLoginKey]) {
+    self.loginType = [[NSUserDefaults standardUserDefaults] objectForKey:kLoginKey];
+    if (self.loginType) {
         image = [UIImage imageNamed:@"右侧已登录头像.png"];
         NSDictionary *snsAccountDic = [UMSocialAccountManager socialAccountDictionary];
-        UMSocialAccountEntity *sinaAccount = [snsAccountDic valueForKey:UMShareToSina];
+        UMSocialAccountEntity *sinaAccount = [snsAccountDic valueForKey:self.loginType];
         title = sinaAccount.userName;
     }
     
@@ -139,10 +142,13 @@
 #warning 显示个人信息
     }
     else {
-        if ([UMSocialAccountManager isOauthWithPlatform:UMShareToSina] ||
-            [UMSocialAccountManager isOauthWithPlatform:UMShareToQQ]) {
-#warning 网站登陆
-//            [UMSocialSnsService presentSnsIconSheetView:self.parentViewController appKey:nil shareText:@"haha" shareImage:nil shareToSnsNames:nil delegate:nil];
+        if ([UMSocialAccountManager isOauthWithPlatform:UMShareToSina]) {
+            self.loginType = UMShareToSina;
+            [self _loginToSite];
+        }
+        else if ([UMSocialAccountManager isOauthWithPlatform:UMShareToQQ]) {
+            self.loginType = UMShareToQQ;
+            [self _loginToSite];
         }
         else {
             BMSNSLoginView *loginView = [[BMSNSLoginView alloc] initWithFrame:self.view.bounds];
@@ -178,21 +184,60 @@
     [self.viewDeckController closeRightViewAnimated:YES];
 }
 
+- (void)_loginToSite
+{
+    NSDictionary *snsAccountDic = [UMSocialAccountManager socialAccountDictionary];
+    UMSocialAccountEntity *account = [snsAccountDic valueForKey:self.loginType];
+    NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
+    
+    if (account.userName) {
+//        param[@"user_login"] = [NSString stringWithFormat:@"%@@gamil.com", account.userName];
+        param[@"user_login"] = account.userName;
+        param[@"display_name"] = account.userName;
+    }
+    if (account.usid) {
+        param[@"unid"] = account.usid;
+    }
+    if (account.iconURL) {
+        param[@"avatar"] = account.iconURL;
+    }
+    if ([self.loginType isEqualToString:UMShareToSina]) {
+        param[@"login_type"] = @"sianweibo";
+    }
+    else if ([self.loginType isEqualToString:UMShareToQQ]) {
+        param[@"login_type"] = @"qqsns";
+    }
+    
+    [[UMSocialDataService defaultDataService] requestSnsInformation:self.loginType completion:^(UMSocialResponseEntity *response){
+        NSLog(@"SnsInformation is %@",response.data);
+        NSString *description = response.data[@"description"];
+        if (description) {
+            param[@"description"] = description;
+        }
+        //用户登陆http
+        [[BMNewsManager sharedManager] userLogin:param
+                                         success:^(void){
+                                             [_loginButton setImage:[UIImage imageNamed:@"右侧已登录头像.png"] forState:UIControlStateNormal];
+                                             [_loginButton setTitle:account.userName forState:UIControlStateNormal];
+                                         }
+                                         failure:^(NSError *error){
+                                             
+                                         }];
+    }];
+}
+
 #pragma mark - BMSNSLoginViewDelegate
 
 - (void)didSelectSNS:(NSUInteger)index
 {
-    NSString *sns = UMShareToSina;
+    self.loginType = UMShareToSina;
     if (1 == index) {
-        sns = UMShareToQQ;
+        self.loginType = UMShareToQQ;
     }
-    UMSocialSnsPlatform *snsPlatform = [UMSocialSnsPlatformManager getSocialPlatformWithName:sns];
-    snsPlatform.loginClickHandler(self,[UMSocialControllerService defaultControllerService],YES,^(UMSocialResponseEntity *response){
+    UMSocialSnsPlatform *snsPlatform = [UMSocialSnsPlatformManager getSocialPlatformWithName:self.loginType];
+    snsPlatform.loginClickHandler(self.parentViewController,[UMSocialControllerService defaultControllerService],YES,^(UMSocialResponseEntity *response){
         NSLog(@"response is %@",response);
-#warning 网站登陆
-//        NSDictionary *snsAccountDic = [UMSocialAccountManager socialAccountDictionary];
-//        UMSocialAccountEntity *sinaAccount = [snsAccountDic valueForKey:UMShareToSina];
-//        [_loginButton setTitle:sinaAccount.userName forState:UIControlStateNormal];
+        [self _loginToSite];
     });
 }
 

@@ -13,7 +13,7 @@
 
 #define kLoginKey   @"isLogin"
 
-#define kBaseURL    [NSURL URLWithString:@"http://115.29.43.107/site/wp_api/v1"]
+#define kBaseURL    [NSURL URLWithString:@"http://115.29.43.107/site/"]
 
 #define IS_IOS7     ([[[UIDevice currentDevice]systemVersion] floatValue] >= 7.0)
 

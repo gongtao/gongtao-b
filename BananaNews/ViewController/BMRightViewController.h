@@ -12,4 +12,6 @@
 
 @interface BMRightViewController : UIViewController <BMSNSLoginViewDelegate>
 
+@property (nonatomic, strong) NSString *loginType;
+
 @end
