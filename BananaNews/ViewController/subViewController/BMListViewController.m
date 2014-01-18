@@ -21,6 +21,12 @@
 
 - (void)doneLoadingTableViewData;
 
+- (void)_dingButtonPressed:(id)sender;
+
+- (void)_shareButtonPressed:(id)sender;
+
+- (void)_collectButtonPressed:(id)sender;
+
 @end
 
 @implementation BMListViewController
@@ -69,6 +75,23 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - Private
+
+- (void)_dingButtonPressed:(id)sender
+{
+    
+}
+
+- (void)_shareButtonPressed:(id)sender
+{
+    
+}
+
+- (void)_collectButtonPressed:(id)sender
+{
+    
+}
+
 #pragma mark - Override
 
 - (NSFetchRequest *)fetchRequest
@@ -92,15 +115,25 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath fetchedResultsController:(NSFetchedResultsController *)fetchedResultsController
 {
     static NSString *CellIdentifier = @"ListCell";
+    NSInteger row = [indexPath row];
     BMNewsListCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     if (!cell) {
         cell = [[BMNewsListCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         cell.type = self.type;
+        [cell.dingButton addTarget:self action:@selector(_dingButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+        [cell.shareButton addTarget:self action:@selector(_shareButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     }
     
     News *news = [fetchedResultsController objectAtIndexPath:indexPath];
     [cell configCellNews:news];
+    
+    cell.dingButton.tag = row;
+    cell.shareButton.tag = row;
+    if (BMNewsListCellCollect == cell.type) {
+        cell.collectButton.tag = row;
+        [cell.collectButton addTarget:self action:@selector(_collectButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    }
     
     return cell;
 }
