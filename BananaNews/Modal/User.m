@@ -2,8 +2,8 @@
 //  User.m
 //  BananaNews
 //
-//  Created by 龚涛 on 1/17/14.
-//  Copyright (c) 2014 龚涛. All rights reserved.
+//  Created by 龚 涛 on 14-1-18.
+//  Copyright (c) 2014年 龚涛. All rights reserved.
 //
 
 #import "User.h"
@@ -16,7 +16,8 @@
 @dynamic avatar;
 @dynamic name;
 @dynamic uid;
-@dynamic news;
+@dynamic isMainUser;
 @dynamic comments;
+@dynamic news;
 
 @end

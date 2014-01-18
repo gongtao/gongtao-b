@@ -10,6 +10,8 @@
 
 #import "BMUtils.h"
 
+#import <SDImageCache.h>
+
 @interface BMNewsManager ()
 {
     AFHTTPRequestOperationManager *_manager;
@@ -129,6 +131,30 @@
 }
 
 #pragma mark - Interface
+
+- (void)shareNews:(News *)news delegate:(id<UMSocialUIDelegate>)delegate
+{
+    int length = 125-news.url.length;
+    NSString *content = news.title;
+    if (length < content.length) {
+        content = [NSString stringWithFormat:@"%@...", [content substringToIndex:length-1]];
+    }
+    NSString *shareText = [NSString stringWithFormat:@"我在看香蕉日报：%@ 网址：%@", content, news.url];
+    
+    UIImage *image = nil;
+    if (news.medias.count > 0) {
+        NSString *imageKey = [(Media *)news.medias[0] small];
+        image = [[SDImageCache sharedImageCache] imageFromDiskCacheForKey:imageKey];
+    }
+    UIViewController *vc = [[UIApplication sharedApplication] keyWindow].rootViewController;
+    [UMSocialSnsService presentSnsIconSheetView:vc
+                                         appKey:nil
+                                      shareText:shareText
+                                     shareImage:image
+                                shareToSnsNames:nil
+                                       delegate:delegate];
+}
+
 - (void)createConfigFromNetworking:(NSDictionary *)dic context:(NSManagedObjectContext *)context
 {
     if (!context) {
@@ -439,7 +465,7 @@
         user.uid = uid;
     }
     
-    NSString *name = dic[@"nicename"];
+    NSString *name = dic[@"display_name"];
     if (name && (NSNull *)name != [NSNull null]) {
         user.name = name;
     }
@@ -467,6 +493,28 @@
         return results[0];
     }
     return nil;
+}
+
+- (User *)getMainUserWithContext:(NSManagedObjectContext *)context
+{
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:User_Entity inManagedObjectContext:context];
+    
+    [request setEntity:entity];
+    [request setPredicate:[NSPredicate predicateWithFormat:@"%K == %@", kIsMainUser, [NSNumber numberWithBool:YES]]];
+    
+    NSError *error;
+    NSArray *results = [context executeFetchRequest:request error:&error];
+    
+    if (!error && results.count > 0) {
+        return results[0];
+    }
+    return nil;
+}
+
+- (User *)getMainUser
+{
+    return [self getMainUserWithContext:self.managedObjectContext];
 }
 
 - (Comment *)createComment:(NSDictionary *)dic context:(NSManagedObjectContext *)context
@@ -692,20 +740,45 @@
 }
 
 - (AFHTTPRequestOperation *)userLogin:(NSDictionary *)param
-                              success:(void (^)(void))success
+                              success:(void (^)(User *user))success
                               failure:(void (^)(NSError *error))failure
 {
-    
     void (^requestSuccess)(AFHTTPRequestOperation *, id) = ^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"%@", responseObject);
-//        if (responseObject != [NSNull null]) {
-//            NSLog(@"%@", responseObject);
-//        }
-//        else {
-//            if (success) {
-//                success();
-//            }
-//        }
+        if (responseObject != [NSNull null]) {
+            NSLog(@"%@", responseObject);
+            
+            NSString *token = responseObject[@"token"];
+            if (token) {
+                [[NSUserDefaults standardUserDefaults] setObject:token forKey:kLoginToken];
+                NSManagedObjectContext *temporaryContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
+                temporaryContext.parentContext = [self managedObjectContext];
+                
+                [temporaryContext performBlock:^{
+                    User *user = [self createUser:responseObject context:temporaryContext];
+                    user.isMainUser = [NSNumber numberWithBool:YES];
+                    [self saveContext:temporaryContext];
+                    // save parent to disk asynchronously
+                    [temporaryContext.parentContext performBlock:^{
+                        [self saveContext:temporaryContext.parentContext];
+                        User *user = [self getMainUserWithContext:temporaryContext.parentContext];
+                        if (success) {
+                            success(user);
+                        }
+                    }];
+                }];
+            }
+            else {
+                if (failure) {
+                    failure(nil);
+                }
+            }
+        }
+        else {
+            if (failure) {
+                failure(nil);
+            }
+        }
     };
     
     void (^requestFailure)(AFHTTPRequestOperation *, NSError *) = ^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -716,6 +789,44 @@
         }
     };
     AFHTTPRequestOperation *op = [_manager POST:@"wp_api/v1/users/login" parameters:param success:requestSuccess failure:requestFailure];
+    NSLog(@"request: %@", op.request.URL.absoluteString);
+    return op;
+}
+
+- (AFHTTPRequestOperation *)shareToSite:(NSInteger)postId
+                                success:(void (^)(void))success
+                                failure:(void (^)(NSError *error))failure
+{
+    void (^requestSuccess)(AFHTTPRequestOperation *, id) = ^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"%@", responseObject);
+        
+        NSManagedObjectContext *temporaryContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
+        temporaryContext.parentContext = [self managedObjectContext];
+        
+        [temporaryContext performBlock:^{
+            News *news = [self getNewsById:postId context:temporaryContext];
+            NSInteger shareNum = news.share_count.integerValue;
+            news.share_count = [NSNumber numberWithInteger:shareNum+1];
+            [self saveContext:temporaryContext];
+            // save parent to disk asynchronously
+            [temporaryContext.parentContext performBlock:^{
+                [self saveContext:temporaryContext.parentContext];
+                if (success) {
+                    success();
+                }
+            }];
+        }];
+        
+    };
+    
+    void (^requestFailure)(AFHTTPRequestOperation *, NSError *) = ^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+        NSLog(@"data: %@", operation.responseString);
+        if (failure) {
+            failure(error);
+        }
+    };
+    AFHTTPRequestOperation *op = [_manager POST:@"api/v1/index.php/post/doShareCallback" parameters:@{@"post_id": [NSNumber numberWithInteger:postId]} success:requestSuccess failure:requestFailure];
     NSLog(@"request: %@", op.request.URL.absoluteString);
     return op;
 }

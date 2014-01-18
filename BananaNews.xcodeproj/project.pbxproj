@@ -26,7 +26,6 @@
 		42C4E78A1888F37B00E650BE /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D81DB81B18877AEF002D27B5 /* TencentOpenAPI.framework */; };
 		42C4E79618891F9200E650BE /* Media.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C4E79518891F9200E650BE /* Media.m */; };
 		42C4E79918891F9200E650BE /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C4E79818891F9200E650BE /* Comment.m */; };
-		42C4E79C18891F9200E650BE /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C4E79B18891F9200E650BE /* User.m */; };
 		42C5844A187A73A700D919EB /* BMCategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C58449187A73A700D919EB /* BMCategoryViewController.m */; };
 		42C5844D187A762600D919EB /* BMSubmissionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C5844C187A762600D919EB /* BMSubmissionViewController.m */; };
 		42C5844F187A8B5700D919EB /* Config.json in Resources */ = {isa = PBXBuildFile; fileRef = 42C5844E187A8B5700D919EB /* Config.json */; };
@@ -69,6 +68,7 @@
 		42E8681E187657C500B02A0B /* BMListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42E8681D187657C500B02A0B /* BMListViewController.m */; };
 		CE8BC6AFDCC940D28D1B30C8 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 620E8C38B3E24A3191C52FA1 /* libPods.a */; };
 		D8174660188A4A1B002436EF /* News.m in Sources */ = {isa = PBXBuildFile; fileRef = D817465F188A4A1B002436EF /* News.m */; };
+		D8174663188A8564002436EF /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = D8174662188A8564002436EF /* User.m */; };
 		D81DB82A18877AEF002D27B5 /* UMSocialLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D81DB7FA18877AEF002D27B5 /* UMSocialLocalizable.strings */; };
 		D81DB82D18877AEF002D27B5 /* UMSCommentDetailController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D81DB80F18877AEF002D27B5 /* UMSCommentDetailController.xib */; };
 		D81DB82E18877AEF002D27B5 /* UMSCommentInputController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D81DB81018877AEF002D27B5 /* UMSCommentInputController.xib */; };
@@ -138,8 +138,6 @@
 		42C4E79518891F9200E650BE /* Media.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Media.m; sourceTree = "<group>"; };
 		42C4E79718891F9200E650BE /* Comment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Comment.h; sourceTree = "<group>"; };
 		42C4E79818891F9200E650BE /* Comment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Comment.m; sourceTree = "<group>"; };
-		42C4E79A18891F9200E650BE /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
-		42C4E79B18891F9200E650BE /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		42C58448187A73A700D919EB /* BMCategoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMCategoryViewController.h; sourceTree = "<group>"; };
 		42C58449187A73A700D919EB /* BMCategoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMCategoryViewController.m; sourceTree = "<group>"; };
 		42C5844B187A762600D919EB /* BMSubmissionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMSubmissionViewController.h; sourceTree = "<group>"; };
@@ -213,6 +211,8 @@
 		CA26BFD3CEFE45ABAC84ECBE /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		D817465E188A4A1B002436EF /* News.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = News.h; sourceTree = "<group>"; };
 		D817465F188A4A1B002436EF /* News.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = News.m; sourceTree = "<group>"; };
+		D8174661188A8564002436EF /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		D8174662188A8564002436EF /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		D81DB7FB18877AEF002D27B5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/UMSocialLocalizable.strings; sourceTree = "<group>"; };
 		D81DB7FE18877AEF002D27B5 /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
 		D81DB7FF18877AEF002D27B5 /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
@@ -521,14 +521,14 @@
 				42E8681918764A2500B02A0B /* BMNewsManager.m */,
 				42D05F83187E45B900DC5E7E /* NewsCategory.h */,
 				42D05F84187E45B900DC5E7E /* NewsCategory.m */,
-				42C4E79A18891F9200E650BE /* User.h */,
-				42C4E79B18891F9200E650BE /* User.m */,
 				42C4E79718891F9200E650BE /* Comment.h */,
 				42C4E79818891F9200E650BE /* Comment.m */,
 				42C4E79418891F9200E650BE /* Media.h */,
 				42C4E79518891F9200E650BE /* Media.m */,
 				D817465E188A4A1B002436EF /* News.h */,
 				D817465F188A4A1B002436EF /* News.m */,
+				D8174661188A8564002436EF /* User.h */,
+				D8174662188A8564002436EF /* User.m */,
 			);
 			path = Modal;
 			sourceTree = "<group>";
@@ -857,7 +857,7 @@
 				42CA255618769C4A00FB1764 /* BMNewsListCell.m in Sources */,
 				42C4E79618891F9200E650BE /* Media.m in Sources */,
 				D821E85E18759AC6005C1604 /* BMUtils.m in Sources */,
-				42C4E79C18891F9200E650BE /* User.m in Sources */,
+				D8174663188A8564002436EF /* User.m in Sources */,
 				D8EA591E1881381E00EEB573 /* EGORefreshTableHeaderView.m in Sources */,
 				42C6D2AE1872AA8600F796FB /* BMSearchView.m in Sources */,
 				42C6D2951872843800F796FB /* BMBaseViewController.m in Sources */,

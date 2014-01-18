@@ -59,9 +59,8 @@
     self.loginType = [[NSUserDefaults standardUserDefaults] objectForKey:kLoginKey];
     if (self.loginType) {
         image = [UIImage imageNamed:@"右侧已登录头像.png"];
-        NSDictionary *snsAccountDic = [UMSocialAccountManager socialAccountDictionary];
-        UMSocialAccountEntity *sinaAccount = [snsAccountDic valueForKey:self.loginType];
-        title = sinaAccount.userName;
+        User *user = [[BMNewsManager sharedManager] getMainUser];
+        title = user.name;
     }
     
     CGFloat offset = (kLoginButtonWidth-75.0)/2;
@@ -151,7 +150,7 @@
 - (void)_loginButtonPressed:(id)sender
 {
     if ([[NSUserDefaults standardUserDefaults] objectForKey:kLoginKey]) {
-#warning 显示个人信息
+#warning 个人信息页面
     }
     else {
         if ([UMSocialAccountManager isOauthWithPlatform:UMShareToSina]) {
@@ -203,8 +202,12 @@
     NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
     
     if (account.userName) {
-//        param[@"user_login"] = [NSString stringWithFormat:@"%@@gamil.com", account.userName];
-        param[@"user_login"] = account.userName;
+        if (account.userName.length>12) {
+            param[@"user_login"] = [account.userName substringToIndex:11];
+        }
+        else {
+            param[@"user_login"] = account.userName;
+        }
         param[@"display_name"] = account.userName;
     }
     if (account.usid) {
@@ -228,9 +231,11 @@
         }
         //用户登陆http
         [[BMNewsManager sharedManager] userLogin:param
-                                         success:^(void){
+                                         success:^(User *user){
                                              [_loginButton setImage:[UIImage imageNamed:@"右侧已登录头像.png"] forState:UIControlStateNormal];
-                                             [_loginButton setTitle:account.userName forState:UIControlStateNormal];
+                                             [_loginButton setImage:[UIImage imageNamed:@"右侧已登录头像.png"] forState:UIControlStateHighlighted];
+                                             [_loginButton setTitle:user.name forState:UIControlStateNormal];
+                                             [[NSUserDefaults standardUserDefaults] setObject:self.loginType forKey:kLoginKey];
                                          }
                                          failure:^(NSError *error){
                                              

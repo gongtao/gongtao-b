@@ -12,6 +12,8 @@
 
 #import <AFNetworking.h>
 
+#import "UMSocial.h"
+
 #import "News.h"
 
 #import "Media.h"
@@ -31,6 +33,7 @@
 
 #define User_Entity             @"User"
 #define kUid                    @"uid"
+#define kIsMainUser             @"isMainUser"
 
 #define NewsCategory_Entity     @"NewsCategory"
 #define kCategoryId             @"category_id"
@@ -59,6 +62,8 @@
 - (void)configInit:(void (^)(void))finished;
 
 /** Interface **/
+
+- (void)shareNews:(News *)news delegate:(id<UMSocialUIDelegate>)delegate;
 
 - (void)createConfigFromNetworking:(NSDictionary *)dic context:(NSManagedObjectContext *)context;
 
@@ -92,6 +97,10 @@
 
 - (User *)getUserById:(NSUInteger)uid context:(NSManagedObjectContext *)context;
 
+- (User *)getMainUserWithContext:(NSManagedObjectContext *)context;
+
+- (User *)getMainUser;
+
 //Comment
 - (Comment *)createComment:(NSDictionary *)dic context:(NSManagedObjectContext *)context;
 
@@ -112,7 +121,11 @@
                                      failure:(void (^)(NSError *error))failure;
 
 - (AFHTTPRequestOperation *)userLogin:(NSDictionary *)param
-                              success:(void (^)(void))success
+                              success:(void (^)(User *user))success
                               failure:(void (^)(NSError *error))failure;
+
+- (AFHTTPRequestOperation *)shareToSite:(NSInteger)postId
+                                success:(void (^)(void))success
+                                failure:(void (^)(NSError *error))failure;
 
 @end

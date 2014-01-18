@@ -177,7 +177,7 @@
 
 - (void)_share:(id)sender
 {
-    
+    [[BMNewsManager sharedManager] shareNews:self.news delegate:self];
 }
 
 - (void)_keyboardWillShow:(NSNotification *)notification
@@ -229,6 +229,13 @@
 - (void)textViewDidChange:(UITextView *)textView
 {
     _sendButton.enabled = (textView.text.length>0);
+}
+
+#pragma mark - UMSocialUIDelegate
+
+-(void)didFinishGetUMSocialDataInViewController:(UMSocialResponseEntity *)response
+{
+    [[BMNewsManager sharedManager] shareToSite:self.news.nid.integerValue success:nil failure:nil];
 }
 
 @end

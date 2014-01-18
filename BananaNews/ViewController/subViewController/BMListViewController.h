@@ -19,6 +19,8 @@
     EGORefreshTableHeaderView *_refreshHeaderView;
     
     BOOL _reloading;
+    
+    NSInteger _postId;
 }
 
 @property (nonatomic, assign) BMNewsListCellType type;

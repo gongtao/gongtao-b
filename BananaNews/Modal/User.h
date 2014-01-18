@@ -2,8 +2,8 @@
 //  User.h
 //  BananaNews
 //
-//  Created by 龚涛 on 1/17/14.
-//  Copyright (c) 2014 龚涛. All rights reserved.
+//  Created by 龚 涛 on 14-1-18.
+//  Copyright (c) 2014年 龚涛. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -16,20 +16,21 @@
 @property (nonatomic, retain) NSString * avatar;
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSNumber * uid;
-@property (nonatomic, retain) NSSet *news;
+@property (nonatomic, retain) NSNumber * isMainUser;
 @property (nonatomic, retain) NSSet *comments;
+@property (nonatomic, retain) NSSet *news;
 @end
 
 @interface User (CoreDataGeneratedAccessors)
-
-- (void)addNewsObject:(News *)value;
-- (void)removeNewsObject:(News *)value;
-- (void)addNews:(NSSet *)values;
-- (void)removeNews:(NSSet *)values;
 
 - (void)addCommentsObject:(Comment *)value;
 - (void)removeCommentsObject:(Comment *)value;
 - (void)addComments:(NSSet *)values;
 - (void)removeComments:(NSSet *)values;
+
+- (void)addNewsObject:(News *)value;
+- (void)removeNewsObject:(News *)value;
+- (void)addNews:(NSSet *)values;
+- (void)removeNews:(NSSet *)values;
 
 @end
