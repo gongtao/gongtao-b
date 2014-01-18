@@ -196,6 +196,16 @@
         news.text_height = [NSNumber numberWithFloat:size.height];
     }
     
+    NSString *name = dic[@"name"];
+    if (name && (NSNull *)name != [NSNull null]) {
+        news.name = name;
+    }
+    
+    NSString *url = dic[@"permalink"];
+    if (url && (NSNull *)url != [NSNull null]) {
+        news.url = url;
+    }
+    
     NSNumber *comment_count = dic[@"comment_count"];
     if (comment_count && (NSNull *)comment_count != [NSNull null]) {
         news.comment_count = comment_count;
@@ -574,7 +584,7 @@
 {
     void (^requestSuccess)(AFHTTPRequestOperation *, id) = ^(AFHTTPRequestOperation *operation, id responseObject) {
         if (responseObject != [NSNull null]) {
-            NSLog(@"%@", responseObject);
+//            NSLog(@"%@", responseObject);
             
             NSManagedObjectContext *temporaryContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
             temporaryContext.parentContext = [self managedObjectContext];

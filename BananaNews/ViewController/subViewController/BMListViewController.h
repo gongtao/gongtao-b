@@ -12,7 +12,9 @@
 
 #import "EGORefreshTableHeaderView.h"
 
-@interface BMListViewController : GTTableViewController <EGORefreshTableHeaderDelegate>
+#import "UMSocial.h"
+
+@interface BMListViewController : GTTableViewController <EGORefreshTableHeaderDelegate, UMSocialUIDelegate>
 {
     EGORefreshTableHeaderView *_refreshHeaderView;
     

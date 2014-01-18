@@ -24,7 +24,6 @@
 		42C4E7881888F34F00E650BE /* libUMSocial_Sdk_3.3.3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D81DB80D18877AEF002D27B5 /* libUMSocial_Sdk_3.3.3.a */; };
 		42C4E7891888F37400E650BE /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D81DB7FE18877AEF002D27B5 /* libWeChatSDK.a */; };
 		42C4E78A1888F37B00E650BE /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D81DB81B18877AEF002D27B5 /* TencentOpenAPI.framework */; };
-		42C4E79318891F9200E650BE /* News.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C4E79218891F9200E650BE /* News.m */; };
 		42C4E79618891F9200E650BE /* Media.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C4E79518891F9200E650BE /* Media.m */; };
 		42C4E79918891F9200E650BE /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C4E79818891F9200E650BE /* Comment.m */; };
 		42C4E79C18891F9200E650BE /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C4E79B18891F9200E650BE /* User.m */; };
@@ -69,6 +68,7 @@
 		42E8681A18764A2500B02A0B /* BMNewsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 42E8681918764A2500B02A0B /* BMNewsManager.m */; };
 		42E8681E187657C500B02A0B /* BMListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42E8681D187657C500B02A0B /* BMListViewController.m */; };
 		CE8BC6AFDCC940D28D1B30C8 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 620E8C38B3E24A3191C52FA1 /* libPods.a */; };
+		D8174660188A4A1B002436EF /* News.m in Sources */ = {isa = PBXBuildFile; fileRef = D817465F188A4A1B002436EF /* News.m */; };
 		D81DB82A18877AEF002D27B5 /* UMSocialLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D81DB7FA18877AEF002D27B5 /* UMSocialLocalizable.strings */; };
 		D81DB82D18877AEF002D27B5 /* UMSCommentDetailController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D81DB80F18877AEF002D27B5 /* UMSCommentDetailController.xib */; };
 		D81DB82E18877AEF002D27B5 /* UMSCommentInputController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D81DB81018877AEF002D27B5 /* UMSCommentInputController.xib */; };
@@ -134,8 +134,6 @@
 		42C4E78218866B8E00E650BE /* R_FeedbackTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = R_FeedbackTableViewCell.m; sourceTree = "<group>"; };
 		42C4E78518866E0500E650BE /* BMPlaceHolderTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMPlaceHolderTextView.h; sourceTree = "<group>"; };
 		42C4E78618866E0500E650BE /* BMPlaceHolderTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMPlaceHolderTextView.m; sourceTree = "<group>"; };
-		42C4E79118891F9200E650BE /* News.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = News.h; sourceTree = "<group>"; };
-		42C4E79218891F9200E650BE /* News.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = News.m; sourceTree = "<group>"; };
 		42C4E79418891F9200E650BE /* Media.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Media.h; sourceTree = "<group>"; };
 		42C4E79518891F9200E650BE /* Media.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Media.m; sourceTree = "<group>"; };
 		42C4E79718891F9200E650BE /* Comment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Comment.h; sourceTree = "<group>"; };
@@ -213,6 +211,8 @@
 		42E8681D187657C500B02A0B /* BMListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMListViewController.m; sourceTree = "<group>"; };
 		620E8C38B3E24A3191C52FA1 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA26BFD3CEFE45ABAC84ECBE /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		D817465E188A4A1B002436EF /* News.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = News.h; sourceTree = "<group>"; };
+		D817465F188A4A1B002436EF /* News.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = News.m; sourceTree = "<group>"; };
 		D81DB7FB18877AEF002D27B5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/UMSocialLocalizable.strings; sourceTree = "<group>"; };
 		D81DB7FE18877AEF002D27B5 /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
 		D81DB7FF18877AEF002D27B5 /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
@@ -527,8 +527,8 @@
 				42C4E79818891F9200E650BE /* Comment.m */,
 				42C4E79418891F9200E650BE /* Media.h */,
 				42C4E79518891F9200E650BE /* Media.m */,
-				42C4E79118891F9200E650BE /* News.h */,
-				42C4E79218891F9200E650BE /* News.m */,
+				D817465E188A4A1B002436EF /* News.h */,
+				D817465F188A4A1B002436EF /* News.m */,
 			);
 			path = Modal;
 			sourceTree = "<group>";
@@ -875,6 +875,7 @@
 				42E3AD71187F885100ADFAD9 /* BMTabViewController.m in Sources */,
 				D821E855187560AF005C1604 /* BMCollectViewController.m in Sources */,
 				42C4E77B1885285200E650BE /* BMSNSLoginButton.m in Sources */,
+				D8174660188A4A1B002436EF /* News.m in Sources */,
 				D821E84C18751228005C1604 /* BMSearchViewController.m in Sources */,
 				42E8681A18764A2500B02A0B /* BMNewsManager.m in Sources */,
 				42C7BAFB18710E6700BD6382 /* BMLeftViewController.m in Sources */,
@@ -886,7 +887,6 @@
 				42C7BB0A1871447100BD6382 /* BMNavigationController.m in Sources */,
 				D8EA591A1880B0C800EEB573 /* GTCyclePageViewCell.m in Sources */,
 				D821E85818757A80005C1604 /* BMSettingViewController.m in Sources */,
-				42C4E79318891F9200E650BE /* News.m in Sources */,
 				42C4E77E18866B5500E650BE /* BMFeedbackViewController.m in Sources */,
 				42C7BAC41871059100BD6382 /* main.m in Sources */,
 				42C4E79918891F9200E650BE /* Comment.m in Sources */,
@@ -1029,15 +1029,15 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					/Users/gongtao/Desktop/github_workspace/BananaNews/BananaNews/ThirdParty/UmengSocial3.3.3/UMSocial_Sdk_Extra_Frameworks/TencentOpenAPI,
+					BananaNews/ThirdParty/UmengSocial3.3.3/UMSocial_Sdk_Extra_Frameworks/TencentOpenAPI,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BananaNews/BananaNews-Prefix.pch";
 				INFOPLIST_FILE = "BananaNews/BananaNews-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					/Users/gongtao/Desktop/github_workspace/BananaNews/BananaNews/ThirdParty/UmengSocial3.3.3/UMSocial_Sdk_3.3.3,
-					/Users/gongtao/Desktop/github_workspace/BananaNews/BananaNews/ThirdParty/UmengSocial3.3.3/UMSocial_Sdk_3.3.3/frameworks/Wechat,
+					BananaNews/ThirdParty/UmengSocial3.3.3/UMSocial_Sdk_3.3.3,
+					BananaNews/ThirdParty/UmengSocial3.3.3/UMSocial_Sdk_3.3.3/frameworks/Wechat,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -1052,15 +1052,15 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					/Users/gongtao/Desktop/github_workspace/BananaNews/BananaNews/ThirdParty/UmengSocial3.3.3/UMSocial_Sdk_Extra_Frameworks/TencentOpenAPI,
+					BananaNews/ThirdParty/UmengSocial3.3.3/UMSocial_Sdk_Extra_Frameworks/TencentOpenAPI,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BananaNews/BananaNews-Prefix.pch";
 				INFOPLIST_FILE = "BananaNews/BananaNews-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					/Users/gongtao/Desktop/github_workspace/BananaNews/BananaNews/ThirdParty/UmengSocial3.3.3/UMSocial_Sdk_3.3.3,
-					/Users/gongtao/Desktop/github_workspace/BananaNews/BananaNews/ThirdParty/UmengSocial3.3.3/UMSocial_Sdk_3.3.3/frameworks/Wechat,
+					BananaNews/ThirdParty/UmengSocial3.3.3/UMSocial_Sdk_3.3.3,
+					BananaNews/ThirdParty/UmengSocial3.3.3/UMSocial_Sdk_3.3.3/frameworks/Wechat,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;

@@ -10,6 +10,8 @@
 
 #import "BMDetailNewsViewController.h"
 
+#import <SDImageCache.h>
+
 @interface BMListViewController ()
 {
     NSString *_cache;
@@ -21,11 +23,11 @@
 
 - (void)doneLoadingTableViewData;
 
-- (void)_dingButtonPressed:(id)sender;
+- (void)_dingButtonPressed:(UIButton *)sender;
 
-- (void)_shareButtonPressed:(id)sender;
+- (void)_shareButtonPressed:(UIButton *)sender;
 
-- (void)_collectButtonPressed:(id)sender;
+- (void)_collectButtonPressed:(UIButton *)sender;
 
 @end
 
@@ -77,17 +79,31 @@
 
 #pragma mark - Private
 
-- (void)_dingButtonPressed:(id)sender
+- (void)_dingButtonPressed:(UIButton *)sender
 {
     
 }
 
-- (void)_shareButtonPressed:(id)sender
+- (void)_shareButtonPressed:(UIButton *)sender
 {
+    News *news = [self.fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:sender.tag inSection:0]];
+    NSString *shareText = [NSString stringWithFormat:@"我在看香蕉日报：%@ 网址：%@", news.title, news.url];
     
+    UIImage *image = nil;
+    if (news.medias.count > 0) {
+        NSString *imageKey = [(Media *)news.medias[0] small];
+        image = [[SDImageCache sharedImageCache] imageFromDiskCacheForKey:imageKey];
+    }
+    UIViewController *vc = [[UIApplication sharedApplication] keyWindow].rootViewController;
+    [UMSocialSnsService presentSnsIconSheetView:vc
+                                         appKey:nil
+                                      shareText:shareText
+                                     shareImage:image
+                                shareToSnsNames:nil
+                                       delegate:self];
 }
 
-- (void)_collectButtonPressed:(id)sender
+- (void)_collectButtonPressed:(UIButton *)sender
 {
     
 }
@@ -216,6 +232,13 @@
 - (NSDate*)egoRefreshTableHeaderDataSourceLastUpdated:(EGORefreshTableHeaderView*)view
 {
     return [NSDate date]; // should return date data source was last changed
+}
+
+#pragma mark - UMSocialUIDelegate
+
+-(void)didFinishGetUMSocialDataInViewController:(UMSocialResponseEntity *)response
+{
+    NSLog(@"haha");
 }
 
 @end

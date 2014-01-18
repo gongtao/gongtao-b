@@ -134,6 +134,18 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [UMSocialConfig setSnsPlatformNames:@[UMShareToSina, UMShareToQQ]];
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    [UMSocialConfig setSnsPlatformNames:@[UMShareToSina, UMShareToWechatTimeline, UMShareToWechatSession, UMShareToTencent, UMShareToQQ, UMShareToRenren]];
+}
+
 #pragma mark - Private
 
 - (void)_loginButtonPressed:(id)sender

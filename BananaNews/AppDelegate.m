@@ -31,9 +31,11 @@
     [MobClick startWithAppkey:kAppKey reportPolicy:BATCH channelId:nil];
     
     [UMSocialData setAppKey:kAppKey];
-    [UMSocialConfig setSupportSinaSSO:YES];
     
-    [UMSocialConfig setSnsPlatformNames:@[UMShareToSina, UMShareToQQ]];
+    [UMSocialConfig setSupportSinaSSO:YES];
+    [UMSocialConfig setSupportQzoneSSO:YES importClasses:nil];
+    
+    [UMSocialConfig setSnsPlatformNames:@[UMShareToSina, UMShareToWechatTimeline, UMShareToWechatSession, UMShareToTencent, UMShareToQQ, UMShareToRenren]];
     
     //检查版本更新
     [MobClick checkUpdate];
