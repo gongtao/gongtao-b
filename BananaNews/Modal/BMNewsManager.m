@@ -590,7 +590,7 @@
 {
     void (^requestSuccess)(AFHTTPRequestOperation *, id) = ^(AFHTTPRequestOperation *operation, id responseObject) {
         if (responseObject != [NSNull null]) {
-            NSLog(@"%@", responseObject);
+//            NSLog(@"%@", responseObject);
             
             NSManagedObjectContext *temporaryContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
             temporaryContext.parentContext = [self managedObjectContext];
@@ -627,12 +627,13 @@
 }
 
 - (AFHTTPRequestOperation *)getCommentsByNews:(News *)news
+                                         page:(NSInteger)page
                                       success:(void (^)(void))success
                                       failure:(void (^)(NSError *error))failure
 {
     void (^requestSuccess)(AFHTTPRequestOperation *, id) = ^(AFHTTPRequestOperation *operation, id responseObject) {
         if (responseObject != [NSNull null]) {
-//            NSLog(@"%@", responseObject);
+            NSLog(@"%@", responseObject);
             
             NSManagedObjectContext *temporaryContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
             temporaryContext.parentContext = [self managedObjectContext];
@@ -658,7 +659,7 @@
         }
     };
     
-    AFHTTPRequestOperation *op = [_manager GET:[NSString stringWithFormat:@"wp_api/v1/posts/%@/comments", news.nid] parameters:nil success:requestSuccess failure:requestFailure];
+    AFHTTPRequestOperation *op = [_manager GET:[NSString stringWithFormat:@"wp_api/v1/posts/%@/comments", news.nid] parameters:@{@"paged": [NSNumber numberWithInteger:page]} success:requestSuccess failure:requestFailure];
     NSLog(@"request: %@", op.request.URL.absoluteString);
     return op;
 }
@@ -746,7 +747,7 @@
     void (^requestSuccess)(AFHTTPRequestOperation *, id) = ^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"%@", responseObject);
         if (responseObject != [NSNull null]) {
-            NSLog(@"%@", responseObject);
+//            NSLog(@"%@", responseObject);
             
             NSString *token = responseObject[@"token"];
             if (token) {
@@ -797,26 +798,33 @@
                                 success:(void (^)(void))success
                                 failure:(void (^)(NSError *error))failure
 {
-    void (^requestSuccess)(AFHTTPRequestOperation *, id) = ^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"%@", responseObject);
-        
-        NSManagedObjectContext *temporaryContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
-        temporaryContext.parentContext = [self managedObjectContext];
-        
-        [temporaryContext performBlock:^{
-            News *news = [self getNewsById:postId context:temporaryContext];
-            NSInteger shareNum = news.share_count.integerValue;
-            news.share_count = [NSNumber numberWithInteger:shareNum+1];
-            [self saveContext:temporaryContext];
-            // save parent to disk asynchronously
-            [temporaryContext.parentContext performBlock:^{
-                [self saveContext:temporaryContext.parentContext];
-                if (success) {
-                    success();
-                }
-            }];
+    NSManagedObjectContext *temporaryContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
+    temporaryContext.parentContext = [self managedObjectContext];
+    
+    [temporaryContext performBlock:^{
+        News *news = [self getNewsById:postId context:temporaryContext];
+        NSInteger shareNum = news.share_count.integerValue;
+        news.share_count = [NSNumber numberWithInteger:shareNum+1];
+        [self saveContext:temporaryContext];
+        // save parent to disk asynchronously
+        [temporaryContext.parentContext performBlock:^{
+            [self saveContext:temporaryContext.parentContext];
         }];
-        
+    }];
+    
+    void (^requestSuccess)(AFHTTPRequestOperation *, id) = ^(AFHTTPRequestOperation *operation, id responseObject) {
+//        NSLog(@"%@", responseObject);
+        NSNumber *errCode = responseObject[@"errCode"];
+        if (0 == errCode.integerValue) {
+            if (success) {
+                success();
+            }
+        }
+        else {
+            if (failure) {
+                failure(nil);
+            }
+        }
     };
     
     void (^requestFailure)(AFHTTPRequestOperation *, NSError *) = ^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -827,6 +835,55 @@
         }
     };
     AFHTTPRequestOperation *op = [_manager POST:@"api/v1/index.php/post/doShareCallback" parameters:@{@"post_id": [NSNumber numberWithInteger:postId]} success:requestSuccess failure:requestFailure];
+    NSLog(@"request: %@", op.request.URL.absoluteString);
+    return op;
+}
+
+- (AFHTTPRequestOperation *)dingToSite:(NSInteger)postId
+                                success:(void (^)(void))success
+                                failure:(void (^)(NSError *error))failure
+{
+    
+    NSManagedObjectContext *temporaryContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
+    temporaryContext.parentContext = [self managedObjectContext];
+    
+    [temporaryContext performBlock:^{
+        News *news = [self getNewsById:postId context:temporaryContext];
+        NSInteger likeNum = news.like_count.integerValue;
+        news.like_count = [NSNumber numberWithInteger:likeNum+1];
+        [self saveContext:temporaryContext];
+        // save parent to disk asynchronously
+        [temporaryContext.parentContext performBlock:^{
+            [self saveContext:temporaryContext.parentContext];
+            if (success) {
+                success();
+            }
+        }];
+    }];
+    
+    void (^requestSuccess)(AFHTTPRequestOperation *, id) = ^(AFHTTPRequestOperation *operation, id responseObject) {
+//        NSLog(@"%@", responseObject);
+        NSNumber *errCode = responseObject[@"errCode"];
+        if (0 == errCode.integerValue) {
+            if (success) {
+                success();
+            }
+        }
+        else {
+            if (failure) {
+                failure(nil);
+            }
+        }
+    };
+    
+    void (^requestFailure)(AFHTTPRequestOperation *, NSError *) = ^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+        NSLog(@"data: %@", operation.responseString);
+        if (failure) {
+            failure(error);
+        }
+    };
+    AFHTTPRequestOperation *op = [_manager POST:@"api/v1/index.php/post/doLike" parameters:@{@"post_id": [NSNumber numberWithInteger:postId]} success:requestSuccess failure:requestFailure];
     NSLog(@"request: %@", op.request.URL.absoluteString);
     return op;
 }

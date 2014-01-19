@@ -114,6 +114,7 @@
                                     failure:(void (^)(NSError *error))failure;
 
 - (AFHTTPRequestOperation *)getCommentsByNews:(News *)news
+                                         page:(NSInteger)page
                                       success:(void (^)(void))success
                                       failure:(void (^)(NSError *error))failure;
 
@@ -127,5 +128,9 @@
 - (AFHTTPRequestOperation *)shareToSite:(NSInteger)postId
                                 success:(void (^)(void))success
                                 failure:(void (^)(NSError *error))failure;
+
+- (AFHTTPRequestOperation *)dingToSite:(NSInteger)postId
+                               success:(void (^)(void))success
+                               failure:(void (^)(NSError *error))failure;
 
 @end

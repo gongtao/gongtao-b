@@ -79,7 +79,8 @@
 
 - (void)_dingButtonPressed:(UIButton *)sender
 {
-    
+    News *news = [self.fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:sender.tag inSection:0]];
+    [[BMNewsManager sharedManager] dingToSite:news.nid.integerValue success:nil failure:nil];
 }
 
 - (void)_shareButtonPressed:(UIButton *)sender
@@ -114,10 +115,24 @@
     return _cache;
 }
 
+- (void)configCell:(UITableViewCell *)cell cellForRowAtIndexPath:(NSIndexPath *)indexPath fetchedResultsController:(NSFetchedResultsController *)fetchedResultsController
+{
+    NSInteger row = [indexPath row];
+    News *news = [fetchedResultsController objectAtIndexPath:indexPath];
+    BMNewsListCell *newCell = (BMNewsListCell *)cell;
+    [newCell configCellNews:news];
+    
+    newCell.dingButton.tag = row;
+    newCell.shareButton.tag = row;
+    if (BMNewsListCellCollect == newCell.type) {
+        newCell.collectButton.tag = row;
+        [newCell.collectButton addTarget:self action:@selector(_collectButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    }
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath fetchedResultsController:(NSFetchedResultsController *)fetchedResultsController
 {
     static NSString *CellIdentifier = @"ListCell";
-    NSInteger row = [indexPath row];
     BMNewsListCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     if (!cell) {
@@ -127,15 +142,7 @@
         [cell.shareButton addTarget:self action:@selector(_shareButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     }
     
-    News *news = [fetchedResultsController objectAtIndexPath:indexPath];
-    [cell configCellNews:news];
-    
-    cell.dingButton.tag = row;
-    cell.shareButton.tag = row;
-    if (BMNewsListCellCollect == cell.type) {
-        cell.collectButton.tag = row;
-        [cell.collectButton addTarget:self action:@selector(_collectButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-    }
+    [self configCell:cell cellForRowAtIndexPath:indexPath fetchedResultsController:fetchedResultsController];
     
     return cell;
 }

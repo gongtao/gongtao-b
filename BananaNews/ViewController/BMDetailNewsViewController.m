@@ -141,7 +141,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_keyboardWillShow:) name:UIKeyboardWillChangeFrameNotification object:nil];
     
-    [[BMNewsManager sharedManager] getCommentsByNews:self.news success:nil failure:nil];
+    [[BMNewsManager sharedManager] getCommentsByNews:self.news page:1 success:nil failure:nil];
 }
 
 - (void)viewWillDisappear:(BOOL)animated

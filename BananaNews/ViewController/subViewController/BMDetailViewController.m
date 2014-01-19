@@ -20,6 +20,8 @@
 
 @property (nonatomic, strong) UITableViewCell *newsCell;
 
+@property (nonatomic, strong) UITableViewCell *commentCountCell;
+
 - (void)_initNewsCell;
 
 - (void)_ding:(id)sender;
@@ -174,10 +176,27 @@
 
 - (void)_ding:(id)sender
 {
+    NSString *dingCount = [NSString stringWithFormat:@"(%i)", self.news.like_count.integerValue+1];
+    CGSize size = [dingCount sizeWithFont:Font_NewsTitle];
+    if (size.width < 50.0) {
+        size.width = 50.0;
+    }
+    CGFloat w = size.width+40.0;
+    BMCustomButton *button = (BMCustomButton *)sender;
+    CGRect frame = button.frame;
+    frame.size.width = w;
+    button.titleRect = CGRectMake(40.0, 0.0, size.width, 33.0);
+    [button setTitle:dingCount forState:UIControlStateNormal];
     
+    [[BMNewsManager sharedManager] dingToSite:self.news.nid.integerValue success:nil failure:nil];
 }
 
 #pragma mark - Override
+
+- (NSString *)cacheName
+{
+    return nil;
+}
 
 - (NSFetchRequest *)fetchRequest
 {
@@ -197,23 +216,50 @@
     if (0 == [indexPath row]) {
         return _newsCell;
     }
+    else if (1 == [indexPath row]) {
+        if (!_commentCountCell) {
+            _commentCountCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+            
+            _commentCountCell.selectionStyle = UITableViewCellSelectionStyleNone;
+            _commentCountCell.backgroundColor = [UIColor clearColor];
+            _commentCountCell.contentView.backgroundColor = [UIColor clearColor];
+            _commentCountCell.clipsToBounds = YES;
+            
+            UIView *newsContentView = [[UIView alloc] initWithFrame:CGRectMake(6.0, 3.0, 308.0, 30.0)];
+            newsContentView.backgroundColor = [UIColor whiteColor];
+            newsContentView.layer.borderWidth = 1.0;
+            newsContentView.layer.borderColor = Color_GrayLine.CGColor;
+            newsContentView.layer.cornerRadius = 2.0;
+            [_commentCountCell.contentView addSubview:newsContentView];
+            
+            UILabel *newsTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(6.0, 0.0, 296.0, 27.0)];
+            newsTitleLabel.backgroundColor = [UIColor clearColor];
+            newsTitleLabel.font = Font_NewsTitle;
+            newsTitleLabel.textColor = Color_NewsFont;
+            newsTitleLabel.text = [NSString stringWithFormat:@"%@条吐槽", self.news.comment_count];
+            [newsContentView addSubview:newsTitleLabel];
+            
+            UIView *lineView1 = [[UIView alloc] initWithFrame:CGRectMake(6.0, 26.0, 296.0, 1.0)];
+            lineView1.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"虚线.png"]];
+            [newsContentView addSubview:lineView1];
+        }
+        return _commentCountCell;
+    }
     static NSString *CellIdentifier = @"CommentCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-    
-//    Comment *comment = [fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:indexPath.row inSection:indexPath.section]];
+    Comment *comment = [fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:indexPath.row-2 inSection:indexPath.section]];
     
     return cell;
 }
 
 - (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath
 {
-    NSIndexPath *indexPath1 = [NSIndexPath indexPathForRow:[indexPath row]+1 inSection:[indexPath section]];
+    NSIndexPath *indexPath1 = [NSIndexPath indexPathForRow:[indexPath row]+2 inSection:[indexPath section]];
     
-    NSIndexPath *indexPath2 = [NSIndexPath indexPathForRow:[newIndexPath row]+1 inSection:[newIndexPath section]];
+    NSIndexPath *indexPath2 = [NSIndexPath indexPathForRow:[newIndexPath row]+2 inSection:[newIndexPath section]];
     
     [super controller:controller didChangeObject:anObject atIndexPath:indexPath1 forChangeType:type newIndexPath:indexPath2];
 }
@@ -222,7 +268,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (0 == [indexPath row]) {
+    if (0 == [indexPath row] || 1 == [indexPath row]) {
         return;
     }
 }
@@ -234,12 +280,19 @@
     if (0 == [indexPath row]) {
         return _newsCell.frame.size.height;
     }
-    return 0.0;
+    if (1 == [indexPath row]) {
+        return 30.0;
+    }
+    return 30.0;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 1+[self.fetchedResultsController.fetchedObjects count];
+    int count = [self.fetchedResultsController.fetchedObjects count];
+    if (count > 0) {
+        return count+2;
+    }
+    return 1;
 }
 
 @end
