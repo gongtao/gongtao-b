@@ -133,4 +133,15 @@
                                success:(void (^)(void))success
                                failure:(void (^)(NSError *error))failure;
 
+- (AFHTTPRequestOperation *)collectToSite:(NSInteger)postId
+                                   action:(NSString *)action
+                                  success:(void (^)(void))success
+                                  failure:(void (^)(NSError *error))failure
+
+- (AFHTTPRequestOperation *)postComment:(NSInteger)postId
+                                comment:(NSString *)comment
+                              replyUser:(User *)user
+                                success:(void (^)(void))success
+                                failure:(void (^)(NSError *error))failure
+
 @end

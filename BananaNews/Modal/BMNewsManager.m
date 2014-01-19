@@ -888,4 +888,111 @@
     return op;
 }
 
+- (AFHTTPRequestOperation *)collectToSite:(NSInteger)postId
+                                   action:(NSString *)action
+                                  success:(void (^)(void))success
+                                  failure:(void (^)(NSError *error))failure
+{
+    NSString *token = [[NSUserDefaults standardUserDefaults] objectForKey:kLoginToken];
+    NSDictionary *param = @{@"post_id": [NSNumber numberWithInteger:postId],
+                            @"token": token,
+                            @"action": action};
+    
+//    NSManagedObjectContext *temporaryContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
+//    temporaryContext.parentContext = [self managedObjectContext];
+//    
+//    [temporaryContext performBlock:^{
+//        [self saveContext:temporaryContext];
+//        // save parent to disk asynchronously
+//        [temporaryContext.parentContext performBlock:^{
+//            [self saveContext:temporaryContext.parentContext];
+//            if (success) {
+//                success();
+//            }
+//        }];
+//    }];
+    
+    void (^requestSuccess)(AFHTTPRequestOperation *, id) = ^(AFHTTPRequestOperation *operation, id responseObject) {
+        //        NSLog(@"%@", responseObject);
+        NSNumber *errCode = responseObject[@"errCode"];
+        if (0 == errCode.integerValue) {
+            if (success) {
+                success();
+            }
+        }
+        else {
+            if (failure) {
+                failure(nil);
+            }
+        }
+    };
+    
+    void (^requestFailure)(AFHTTPRequestOperation *, NSError *) = ^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+        NSLog(@"data: %@", operation.responseString);
+        if (failure) {
+            failure(error);
+        }
+    };
+    AFHTTPRequestOperation *op = [_manager POST:@"/api/v1/index.php/post/doFavirite" parameters:param success:requestSuccess failure:requestFailure];
+    NSLog(@"request: %@", op.request.URL.absoluteString);
+    return op;
+}
+
+- (AFHTTPRequestOperation *)postComment:(NSInteger)postId
+                                comment:(NSString *)comment
+                              replyUser:(User *)user
+                                success:(void (^)(void))success
+                                failure:(void (^)(NSError *error))failure
+{
+    NSString *token = [[NSUserDefaults standardUserDefaults] objectForKey:kLoginToken];
+    NSMutableDictionary *param = [[NSMutableDictionary alloc] initWithObjectsAndKeys:[NSNumber numberWithInteger:postId], @"post_id", token, @"token", comment, @"comment", nil];
+    if (user) {
+        [param setObject:user.uid forKey:@"comment_parent"];
+    }
+    
+//    NSManagedObjectContext *temporaryContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
+//    temporaryContext.parentContext = [self managedObjectContext];
+//    
+//    [temporaryContext performBlock:^{
+//        News *news = [self getNewsById:postId context:temporaryContext];
+//        NSInteger likeNum = news.like_count.integerValue;
+//        news.like_count = [NSNumber numberWithInteger:likeNum+1];
+//        [self saveContext:temporaryContext];
+//        // save parent to disk asynchronously
+//        [temporaryContext.parentContext performBlock:^{
+//            [self saveContext:temporaryContext.parentContext];
+//            if (success) {
+//                success();
+//            }
+//        }];
+//    }];
+    
+    void (^requestSuccess)(AFHTTPRequestOperation *, id) = ^(AFHTTPRequestOperation *operation, id responseObject) {
+        //        NSLog(@"%@", responseObject);
+        NSNumber *errCode = responseObject[@"errCode"];
+        if (0 == errCode.integerValue) {
+            if (success) {
+                success();
+            }
+        }
+        else {
+            if (failure) {
+                failure(nil);
+            }
+        }
+    };
+    
+    void (^requestFailure)(AFHTTPRequestOperation *, NSError *) = ^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+        NSLog(@"data: %@", operation.responseString);
+        if (failure) {
+            failure(error);
+        }
+    };
+    AFHTTPRequestOperation *op = [_manager POST:@"/wp_api/v1/comments/add" parameters:param success:requestSuccess failure:requestFailure];
+    NSLog(@"request: %@", op.request.URL.absoluteString);
+    return op;
+}
+
 @end
