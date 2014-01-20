@@ -84,7 +84,7 @@
         NSData *data = [[NSData alloc] initWithContentsOfFile:path];
         
         NSError *error;
-        NSArray *array = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+        NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
         if (error) {
             NSLog(@"config error: %@", error.localizedDescription);
             abort();
@@ -108,9 +108,17 @@
                 [temporaryContext deleteObject:obj];
             }];
             
+            NSArray *array = dic[@"left"];
             [array enumerateObjectsUsingBlock:^(NSDictionary *obj, NSUInteger idx, BOOL *stop){
                 NewsCategory *newsCategory = [self createNewsCategory:obj context:temporaryContext];
                 newsCategory.cid = [NSNumber numberWithInteger:idx];
+            }];
+            
+            array = dic[@"head"];
+            [array enumerateObjectsUsingBlock:^(NSDictionary *obj, NSUInteger idx, BOOL *stop){
+                NewsCategory *newsCategory = [self createNewsCategory:obj context:temporaryContext];
+                newsCategory.cid = [NSNumber numberWithInteger:idx];
+                newsCategory.isHead = [NSNumber numberWithBool:YES];
             }];
             
             [self saveContext:temporaryContext];
@@ -671,10 +679,10 @@
 {
     void (^requestSuccess)(AFHTTPRequestOperation *, id) = ^(AFHTTPRequestOperation *operation, id responseObject) {
         if (responseObject != [NSNull null]) {
-//            NSLog(@"%@", responseObject);
+            NSLog(@"%@", responseObject);
             
-            __block NSArray *array = (NSArray *)responseObject;
-            NSData *data = [NSJSONSerialization dataWithJSONObject:array options:NSJSONWritingPrettyPrinted error:nil];
+            __block NSDictionary *dic = (NSDictionary *)responseObject;
+            NSData *data = [NSJSONSerialization dataWithJSONObject:dic options:NSJSONWritingPrettyPrinted error:nil];
             NSError *error;
             NSString *cacheStr = [NSString stringWithContentsOfFile:_configFilePath encoding:NSUTF8StringEncoding error:&error];
             if (error) {
@@ -701,10 +709,17 @@
                         [temporaryContext deleteObject:obj];
                     }];
                     
-                    array = (NSArray *)responseObject;
+                    NSArray *array = (NSArray *)responseObject[@"left"];
                     [array enumerateObjectsUsingBlock:^(NSDictionary *obj, NSUInteger idx, BOOL *stop){
                         NewsCategory *newsCategory = [self createNewsCategory:obj context:temporaryContext];
                         newsCategory.cid = [NSNumber numberWithInteger:idx];
+                    }];
+                    
+                    array = (NSArray *)responseObject[@"head"];
+                    [array enumerateObjectsUsingBlock:^(NSDictionary *obj, NSUInteger idx, BOOL *stop){
+                        NewsCategory *newsCategory = [self createNewsCategory:obj context:temporaryContext];
+                        newsCategory.cid = [NSNumber numberWithInteger:idx];
+                        newsCategory.isHead = [NSNumber numberWithBool:YES];
                     }];
                     
                     [self saveContext:temporaryContext];
@@ -732,12 +747,13 @@
     
     void (^requestFailure)(AFHTTPRequestOperation *, NSError *) = ^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error: %@", error);
+        NSLog(@"%@", operation.responseString);
         if (failure) {
             failure(error);
         }
     };
     
-    AFHTTPRequestOperation *op = [_manager GET:@"api/v1/index.php/category/getCategoryLeft" parameters:nil success:requestSuccess failure:requestFailure];
+    AFHTTPRequestOperation *op = [_manager GET:@"api/v1/index.php/category/getCategoryList" parameters:nil success:requestSuccess failure:requestFailure];
     NSLog(@"request: %@", op.request.URL.absoluteString);
     return op;
 }

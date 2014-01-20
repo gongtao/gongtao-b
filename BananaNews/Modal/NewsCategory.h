@@ -2,7 +2,7 @@
 //  Category.h
 //  BananaNews
 //
-//  Created by 龚涛 on 1/9/14.
+//  Created by 龚涛 on 1/20/14.
 //  Copyright (c) 2014 龚涛. All rights reserved.
 //
 
@@ -15,5 +15,6 @@
 @property (nonatomic, retain) NSString * category_id;
 @property (nonatomic, retain) NSNumber * cid;
 @property (nonatomic, retain) NSString * cname;
+@property (nonatomic, retain) NSNumber * isHead;
 
 @end

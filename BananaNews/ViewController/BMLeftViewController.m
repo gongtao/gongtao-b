@@ -159,6 +159,7 @@
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:NewsCategory_Entity inManagedObjectContext:[self managedObjectContext]];
     [request setEntity:entity];
+    request.predicate = [NSPredicate predicateWithFormat:@"%K == %@", kIsHead, [NSNumber numberWithBool:NO]];
     NSSortDescriptor *sortDesciptor = [NSSortDescriptor sortDescriptorWithKey:kCid ascending:YES];
     [request setSortDescriptors:[NSArray arrayWithObject:sortDesciptor]];
     return request;
