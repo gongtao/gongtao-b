@@ -536,6 +536,8 @@
     NSString *content = dic[@"content"];
     if (content && (NSNull *)content != [NSNull null]) {
         comment.content = content;
+        CGSize size = [content sizeWithFont:Font_NewsTitle constrainedToSize:CGSizeMake(257.0, NSUIntegerMax)];
+        comment.height = [NSNumber numberWithFloat:size.height];
     }
     
     NSString *date = dic[@"date"];
@@ -551,7 +553,7 @@
     
     NSString *name = dic[@"author"];
     if (name && (NSNull *)name != [NSNull null]) {
-        userDic[@"nicename"] = name;
+        userDic[@"display_name"] = name;
     }
     
     NSArray *avatar = dic[@"avatar"];

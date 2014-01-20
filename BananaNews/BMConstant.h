@@ -46,5 +46,7 @@
 #define Color_GrayFont      [UIColor colorWithHexString:@"c6c6c6"]
 #define Color_NewsFont      [UIColor colorWithHexString:@"333333"]
 #define Color_NewsSmallFont [UIColor colorWithHexString:@"999999"]
+#define Color_CommentUser   [UIColor colorWithHexString:@"348ad2"]
+
 
 #endif

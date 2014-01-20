@@ -2,7 +2,7 @@
 //  Comment.m
 //  BananaNews
 //
-//  Created by 龚涛 on 1/17/14.
+//  Created by 龚涛 on 1/20/14.
 //  Copyright (c) 2014 龚涛. All rights reserved.
 //
 
@@ -17,7 +17,8 @@
 @dynamic content;
 @dynamic date;
 @dynamic ding;
-@dynamic news;
+@dynamic height;
 @dynamic author;
+@dynamic news;
 
 @end

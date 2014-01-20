@@ -25,7 +25,6 @@
 		42C4E7891888F37400E650BE /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D81DB7FE18877AEF002D27B5 /* libWeChatSDK.a */; };
 		42C4E78A1888F37B00E650BE /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D81DB81B18877AEF002D27B5 /* TencentOpenAPI.framework */; };
 		42C4E79618891F9200E650BE /* Media.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C4E79518891F9200E650BE /* Media.m */; };
-		42C4E79918891F9200E650BE /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C4E79818891F9200E650BE /* Comment.m */; };
 		42C5844A187A73A700D919EB /* BMCategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C58449187A73A700D919EB /* BMCategoryViewController.m */; };
 		42C5844D187A762600D919EB /* BMSubmissionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C5844C187A762600D919EB /* BMSubmissionViewController.m */; };
 		42C5844F187A8B5700D919EB /* Config.json in Resources */ = {isa = PBXBuildFile; fileRef = 42C5844E187A8B5700D919EB /* Config.json */; };
@@ -66,6 +65,8 @@
 		42E8681718764A1A00B02A0B /* Database.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 42E8681518764A1A00B02A0B /* Database.xcdatamodeld */; };
 		42E8681A18764A2500B02A0B /* BMNewsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 42E8681918764A2500B02A0B /* BMNewsManager.m */; };
 		42E8681E187657C500B02A0B /* BMListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42E8681D187657C500B02A0B /* BMListViewController.m */; };
+		42EC5AB0188CB57600FC00F9 /* BMCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 42EC5AAF188CB57600FC00F9 /* BMCommentCell.m */; };
+		42EC5AB3188CCDE700FC00F9 /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = 42EC5AB2188CCDE700FC00F9 /* Comment.m */; };
 		CE8BC6AFDCC940D28D1B30C8 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 620E8C38B3E24A3191C52FA1 /* libPods.a */; };
 		D8174660188A4A1B002436EF /* News.m in Sources */ = {isa = PBXBuildFile; fileRef = D817465F188A4A1B002436EF /* News.m */; };
 		D8174663188A8564002436EF /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = D8174662188A8564002436EF /* User.m */; };
@@ -136,8 +137,6 @@
 		42C4E78618866E0500E650BE /* BMPlaceHolderTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMPlaceHolderTextView.m; sourceTree = "<group>"; };
 		42C4E79418891F9200E650BE /* Media.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Media.h; sourceTree = "<group>"; };
 		42C4E79518891F9200E650BE /* Media.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Media.m; sourceTree = "<group>"; };
-		42C4E79718891F9200E650BE /* Comment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Comment.h; sourceTree = "<group>"; };
-		42C4E79818891F9200E650BE /* Comment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Comment.m; sourceTree = "<group>"; };
 		42C58448187A73A700D919EB /* BMCategoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMCategoryViewController.h; sourceTree = "<group>"; };
 		42C58449187A73A700D919EB /* BMCategoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMCategoryViewController.m; sourceTree = "<group>"; };
 		42C5844B187A762600D919EB /* BMSubmissionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMSubmissionViewController.h; sourceTree = "<group>"; };
@@ -207,6 +206,10 @@
 		42E8681918764A2500B02A0B /* BMNewsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMNewsManager.m; sourceTree = "<group>"; };
 		42E8681C187657C500B02A0B /* BMListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMListViewController.h; sourceTree = "<group>"; };
 		42E8681D187657C500B02A0B /* BMListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMListViewController.m; sourceTree = "<group>"; };
+		42EC5AAE188CB57600FC00F9 /* BMCommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMCommentCell.h; sourceTree = "<group>"; };
+		42EC5AAF188CB57600FC00F9 /* BMCommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMCommentCell.m; sourceTree = "<group>"; };
+		42EC5AB1188CCDE700FC00F9 /* Comment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Comment.h; sourceTree = "<group>"; };
+		42EC5AB2188CCDE700FC00F9 /* Comment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Comment.m; sourceTree = "<group>"; };
 		620E8C38B3E24A3191C52FA1 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA26BFD3CEFE45ABAC84ECBE /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		D817465E188A4A1B002436EF /* News.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = News.h; sourceTree = "<group>"; };
@@ -481,6 +484,8 @@
 				42C7BB0518712BF700BD6382 /* BMLeftViewCell.m */,
 				42CA255418769C4A00FB1764 /* BMNewsListCell.h */,
 				42CA255518769C4A00FB1764 /* BMNewsListCell.m */,
+				42EC5AAE188CB57600FC00F9 /* BMCommentCell.h */,
+				42EC5AAF188CB57600FC00F9 /* BMCommentCell.m */,
 				42C4E77F18866B8E00E650BE /* L_FeedbackTableViewCell.h */,
 				42C4E78018866B8E00E650BE /* L_FeedbackTableViewCell.m */,
 				42C4E78118866B8E00E650BE /* R_FeedbackTableViewCell.h */,
@@ -521,14 +526,14 @@
 				42E8681918764A2500B02A0B /* BMNewsManager.m */,
 				42D05F83187E45B900DC5E7E /* NewsCategory.h */,
 				42D05F84187E45B900DC5E7E /* NewsCategory.m */,
-				42C4E79718891F9200E650BE /* Comment.h */,
-				42C4E79818891F9200E650BE /* Comment.m */,
 				42C4E79418891F9200E650BE /* Media.h */,
 				42C4E79518891F9200E650BE /* Media.m */,
 				D817465E188A4A1B002436EF /* News.h */,
 				D817465F188A4A1B002436EF /* News.m */,
 				D8174661188A8564002436EF /* User.h */,
 				D8174662188A8564002436EF /* User.m */,
+				42EC5AB1188CCDE700FC00F9 /* Comment.h */,
+				42EC5AB2188CCDE700FC00F9 /* Comment.m */,
 			);
 			path = Modal;
 			sourceTree = "<group>";
@@ -865,8 +870,10 @@
 				42E3AD6B187F872400ADFAD9 /* BMPageViewController.m in Sources */,
 				42C4E78418866B8E00E650BE /* R_FeedbackTableViewCell.m in Sources */,
 				42C6D2A81872A11C00F796FB /* IIViewDeckController.m in Sources */,
+				42EC5AB3188CCDE700FC00F9 /* Comment.m in Sources */,
 				42C4E78318866B8E00E650BE /* L_FeedbackTableViewCell.m in Sources */,
 				42C7BAC81871059100BD6382 /* AppDelegate.m in Sources */,
+				42EC5AB0188CB57600FC00F9 /* BMCommentCell.m in Sources */,
 				42C6D298187285EB00F796FB /* BMNavigationBar.m in Sources */,
 				42C6D29218725EC500F796FB /* BMDetailNewsViewController.m in Sources */,
 				42C5844D187A762600D919EB /* BMSubmissionViewController.m in Sources */,
@@ -889,7 +896,6 @@
 				D821E85818757A80005C1604 /* BMSettingViewController.m in Sources */,
 				42C4E77E18866B5500E650BE /* BMFeedbackViewController.m in Sources */,
 				42C7BAC41871059100BD6382 /* main.m in Sources */,
-				42C4E79918891F9200E650BE /* Comment.m in Sources */,
 				42C6D2A91872A11C00F796FB /* IIWrapController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

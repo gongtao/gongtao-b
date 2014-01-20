@@ -12,6 +12,8 @@
 
 #import "BMCustomButton.h"
 
+#import "BMCommentCell.h"
+
 #import <UIImageView+WebCache.h>
 
 @interface BMDetailViewController ()
@@ -21,6 +23,8 @@
 @property (nonatomic, strong) UITableViewCell *newsCell;
 
 @property (nonatomic, strong) UITableViewCell *commentCountCell;
+
+@property (nonatomic, strong) UILabel *commentCountLabel;
 
 - (void)_initNewsCell;
 
@@ -232,26 +236,26 @@
             newsContentView.layer.cornerRadius = 2.0;
             [_commentCountCell.contentView addSubview:newsContentView];
             
-            UILabel *newsTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(6.0, 0.0, 296.0, 27.0)];
-            newsTitleLabel.backgroundColor = [UIColor clearColor];
-            newsTitleLabel.font = Font_NewsTitle;
-            newsTitleLabel.textColor = Color_NewsFont;
-            newsTitleLabel.text = [NSString stringWithFormat:@"%@条吐槽", self.news.comment_count];
-            [newsContentView addSubview:newsTitleLabel];
+            _commentCountLabel = [[UILabel alloc] initWithFrame:CGRectMake(6.0, 0.0, 296.0, 27.0)];
+            _commentCountLabel.backgroundColor = [UIColor clearColor];
+            _commentCountLabel.font = Font_NewsTitle;
+            _commentCountLabel.textColor = Color_NewsFont;
+            [newsContentView addSubview:_commentCountLabel];
             
             UIView *lineView1 = [[UIView alloc] initWithFrame:CGRectMake(6.0, 26.0, 296.0, 1.0)];
             lineView1.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"虚线.png"]];
             [newsContentView addSubview:lineView1];
         }
+        _commentCountLabel.text = [NSString stringWithFormat:@"%@条吐槽", self.news.comment_count];
         return _commentCountCell;
     }
     static NSString *CellIdentifier = @"CommentCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    BMCommentCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell = [[BMCommentCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     Comment *comment = [fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:indexPath.row-2 inSection:indexPath.section]];
-    
+    [cell configCellComment:comment isLast:(indexPath.row-1 == [self.fetchedResultsController.fetchedObjects count])];
     return cell;
 }
 
@@ -281,9 +285,18 @@
         return _newsCell.frame.size.height;
     }
     if (1 == [indexPath row]) {
-        return 30.0;
+        if ([self.fetchedResultsController.fetchedObjects count] > 0) {
+            return 30.0;
+        }
+        else {
+            return 0.0;
+        }
     }
-    return 30.0;
+    Comment *comment = [self.fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:indexPath.row-2 inSection:indexPath.section]];
+    if (indexPath.row-1 == [self.fetchedResultsController.fetchedObjects count]) {
+        return 60.0+comment.height.floatValue;
+    }
+    return 54.0+comment.height.floatValue;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -292,7 +305,7 @@
     if (count > 0) {
         return count+2;
     }
-    return 1;
+    return 2;
 }
 
 @end
