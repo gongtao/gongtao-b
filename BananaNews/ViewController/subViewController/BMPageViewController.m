@@ -75,12 +75,12 @@
         NSEntityDescription *entity = [NSEntityDescription entityForName:News_Entity inManagedObjectContext:[appDelegate managedObjectContext]];
         [request setEntity:entity];
         NSSortDescriptor *sortDesciptor = [NSSortDescriptor sortDescriptorWithKey:kNid ascending:NO];
+//        request.predicate = [NSPredicate predicateWithFormat:@"category.category_id == %@",@"36"];
         [request setSortDescriptors:[NSArray arrayWithObject:sortDesciptor]];
         
         BMListViewController *listVC = [[BMListViewController alloc] initWithRequest:request cacheName:[NSString stringWithFormat:@"CacheData%i", count]];
         listVC.view.frame = cyclePageView.bounds;
         listVC.tableView.frame = cyclePageView.bounds;
-        NSLog(@"%f", cyclePageView.bounds.size.height);
         [self addChildViewController:listVC];
         [cell addSubview:listVC.view];
         
@@ -91,11 +91,12 @@
     
     BMListViewController *listVC = (BMListViewController *)cell.viewController;
     listVC.tableView.contentOffset = CGPointZero;
-    [listVC changeFetchRequest:^(NSFetchRequest *request){
-        listVC.category = [self.tabViewController.fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
-        [listVC refreshLastUpdateTime];
-//        request.predicate = [NSPredicate predicateWithFormat:@""]
-    }];
+//    [listVC changeFetchRequest:^(NSFetchRequest *request){
+//        NewsCategory *category = [self.tabViewController.fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
+//        listVC.categoryId = category.category_id;
+//        request.predicate = [NSPredicate predicateWithFormat:@"category.category_id == %@",@"35"];
+//        [listVC refreshLastUpdateTime];
+//    }];
     
     return cell;
 }
@@ -104,7 +105,6 @@
 
 - (void)didPageChangedCyclePageView:(GTCyclePageView *)cyclePageView
 {
-    NSLog(@"page:%u", cyclePageView.currentPage);
     [_tabViewController setPage:cyclePageView.currentPage];
 }
 

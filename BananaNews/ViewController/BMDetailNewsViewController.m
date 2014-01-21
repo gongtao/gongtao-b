@@ -34,6 +34,8 @@
 
 - (void)_cancelInput:(id)sender;
 
+- (void)_loginToSite:(NSNotification *)notice;
+
 @end
 
 @implementation BMDetailNewsViewController
@@ -140,6 +142,7 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_keyboardWillShow:) name:UIKeyboardWillChangeFrameNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_loginToSite:) name:kLoginSuccessNotification object:nil];
     
     [[BMNewsManager sharedManager] getCommentsByNews:self.news page:1 success:nil failure:nil];
 }
@@ -156,10 +159,24 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)_loginToSite:(NSNotification *)notice
+{
+    User *user = notice.userInfo[@"user"];
+    if (user) {
+        [self _comment:nil];
+    }
+}
+
 #pragma mark - Private
 
 - (void)_comment:(id)sender
 {
+    if (![[NSUserDefaults standardUserDefaults] objectForKey:kLoginKey]) {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"评论" message:@"亲~请先登录再评论" delegate:self cancelButtonTitle:@"暂不" otherButtonTitles:@"登录", nil];
+        [alertView show];
+        return;
+    }
+    
     [UIView animateWithDuration:0.3
                      animations:^(void) {
                          _inputBgView.alpha = 1.0;
@@ -236,6 +253,17 @@
 -(void)didFinishGetUMSocialDataInViewController:(UMSocialResponseEntity *)response
 {
     [[BMNewsManager sharedManager] shareToSite:self.news.nid.integerValue success:nil failure:nil];
+}
+
+#pragma mark - UIAlertViewDelegate
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    NSString *title = [alertView buttonTitleAtIndex:buttonIndex];
+    if ([title isEqualToString:@"登录"]) {
+        BMSNSLoginView *loginView = [[BMSNSLoginView alloc] initWithFrame:self.view.bounds];
+        [loginView showInView:self.view];
+    }
 }
 
 @end

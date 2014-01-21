@@ -23,7 +23,7 @@
     NSInteger _postId;
 }
 
-@property (nonatomic, strong) NewsCategory *category;
+@property (nonatomic, strong) NSString *categoryId;
 
 @property (nonatomic, assign) BMNewsListCellType type;
 

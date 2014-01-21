@@ -43,7 +43,7 @@
     [request setSortDescriptors:[NSArray arrayWithObject:sortDesciptor]];
     
     BMListViewController *listVC = [[BMListViewController alloc] initWithRequest:request cacheName:[NSString stringWithFormat:@"CacheCategory%@", self.category.category_id]];
-    listVC.category = self.category;
+    listVC.categoryId = self.category.category_id;
     listVC.view.frame = frame;
     frame.origin.y = 0.0;
     listVC.tableView.frame = frame;

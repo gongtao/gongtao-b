@@ -184,11 +184,15 @@
     if (!array || (NSNull *)array == [NSNull null]) {
         return;
     }
+//    NSMutableArray *newsArray = [[NSMutableArray alloc] initWithArray:newsCategory.list.array];
     [array enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop){
         NSDictionary *newsInfo = (NSDictionary *)obj;
         News *news = [self createNews:newsInfo context:context];
+//        [newsArray addObject:news];
         news.category = newsCategory;
     }];
+    NSLog(@"cid:%@", newsCategory.category_id);
+//    newsCategory.list = [NSOrderedSet orderedSetWithArray:newsArray];
 }
 
 - (void)createCommentsFromNetworking:(NSDictionary *)dic news:(News *)news context:(NSManagedObjectContext *)context
@@ -369,13 +373,13 @@
     if (array && (NSNull *)array != [NSNull null]) {
         for (NSDictionary *obj in array) {
             NSString *size = obj[@"name"];
-            if ([size isEqualToString:@"medium"]) {
+            if (!media.small && ([size isEqualToString:@"medium"] || [size isEqualToString:@"hot"] || [size isEqualToString:@"show"])) {
                 media.small = obj[@"url"];
                 media.small_width = obj[@"width"];
                 media.small_height = obj[@"height"];
                 continue;
             }
-            if ([size isEqualToString:@"full"]) {
+            if (!media.large && [size isEqualToString:@"full"]) {
                 media.large = obj[@"url"];
                 media.large_width = obj[@"width"];
                 media.large_height = obj[@"height"];
@@ -603,14 +607,13 @@
                                     success:(void (^)(NSArray *array))success
                                     failure:(void (^)(NSError *error))failure
 {
-    NSDictionary *param = @{
-//                            @"cat": cid,
+    NSDictionary *param = @{@"cat": cid,
                             @"paged": [NSNumber numberWithInt:page],
                             @"per_page": [NSNumber numberWithInt:10]};
     
     void (^requestSuccess)(AFHTTPRequestOperation *, id) = ^(AFHTTPRequestOperation *operation, id responseObject) {
         if (responseObject != [NSNull null]) {
-//            NSLog(@"%@", responseObject);
+            NSLog(@"%@", responseObject);
             
             NSManagedObjectContext *temporaryContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
             temporaryContext.parentContext = [self managedObjectContext];
@@ -619,6 +622,7 @@
                 NewsCategory *newsCategory = [self getNewsCategoryById:cid context:temporaryContext];
                 if (1 == page) {
                     newsCategory.list = [NSOrderedSet orderedSet];
+                    newsCategory.refreshTime = [NSDate date];
                 }
                 
                 [self createNewsFromNetworking:responseObject newsCategory:newsCategory context:temporaryContext];
@@ -694,7 +698,7 @@
 {
     void (^requestSuccess)(AFHTTPRequestOperation *, id) = ^(AFHTTPRequestOperation *operation, id responseObject) {
         if (responseObject != [NSNull null]) {
-            NSLog(@"%@", responseObject);
+//            NSLog(@"%@", responseObject);
             
             __block NSDictionary *dic = (NSDictionary *)responseObject;
             NSData *data = [NSJSONSerialization dataWithJSONObject:dic options:NSJSONWritingPrettyPrinted error:nil];

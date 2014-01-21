@@ -159,7 +159,7 @@
 - (void)reloadTableViewDataSource
 {
     _reloading = YES;
-    [[BMNewsManager sharedManager] getDownloadList:self.category.category_id
+    [[BMNewsManager sharedManager] getDownloadList:@"36"
                                               page:1
                                            success:^(NSArray *array){
                                                [self doneLoadingTableViewData];
@@ -173,8 +173,6 @@
 {
     _reloading = NO;
     [_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:self.tableView];
-    self.category.refreshTime = [NSDate date];
-    [[BMNewsManager sharedManager] saveContext];
     [self refreshLastUpdateTime];
 }
 
@@ -235,7 +233,9 @@
 
 - (NSDate *)egoRefreshTableHeaderDataSourceLastUpdated:(EGORefreshTableHeaderView*)view
 {
-    return self.category.refreshTime;// should return date data source was last changed
+    BMNewsManager *manager = [BMNewsManager sharedManager];
+    NewsCategory *category = [manager getNewsCategoryById:self.categoryId context:[manager managedObjectContext]];
+    return category.refreshTime;// should return date data source was last changed
 }
 
 #pragma mark - UMSocialUIDelegate

@@ -8,17 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@protocol BMSNSLoginViewDelegate <NSObject>
-
-- (void)didSelectSNS:(NSUInteger)index;
-
-@end
-
 @interface BMSNSLoginView : UIView
 
 @property (nonatomic, strong) UIView *contentView;
 
-@property (nonatomic, assign) id<BMSNSLoginViewDelegate> delegate;
+@property (nonatomic, strong) NSString *loginType;
 
 - (void)showInView:(UIView *)view;
 

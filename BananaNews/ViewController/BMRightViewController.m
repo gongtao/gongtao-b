@@ -23,15 +23,13 @@
     BMCustomButton *_loginButton;
 }
 
-- (void)_loginButtonPressed:(id)sender;
-
 - (void)_submitButtonPressed:(id)sender;
 
 - (void)_collectButtonPressed:(id)sender;
 
 - (void)_settingButtonPressed:(id)sender;
 
-- (void)_loginToSite;
+- (void)_loginToSite:(NSNotification *)notice;
 
 @end
 
@@ -73,7 +71,7 @@
     _loginButton.titleLabel.font = [UIFont systemFontOfSize:14.0];
     [_loginButton setTitleColor:Color_SideFont forState:UIControlStateNormal];
     _loginButton.titleLabel.textAlignment = NSTextAlignmentCenter;
-    [_loginButton addTarget:self action:@selector(_loginButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    [_loginButton addTarget:self action:@selector(loginButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_loginButton];
     
     offset = (kSidePanelRightWidth-146.0)/2;
@@ -125,6 +123,13 @@
     label.textAlignment = NSTextAlignmentRight;
     label.backgroundColor = [UIColor clearColor];
     [self.view addSubview:label];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_loginToSite:) name:kLoginSuccessNotification object:nil];
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)didReceiveMemoryWarning
@@ -145,19 +150,18 @@
     [UMSocialConfig setSnsPlatformNames:@[UMShareToSina, UMShareToWechatTimeline, UMShareToWechatSession, UMShareToTencent, UMShareToQQ, UMShareToRenren]];
 }
 
-#pragma mark - Private
-
-- (void)_loginButtonPressed:(id)sender
+- (void)loginButtonPressed:(id)sender
 {
     if ([[NSUserDefaults standardUserDefaults] objectForKey:kLoginKey]) {
 #warning 个人信息页面
     }
     else {
         BMSNSLoginView *loginView = [[BMSNSLoginView alloc] initWithFrame:self.view.bounds];
-        loginView.delegate = self;
         [loginView showInView:self.parentViewController.view];
     }
 }
+
+#pragma mark - Private
 
 - (void)_submitButtonPressed:(id)sender
 {
@@ -185,71 +189,14 @@
     [self.viewDeckController closeRightViewAnimated:YES];
 }
 
-- (void)_loginToSite
+- (void)_loginToSite:(NSNotification *)notice
 {
-    NSDictionary *snsAccountDic = [UMSocialAccountManager socialAccountDictionary];
-    UMSocialAccountEntity *account = [snsAccountDic valueForKey:self.loginType];
-    NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
-    
-    if (account.userName) {
-        if (account.userName.length>12) {
-            param[@"user_login"] = [account.userName substringToIndex:11];
-        }
-        else {
-            param[@"user_login"] = account.userName;
-        }
-        param[@"display_name"] = account.userName;
+    User *user = notice.userInfo[@"user"];
+    if (user) {
+        [_loginButton setImage:[UIImage imageNamed:@"右侧已登录头像.png"] forState:UIControlStateNormal];
+        [_loginButton setImage:[UIImage imageNamed:@"右侧已登录头像.png"] forState:UIControlStateHighlighted];
+        [_loginButton setTitle:user.name forState:UIControlStateNormal];
     }
-    if (account.usid) {
-        param[@"unid"] = account.usid;
-    }
-    if (account.iconURL) {
-        param[@"avatar"] = account.iconURL;
-    }
-    if ([self.loginType isEqualToString:UMShareToSina]) {
-        param[@"login_type"] = @"sianweibo";
-    }
-    else if ([self.loginType isEqualToString:UMShareToQQ]) {
-        param[@"login_type"] = @"qqsns";
-    }
-    
-    [[UMSocialDataService defaultDataService] requestSnsInformation:self.loginType completion:^(UMSocialResponseEntity *response){
-        NSLog(@"SnsInformation is %@",response.data);
-        NSString *description = response.data[@"description"];
-        if (description) {
-            param[@"description"] = description;
-        }
-        //用户登陆http
-        [[BMNewsManager sharedManager] userLogin:param
-                                         success:^(User *user){
-                                             [_loginButton setImage:[UIImage imageNamed:@"右侧已登录头像.png"] forState:UIControlStateNormal];
-                                             [_loginButton setImage:[UIImage imageNamed:@"右侧已登录头像.png"] forState:UIControlStateHighlighted];
-                                             [_loginButton setTitle:user.name forState:UIControlStateNormal];
-                                             [[NSUserDefaults standardUserDefaults] setObject:self.loginType forKey:kLoginKey];
-                                         }
-                                         failure:^(NSError *error){
-                                             
-                                         }];
-    }];
-}
-
-#pragma mark - BMSNSLoginViewDelegate
-
-- (void)didSelectSNS:(NSUInteger)index
-{
-    self.loginType = UMShareToSina;
-    if (1 == index) {
-        self.loginType = UMShareToQQ;
-    }
-    if ([UMSocialAccountManager isOauthWithPlatform:self.loginType]) {
-        [self _loginToSite];
-        return;
-    }
-    UMSocialSnsPlatform *snsPlatform = [UMSocialSnsPlatformManager getSocialPlatformWithName:self.loginType];
-    snsPlatform.loginClickHandler(self.parentViewController,[UMSocialControllerService defaultControllerService],YES,^(UMSocialResponseEntity *response){
-        NSLog(@"response is %@",response);
-        [self _loginToSite];
-    });
 }
 
 @end

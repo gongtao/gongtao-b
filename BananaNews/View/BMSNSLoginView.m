@@ -10,6 +10,8 @@
 
 #import "BMSNSLoginButton.h"
 
+#import "UMSocial.h"
+
 @interface BMSNSLoginView ()
 
 - (void)selectSNS:(UIControl *)sender;
@@ -64,10 +66,78 @@
 
 - (void)selectSNS:(UIControl *)sender
 {
-    if ([self.delegate respondsToSelector:@selector(didSelectSNS:)]) {
-        [self.delegate didSelectSNS:sender.tag];
+    [UIView animateWithDuration:0.3
+                     animations:^(void){
+                         self.alpha = 0.0;
+                     }
+                     completion:^(BOOL finished){
+                         self.hidden = YES;
+                     }];
+    self.loginType = UMShareToSina;
+    if (1 == sender.tag) {
+        self.loginType = UMShareToQQ;
     }
-    [self dismiss];
+    if ([UMSocialAccountManager isOauthWithPlatform:self.loginType]) {
+        [self _loginToSite];
+        return;
+    }
+    UMSocialSnsPlatform *snsPlatform = [UMSocialSnsPlatformManager getSocialPlatformWithName:self.loginType];
+    snsPlatform.loginClickHandler([UIApplication sharedApplication].keyWindow.rootViewController,[UMSocialControllerService defaultControllerService],YES,^(UMSocialResponseEntity *response){
+        NSLog(@"response is %@",response);
+        if ([UMSocialAccountManager isOauthWithPlatform:self.loginType]) {
+            [self _loginToSite];
+        }
+        else {
+            [self dismiss];
+        }
+    });
+}
+
+- (void)_loginToSite
+{
+    NSDictionary *snsAccountDic = [UMSocialAccountManager socialAccountDictionary];
+    UMSocialAccountEntity *account = [snsAccountDic valueForKey:self.loginType];
+    NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
+    
+    if (account.userName) {
+        if (account.userName.length>12) {
+            param[@"user_login"] = [account.userName substringToIndex:11];
+        }
+        else {
+            param[@"user_login"] = account.userName;
+        }
+        param[@"display_name"] = account.userName;
+    }
+    if (account.usid) {
+        param[@"unid"] = account.usid;
+    }
+    if (account.iconURL) {
+        param[@"avatar"] = account.iconURL;
+    }
+    if ([self.loginType isEqualToString:UMShareToSina]) {
+        param[@"login_type"] = @"sianweibo";
+    }
+    else if ([self.loginType isEqualToString:UMShareToQQ]) {
+        param[@"login_type"] = @"qqsns";
+    }
+    
+    [[UMSocialDataService defaultDataService] requestSnsInformation:self.loginType completion:^(UMSocialResponseEntity *response){
+        NSLog(@"SnsInformation is %@",response.data);
+        NSString *description = response.data[@"description"];
+        if (description) {
+            param[@"description"] = description;
+        }
+        //用户登陆http
+        [[BMNewsManager sharedManager] userLogin:param
+                                         success:^(User *user){
+                                             [[NSUserDefaults standardUserDefaults] setObject:self.loginType forKey:kLoginKey];
+                                             [[NSNotificationCenter defaultCenter] postNotificationName:kLoginSuccessNotification object:nil userInfo:@{@"user": user}];
+                                             [self dismiss];
+                                         }
+                                         failure:^(NSError *error){
+                                             [self dismiss];
+                                         }];
+    }];
 }
 
 #pragma mark - Public
@@ -82,13 +152,7 @@
 
 - (void)dismiss
 {
-    [UIView animateWithDuration:0.3
-                     animations:^(void){
-                         self.alpha = 0.0;
-                     }
-                     completion:^(BOOL finished){
-                         [self removeFromSuperview];
-                     }];
+    [self removeFromSuperview];
 }
 
 @end

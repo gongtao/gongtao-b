@@ -15,6 +15,8 @@
 
 #define kLoginToken @"loginToken"
 
+#define kLoginSuccessNotification   @"LoginSuccessNotification"
+
 #define kBaseURL    [NSURL URLWithString:@"http://115.29.43.107/site/"]
 
 #define IS_IOS7     ([[[UIDevice currentDevice]systemVersion] floatValue] >= 7.0)

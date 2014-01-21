@@ -10,8 +10,10 @@
 
 #import "BMSNSLoginView.h"
 
-@interface BMRightViewController : UIViewController <BMSNSLoginViewDelegate>
+@interface BMRightViewController : UIViewController
 
 @property (nonatomic, strong) NSString *loginType;
+
+- (void)loginButtonPressed:(id)sender;
 
 @end
