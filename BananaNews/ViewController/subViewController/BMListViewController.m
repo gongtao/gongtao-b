@@ -152,7 +152,8 @@
 - (void)reloadTableViewDataSource
 {
     _reloading = YES;
-    [[BMNewsManager sharedManager] getDownloadList:0 page:0
+    [[BMNewsManager sharedManager] getDownloadList:self.category.category_id
+                                              page:0
                                            success:^(NSArray *array){
                                                [self doneLoadingTableViewData];
                                            }
@@ -224,7 +225,7 @@
 
 - (NSDate*)egoRefreshTableHeaderDataSourceLastUpdated:(EGORefreshTableHeaderView*)view
 {
-    return [NSDate date]; // should return date data source was last changed
+    return self.category.refreshTime; // should return date data source was last changed
 }
 
 #pragma mark - UMSocialUIDelegate

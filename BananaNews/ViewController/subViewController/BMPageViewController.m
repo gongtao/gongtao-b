@@ -88,6 +88,14 @@
         
         count++;
     }
+    
+    BMListViewController *listVC = (BMListViewController *)cell.viewController;
+    listVC.tableView.contentOffset = CGPointZero;
+    [listVC changeFetchRequest:^(NSFetchRequest *request){
+        listVC.category = [self.tabViewController.fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
+//        request.predicate = [NSPredicate predicateWithFormat:@""]
+    }];
+    
     return cell;
 }
 

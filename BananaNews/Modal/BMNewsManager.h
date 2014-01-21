@@ -67,7 +67,7 @@
 
 - (void)createConfigFromNetworking:(NSDictionary *)dic context:(NSManagedObjectContext *)context;
 
-- (void)createNewsFromNetworking:(NSDictionary *)dic context:(NSManagedObjectContext *)context;
+- (void)createNewsFromNetworking:(NSDictionary *)dic newsCategory:(NSString *)cid context:(NSManagedObjectContext *)context;
 
 - (void)createCommentsFromNetworking:(NSDictionary *)dic news:(News *)news context:(NSManagedObjectContext *)context;
 
@@ -108,7 +108,7 @@
 
 /** Networking **/
 
-- (AFHTTPRequestOperation *)getDownloadList:(NSUInteger)type
+- (AFHTTPRequestOperation *)getDownloadList:(NSString *)cid
                                        page:(NSUInteger)page
                                     success:(void (^)(NSArray *array))success
                                     failure:(void (^)(NSError *error))failure;

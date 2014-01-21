@@ -10,4 +10,6 @@
 
 @interface BMCategoryViewController : BMRootViewController
 
+@property (nonatomic, strong) NewsCategory *category;
+
 @end

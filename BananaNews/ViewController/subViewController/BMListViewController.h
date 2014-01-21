@@ -23,6 +23,8 @@
     NSInteger _postId;
 }
 
+@property (nonatomic, strong) NewsCategory *category;
+
 @property (nonatomic, assign) BMNewsListCellType type;
 
 - (id)initWithRequest:(NSFetchRequest *)request cacheName:(NSString *)cache;

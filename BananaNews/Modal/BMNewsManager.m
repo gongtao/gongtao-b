@@ -170,7 +170,7 @@
     
 }
 
-- (void)createNewsFromNetworking:(NSDictionary *)dic context:(NSManagedObjectContext *)context
+- (void)createNewsFromNetworking:(NSDictionary *)dic newsCategory:(NSString *)cid context:(NSManagedObjectContext *)context
 {
     if (!context) {
         context = [self managedObjectContext];
@@ -179,9 +179,11 @@
     if (!array || (NSNull *)array == [NSNull null]) {
         return;
     }
+    NewsCategory *newsCategory = [self getNewsCategoryById:cid context:context];
     [array enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop){
         NSDictionary *newsInfo = (NSDictionary *)obj;
-        [self createNews:newsInfo context:context];
+        News *news = [self createNews:newsInfo context:context];
+        news.category = newsCategory;
     }];
 }
 
@@ -592,11 +594,16 @@
 
 #pragma mark - Networking
 
-- (AFHTTPRequestOperation *)getDownloadList:(NSUInteger)type
+- (AFHTTPRequestOperation *)getDownloadList:(NSString *)cid
                                        page:(NSUInteger)page
                                     success:(void (^)(NSArray *array))success
                                     failure:(void (^)(NSError *error))failure
 {
+    NSDictionary *param = @{
+//                            @"cat": cid,
+                            @"paged": [NSNumber numberWithInt:page],
+                            @"per_page": [NSNumber numberWithInt:10]};
+    
     void (^requestSuccess)(AFHTTPRequestOperation *, id) = ^(AFHTTPRequestOperation *operation, id responseObject) {
         if (responseObject != [NSNull null]) {
 //            NSLog(@"%@", responseObject);
@@ -605,7 +612,12 @@
             temporaryContext.parentContext = [self managedObjectContext];
             
             [temporaryContext performBlock:^{
-                [self createNewsFromNetworking:responseObject context:temporaryContext];
+                if (0 == page) {
+                    NewsCategory *newsCategory = [self getNewsCategoryById:cid context:temporaryContext];
+                    newsCategory.list = [NSOrderedSet orderedSet];
+                }
+                
+                [self createNewsFromNetworking:responseObject newsCategory:cid context:temporaryContext];
                 [self saveContext:temporaryContext];
                 // save parent to disk asynchronously
                 [temporaryContext.parentContext performBlock:^{
@@ -630,7 +642,7 @@
         }
     };
     
-    AFHTTPRequestOperation *op = [_manager GET:@"wp_api/v1/posts" parameters:nil success:requestSuccess failure:requestFailure];
+    AFHTTPRequestOperation *op = [_manager GET:@"wp_api/v1/posts" parameters:param success:requestSuccess failure:requestFailure];
     NSLog(@"request: %@", op.request.URL.absoluteString);
     return op;
 }

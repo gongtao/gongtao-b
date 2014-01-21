@@ -7,6 +7,7 @@
 //
 
 #import "NewsCategory.h"
+#import "News.h"
 
 
 @implementation NewsCategory
@@ -14,5 +15,7 @@
 @dynamic category_id;
 @dynamic cname;
 @dynamic isHead;
+@dynamic refreshTime;
+@dynamic list;
 
 @end

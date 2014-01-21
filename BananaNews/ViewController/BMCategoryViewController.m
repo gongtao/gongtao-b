@@ -34,6 +34,21 @@
     CGRect frame = self.view.bounds;
     frame.origin.y = CGRectGetMaxY(self.customNavigationBar.frame);
     frame.size.height -= frame.origin.y;
+    
+    id appDelegate = [UIApplication sharedApplication].delegate;
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:News_Entity inManagedObjectContext:[appDelegate managedObjectContext]];
+    [request setEntity:entity];
+    NSSortDescriptor *sortDesciptor = [NSSortDescriptor sortDescriptorWithKey:kNid ascending:NO];
+    [request setSortDescriptors:[NSArray arrayWithObject:sortDesciptor]];
+    
+    BMListViewController *listVC = [[BMListViewController alloc] initWithRequest:request cacheName:[NSString stringWithFormat:@"CacheCategory%@", self.category.category_id]];
+    listVC.category = self.category;
+    listVC.view.frame = frame;
+    frame.origin.y = 0.0;
+    listVC.tableView.frame = frame;
+    [self addChildViewController:listVC];
+    [self.view addSubview:listVC.view];
 }
 
 - (void)didReceiveMemoryWarning

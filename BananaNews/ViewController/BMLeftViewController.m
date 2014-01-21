@@ -12,6 +12,8 @@
 
 #import "BMLeftViewCell.h"
 
+#import "BMCategoryViewController.h"
+
 #import "IIViewDeckController.h"
 
 @interface BMLeftViewController ()
@@ -109,6 +111,8 @@
                 NewsCategory *newsCategory = [self.fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:row-1 inSection:0]];
                 vc = [self.storyboard instantiateViewControllerWithIdentifier:@"categoryViewController"];
                 vc.title = newsCategory.cname;
+                BMCategoryViewController *cvc = (BMCategoryViewController *)vc;
+                cvc.category = newsCategory;
             }
             self.controllerDic[index] = vc;
         }
