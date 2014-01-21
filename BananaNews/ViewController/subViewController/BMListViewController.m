@@ -75,6 +75,13 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - Public
+
+- (void)refreshLastUpdateTime
+{
+    [_refreshHeaderView refreshLastUpdatedDate];
+}
+
 #pragma mark - Private
 
 - (void)_dingButtonPressed:(UIButton *)sender
@@ -153,7 +160,7 @@
 {
     _reloading = YES;
     [[BMNewsManager sharedManager] getDownloadList:self.category.category_id
-                                              page:0
+                                              page:1
                                            success:^(NSArray *array){
                                                [self doneLoadingTableViewData];
                                            }
@@ -166,6 +173,9 @@
 {
     _reloading = NO;
     [_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:self.tableView];
+    self.category.refreshTime = [NSDate date];
+    [[BMNewsManager sharedManager] saveContext];
+    [self refreshLastUpdateTime];
 }
 
 #pragma mark - UIScrollViewDelegate
@@ -223,9 +233,9 @@
     return _reloading; // should return if data source model is reloading
 }
 
-- (NSDate*)egoRefreshTableHeaderDataSourceLastUpdated:(EGORefreshTableHeaderView*)view
+- (NSDate *)egoRefreshTableHeaderDataSourceLastUpdated:(EGORefreshTableHeaderView*)view
 {
-    return self.category.refreshTime; // should return date data source was last changed
+    return self.category.refreshTime;// should return date data source was last changed
 }
 
 #pragma mark - UMSocialUIDelegate

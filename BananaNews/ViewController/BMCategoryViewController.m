@@ -49,6 +49,7 @@
     listVC.tableView.frame = frame;
     [self addChildViewController:listVC];
     [self.view addSubview:listVC.view];
+    [listVC refreshLastUpdateTime];
 }
 
 - (void)didReceiveMemoryWarning

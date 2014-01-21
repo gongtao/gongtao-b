@@ -29,4 +29,6 @@
 
 - (id)initWithRequest:(NSFetchRequest *)request cacheName:(NSString *)cache;
 
+- (void)refreshLastUpdateTime;
+
 @end

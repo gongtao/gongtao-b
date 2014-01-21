@@ -59,6 +59,8 @@
 
 - (BOOL)saveContext:(NSManagedObjectContext *)context;
 
+- (BOOL)saveContext;
+
 - (void)configInit:(void (^)(void))finished;
 
 /** Interface **/
@@ -67,7 +69,7 @@
 
 - (void)createConfigFromNetworking:(NSDictionary *)dic context:(NSManagedObjectContext *)context;
 
-- (void)createNewsFromNetworking:(NSDictionary *)dic newsCategory:(NSString *)cid context:(NSManagedObjectContext *)context;
+- (void)createNewsFromNetworking:(NSDictionary *)dic newsCategory:(NewsCategory *)newsCategory context:(NSManagedObjectContext *)context;
 
 - (void)createCommentsFromNetworking:(NSDictionary *)dic news:(News *)news context:(NSManagedObjectContext *)context;
 

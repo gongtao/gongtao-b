@@ -109,21 +109,21 @@
 - (void)refreshLastUpdatedDate {
 	
 	if ([_delegate respondsToSelector:@selector(egoRefreshTableHeaderDataSourceLastUpdated:)]) {
-		
-		NSDate *date = [_delegate egoRefreshTableHeaderDataSourceLastUpdated:self];
+        
+        NSDate *date = [_delegate egoRefreshTableHeaderDataSourceLastUpdated:self];
+        
+        if (!date) {
+            _lastUpdatedLabel.text = nil;
+            return;
+        }
 		
 		[NSDateFormatter setDefaultFormatterBehavior:NSDateFormatterBehaviorDefault];
 		NSDateFormatter *dateFormatter = [[[NSDateFormatter alloc] init] autorelease];
         [dateFormatter setDateFormat:@"yyyy年MM月dd日 hh:mm"];
 
 		_lastUpdatedLabel.text = [NSString stringWithFormat:@"上次更新: %@", [dateFormatter stringFromDate:date]];
-		[[NSUserDefaults standardUserDefaults] setObject:_lastUpdatedLabel.text forKey:@"EGORefreshTableView_LastRefresh"];
-		[[NSUserDefaults standardUserDefaults] synchronize];
-		
 	} else {
-		
 		_lastUpdatedLabel.text = nil;
-		
 	}
 
 }

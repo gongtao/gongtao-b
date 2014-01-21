@@ -77,6 +77,11 @@
     return result;
 }
 
+- (BOOL)saveContext
+{
+    return [self saveContext:[self managedObjectContext]];
+}
+
 - (void)configInit:(void (^)(void))finished
 {
     if (![[NSFileManager defaultManager] fileExistsAtPath:_configFilePath]) {
@@ -170,7 +175,7 @@
     
 }
 
-- (void)createNewsFromNetworking:(NSDictionary *)dic newsCategory:(NSString *)cid context:(NSManagedObjectContext *)context
+- (void)createNewsFromNetworking:(NSDictionary *)dic newsCategory:(NewsCategory *)newsCategory context:(NSManagedObjectContext *)context
 {
     if (!context) {
         context = [self managedObjectContext];
@@ -179,7 +184,6 @@
     if (!array || (NSNull *)array == [NSNull null]) {
         return;
     }
-    NewsCategory *newsCategory = [self getNewsCategoryById:cid context:context];
     [array enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop){
         NSDictionary *newsInfo = (NSDictionary *)obj;
         News *news = [self createNews:newsInfo context:context];
@@ -612,12 +616,12 @@
             temporaryContext.parentContext = [self managedObjectContext];
             
             [temporaryContext performBlock:^{
-                if (0 == page) {
-                    NewsCategory *newsCategory = [self getNewsCategoryById:cid context:temporaryContext];
+                NewsCategory *newsCategory = [self getNewsCategoryById:cid context:temporaryContext];
+                if (1 == page) {
                     newsCategory.list = [NSOrderedSet orderedSet];
                 }
                 
-                [self createNewsFromNetworking:responseObject newsCategory:cid context:temporaryContext];
+                [self createNewsFromNetworking:responseObject newsCategory:newsCategory context:temporaryContext];
                 [self saveContext:temporaryContext];
                 // save parent to disk asynchronously
                 [temporaryContext.parentContext performBlock:^{
@@ -721,14 +725,12 @@
                     }];
                     
                     NSArray *array = (NSArray *)responseObject[@"left"];
-                    NSLog(@"left:%i", array.count);
                     [array enumerateObjectsUsingBlock:^(NSDictionary *obj, NSUInteger idx, BOOL *stop){
                         NewsCategory *newsCategory = [self createNewsCategory:obj context:temporaryContext];
                         newsCategory.isHead = [NSNumber numberWithBool:NO];
                     }];
                     
                     array = (NSArray *)responseObject[@"head"];
-                    NSLog(@"head:%i", array.count);
                     [array enumerateObjectsUsingBlock:^(NSDictionary *obj, NSUInteger idx, BOOL *stop){
                         NewsCategory *newsCategory = [self createNewsCategory:obj context:temporaryContext];
                         newsCategory.isHead = [NSNumber numberWithBool:YES];

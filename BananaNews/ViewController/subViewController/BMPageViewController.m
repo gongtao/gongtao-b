@@ -93,6 +93,7 @@
     listVC.tableView.contentOffset = CGPointZero;
     [listVC changeFetchRequest:^(NSFetchRequest *request){
         listVC.category = [self.tabViewController.fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
+        [listVC refreshLastUpdateTime];
 //        request.predicate = [NSPredicate predicateWithFormat:@""]
     }];
     
