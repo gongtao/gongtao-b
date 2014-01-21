@@ -38,7 +38,6 @@
     </entity>
     <entity name="NewsCategory" representedClassName="Category" syncable="YES">
         <attribute name="category_id" attributeType="String" indexed="YES" syncable="YES"/>
-        <attribute name="cid" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="cname" attributeType="String" syncable="YES"/>
         <attribute name="isHead" optional="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
     </entity>

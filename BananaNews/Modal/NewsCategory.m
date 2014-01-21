@@ -2,7 +2,7 @@
 //  Category.m
 //  BananaNews
 //
-//  Created by 龚涛 on 1/20/14.
+//  Created by 龚涛 on 1/21/14.
 //  Copyright (c) 2014 龚涛. All rights reserved.
 //
 
@@ -12,7 +12,6 @@
 @implementation NewsCategory
 
 @dynamic category_id;
-@dynamic cid;
 @dynamic cname;
 @dynamic isHead;
 

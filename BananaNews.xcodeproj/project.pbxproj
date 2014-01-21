@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		42AB033B188D0CEB0020C4F2 /* NewsCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 42AB033A188D0CEB0020C4F2 /* NewsCategory.m */; };
 		42C4E6CC1884D21100E650BE /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 42C4E6CB1884D21100E650BE /* Localizable.strings */; };
 		42C4E71A1884F96A00E650BE /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42C4E7191884F96900E650BE /* Security.framework */; };
 		42C4E71C1884F97C00E650BE /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 42C4E71B1884F97C00E650BE /* libiconv.dylib */; };
@@ -60,6 +59,7 @@
 		42C7BB2318715E3100BD6382 /* BMNavBackButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C7BB2218715E3100BD6382 /* BMNavBackButton.m */; };
 		42CA255618769C4A00FB1764 /* BMNewsListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 42CA255518769C4A00FB1764 /* BMNewsListCell.m */; };
 		42D05F76187E417700DC5E7E /* BMDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42D05F75187E417700DC5E7E /* BMDetailViewController.m */; };
+		42E21124188E1CE000E2EC89 /* NewsCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 42E21123188E1CE000E2EC89 /* NewsCategory.m */; };
 		42E3AD6B187F872400ADFAD9 /* BMPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42E3AD6A187F872400ADFAD9 /* BMPageViewController.m */; };
 		42E3AD71187F885100ADFAD9 /* BMTabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42E3AD70187F885100ADFAD9 /* BMTabViewController.m */; };
 		42E8681718764A1A00B02A0B /* Database.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 42E8681518764A1A00B02A0B /* Database.xcdatamodeld */; };
@@ -115,8 +115,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		42AB0339188D0CEB0020C4F2 /* NewsCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsCategory.h; sourceTree = "<group>"; };
-		42AB033A188D0CEB0020C4F2 /* NewsCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsCategory.m; sourceTree = "<group>"; };
 		42C4E6CB1884D21100E650BE /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		42C4E7191884F96900E650BE /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		42C4E71B1884F97C00E650BE /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = usr/lib/libiconv.dylib; sourceTree = SDKROOT; };
@@ -197,6 +195,8 @@
 		42CA255518769C4A00FB1764 /* BMNewsListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMNewsListCell.m; sourceTree = "<group>"; };
 		42D05F74187E417700DC5E7E /* BMDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMDetailViewController.h; sourceTree = "<group>"; };
 		42D05F75187E417700DC5E7E /* BMDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMDetailViewController.m; sourceTree = "<group>"; };
+		42E21122188E1CE000E2EC89 /* NewsCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsCategory.h; sourceTree = "<group>"; };
+		42E21123188E1CE000E2EC89 /* NewsCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsCategory.m; sourceTree = "<group>"; };
 		42E3AD69187F872400ADFAD9 /* BMPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMPageViewController.h; sourceTree = "<group>"; };
 		42E3AD6A187F872400ADFAD9 /* BMPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMPageViewController.m; sourceTree = "<group>"; };
 		42E3AD6F187F885100ADFAD9 /* BMTabViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMTabViewController.h; sourceTree = "<group>"; };
@@ -532,8 +532,8 @@
 				D8174662188A8564002436EF /* User.m */,
 				42EC5AB1188CCDE700FC00F9 /* Comment.h */,
 				42EC5AB2188CCDE700FC00F9 /* Comment.m */,
-				42AB0339188D0CEB0020C4F2 /* NewsCategory.h */,
-				42AB033A188D0CEB0020C4F2 /* NewsCategory.m */,
+				42E21122188E1CE000E2EC89 /* NewsCategory.h */,
+				42E21123188E1CE000E2EC89 /* NewsCategory.m */,
 			);
 			path = Modal;
 			sourceTree = "<group>";
@@ -853,7 +853,7 @@
 				42C4E778188526E800E650BE /* BMSNSLoginView.m in Sources */,
 				42C7BB0618712BF700BD6382 /* BMLeftViewCell.m in Sources */,
 				42C7BB0118710E7F00BD6382 /* BMRightViewController.m in Sources */,
-				42AB033B188D0CEB0020C4F2 /* NewsCategory.m in Sources */,
+				42E21124188E1CE000E2EC89 /* NewsCategory.m in Sources */,
 				42C5844A187A73A700D919EB /* BMCategoryViewController.m in Sources */,
 				D821E85218752D02005C1604 /* BMCustomButton.m in Sources */,
 				42C7BB1F18715D8000BD6382 /* BMRootViewController.m in Sources */,

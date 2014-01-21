@@ -48,17 +48,18 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)viewDidAppear:(BOOL)animated
+- (void)viewWillAppear:(BOOL)animated
 {
-    [super viewDidAppear:animated];
-    [_tabViewController selectPage:0];
+    [super viewWillAppear:animated];
+    
+    [_tabViewController tabsUpdate];
 }
 
 #pragma mark - GTCyclePageViewDataSource
 
 - (NSUInteger)numberOfPagesInCyclePageView:(GTCyclePageView *)cyclePageView
 {
-    return 7;
+    return [self.tabViewController pageNum];
 }
 
 - (GTCyclePageViewCell *)cyclePageView:(GTCyclePageView *)cyclePageView index:(NSUInteger)index

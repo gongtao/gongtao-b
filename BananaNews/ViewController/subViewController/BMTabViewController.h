@@ -10,9 +10,11 @@
 
 @protocol BMTabViewControllerDelegate;
 
-@interface BMTabViewController : UIViewController
+@interface BMTabViewController : UIViewController <NSFetchedResultsControllerDelegate>
 
-@property (nonatomic, assign) NSUInteger page;
+@property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
+
+@property (nonatomic, assign) NSInteger page;
 
 @property (nonatomic, strong) UIScrollView *scrollView;
 
@@ -20,10 +22,22 @@
 
 - (void)selectPage:(NSUInteger)page;
 
+- (NSFetchRequest *)fetchRequest;
+
+- (void)performFetch;
+
+- (NSManagedObjectContext *)managedObjectContext;
+
+- (NSInteger)pageNum;
+
+- (void)tabsUpdate;
+
 @end
 
 @protocol BMTabViewControllerDelegate <NSObject>
 
 - (void)didSelectTab:(BMTabViewController *)tabViewController index:(NSUInteger)index;
+
+- (void)didReloadTab:(BMTabViewController *)tabViewController index:(NSUInteger)index;
 
 @end

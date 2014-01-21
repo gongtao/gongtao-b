@@ -111,13 +111,12 @@
             NSArray *array = dic[@"left"];
             [array enumerateObjectsUsingBlock:^(NSDictionary *obj, NSUInteger idx, BOOL *stop){
                 NewsCategory *newsCategory = [self createNewsCategory:obj context:temporaryContext];
-                newsCategory.cid = [NSNumber numberWithInteger:idx];
+                newsCategory.isHead = [NSNumber numberWithBool:NO];
             }];
             
             array = dic[@"head"];
             [array enumerateObjectsUsingBlock:^(NSDictionary *obj, NSUInteger idx, BOOL *stop){
                 NewsCategory *newsCategory = [self createNewsCategory:obj context:temporaryContext];
-                newsCategory.cid = [NSNumber numberWithInteger:idx];
                 newsCategory.isHead = [NSNumber numberWithBool:YES];
             }];
             
@@ -643,7 +642,7 @@
 {
     void (^requestSuccess)(AFHTTPRequestOperation *, id) = ^(AFHTTPRequestOperation *operation, id responseObject) {
         if (responseObject != [NSNull null]) {
-            NSLog(@"%@", responseObject);
+//            NSLog(@"%@", responseObject);
             
             NSManagedObjectContext *temporaryContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
             temporaryContext.parentContext = [self managedObjectContext];
@@ -710,15 +709,16 @@
                     }];
                     
                     NSArray *array = (NSArray *)responseObject[@"left"];
+                    NSLog(@"left:%i", array.count);
                     [array enumerateObjectsUsingBlock:^(NSDictionary *obj, NSUInteger idx, BOOL *stop){
                         NewsCategory *newsCategory = [self createNewsCategory:obj context:temporaryContext];
-                        newsCategory.cid = [NSNumber numberWithInteger:idx];
+                        newsCategory.isHead = [NSNumber numberWithBool:NO];
                     }];
                     
                     array = (NSArray *)responseObject[@"head"];
+                    NSLog(@"head:%i", array.count);
                     [array enumerateObjectsUsingBlock:^(NSDictionary *obj, NSUInteger idx, BOOL *stop){
                         NewsCategory *newsCategory = [self createNewsCategory:obj context:temporaryContext];
-                        newsCategory.cid = [NSNumber numberWithInteger:idx];
                         newsCategory.isHead = [NSNumber numberWithBool:YES];
                     }];
                     

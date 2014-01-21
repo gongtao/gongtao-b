@@ -70,10 +70,10 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)viewDidAppear:(BOOL)animated
+- (void)viewWillAppear:(BOOL)animated
 {
-    [super viewDidAppear:animated];
-    [_pageVC viewDidAppear:animated];
+    [super viewWillAppear:animated];
+    [_pageVC viewWillAppear:animated];
 }
 
 #pragma mark - Private

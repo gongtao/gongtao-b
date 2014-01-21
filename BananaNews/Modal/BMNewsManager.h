@@ -37,7 +37,6 @@
 
 #define NewsCategory_Entity     @"NewsCategory"
 #define kCategoryId             @"category_id"
-#define kCid                    @"cid"
 #define kIsHead                 @"isHead"
 
 #define Media_Entity            @"Media"
