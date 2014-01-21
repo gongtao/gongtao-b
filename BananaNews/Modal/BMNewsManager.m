@@ -191,7 +191,6 @@
 //        [newsArray addObject:news];
         news.category = newsCategory;
     }];
-    NSLog(@"cid:%@", newsCategory.category_id);
 //    newsCategory.list = [NSOrderedSet orderedSetWithArray:newsArray];
 }
 
@@ -620,6 +619,7 @@
             
             [temporaryContext performBlock:^{
                 NewsCategory *newsCategory = [self getNewsCategoryById:cid context:temporaryContext];
+                NSLog(@"cid:%@", newsCategory.category_id);
                 if (1 == page) {
                     newsCategory.list = [NSOrderedSet orderedSet];
                     newsCategory.refreshTime = [NSDate date];
