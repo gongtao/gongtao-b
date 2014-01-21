@@ -153,19 +153,9 @@
 #warning 个人信息页面
     }
     else {
-        if ([UMSocialAccountManager isOauthWithPlatform:UMShareToSina]) {
-            self.loginType = UMShareToSina;
-            [self _loginToSite];
-        }
-        else if ([UMSocialAccountManager isOauthWithPlatform:UMShareToQQ]) {
-            self.loginType = UMShareToQQ;
-            [self _loginToSite];
-        }
-        else {
-            BMSNSLoginView *loginView = [[BMSNSLoginView alloc] initWithFrame:self.view.bounds];
-            loginView.delegate = self;
-            [loginView showInView:self.parentViewController.view];
-        }
+        BMSNSLoginView *loginView = [[BMSNSLoginView alloc] initWithFrame:self.view.bounds];
+        loginView.delegate = self;
+        [loginView showInView:self.parentViewController.view];
     }
 }
 
@@ -250,6 +240,10 @@
     self.loginType = UMShareToSina;
     if (1 == index) {
         self.loginType = UMShareToQQ;
+    }
+    if ([UMSocialAccountManager isOauthWithPlatform:self.loginType]) {
+        [self _loginToSite];
+        return;
     }
     UMSocialSnsPlatform *snsPlatform = [UMSocialSnsPlatformManager getSocialPlatformWithName:self.loginType];
     snsPlatform.loginClickHandler(self.parentViewController,[UMSocialControllerService defaultControllerService],YES,^(UMSocialResponseEntity *response){
