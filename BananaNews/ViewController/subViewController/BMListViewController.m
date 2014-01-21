@@ -159,7 +159,7 @@
 - (void)reloadTableViewDataSource
 {
     _reloading = YES;
-    [[BMNewsManager sharedManager] getDownloadList:@"36"
+    [[BMNewsManager sharedManager] getDownloadList:self.categoryId
                                               page:1
                                            success:^(NSArray *array){
                                                [self doneLoadingTableViewData];

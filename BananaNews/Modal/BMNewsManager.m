@@ -438,7 +438,7 @@
     NSEntityDescription *entity = [NSEntityDescription entityForName:NewsCategory_Entity inManagedObjectContext:context];
     
     [request setEntity:entity];
-    [request setPredicate:[NSPredicate predicateWithFormat:@"%K == %i", kCategoryId, cid]];
+    [request setPredicate:[NSPredicate predicateWithFormat:@"%K == %@", kCategoryId, cid]];
     
     NSError *error;
     NSArray *results = [context executeFetchRequest:request error:&error];
@@ -619,7 +619,7 @@
             
             [temporaryContext performBlock:^{
                 NewsCategory *newsCategory = [self getNewsCategoryById:cid context:temporaryContext];
-                NSLog(@"cid:%@", newsCategory.category_id);
+                
                 if (1 == page) {
                     newsCategory.list = [NSOrderedSet orderedSet];
                     newsCategory.refreshTime = [NSDate date];

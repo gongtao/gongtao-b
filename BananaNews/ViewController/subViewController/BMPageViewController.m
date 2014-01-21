@@ -70,17 +70,20 @@
     if (!cell) {
         cell = [[GTCyclePageViewCell alloc] initWithReuseIdentifier:identifier];
         
+        NewsCategory *category = [self.tabViewController.fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
+        
         id appDelegate = [UIApplication sharedApplication].delegate;
         NSFetchRequest *request = [[NSFetchRequest alloc] init];
         NSEntityDescription *entity = [NSEntityDescription entityForName:News_Entity inManagedObjectContext:[appDelegate managedObjectContext]];
         [request setEntity:entity];
         NSSortDescriptor *sortDesciptor = [NSSortDescriptor sortDescriptorWithKey:kNid ascending:NO];
-//        request.predicate = [NSPredicate predicateWithFormat:@"category.category_id == %@",@"36"];
+        request.predicate = [NSPredicate predicateWithFormat:@"category.category_id == %@",category.category_id];
         [request setSortDescriptors:[NSArray arrayWithObject:sortDesciptor]];
         
         BMListViewController *listVC = [[BMListViewController alloc] initWithRequest:request cacheName:[NSString stringWithFormat:@"CacheData%i", count]];
         listVC.view.frame = cyclePageView.bounds;
         listVC.tableView.frame = cyclePageView.bounds;
+        listVC.categoryId = category.category_id;
         [self addChildViewController:listVC];
         [cell addSubview:listVC.view];
         
@@ -88,15 +91,17 @@
         
         count++;
     }
-    
-    BMListViewController *listVC = (BMListViewController *)cell.viewController;
-    listVC.tableView.contentOffset = CGPointZero;
-//    [listVC changeFetchRequest:^(NSFetchRequest *request){
-//        NewsCategory *category = [self.tabViewController.fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
-//        listVC.categoryId = category.category_id;
-//        request.predicate = [NSPredicate predicateWithFormat:@"category.category_id == %@",@"35"];
-//        [listVC refreshLastUpdateTime];
-//    }];
+    else {
+        BMListViewController *listVC = (BMListViewController *)cell.viewController;
+        listVC.tableView.contentOffset = CGPointZero;
+        [listVC changeFetchRequest:^(NSFetchRequest *request){
+            NewsCategory *category = [self.tabViewController.fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
+            listVC.categoryId = category.category_id;
+            request.predicate = [NSPredicate predicateWithFormat:@"category.category_id == %@",category.category_id];
+            [listVC refreshLastUpdateTime];
+        }];
+        [listVC.tableView reloadData];
+    }
     
     return cell;
 }
