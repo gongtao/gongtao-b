@@ -14,6 +14,8 @@
 
 @interface BMDetailNewsViewController ()
 
+@property (nonatomic, strong) User *replyUser;
+
 @property (nonatomic, strong) UIControl *inputBgView;
 
 @property (nonatomic, strong) UIView *inputView;
@@ -220,6 +222,16 @@
 - (void)_send:(id)sender
 {
     NSLog(@"send");
+    NSString *comment = _textView.text;
+    [[BMNewsManager sharedManager] postComment:self.news.nid.integerValue
+                                       comment:comment
+                                     replyUser:self.replyUser
+                                       success:^(void){
+                                       }
+                                       failure:^(NSError *error){
+                                       }];
+    
+    [self _cancelInput:nil];
 }
 
 - (void)_cancelInput:(id)sender
