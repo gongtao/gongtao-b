@@ -970,7 +970,7 @@
             failure(error);
         }
     };
-    AFHTTPRequestOperation *op = [_manager POST:@"/api/v1/index.php/post/doFavirite" parameters:param success:requestSuccess failure:requestFailure];
+    AFHTTPRequestOperation *op = [_manager POST:@"api/v1/index.php/post/doFavirite" parameters:param success:requestSuccess failure:requestFailure];
     NSLog(@"request: %@", op.request.URL.absoluteString);
     return op;
 }
@@ -986,6 +986,8 @@
     if (user) {
         [param setObject:user.uid forKey:@"comment_parent"];
     }
+    
+    NSLog(@"%@", param);
     
 //    NSManagedObjectContext *temporaryContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
 //    temporaryContext.parentContext = [self managedObjectContext];
@@ -1026,7 +1028,7 @@
             failure(error);
         }
     };
-    AFHTTPRequestOperation *op = [_manager POST:@"/wp_api/v1/comments/add" parameters:param success:requestSuccess failure:requestFailure];
+    AFHTTPRequestOperation *op = [_manager POST:@"wp_api/v1/comments/add" parameters:param success:requestSuccess failure:requestFailure];
     NSLog(@"request: %@", op.request.URL.absoluteString);
     return op;
 }
