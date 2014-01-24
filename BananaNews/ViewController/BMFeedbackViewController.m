@@ -53,7 +53,7 @@
     [self.view addSubview:_feedbackView];
     
     self.mToolBar = [[UIToolbar alloc] initWithFrame:CGRectMake(0., _feedbackView.frame.size.height-kBottomBarHeight, _feedbackView.frame.size.width, kBottomBarHeight)];
-    [self.mToolBar setBackgroundImage:[UIImage imageNamed:@"城市选择背景.png"] forToolbarPosition:UIToolbarPositionAny barMetrics:UIBarMetricsDefault];
+    [self.mToolBar setBackgroundImage:[UIImage imageNamed:@"反馈输入背景.png"] forToolbarPosition:UIToolbarPositionAny barMetrics:UIBarMetricsDefault];
     self.mToolBar.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
     [_feedbackView addSubview:self.mToolBar];
     
