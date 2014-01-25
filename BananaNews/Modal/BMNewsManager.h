@@ -142,7 +142,7 @@
 
 - (AFHTTPRequestOperation *)postComment:(NSInteger)postId
                                 comment:(NSString *)comment
-                              replyUser:(User *)user
+                           replyComment:(Comment *)replyComment
                                 success:(void (^)(void))success
                                 failure:(void (^)(NSError *error))failure;
 

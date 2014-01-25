@@ -10,7 +10,9 @@
 
 #import "BMSNSLoginView.h"
 
-@interface BMDetailNewsViewController : BMRootViewController <UITextViewDelegate, UMSocialUIDelegate, UIAlertViewDelegate>
+#import "BMDetailViewController.h"
+
+@interface BMDetailNewsViewController : BMRootViewController <UITextViewDelegate, UMSocialUIDelegate, UIAlertViewDelegate, BMDetailViewControllerDelegate>
 
 @property (nonatomic, strong) News *news;
 

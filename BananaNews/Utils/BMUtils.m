@@ -8,6 +8,8 @@
 
 #import "BMUtils.h"
 
+#import <MMProgressHUD.h>
+
 @implementation BMUtils
 
 #pragma mark - Application's directory
@@ -56,6 +58,22 @@
         return [NSString stringWithFormat:@"%u分钟前", [components minute]];
     }
     return @"现在";
+}
+
++ (void)showToast:(NSString *)toast
+{
+    [MMProgressHUD setDisplayStyle:MMProgressHUDDisplayStylePlain];
+    [MMProgressHUD setPresentationStyle:MMProgressHUDPresentationStyleFade];
+    [MMProgressHUD showWithTitle:@"" status:@""];
+    [MMProgressHUD dismissWithSuccess:toast title:nil afterDelay:2];
+}
+
++ (void)showErrorToast:(NSString *)toast
+{
+    [MMProgressHUD setDisplayStyle:MMProgressHUDDisplayStylePlain];
+    [MMProgressHUD setPresentationStyle:MMProgressHUDPresentationStyleFade];
+    [MMProgressHUD showWithTitle:@"" status:@""];
+    [MMProgressHUD dismissWithError:toast afterDelay:2];
 }
 
 @end

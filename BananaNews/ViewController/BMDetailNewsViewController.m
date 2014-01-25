@@ -12,9 +12,11 @@
 
 #import "BMCustomButton.h"
 
+#import "BMUtils.h"
+
 @interface BMDetailNewsViewController ()
 
-@property (nonatomic, strong) User *replyUser;
+@property (nonatomic, strong) Comment *replyComment;
 
 @property (nonatomic, strong) UIControl *inputBgView;
 
@@ -57,6 +59,7 @@
 	// Do any additional setup after loading the view.
     CGFloat y = self.customNavigationBar.frame.size.height;
     BMDetailViewController *vc = [[BMDetailViewController alloc] initWithRequest:self.news];
+    vc.delegate = self;
     vc.view.frame = CGRectMake(0.0, y, 320.0, self.view.frame.size.height-y);
     vc.tableView.frame = vc.view.bounds;
     [self addChildViewController:vc];
@@ -173,6 +176,7 @@
 
 - (void)_comment:(id)sender
 {
+    self.replyComment = nil;
     if (![[NSUserDefaults standardUserDefaults] objectForKey:kLoginKey]) {
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"评论" message:@"亲~请先登录再评论" delegate:self cancelButtonTitle:@"暂不" otherButtonTitles:@"登录", nil];
         [alertView show];
@@ -223,12 +227,22 @@
 {
     NSLog(@"send");
     NSString *comment = _textView.text;
+    if (self.replyComment) {
+        comment = [comment stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"回复%@：", self.replyComment.author.name] withString:@""];
+    }
+    if (!comment || comment.length==0) {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"吐槽" message:@"请输入您想吐槽的内容" delegate:nil cancelButtonTitle:@"我知道了" otherButtonTitles:nil];
+        [alertView show];
+        return;
+    }
     [[BMNewsManager sharedManager] postComment:self.news.nid.integerValue
                                        comment:comment
-                                     replyUser:self.replyUser
+                                  replyComment:self.replyComment
                                        success:^(void){
+                                           [BMUtils showToast:@"吐槽成功，等待审核"];
                                        }
                                        failure:^(NSError *error){
+                                           [BMUtils showErrorToast:@"吐槽失败"];
                                        }];
     
     [self _cancelInput:nil];
@@ -276,6 +290,29 @@
         BMSNSLoginView *loginView = [[BMSNSLoginView alloc] initWithFrame:self.view.bounds];
         [loginView showInView:self.view];
     }
+}
+
+#pragma mark - BMDetailViewControllerDelegate
+
+- (void)willReplyComment:(Comment *)comment
+{
+    self.replyComment = comment;
+    _textView.text = [NSString stringWithFormat:@"回复%@：", comment.author.name];
+    
+    if (![[NSUserDefaults standardUserDefaults] objectForKey:kLoginKey]) {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"评论" message:@"亲~请先登录再评论" delegate:self cancelButtonTitle:@"暂不" otherButtonTitles:@"登录", nil];
+        [alertView show];
+        return;
+    }
+    
+    [UIView animateWithDuration:0.3
+                     animations:^(void) {
+                         _inputBgView.alpha = 1.0;
+                     }
+                     completion:^(BOOL finished) {
+                         [_textView becomeFirstResponder];
+                     }
+     ];
 }
 
 @end

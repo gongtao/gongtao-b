@@ -275,6 +275,13 @@
     if (0 == [indexPath row] || 1 == [indexPath row]) {
         return;
     }
+    Comment *comment = [self.fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:[indexPath row]-2 inSection:[indexPath section]]];
+    User *user = [[BMNewsManager sharedManager] getMainUser];
+    if (user.uid.integerValue != comment.author.uid.integerValue) {
+        if ([self.delegate respondsToSelector:@selector(willReplyComment:)]) {
+            [self.delegate willReplyComment:comment];
+        }
+    }
 }
 
 #pragma mark - UITableViewDataSource

@@ -8,7 +8,15 @@
 
 #import "GTTableViewController.h"
 
+@protocol BMDetailViewControllerDelegate <NSObject>
+
+- (void)willReplyComment:(Comment *)comment;
+
+@end
+
 @interface BMDetailViewController : GTTableViewController
+
+@property (nonatomic, weak) id<BMDetailViewControllerDelegate> delegate;
 
 - (id)initWithRequest:(News *)news;
 

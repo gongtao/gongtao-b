@@ -612,7 +612,7 @@
     
     void (^requestSuccess)(AFHTTPRequestOperation *, id) = ^(AFHTTPRequestOperation *operation, id responseObject) {
         if (responseObject != [NSNull null]) {
-            NSLog(@"%@", responseObject);
+//            NSLog(@"%@", responseObject);
             
             NSManagedObjectContext *temporaryContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
             temporaryContext.parentContext = [self managedObjectContext];
@@ -662,7 +662,7 @@
 {
     void (^requestSuccess)(AFHTTPRequestOperation *, id) = ^(AFHTTPRequestOperation *operation, id responseObject) {
         if (responseObject != [NSNull null]) {
-//            NSLog(@"%@", responseObject);
+            NSLog(@"%@", responseObject);
             
             NSManagedObjectContext *temporaryContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
             temporaryContext.parentContext = [self managedObjectContext];
@@ -781,7 +781,6 @@
                               failure:(void (^)(NSError *error))failure
 {
     void (^requestSuccess)(AFHTTPRequestOperation *, id) = ^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"%@", responseObject);
         if (responseObject != [NSNull null]) {
 //            NSLog(@"%@", responseObject);
             
@@ -977,17 +976,15 @@
 
 - (AFHTTPRequestOperation *)postComment:(NSInteger)postId
                                 comment:(NSString *)comment
-                              replyUser:(User *)user
+                           replyComment:(Comment *)replyComment
                                 success:(void (^)(void))success
                                 failure:(void (^)(NSError *error))failure
 {
     NSString *token = [[NSUserDefaults standardUserDefaults] objectForKey:kLoginToken];
     NSMutableDictionary *param = [[NSMutableDictionary alloc] initWithObjectsAndKeys:[NSNumber numberWithInteger:postId], @"post_id", token, @"token", comment, @"comment", nil];
-    if (user) {
-        [param setObject:user.uid forKey:@"comment_parent"];
+    if (replyComment) {
+        [param setObject:replyComment.cid forKey:@"comment_parent"];
     }
-    
-    NSLog(@"%@", param);
     
 //    NSManagedObjectContext *temporaryContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
 //    temporaryContext.parentContext = [self managedObjectContext];
@@ -1007,7 +1004,7 @@
 //    }];
     
     void (^requestSuccess)(AFHTTPRequestOperation *, id) = ^(AFHTTPRequestOperation *operation, id responseObject) {
-        //        NSLog(@"%@", responseObject);
+        NSLog(@"%@", responseObject);
         NSNumber *errCode = responseObject[@"errCode"];
         if (0 == errCode.integerValue) {
             if (success) {

@@ -18,4 +18,8 @@
 
 + (NSString *)stringIntervalFromNow:(NSDate *)date;
 
++ (void)showToast:(NSString *)toast;
+
++ (void)showErrorToast:(NSString *)toast;
+
 @end
