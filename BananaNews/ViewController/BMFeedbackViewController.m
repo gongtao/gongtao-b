@@ -58,7 +58,8 @@
     [_feedbackView addSubview:self.mToolBar];
     
     UIImageView *editView = [[UIImageView alloc] initWithFrame:CGRectMake(0., 0., 232., 32.)];
-    editView.image = [UIImage imageNamed:@"反馈输入框.png"];
+//    editView.image = [UIImage imageNamed:@"反馈输入框.png"];
+    editView.backgroundColor = [UIColor whiteColor];
     editView.userInteractionEnabled = YES;
     UIBarButtonItem *editBtnItem = [[UIBarButtonItem alloc] initWithCustomView:editView];
     self.mTextField = [[UITextField alloc] initWithFrame:CGRectMake(5., 1., 222., 30.)];
@@ -130,7 +131,8 @@
         
     }
     else {
-        NSLog(@"请输入反馈内容");
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"反馈" message:@"亲~请先输入您的意见" delegate:nil cancelButtonTitle:@"我知道了" otherButtonTitles:nil];
+        [alertView show];
     }
 }
 

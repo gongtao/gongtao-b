@@ -60,7 +60,6 @@
 		42CA255618769C4A00FB1764 /* BMNewsListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 42CA255518769C4A00FB1764 /* BMNewsListCell.m */; };
 		42D05F76187E417700DC5E7E /* BMDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42D05F75187E417700DC5E7E /* BMDetailViewController.m */; };
 		42E21127188E33BB00E2EC89 /* NewsCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 42E21126188E33BB00E2EC89 /* NewsCategory.m */; };
-		42E2112A188E33BC00E2EC89 /* News.m in Sources */ = {isa = PBXBuildFile; fileRef = 42E21129188E33BC00E2EC89 /* News.m */; };
 		42E3AD6B187F872400ADFAD9 /* BMPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42E3AD6A187F872400ADFAD9 /* BMPageViewController.m */; };
 		42E3AD71187F885100ADFAD9 /* BMTabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42E3AD70187F885100ADFAD9 /* BMTabViewController.m */; };
 		42E8681718764A1A00B02A0B /* Database.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 42E8681518764A1A00B02A0B /* Database.xcdatamodeld */; };
@@ -69,7 +68,6 @@
 		42EC5AB0188CB57600FC00F9 /* BMCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 42EC5AAF188CB57600FC00F9 /* BMCommentCell.m */; };
 		42EC5AB3188CCDE700FC00F9 /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = 42EC5AB2188CCDE700FC00F9 /* Comment.m */; };
 		CE8BC6AFDCC940D28D1B30C8 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 620E8C38B3E24A3191C52FA1 /* libPods.a */; };
-		D8174663188A8564002436EF /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = D8174662188A8564002436EF /* User.m */; };
 		D81DB82A18877AEF002D27B5 /* UMSocialLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D81DB7FA18877AEF002D27B5 /* UMSocialLocalizable.strings */; };
 		D81DB82D18877AEF002D27B5 /* UMSCommentDetailController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D81DB80F18877AEF002D27B5 /* UMSCommentDetailController.xib */; };
 		D81DB82E18877AEF002D27B5 /* UMSCommentInputController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D81DB81018877AEF002D27B5 /* UMSCommentInputController.xib */; };
@@ -98,6 +96,9 @@
 		D821E855187560AF005C1604 /* BMCollectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D821E854187560AF005C1604 /* BMCollectViewController.m */; };
 		D821E85818757A80005C1604 /* BMSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D821E85718757A80005C1604 /* BMSettingViewController.m */; };
 		D821E85E18759AC6005C1604 /* BMUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = D821E85D18759AC6005C1604 /* BMUtils.m */; };
+		D8C503A81893547F0092CAC0 /* News.m in Sources */ = {isa = PBXBuildFile; fileRef = D8C503A71893547F0092CAC0 /* News.m */; };
+		D8C503AB18935A850092CAC0 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = D8C503AA18935A850092CAC0 /* User.m */; };
+		D8C503AE189360BF0092CAC0 /* BMCollectListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8C503AD189360BF0092CAC0 /* BMCollectListViewController.m */; };
 		D8EA5913187C0FD500EEB573 /* BMNewsImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = D8EA5912187C0FD500EEB573 /* BMNewsImageView.m */; };
 		D8EA59191880B0C800EEB573 /* GTCyclePageView.m in Sources */ = {isa = PBXBuildFile; fileRef = D8EA59161880B0C800EEB573 /* GTCyclePageView.m */; };
 		D8EA591A1880B0C800EEB573 /* GTCyclePageViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D8EA59181880B0C800EEB573 /* GTCyclePageViewCell.m */; };
@@ -197,8 +198,6 @@
 		42D05F75187E417700DC5E7E /* BMDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMDetailViewController.m; sourceTree = "<group>"; };
 		42E21125188E33BB00E2EC89 /* NewsCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsCategory.h; sourceTree = "<group>"; };
 		42E21126188E33BB00E2EC89 /* NewsCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsCategory.m; sourceTree = "<group>"; };
-		42E21128188E33BC00E2EC89 /* News.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = News.h; sourceTree = "<group>"; };
-		42E21129188E33BC00E2EC89 /* News.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = News.m; sourceTree = "<group>"; };
 		42E3AD69187F872400ADFAD9 /* BMPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMPageViewController.h; sourceTree = "<group>"; };
 		42E3AD6A187F872400ADFAD9 /* BMPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMPageViewController.m; sourceTree = "<group>"; };
 		42E3AD6F187F885100ADFAD9 /* BMTabViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMTabViewController.h; sourceTree = "<group>"; };
@@ -214,8 +213,6 @@
 		42EC5AB2188CCDE700FC00F9 /* Comment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Comment.m; sourceTree = "<group>"; };
 		620E8C38B3E24A3191C52FA1 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA26BFD3CEFE45ABAC84ECBE /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
-		D8174661188A8564002436EF /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
-		D8174662188A8564002436EF /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		D81DB7FB18877AEF002D27B5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/UMSocialLocalizable.strings; sourceTree = "<group>"; };
 		D81DB7FE18877AEF002D27B5 /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
 		D81DB7FF18877AEF002D27B5 /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
@@ -266,6 +263,12 @@
 		D821E85718757A80005C1604 /* BMSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMSettingViewController.m; sourceTree = "<group>"; };
 		D821E85C18759AC6005C1604 /* BMUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMUtils.h; sourceTree = "<group>"; };
 		D821E85D18759AC6005C1604 /* BMUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMUtils.m; sourceTree = "<group>"; };
+		D8C503A61893547F0092CAC0 /* News.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = News.h; sourceTree = "<group>"; };
+		D8C503A71893547F0092CAC0 /* News.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = News.m; sourceTree = "<group>"; };
+		D8C503A918935A850092CAC0 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		D8C503AA18935A850092CAC0 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		D8C503AC189360BF0092CAC0 /* BMCollectListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMCollectListViewController.h; sourceTree = "<group>"; };
+		D8C503AD189360BF0092CAC0 /* BMCollectListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMCollectListViewController.m; sourceTree = "<group>"; };
 		D8EA5911187C0FD500EEB573 /* BMNewsImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMNewsImageView.h; sourceTree = "<group>"; };
 		D8EA5912187C0FD500EEB573 /* BMNewsImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMNewsImageView.m; sourceTree = "<group>"; };
 		D8EA59151880B0C800EEB573 /* GTCyclePageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTCyclePageView.h; sourceTree = "<group>"; };
@@ -526,14 +529,14 @@
 				42E8681918764A2500B02A0B /* BMNewsManager.m */,
 				42C4E79418891F9200E650BE /* Media.h */,
 				42C4E79518891F9200E650BE /* Media.m */,
-				D8174661188A8564002436EF /* User.h */,
-				D8174662188A8564002436EF /* User.m */,
 				42EC5AB1188CCDE700FC00F9 /* Comment.h */,
 				42EC5AB2188CCDE700FC00F9 /* Comment.m */,
-				42E21128188E33BC00E2EC89 /* News.h */,
-				42E21129188E33BC00E2EC89 /* News.m */,
 				42E21125188E33BB00E2EC89 /* NewsCategory.h */,
 				42E21126188E33BB00E2EC89 /* NewsCategory.m */,
+				D8C503A61893547F0092CAC0 /* News.h */,
+				D8C503A71893547F0092CAC0 /* News.m */,
+				D8C503A918935A850092CAC0 /* User.h */,
+				D8C503AA18935A850092CAC0 /* User.m */,
 			);
 			path = Modal;
 			sourceTree = "<group>";
@@ -549,6 +552,8 @@
 				42E3AD6A187F872400ADFAD9 /* BMPageViewController.m */,
 				42E3AD6F187F885100ADFAD9 /* BMTabViewController.h */,
 				42E3AD70187F885100ADFAD9 /* BMTabViewController.m */,
+				D8C503AC189360BF0092CAC0 /* BMCollectListViewController.h */,
+				D8C503AD189360BF0092CAC0 /* BMCollectListViewController.m */,
 			);
 			path = subViewController;
 			sourceTree = "<group>";
@@ -852,17 +857,17 @@
 			files = (
 				42C4E778188526E800E650BE /* BMSNSLoginView.m in Sources */,
 				42C7BB0618712BF700BD6382 /* BMLeftViewCell.m in Sources */,
-				42E2112A188E33BC00E2EC89 /* News.m in Sources */,
+				D8C503A81893547F0092CAC0 /* News.m in Sources */,
 				42C7BB0118710E7F00BD6382 /* BMRightViewController.m in Sources */,
 				42C5844A187A73A700D919EB /* BMCategoryViewController.m in Sources */,
 				D821E85218752D02005C1604 /* BMCustomButton.m in Sources */,
 				42C7BB1F18715D8000BD6382 /* BMRootViewController.m in Sources */,
 				42D05F76187E417700DC5E7E /* BMDetailViewController.m in Sources */,
+				D8C503AB18935A850092CAC0 /* User.m in Sources */,
 				42C6D2A71872A11C00F796FB /* IISideController.m in Sources */,
 				42CA255618769C4A00FB1764 /* BMNewsListCell.m in Sources */,
 				42C4E79618891F9200E650BE /* Media.m in Sources */,
 				D821E85E18759AC6005C1604 /* BMUtils.m in Sources */,
-				D8174663188A8564002436EF /* User.m in Sources */,
 				D8EA591E1881381E00EEB573 /* EGORefreshTableHeaderView.m in Sources */,
 				42C6D2AE1872AA8600F796FB /* BMSearchView.m in Sources */,
 				42C6D2951872843800F796FB /* BMBaseViewController.m in Sources */,
@@ -890,6 +895,7 @@
 				42C4E78718866E0500E650BE /* BMPlaceHolderTextView.m in Sources */,
 				42E8681E187657C500B02A0B /* BMListViewController.m in Sources */,
 				D8EA5913187C0FD500EEB573 /* BMNewsImageView.m in Sources */,
+				D8C503AE189360BF0092CAC0 /* BMCollectListViewController.m in Sources */,
 				42C7BB2318715E3100BD6382 /* BMNavBackButton.m in Sources */,
 				42C7BB0A1871447100BD6382 /* BMNavigationController.m in Sources */,
 				D8EA591A1880B0C800EEB573 /* GTCyclePageViewCell.m in Sources */,
@@ -1034,7 +1040,6 @@
 			baseConfigurationReference = CA26BFD3CEFE45ABAC84ECBE /* Pods.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1059,7 +1064,6 @@
 			baseConfigurationReference = CA26BFD3CEFE45ABAC84ECBE /* Pods.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

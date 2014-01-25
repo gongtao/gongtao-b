@@ -167,6 +167,36 @@
                                        delegate:delegate];
 }
 
+- (void)collectNews:(News *)news operation:(BOOL)isAdd
+{
+    User *user = [self getMainUser];
+    BOOL isCollect = [news.collectUsers containsObject:user];
+    if (isAdd && !isCollect) {
+        NSMutableArray *array = [[NSMutableArray alloc] initWithArray:user.collectNews.array];
+        [array insertObject:news atIndex:0];
+        
+        user.collectNews = [NSOrderedSet orderedSetWithArray:array];
+        [self collectToSite:news.nid.integerValue
+                     action:@"add"
+                    success:^(void){}
+                    failure:^(NSError *error){}];
+    }
+    else if (!isAdd && isCollect) {
+        NSMutableArray *array = [[NSMutableArray alloc] initWithArray:user.collectNews.array];
+        [array removeObject:news];
+        user.collectNews = [NSOrderedSet orderedSetWithArray:array];
+        
+        [self collectToSite:news.nid.integerValue
+                     action:@"remove"
+                    success:^(void){}
+                    failure:^(NSError *error){}];
+    }
+    else {
+        return;
+    }
+    [self saveContext];
+}
+
 - (void)createConfigFromNetworking:(NSDictionary *)dic context:(NSManagedObjectContext *)context
 {
     if (!context) {
@@ -184,14 +214,11 @@
     if (!array || (NSNull *)array == [NSNull null]) {
         return;
     }
-//    NSMutableArray *newsArray = [[NSMutableArray alloc] initWithArray:newsCategory.list.array];
     [array enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop){
         NSDictionary *newsInfo = (NSDictionary *)obj;
         News *news = [self createNews:newsInfo context:context];
-//        [newsArray addObject:news];
         news.category = newsCategory;
     }];
-//    newsCategory.list = [NSOrderedSet orderedSetWithArray:newsArray];
 }
 
 - (void)createCommentsFromNetworking:(NSDictionary *)dic news:(News *)news context:(NSManagedObjectContext *)context
@@ -612,7 +639,7 @@
     
     void (^requestSuccess)(AFHTTPRequestOperation *, id) = ^(AFHTTPRequestOperation *operation, id responseObject) {
         if (responseObject != [NSNull null]) {
-//            NSLog(@"%@", responseObject);
+            NSLog(@"%@", responseObject);
             
             NSManagedObjectContext *temporaryContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
             temporaryContext.parentContext = [self managedObjectContext];
@@ -662,7 +689,7 @@
 {
     void (^requestSuccess)(AFHTTPRequestOperation *, id) = ^(AFHTTPRequestOperation *operation, id responseObject) {
         if (responseObject != [NSNull null]) {
-            NSLog(@"%@", responseObject);
+//            NSLog(@"%@", responseObject);
             
             NSManagedObjectContext *temporaryContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
             temporaryContext.parentContext = [self managedObjectContext];
@@ -933,22 +960,8 @@
                             @"token": token,
                             @"action": action};
     
-//    NSManagedObjectContext *temporaryContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
-//    temporaryContext.parentContext = [self managedObjectContext];
-//    
-//    [temporaryContext performBlock:^{
-//        [self saveContext:temporaryContext];
-//        // save parent to disk asynchronously
-//        [temporaryContext.parentContext performBlock:^{
-//            [self saveContext:temporaryContext.parentContext];
-//            if (success) {
-//                success();
-//            }
-//        }];
-//    }];
-    
     void (^requestSuccess)(AFHTTPRequestOperation *, id) = ^(AFHTTPRequestOperation *operation, id responseObject) {
-        //        NSLog(@"%@", responseObject);
+        NSLog(@"%@", responseObject);
         NSNumber *errCode = responseObject[@"errCode"];
         if (0 == errCode.integerValue) {
             if (success) {
@@ -985,23 +998,6 @@
     if (replyComment) {
         [param setObject:replyComment.cid forKey:@"comment_parent"];
     }
-    
-//    NSManagedObjectContext *temporaryContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
-//    temporaryContext.parentContext = [self managedObjectContext];
-//    
-//    [temporaryContext performBlock:^{
-//        News *news = [self getNewsById:postId context:temporaryContext];
-//        NSInteger likeNum = news.like_count.integerValue;
-//        news.like_count = [NSNumber numberWithInteger:likeNum+1];
-//        [self saveContext:temporaryContext];
-//        // save parent to disk asynchronously
-//        [temporaryContext.parentContext performBlock:^{
-//            [self saveContext:temporaryContext.parentContext];
-//            if (success) {
-//                success();
-//            }
-//        }];
-//    }];
     
     void (^requestSuccess)(AFHTTPRequestOperation *, id) = ^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"%@", responseObject);

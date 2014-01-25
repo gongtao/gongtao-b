@@ -26,6 +26,8 @@
 
 @property (nonatomic, strong) UIButton *sendButton;
 
+@property (nonatomic, assign) BOOL isCommentLogin;
+
 - (void)_comment:(id)sender;
 
 - (void)_collect:(id)sender;
@@ -168,7 +170,12 @@
 {
     User *user = notice.userInfo[@"user"];
     if (user) {
-        [self _comment:nil];
+        if (_isCommentLogin) {
+            [self _comment:nil];
+        }
+        else {
+            [self _collect:nil];
+        }
     }
 }
 
@@ -178,6 +185,7 @@
 {
     self.replyComment = nil;
     if (![[NSUserDefaults standardUserDefaults] objectForKey:kLoginKey]) {
+        _isCommentLogin = YES;
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"评论" message:@"亲~请先登录再评论" delegate:self cancelButtonTitle:@"暂不" otherButtonTitles:@"登录", nil];
         [alertView show];
         return;
@@ -195,7 +203,14 @@
 
 - (void)_collect:(id)sender
 {
+    if (![[NSUserDefaults standardUserDefaults] objectForKey:kLoginKey]) {
+        _isCommentLogin = NO;
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"收藏" message:@"亲~请先登录再收藏" delegate:self cancelButtonTitle:@"暂不" otherButtonTitles:@"登录", nil];
+        [alertView show];
+        return;
+    }
     
+    [[BMNewsManager sharedManager] collectNews:self.news operation:YES];
 }
 
 - (void)_share:(id)sender

@@ -2,8 +2,8 @@
 //  News.m
 //  BananaNews
 //
-//  Created by 龚涛 on 1/21/14.
-//  Copyright (c) 2014 龚涛. All rights reserved.
+//  Created by 龚 涛 on 14-1-25.
+//  Copyright (c) 2014年 龚涛. All rights reserved.
 //
 
 #import "News.h"
@@ -26,9 +26,10 @@
 @dynamic text_height;
 @dynamic title;
 @dynamic url;
+@dynamic category;
 @dynamic comments;
 @dynamic medias;
 @dynamic user;
-@dynamic category;
+@dynamic collectUsers;
 
 @end

@@ -33,6 +33,7 @@
         <attribute name="title" attributeType="String" syncable="YES"/>
         <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="category" optional="YES" maxCount="1" deletionRule="Nullify" ordered="YES" destinationEntity="NewsCategory" inverseName="list" inverseEntity="NewsCategory" syncable="YES"/>
+        <relationship name="collectUsers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="User" inverseName="collectNews" inverseEntity="User" syncable="YES"/>
         <relationship name="comments" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Comment" inverseName="news" inverseEntity="Comment" syncable="YES"/>
         <relationship name="medias" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Media" inverseName="news" inverseEntity="Media" syncable="YES"/>
         <relationship name="user" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="news" inverseEntity="User" syncable="YES"/>
@@ -49,6 +50,7 @@
         <attribute name="isMainUser" optional="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="uid" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <relationship name="collectNews" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="News" inverseName="collectUsers" inverseEntity="News" syncable="YES"/>
         <relationship name="comments" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Comment" inverseName="author" inverseEntity="Comment" syncable="YES"/>
         <relationship name="news" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="News" inverseName="user" inverseEntity="News" syncable="YES"/>
     </entity>

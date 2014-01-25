@@ -2,8 +2,8 @@
 //  News.h
 //  BananaNews
 //
-//  Created by 龚涛 on 1/21/14.
-//  Copyright (c) 2014 龚涛. All rights reserved.
+//  Created by 龚 涛 on 14-1-25.
+//  Copyright (c) 2014年 龚涛. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -24,10 +24,11 @@
 @property (nonatomic, retain) NSNumber * text_height;
 @property (nonatomic, retain) NSString * title;
 @property (nonatomic, retain) NSString * url;
+@property (nonatomic, retain) NewsCategory *category;
 @property (nonatomic, retain) NSOrderedSet *comments;
 @property (nonatomic, retain) NSOrderedSet *medias;
 @property (nonatomic, retain) User *user;
-@property (nonatomic, retain) NewsCategory *category;
+@property (nonatomic, retain) NSSet *collectUsers;
 @end
 
 @interface News (CoreDataGeneratedAccessors)
@@ -52,4 +53,9 @@
 - (void)removeMediasObject:(Media *)value;
 - (void)addMedias:(NSOrderedSet *)values;
 - (void)removeMedias:(NSOrderedSet *)values;
+- (void)addCollectUsersObject:(User *)value;
+- (void)removeCollectUsersObject:(User *)value;
+- (void)addCollectUsers:(NSSet *)values;
+- (void)removeCollectUsers:(NSSet *)values;
+
 @end

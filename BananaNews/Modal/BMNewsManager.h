@@ -67,6 +67,8 @@
 
 - (void)shareNews:(News *)news delegate:(id<UMSocialUIDelegate>)delegate;
 
+- (void)collectNews:(News *)news operation:(BOOL)isAdd;
+
 - (void)createConfigFromNetworking:(NSDictionary *)dic context:(NSManagedObjectContext *)context;
 
 - (void)createNewsFromNetworking:(NSDictionary *)dic newsCategory:(NewsCategory *)newsCategory context:(NSManagedObjectContext *)context;
