@@ -95,6 +95,13 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    NSInteger count = 1;
+    if (count < 2) {
+        self.tableView.backgroundColor = [UIColor clearColor];
+    }
+    else {
+        self.tableView.backgroundColor = Color_ContentBg;
+    }
     return 1;
 }
 
