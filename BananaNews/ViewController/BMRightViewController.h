@@ -10,7 +10,7 @@
 
 #import "BMSNSLoginView.h"
 
-@interface BMRightViewController : UIViewController
+@interface BMRightViewController : UIViewController <UIAlertViewDelegate>
 
 @property (nonatomic, strong) NSString *loginType;
 

@@ -195,15 +195,15 @@
     else {
         if (!_collectButton) {
             _collectButton = [[UIButton alloc] init];
-            [self.contentView addSubview:_collectButton];
+            [_newsContentView addSubview:_collectButton];
         }
         
-        [_collectButton setImage:[UIImage imageNamed:@"未收藏.png"] forState:UIControlStateNormal];
-        [_collectButton setImage:[UIImage imageNamed:@"未收藏按下.png"] forState:UIControlStateHighlighted];
+        [_collectButton setImage:[UIImage imageNamed:@"已收藏.png"] forState:UIControlStateNormal];
+        [_collectButton setImage:[UIImage imageNamed:@"已收藏按下.png"] forState:UIControlStateHighlighted];
         
         _dingButton.frame = CGRectMake(125.0, y, 69.0, 30.0);
         _shareButton.frame = CGRectMake(200.0, y, 69.0, 30.0);
-        _shareButton.frame = CGRectMake(275.0, y, 30.0, 30.0);
+        _collectButton.frame = CGRectMake(275.0, y, 30.0, 30.0);
     }
     
     [_dingButton setTitle:[NSString stringWithFormat:@"(%@)", news.like_count] forState:UIControlStateNormal];

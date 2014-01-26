@@ -45,13 +45,18 @@
     self.rowAnimation = UITableViewRowAnimationNone;
     self.tableView.backgroundColor = [UIColor clearColor];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    _type = BMNewsListCellNormal;
+    _type = BMNewsListCellCollect;
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)dealloc
+{
+    [NSFetchedResultsController deleteCacheWithName:[self cacheName]];
 }
 
 #pragma mark - Private
@@ -71,7 +76,8 @@
 
 - (void)_collectButtonPressed:(UIButton *)sender
 {
-    
+    News *news = [self.fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:sender.tag inSection:0]];
+    [[BMNewsManager sharedManager] collectNews:news operation:NO];
 }
 
 #pragma mark - Override
@@ -80,6 +86,7 @@
 {
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:News_Entity inManagedObjectContext:[self managedObjectContext]];
+    [request setPredicate:[NSPredicate predicateWithFormat:@"Any collectUsers.uid = %@", self.user.uid]];
     [request setEntity:entity];
     NSSortDescriptor *sortDesciptor = [NSSortDescriptor sortDescriptorWithKey:kNid ascending:NO];
     [request setSortDescriptors:[NSArray arrayWithObject:sortDesciptor]];
@@ -103,15 +110,6 @@
     if (BMNewsListCellCollect == newCell.type) {
         newCell.collectButton.tag = row;
         [newCell.collectButton addTarget:self action:@selector(_collectButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-        
-        if ([_user.collectNews containsObject:news]) {
-            [newCell.collectButton setImage:[UIImage imageNamed:@"已收藏.png"] forState:UIControlStateNormal];
-            [newCell.collectButton setImage:[UIImage imageNamed:@"已收藏按下.png"] forState:UIControlStateHighlighted];
-        }
-        else {
-            [newCell.collectButton setImage:[UIImage imageNamed:@"未收藏.png"] forState:UIControlStateNormal];
-            [newCell.collectButton setImage:[UIImage imageNamed:@"未收藏按下.png"] forState:UIControlStateHighlighted];
-        }
     }
 }
 

@@ -21,6 +21,8 @@
 @interface BMRightViewController ()
 {
     BMCustomButton *_loginButton;
+    
+    BOOL _isLogin;
 }
 
 - (void)_submitButtonPressed:(id)sender;
@@ -138,24 +140,13 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-    [UMSocialConfig setSnsPlatformNames:@[UMShareToSina, UMShareToQQ]];
-}
-
-- (void)viewDidDisappear:(BOOL)animated
-{
-    [super viewDidDisappear:animated];
-    [UMSocialConfig setSnsPlatformNames:@[UMShareToSina, UMShareToWechatTimeline, UMShareToWechatSession, UMShareToTencent, UMShareToQQ, UMShareToRenren]];
-}
-
 - (void)loginButtonPressed:(id)sender
 {
     if ([[NSUserDefaults standardUserDefaults] objectForKey:kLoginKey]) {
 #warning 个人信息页面
     }
     else {
+        _isLogin = YES;
         BMSNSLoginView *loginView = [[BMSNSLoginView alloc] initWithFrame:self.view.bounds];
         [loginView showInView:self.parentViewController.view];
     }
@@ -173,6 +164,13 @@
 
 - (void)_collectButtonPressed:(id)sender
 {
+    if (![[NSUserDefaults standardUserDefaults] objectForKey:kLoginKey]) {
+        _isLogin = NO;
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"收藏" message:@"亲~请先登录" delegate:self cancelButtonTitle:@"暂不" otherButtonTitles:@"登录", nil];
+        [alertView show];
+        return;
+    }
+    
     BMLeftViewController *leftVC = (BMLeftViewController *)self.viewDeckController.leftController;
     [leftVC deselectVC];
     UIViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"collectViewController"];
@@ -196,6 +194,20 @@
         [_loginButton setImage:[UIImage imageNamed:@"右侧已登录头像.png"] forState:UIControlStateNormal];
         [_loginButton setImage:[UIImage imageNamed:@"右侧已登录头像.png"] forState:UIControlStateHighlighted];
         [_loginButton setTitle:user.name forState:UIControlStateNormal];
+    }
+    if (!_isLogin) {
+        [self _collectButtonPressed:nil];
+    }
+}
+
+#pragma mark - UIAlertViewDelegate
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    NSString *title = [alertView buttonTitleAtIndex:buttonIndex];
+    if ([title isEqualToString:@"登录"]) {
+        BMSNSLoginView *loginView = [[BMSNSLoginView alloc] initWithFrame:self.view.bounds];
+        [loginView showInView:self.parentViewController.view];
     }
 }
 

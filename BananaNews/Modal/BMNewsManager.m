@@ -170,21 +170,24 @@
 - (void)collectNews:(News *)news operation:(BOOL)isAdd
 {
     User *user = [self getMainUser];
-    BOOL isCollect = [news.collectUsers containsObject:user];
+    BOOL isCollect = NO;
+    for (User *obj in news.collectUsers) {
+        NSLog(@"uid %@ %@", obj.uid, user.uid);
+        if (user.uid.integerValue == obj.uid.integerValue) {
+            isCollect = YES;
+            break;
+        }
+    }
     if (isAdd && !isCollect) {
-        NSMutableArray *array = [[NSMutableArray alloc] initWithArray:user.collectNews.array];
-        [array insertObject:news atIndex:0];
+        [news addCollectUsersObject:user];
         
-        user.collectNews = [NSOrderedSet orderedSetWithArray:array];
         [self collectToSite:news.nid.integerValue
                      action:@"add"
                     success:^(void){}
                     failure:^(NSError *error){}];
     }
     else if (!isAdd && isCollect) {
-        NSMutableArray *array = [[NSMutableArray alloc] initWithArray:user.collectNews.array];
-        [array removeObject:news];
-        user.collectNews = [NSOrderedSet orderedSetWithArray:array];
+        [news removeCollectUsersObject:user];
         
         [self collectToSite:news.nid.integerValue
                      action:@"remove"
