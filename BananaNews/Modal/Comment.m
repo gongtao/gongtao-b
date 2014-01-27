@@ -2,8 +2,8 @@
 //  Comment.m
 //  BananaNews
 //
-//  Created by 龚涛 on 1/20/14.
-//  Copyright (c) 2014 龚涛. All rights reserved.
+//  Created by 龚 涛 on 14-1-26.
+//  Copyright (c) 2014年 龚涛. All rights reserved.
 //
 
 #import "Comment.h"
@@ -20,5 +20,6 @@
 @dynamic height;
 @dynamic author;
 @dynamic news;
+@dynamic replyUser;
 
 @end

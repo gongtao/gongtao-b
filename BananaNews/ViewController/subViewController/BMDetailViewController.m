@@ -8,6 +8,8 @@
 
 #import "BMDetailViewController.h"
 
+#import "BMUserInfoViewController.h"
+
 #import "BMNewsImageView.h"
 
 #import "BMCustomButton.h"
@@ -29,6 +31,12 @@
 - (void)_initNewsCell;
 
 - (void)_ding:(id)sender;
+
+- (void)_userBtnPressed:(UIButton *)button;
+
+- (void)_replyUserBtnPressed:(UIButton *)button;
+
+- (void)_presentUserInfo:(User *)user;
 
 @end
 
@@ -195,6 +203,28 @@
     [[BMNewsManager sharedManager] dingToSite:self.news.nid.integerValue success:nil failure:nil];
 }
 
+- (void)_userBtnPressed:(UIButton *)button
+{
+    Comment *comment = [self.fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:button.tag inSection:0]];
+    [self _presentUserInfo:comment.author];
+}
+
+- (void)_replyUserBtnPressed:(UIButton *)button
+{
+    Comment *comment = [self.fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:button.tag inSection:0]];
+    [self _presentUserInfo:comment.replyUser];
+}
+
+- (void)_presentUserInfo:(User *)user
+{
+    if (user) {
+        BMUserInfoViewController *vc = [self.parentViewController.storyboard instantiateViewControllerWithIdentifier:@"userInfoViewController"];
+        vc.user = user;
+        [self.parentViewController.navigationController pushViewController:vc animated:YES];
+    }
+    
+}
+
 #pragma mark - Override
 
 - (NSString *)cacheName
@@ -253,10 +283,21 @@
     BMCommentCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (!cell) {
         cell = [[BMCommentCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        [cell.userButton addTarget:self action:@selector(_userBtnPressed:) forControlEvents:UIControlEventTouchUpInside];
+        [cell.replyButton addTarget:self action:@selector(_replyUserBtnPressed:) forControlEvents:UIControlEventTouchUpInside];
     }
-    Comment *comment = [fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:indexPath.row-2 inSection:indexPath.section]];
-    [cell configCellComment:comment isLast:(indexPath.row-1 == [self.fetchedResultsController.fetchedObjects count])];
+    [self configCell:cell cellForRowAtIndexPath:indexPath fetchedResultsController:fetchedResultsController];
     return cell;
+}
+
+- (void)configCell:(UITableViewCell *)cell cellForRowAtIndexPath:(NSIndexPath *)indexPath fetchedResultsController:(NSFetchedResultsController *)fetchedResultsController
+{
+    int row = indexPath.row-2;
+    Comment *comment = [fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:row inSection:indexPath.section]];
+    BMCommentCell *commentCell = (BMCommentCell *)cell;
+    [commentCell configCellComment:comment isLast:(indexPath.row-1 == [fetchedResultsController.fetchedObjects count])];
+    commentCell.userButton.tag = row;
+    commentCell.replyButton.tag = row;
 }
 
 - (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath

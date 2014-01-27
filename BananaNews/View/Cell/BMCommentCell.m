@@ -48,20 +48,19 @@
         _replyLabel.textColor = Color_NewsSmallFont;
         _replyLabel.text = @"回复";
         [_replyLabel sizeToFit];
-        _replyLabel.hidden = YES;
         [_newsContentView addSubview:_replyLabel];
         
         _userButton = [[UIButton alloc] init];
         _userButton.backgroundColor = [UIColor clearColor];
         [_userButton setTitleColor:Color_CommentUser forState:UIControlStateNormal];
         _userButton.titleLabel.font = Font_NewsTitle;
+        _userButton.titleLabel.lineBreakMode = NSLineBreakByTruncatingTail;
         [_newsContentView addSubview:_userButton];
         
         _replyButton = [[UIButton alloc] init];
         _replyButton.backgroundColor = [UIColor clearColor];
         [_replyButton setTitleColor:Color_CommentUser forState:UIControlStateNormal];
         _replyButton.titleLabel.font = Font_NewsTitle;
-        _replyButton.hidden = YES;
         [_newsContentView addSubview:_replyButton];
         
         _timeLabel = [[UILabel alloc] init];
@@ -84,16 +83,33 @@
     _newsContentView.frame = CGRectMake(6.0, -3.0, 308.0, height+60.0);
     
     CGSize size = [comment.author.name sizeWithFont:Font_NewsTitle];
-    _userButton.frame = CGRectMake(38.0, 12.0, size.width, size.height);
     [_userButton setTitle:comment.author.name forState:UIControlStateNormal];
     
-#warning 回复评论
-//    size = _replyLabel.frame.size;
-//    _replyLabel.frame = CGRectMake(CGRectGetMaxX(_userButton.frame)+3.0, 12.0, size.width, size.height);
-//    
-//    size = [comment.author.name sizeWithFont:Font_NewsTitle];
-//    _replyButton.frame = CGRectMake(CGRectGetMaxX(_replyLabel.frame)+3.0, 12.0, size.width, size.height);
-//    [_replyButton setTitle:comment.author.name forState:UIControlStateNormal];
+    if (comment.replyUser) {
+        _replyButton.hidden = NO;
+        _replyLabel.hidden = NO;
+        
+        if (size.width > 90.0) {
+            size.width = 90.0;
+        }
+        _userButton.frame = CGRectMake(38.0, 12.0, size.width, size.height);
+        
+        CGSize size1 = _replyLabel.frame.size;
+        _replyLabel.frame = CGRectMake(CGRectGetMaxX(_userButton.frame)+3.0, 12.0, size1.width, size1.height);
+        
+        CGSize size2 = [comment.replyUser.name sizeWithFont:Font_NewsTitle];
+        if (size2.width > 90.0) {
+            size2.width = 90.0;
+        }
+        _replyButton.frame = CGRectMake(CGRectGetMaxX(_replyLabel.frame)+3.0, 12.0, size2.width, size2.height);
+        [_replyButton setTitle:comment.replyUser.name forState:UIControlStateNormal];
+    }
+    else {
+        _replyButton.hidden = YES;
+        _replyLabel.hidden = YES;
+        
+        _userButton.frame = CGRectMake(38.0, 12.0, size.width, size.height);
+    }
     
     NSString *time = [BMUtils stringIntervalFromNow:comment.date];
     size = [time sizeWithFont:Font_NewsSmall];

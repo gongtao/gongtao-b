@@ -2,7 +2,7 @@
 //  User.h
 //  BananaNews
 //
-//  Created by 龚 涛 on 14-1-25.
+//  Created by 龚 涛 on 14-1-26.
 //  Copyright (c) 2014年 龚涛. All rights reserved.
 //
 
@@ -20,6 +20,7 @@
 @property (nonatomic, retain) NSSet *comments;
 @property (nonatomic, retain) NSSet *news;
 @property (nonatomic, retain) NSOrderedSet *collectNews;
+@property (nonatomic, retain) NSSet *replyComment;
 @end
 
 @interface User (CoreDataGeneratedAccessors)
@@ -44,4 +45,9 @@
 - (void)removeCollectNewsObject:(News *)value;
 - (void)addCollectNews:(NSOrderedSet *)values;
 - (void)removeCollectNews:(NSOrderedSet *)values;
+- (void)addReplyCommentObject:(Comment *)value;
+- (void)removeReplyCommentObject:(Comment *)value;
+- (void)addReplyComment:(NSSet *)values;
+- (void)removeReplyComment:(NSSet *)values;
+
 @end

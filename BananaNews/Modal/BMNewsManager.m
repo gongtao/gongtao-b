@@ -512,8 +512,11 @@
     }
     
     NSString *name = dic[@"display_name"];
-    if (name && (NSNull *)name != [NSNull null]) {
+    if (name && (NSNull *)name != [NSNull null] && name.length > 0) {
         user.name = name;
+    }
+    else {
+        user.name = @"匿名用户";
     }
     
     NSArray *avatar = dic[@"avatar"];
@@ -568,7 +571,7 @@
     NSNumber *cid = dic[@"id"];
     
     if (!cid || (NSNull *)cid == [NSNull null]) {
-        NSLog(@"User: uid null");
+        NSLog(@"Comment: cid null");
         return nil;
     }
     
@@ -591,6 +594,7 @@
         comment.date = [BMUtils dateFromString:date];
     }
     
+    //用户
     NSMutableDictionary *userDic = [[NSMutableDictionary alloc] init];
     NSNumber *uid = dic[@"user"];
     if (uid && (NSNull *)uid != [NSNull null]) {
@@ -608,6 +612,21 @@
     }
     
     comment.author = [self createUser:userDic context:context];
+    
+    //回复用户
+    userDic = [[NSMutableDictionary alloc] init];
+    NSDictionary *replyUserDic = dic[@"parent_info"];
+    
+    NSString *reply_uid = replyUserDic[@"user"];
+    if (reply_uid && (NSNull *)reply_uid != [NSNull null]) {
+        userDic[@"id"] = [NSNumber numberWithInteger:[reply_uid integerValue]];
+    }
+    
+    NSString *reply_name = replyUserDic[@"author"];
+    if (reply_name && (NSNull *)reply_name != [NSNull null]) {
+        userDic[@"display_name"] = reply_name;
+    }
+    comment.replyUser = [self createUser:userDic context:context];
     
     return comment;
 }
@@ -1025,6 +1044,27 @@
         }
     };
     AFHTTPRequestOperation *op = [_manager POST:@"wp_api/v1/comments/add" parameters:param success:requestSuccess failure:requestFailure];
+    NSLog(@"request: %@", op.request.URL.absoluteString);
+    return op;
+}
+
+- (AFHTTPRequestOperation *)getUserInfoById:(NSInteger)uid
+                                    success:(void (^)(void))success
+                                    failure:(void (^)(NSError *error))failure
+{
+    void (^requestSuccess)(AFHTTPRequestOperation *, id) = ^(AFHTTPRequestOperation *operation, id responseObject) {
+//        NSLog(@"%@", responseObject);
+    };
+    
+    void (^requestFailure)(AFHTTPRequestOperation *, NSError *) = ^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+        NSLog(@"data: %@", operation.responseString);
+        if (failure) {
+            failure(error);
+        }
+    };
+    
+    AFHTTPRequestOperation *op = [_manager POST:[NSString stringWithFormat:@"wp_api/v1/users/%i", uid] parameters:nil success:requestSuccess failure:requestFailure];
     NSLog(@"request: %@", op.request.URL.absoluteString);
     return op;
 }

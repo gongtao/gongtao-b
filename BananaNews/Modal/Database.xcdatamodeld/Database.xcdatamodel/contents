@@ -8,6 +8,7 @@
         <attribute name="height" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <relationship name="author" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="comments" inverseEntity="User" syncable="YES"/>
         <relationship name="news" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="News" inverseName="comments" inverseEntity="News" syncable="YES"/>
+        <relationship name="replyUser" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="replyComment" inverseEntity="User" syncable="YES"/>
     </entity>
     <entity name="Media" representedClassName="Media" syncable="YES">
         <attribute name="large" optional="YES" attributeType="String" syncable="YES"/>
@@ -53,6 +54,7 @@
         <relationship name="collectNews" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="News" inverseName="collectUsers" inverseEntity="News" syncable="YES"/>
         <relationship name="comments" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Comment" inverseName="author" inverseEntity="Comment" syncable="YES"/>
         <relationship name="news" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="News" inverseName="user" inverseEntity="News" syncable="YES"/>
+        <relationship name="replyComment" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Comment" inverseName="replyUser" inverseEntity="Comment" syncable="YES"/>
     </entity>
     <elements>
         <element name="Comment" positionX="0" positionY="0" width="0" height="0"/>

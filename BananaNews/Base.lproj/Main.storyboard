@@ -45,6 +45,7 @@
                     <navigationItem key="navigationItem" id="cUy-QY-C6i"/>
                     <connections>
                         <segue destination="ltn-Ax-bJb" kind="push" id="JV7-PX-ixq"/>
+                        <segue destination="otD-o1-d08" kind="push" id="g3U-h0-MRm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hoe-Vb-7Uo" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -68,6 +69,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iTu-qT-i5F" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2996" y="470"/>
+        </scene>
+        <!--User Info View Controller-->
+        <scene sceneID="lL4-Pa-fr6">
+            <objects>
+                <viewController storyboardIdentifier="userInfoViewController" id="otD-o1-d08" customClass="BMUserInfoViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="qr3-Pv-G8D"/>
+                        <viewControllerLayoutGuide type="bottom" id="TFy-EF-AVz"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="PbY-OD-rwB">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="gRt-nz-igq"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JeA-jX-PoV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3569" y="470"/>
         </scene>
         <!--Page View Controller-->
         <scene sceneID="dHM-JD-sIb">
@@ -233,6 +253,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="OoU-hZ-IVh"/>
+                    <connections>
+                        <segue destination="otD-o1-d08" kind="push" id="v5j-77-0Df"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BwP-cP-22j" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -253,7 +276,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="W7z-oi-ZpP"/>
                     <connections>
-                        <segue destination="4aS-DJ-gXh" kind="custom" id="dUE-JL-v0s"/>
+                        <segue destination="ltn-Ax-bJb" kind="push" id="jNu-jD-hn4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cqR-cq-7yP" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -307,9 +330,9 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="a0T-qp-7PQ"/>
         <segue reference="xJg-Zy-Hda"/>
-        <segue reference="dUE-JL-v0s"/>
-        <segue reference="Sh5-ZU-jfh"/>
+        <segue reference="a0T-qp-7PQ"/>
+        <segue reference="jNu-jD-hn4"/>
+        <segue reference="v5j-77-0Df"/>
     </inferredMetricsTieBreakers>
 </document>
