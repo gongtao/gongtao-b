@@ -26,6 +26,8 @@
 
 @property (nonatomic, strong) UIButton *sendButton;
 
+@property (nonatomic, strong) UIButton *collectButton;
+
 @property (nonatomic, assign) BOOL isCommentLogin;
 
 - (void)_comment:(id)sender;
@@ -41,6 +43,8 @@
 - (void)_cancelInput:(id)sender;
 
 - (void)_loginToSite:(NSNotification *)notice;
+
+- (void)_updateCollectButton;
 
 @end
 
@@ -99,11 +103,9 @@
     label.backgroundColor = [UIColor clearColor];
     [inputView addSubview:label];
     
-    UIButton *collectButton = [[UIButton alloc] initWithFrame:CGRectMake(232.0, 0.0, 40.0, 40.0)];
-    [collectButton setImage:[UIImage imageNamed:@"详情页收藏.png"] forState:UIControlStateNormal];
-    [collectButton setImage:[UIImage imageNamed:@"详情页收藏按下.png"] forState:UIControlStateHighlighted];
-    [collectButton addTarget:self action:@selector(_collect:) forControlEvents:UIControlEventTouchUpInside];
-    [bottomView addSubview:collectButton];
+    _collectButton = [[UIButton alloc] initWithFrame:CGRectMake(232.0, 0.0, 40.0, 40.0)];
+    [_collectButton addTarget:self action:@selector(_collect:) forControlEvents:UIControlEventTouchUpInside];
+    [bottomView addSubview:_collectButton];
     
     UIButton *shareButton = [[UIButton alloc] initWithFrame:CGRectMake(272.0, 0.0, 40.0, 40.0)];
     [shareButton setImage:[UIImage imageNamed:@"详情页分享.png"] forState:UIControlStateNormal];
@@ -154,6 +156,12 @@
     [[BMNewsManager sharedManager] getCommentsByNews:self.news page:1 success:nil failure:nil];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self _updateCollectButton];
+}
+
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
@@ -176,6 +184,30 @@
         else {
             [self _collect:nil];
         }
+    }
+}
+
+- (void)_updateCollectButton
+{
+    User *user = [[BMNewsManager sharedManager] getMainUser];
+    if (!user) {
+        [_collectButton setImage:[UIImage imageNamed:@"详情页收藏.png"] forState:UIControlStateNormal];
+        [_collectButton setImage:[UIImage imageNamed:@"详情页收藏按下.png"] forState:UIControlStateHighlighted];
+    }
+    BOOL isCollect = NO;
+    for (User *obj in self.news.collectUsers) {
+        if (user.uid.integerValue == obj.uid.integerValue) {
+            isCollect = YES;
+            break;
+        }
+    }
+    if (isCollect) {
+        [_collectButton setImage:[UIImage imageNamed:@"详情页已收藏.png"] forState:UIControlStateNormal];
+        [_collectButton setImage:[UIImage imageNamed:@"详情页已收藏按下.png"] forState:UIControlStateHighlighted];
+    }
+    else {
+        [_collectButton setImage:[UIImage imageNamed:@"详情页收藏.png"] forState:UIControlStateNormal];
+        [_collectButton setImage:[UIImage imageNamed:@"详情页收藏按下.png"] forState:UIControlStateHighlighted];
     }
 }
 
@@ -210,7 +242,16 @@
         return;
     }
     
-    [[BMNewsManager sharedManager] collectNews:self.news operation:YES];
+    User *user = [[BMNewsManager sharedManager] getMainUser];
+    BOOL isCollect = NO;
+    for (User *obj in self.news.collectUsers) {
+        if (user.uid.integerValue == obj.uid.integerValue) {
+            isCollect = YES;
+            break;
+        }
+    }
+    [[BMNewsManager sharedManager] collectNews:self.news operation:!isCollect];
+    [self _updateCollectButton];
 }
 
 - (void)_share:(id)sender

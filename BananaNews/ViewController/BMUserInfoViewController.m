@@ -8,6 +8,8 @@
 
 #import "BMUserInfoViewController.h"
 
+#import "BMUserDetailViewController.h"
+
 @interface BMUserInfoViewController ()
 
 @end
@@ -27,6 +29,20 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    if (self.user.isMainUser.boolValue) {
+        self.title = @"我的主页";
+    }
+    else {
+        self.title = @"他的主页";
+    }
+    
+    CGFloat y = self.customNavigationBar.frame.size.height;
+    BMUserDetailViewController *vc = [[BMUserDetailViewController alloc] initWithNibName:nil bundle:nil];
+    vc.user = self.user;
+    vc.view.frame = CGRectMake(0.0, y, 320.0, self.view.frame.size.height-y);
+    vc.tableView.frame = vc.view.bounds;
+    [self addChildViewController:vc];
+    [self.view addSubview:vc.view];
 }
 
 - (void)didReceiveMemoryWarning

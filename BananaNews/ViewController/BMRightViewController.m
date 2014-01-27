@@ -10,6 +10,8 @@
 
 #import "BMLeftViewController.h"
 
+#import "BMUserInfoViewController.h"
+
 #import "IIViewDeckController.h"
 
 #import "BMCustomButton.h"
@@ -51,6 +53,8 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     self.view.backgroundColor = Color_SideBg;
+    
+    _isLogin = YES;
     
     CGFloat y = IS_IOS7 ? 35.0 : 15.0;
     
@@ -145,7 +149,9 @@
 - (void)loginButtonPressed:(id)sender
 {
     if ([[NSUserDefaults standardUserDefaults] objectForKey:kLoginKey]) {
-#warning 个人信息页面
+        BMUserInfoViewController *vc = [self.parentViewController.storyboard instantiateViewControllerWithIdentifier:@"userInfoViewController"];
+        vc.user = [[BMNewsManager sharedManager] getMainUser];
+        [self.navigationController pushViewController:vc animated:YES];
     }
     else {
         _isLogin = YES;

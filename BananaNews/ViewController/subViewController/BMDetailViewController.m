@@ -8,7 +8,7 @@
 
 #import "BMDetailViewController.h"
 
-#import "BMUserInfoViewController.h"
+//#import "BMUserInfoViewController.h"
 
 #import "BMNewsImageView.h"
 
@@ -203,25 +203,26 @@
     [[BMNewsManager sharedManager] dingToSite:self.news.nid.integerValue success:nil failure:nil];
 }
 
+#warning 备用
 - (void)_userBtnPressed:(UIButton *)button
 {
-    Comment *comment = [self.fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:button.tag inSection:0]];
-    [self _presentUserInfo:comment.author];
+//    Comment *comment = [self.fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:button.tag inSection:0]];
+//    [self _presentUserInfo:comment.author];
 }
 
 - (void)_replyUserBtnPressed:(UIButton *)button
 {
-    Comment *comment = [self.fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:button.tag inSection:0]];
-    [self _presentUserInfo:comment.replyUser];
+//    Comment *comment = [self.fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:button.tag inSection:0]];
+//    [self _presentUserInfo:comment.replyUser];
 }
 
 - (void)_presentUserInfo:(User *)user
 {
-    if (user) {
-        BMUserInfoViewController *vc = [self.parentViewController.storyboard instantiateViewControllerWithIdentifier:@"userInfoViewController"];
-        vc.user = user;
-        [self.parentViewController.navigationController pushViewController:vc animated:YES];
-    }
+//    if (user) {
+//        BMUserInfoViewController *vc = [self.parentViewController.storyboard instantiateViewControllerWithIdentifier:@"userInfoViewController"];
+//        vc.user = user;
+//        [self.parentViewController.navigationController pushViewController:vc animated:YES];
+//    }
     
 }
 

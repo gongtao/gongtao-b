@@ -42,7 +42,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    self.rowAnimation = UITableViewRowAnimationNone;
+    self.rowAnimation = UITableViewRowAnimationFade;
     self.tableView.backgroundColor = [UIColor clearColor];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     _type = BMNewsListCellCollect;
@@ -52,11 +52,6 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-- (void)dealloc
-{
-    [NSFetchedResultsController deleteCacheWithName:[self cacheName]];
 }
 
 #pragma mark - Private
@@ -78,6 +73,7 @@
 {
     News *news = [self.fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:sender.tag inSection:0]];
     [[BMNewsManager sharedManager] collectNews:news operation:NO];
+    [self.tableView reloadData];
 }
 
 #pragma mark - Override
@@ -95,7 +91,7 @@
 
 - (NSString *)cacheName
 {
-    return @"MainCollectCache";
+    return nil;
 }
 
 - (void)configCell:(UITableViewCell *)cell cellForRowAtIndexPath:(NSIndexPath *)indexPath fetchedResultsController:(NSFetchedResultsController *)fetchedResultsController
