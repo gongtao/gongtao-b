@@ -104,15 +104,18 @@
 		D8EA59191880B0C800EEB573 /* GTCyclePageView.m in Sources */ = {isa = PBXBuildFile; fileRef = D8EA59161880B0C800EEB573 /* GTCyclePageView.m */; };
 		D8EA591A1880B0C800EEB573 /* GTCyclePageViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D8EA59181880B0C800EEB573 /* GTCyclePageViewCell.m */; };
 		D8EA591E1881381E00EEB573 /* EGORefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = D8EA591D1881381E00EEB573 /* EGORefreshTableHeaderView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		D8F72B8C189697AD0093978C /* 114.png in Resources */ = {isa = PBXBuildFile; fileRef = D8F72B84189697AD0093978C /* 114.png */; };
-		D8F72B8D189697AD0093978C /* 120.png in Resources */ = {isa = PBXBuildFile; fileRef = D8F72B85189697AD0093978C /* 120.png */; };
-		D8F72B8E189697AD0093978C /* 29.png in Resources */ = {isa = PBXBuildFile; fileRef = D8F72B86189697AD0093978C /* 29.png */; };
-		D8F72B90189697AD0093978C /* 57.png in Resources */ = {isa = PBXBuildFile; fileRef = D8F72B88189697AD0093978C /* 57.png */; };
-		D8F72B91189697AD0093978C /* 58.png in Resources */ = {isa = PBXBuildFile; fileRef = D8F72B89189697AD0093978C /* 58.png */; };
-		D8F72B92189697AD0093978C /* 80.png in Resources */ = {isa = PBXBuildFile; fileRef = D8F72B8A189697AD0093978C /* 80.png */; };
+		D8F72B8C189697AD0093978C /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D8F72B84189697AD0093978C /* Icon@2x.png */; };
+		D8F72B8D189697AD0093978C /* Icon-120.png in Resources */ = {isa = PBXBuildFile; fileRef = D8F72B85189697AD0093978C /* Icon-120.png */; };
+		D8F72B8E189697AD0093978C /* Icon-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = D8F72B86189697AD0093978C /* Icon-Small.png */; };
+		D8F72B90189697AD0093978C /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = D8F72B88189697AD0093978C /* Icon.png */; };
+		D8F72B91189697AD0093978C /* Icon-Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D8F72B89189697AD0093978C /* Icon-Small@2x.png */; };
+		D8F72B92189697AD0093978C /* Icon-80.png in Resources */ = {isa = PBXBuildFile; fileRef = D8F72B8A189697AD0093978C /* Icon-80.png */; };
 		D8F72B9718969CFF0093978C /* BMUserDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8F72B9618969CFF0093978C /* BMUserDetailViewController.m */; };
 		D8F72B991896B4370093978C /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = D8F72B981896B4370093978C /* iTunesArtwork */; };
 		D8F72B9C1897465E0093978C /* BMSettingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D8F72B9B1897465E0093978C /* BMSettingCell.m */; };
+		D8F72BA0189762950093978C /* Default-568@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D8F72B9D189762950093978C /* Default-568@2x.jpg */; };
+		D8F72BA1189762950093978C /* Default.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D8F72B9E189762950093978C /* Default.jpg */; };
+		D8F72BA2189762950093978C /* Default@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D8F72B9F189762950093978C /* Default@2x.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -289,17 +292,20 @@
 		D8EA59181880B0C800EEB573 /* GTCyclePageViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTCyclePageViewCell.m; sourceTree = "<group>"; };
 		D8EA591C1881381E00EEB573 /* EGORefreshTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGORefreshTableHeaderView.h; sourceTree = "<group>"; };
 		D8EA591D1881381E00EEB573 /* EGORefreshTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGORefreshTableHeaderView.m; sourceTree = "<group>"; };
-		D8F72B84189697AD0093978C /* 114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 114.png; sourceTree = "<group>"; };
-		D8F72B85189697AD0093978C /* 120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 120.png; sourceTree = "<group>"; };
-		D8F72B86189697AD0093978C /* 29.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 29.png; sourceTree = "<group>"; };
-		D8F72B88189697AD0093978C /* 57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 57.png; sourceTree = "<group>"; };
-		D8F72B89189697AD0093978C /* 58.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 58.png; sourceTree = "<group>"; };
-		D8F72B8A189697AD0093978C /* 80.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 80.png; sourceTree = "<group>"; };
+		D8F72B84189697AD0093978C /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
+		D8F72B85189697AD0093978C /* Icon-120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-120.png"; sourceTree = "<group>"; };
+		D8F72B86189697AD0093978C /* Icon-Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small.png"; sourceTree = "<group>"; };
+		D8F72B88189697AD0093978C /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		D8F72B89189697AD0093978C /* Icon-Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small@2x.png"; sourceTree = "<group>"; };
+		D8F72B8A189697AD0093978C /* Icon-80.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-80.png"; sourceTree = "<group>"; };
 		D8F72B9518969CFF0093978C /* BMUserDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMUserDetailViewController.h; sourceTree = "<group>"; };
 		D8F72B9618969CFF0093978C /* BMUserDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMUserDetailViewController.m; sourceTree = "<group>"; };
 		D8F72B981896B4370093978C /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; path = iTunesArtwork; sourceTree = "<group>"; };
 		D8F72B9A1897465E0093978C /* BMSettingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMSettingCell.h; sourceTree = "<group>"; };
 		D8F72B9B1897465E0093978C /* BMSettingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMSettingCell.m; sourceTree = "<group>"; };
+		D8F72B9D189762950093978C /* Default-568@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Default-568@2x.jpg"; sourceTree = "<group>"; };
+		D8F72B9E189762950093978C /* Default.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Default.jpg; sourceTree = "<group>"; };
+		D8F72B9F189762950093978C /* Default@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Default@2x.jpg"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -730,13 +736,16 @@
 		D8F72B82189697AD0093978C /* Image */ = {
 			isa = PBXGroup;
 			children = (
+				D8F72B9D189762950093978C /* Default-568@2x.jpg */,
+				D8F72B9E189762950093978C /* Default.jpg */,
+				D8F72B9F189762950093978C /* Default@2x.jpg */,
 				D8F72B981896B4370093978C /* iTunesArtwork */,
-				D8F72B84189697AD0093978C /* 114.png */,
-				D8F72B85189697AD0093978C /* 120.png */,
-				D8F72B86189697AD0093978C /* 29.png */,
-				D8F72B88189697AD0093978C /* 57.png */,
-				D8F72B89189697AD0093978C /* 58.png */,
-				D8F72B8A189697AD0093978C /* 80.png */,
+				D8F72B84189697AD0093978C /* Icon@2x.png */,
+				D8F72B85189697AD0093978C /* Icon-120.png */,
+				D8F72B86189697AD0093978C /* Icon-Small.png */,
+				D8F72B88189697AD0093978C /* Icon.png */,
+				D8F72B89189697AD0093978C /* Icon-Small@2x.png */,
+				D8F72B8A189697AD0093978C /* Icon-80.png */,
 			);
 			path = Image;
 			sourceTree = "<group>";
@@ -820,26 +829,29 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D8F72B8C189697AD0093978C /* 114.png in Resources */,
+				D8F72B8C189697AD0093978C /* Icon@2x.png in Resources */,
 				D81DB83718877AEF002D27B5 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				42C4E6CC1884D21100E650BE /* Localizable.strings in Resources */,
 				42C7BAD01871059100BD6382 /* Images.xcassets in Resources */,
-				D8F72B8E189697AD0093978C /* 29.png in Resources */,
+				D8F72B8E189697AD0093978C /* Icon-Small.png in Resources */,
 				D81DB82E18877AEF002D27B5 /* UMSCommentInputController.xib in Resources */,
 				D81DB83418877AEF002D27B5 /* UMSShareListController.xib in Resources */,
 				D81DB83E18877AEF002D27B5 /* ios-social-sdk-login-quick.html in Resources */,
+				D8F72BA0189762950093978C /* Default-568@2x.jpg in Resources */,
 				D81DB84318877AEF002D27B5 /* markdown.css in Resources */,
 				D81DB83118877AEF002D27B5 /* UMShareEditViewControlleriPad.xib in Resources */,
 				D81DB82D18877AEF002D27B5 /* UMSCommentDetailController.xib in Resources */,
 				D81DB83018877AEF002D27B5 /* UMShareEditViewController.xib in Resources */,
 				D81DB83B18877AEF002D27B5 /* ios-social-sdk-comment-quick.html in Resources */,
 				D81DB82A18877AEF002D27B5 /* UMSocialLocalizable.strings in Resources */,
-				D8F72B91189697AD0093978C /* 58.png in Resources */,
-				D8F72B90189697AD0093978C /* 57.png in Resources */,
+				D8F72B91189697AD0093978C /* Icon-Small@2x.png in Resources */,
+				D8F72B90189697AD0093978C /* Icon.png in Resources */,
 				D81DB83A18877AEF002D27B5 /* ios-social-sdk-comment-detail.html in Resources */,
 				D81DB83318877AEF002D27B5 /* UMSnsAccountViewController.xib in Resources */,
+				D8F72BA1189762950093978C /* Default.jpg in Resources */,
 				D81DB83D18877AEF002D27B5 /* ios-social-sdk-login-detail.html in Resources */,
 				D81DB83C18877AEF002D27B5 /* ios-social-sdk-like.html in Resources */,
+				D8F72BA2189762950093978C /* Default@2x.jpg in Resources */,
 				D81DB83F18877AEF002D27B5 /* ios-social-sdk-shake.html in Resources */,
 				D81DB83818877AEF002D27B5 /* iOS-social-analytics-releasenote.html in Resources */,
 				D81DB83518877AEF002D27B5 /* UMSocialSDKResourcesNew.bundle in Resources */,
@@ -852,8 +864,8 @@
 				D81DB84118877AEF002D27B5 /* ios-social-sdk-share-quick.html in Resources */,
 				D81DB82F18877AEF002D27B5 /* UMSCommentInputControlleriPad.xib in Resources */,
 				42C7BAC21871059100BD6382 /* InfoPlist.strings in Resources */,
-				D8F72B92189697AD0093978C /* 80.png in Resources */,
-				D8F72B8D189697AD0093978C /* 120.png in Resources */,
+				D8F72B92189697AD0093978C /* Icon-80.png in Resources */,
+				D8F72B8D189697AD0093978C /* Icon-120.png in Resources */,
 				42C7BACB1871059100BD6382 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1094,7 +1106,6 @@
 			baseConfigurationReference = CA26BFD3CEFE45ABAC84ECBE /* Pods.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					BananaNews/ThirdParty/UmengSocial3.3.3/UMSocial_Sdk_Extra_Frameworks/TencentOpenAPI,
@@ -1118,7 +1129,6 @@
 			baseConfigurationReference = CA26BFD3CEFE45ABAC84ECBE /* Pods.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					BananaNews/ThirdParty/UmengSocial3.3.3/UMSocial_Sdk_Extra_Frameworks/TencentOpenAPI,

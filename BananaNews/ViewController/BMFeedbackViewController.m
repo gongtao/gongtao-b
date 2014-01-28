@@ -71,13 +71,13 @@
     self.mTextField.textColor = [UIColor colorWithHexString:@"333333"];
     [editView addSubview:self.mTextField];
     
-    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0., 0., 57., 31.)];
-    [button setImage:[UIImage imageNamed:@"反馈发送.png"] forState:UIControlStateNormal];
-    [button setImage:[UIImage imageNamed:@"反馈发送移上.png"] forState:UIControlStateHighlighted];
+    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0., 0., 44., 44.)];
+    [button setImage:[UIImage imageNamed:@"反馈投递.png"] forState:UIControlStateNormal];
+    [button setImage:[UIImage imageNamed:@"反馈投递.png"] forState:UIControlStateHighlighted];
     [button addTarget:self action:@selector(sendFeedback) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *doneBtnItem = [[UIBarButtonItem alloc] initWithCustomView:button];
+    self.customNavigationBar.rightView = button;
     
-    [self.mToolBar setItems:@[editBtnItem, doneBtnItem]];
+    [self.mToolBar setItems:@[editBtnItem]];
     
     self.mTableView = [[UITableView alloc] initWithFrame:CGRectMake(0.0, 0.0, _feedbackView.frame.size.width, _feedbackView.frame.size.height-kBottomBarHeight-1.0)];
     self.mTableView.delegate = self;
