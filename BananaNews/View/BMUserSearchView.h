@@ -8,11 +8,23 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol BMUserSearchViewDelegate <NSObject>
+
+- (void)didSelectUser:(User *)user;
+
+@end
+
 @interface BMUserSearchView : UIView
 {
     UIView *_contentView;
+    
+    UIView *_usersView;
+    
+    UILabel *_textLabel;
 }
 
 @property (nonatomic, strong) NSArray *users;
+
+@property (nonatomic, weak) id<BMUserSearchViewDelegate> delegate;
 
 @end

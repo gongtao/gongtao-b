@@ -97,6 +97,8 @@
 		D821E85E18759AC6005C1604 /* BMUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = D821E85D18759AC6005C1604 /* BMUtils.m */; };
 		D88A31891897A92F0054FD7B /* BMSearchListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D88A31881897A92F0054FD7B /* BMSearchListViewController.m */; };
 		D88A318C1897ADB50054FD7B /* BMUserSearchView.m in Sources */ = {isa = PBXBuildFile; fileRef = D88A318B1897ADB50054FD7B /* BMUserSearchView.m */; };
+		D88A318F1897D1560054FD7B /* BMUserButton.m in Sources */ = {isa = PBXBuildFile; fileRef = D88A318E1897D1560054FD7B /* BMUserButton.m */; };
+		D88A31921897E3A80054FD7B /* BMUsersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D88A31911897E3A80054FD7B /* BMUsersViewController.m */; };
 		D8C503A81893547F0092CAC0 /* News.m in Sources */ = {isa = PBXBuildFile; fileRef = D8C503A71893547F0092CAC0 /* News.m */; };
 		D8C503AE189360BF0092CAC0 /* BMCollectListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8C503AD189360BF0092CAC0 /* BMCollectListViewController.m */; };
 		D8C503B11894F85C0092CAC0 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = D8C503B01894F85C0092CAC0 /* User.m */; };
@@ -280,6 +282,10 @@
 		D88A31881897A92F0054FD7B /* BMSearchListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMSearchListViewController.m; sourceTree = "<group>"; };
 		D88A318A1897ADB50054FD7B /* BMUserSearchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMUserSearchView.h; sourceTree = "<group>"; };
 		D88A318B1897ADB50054FD7B /* BMUserSearchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMUserSearchView.m; sourceTree = "<group>"; };
+		D88A318D1897D1560054FD7B /* BMUserButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMUserButton.h; sourceTree = "<group>"; };
+		D88A318E1897D1560054FD7B /* BMUserButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMUserButton.m; sourceTree = "<group>"; };
+		D88A31901897E3A80054FD7B /* BMUsersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMUsersViewController.h; sourceTree = "<group>"; };
+		D88A31911897E3A80054FD7B /* BMUsersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMUsersViewController.m; sourceTree = "<group>"; };
 		D8C503A61893547F0092CAC0 /* News.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = News.h; sourceTree = "<group>"; };
 		D8C503A71893547F0092CAC0 /* News.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = News.m; sourceTree = "<group>"; };
 		D8C503AC189360BF0092CAC0 /* BMCollectListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMCollectListViewController.h; sourceTree = "<group>"; };
@@ -498,6 +504,8 @@
 				42C4E77D18866B5500E650BE /* BMFeedbackViewController.m */,
 				D8C503B5189536650092CAC0 /* BMUserInfoViewController.h */,
 				D8C503B6189536650092CAC0 /* BMUserInfoViewController.m */,
+				D88A31901897E3A80054FD7B /* BMUsersViewController.h */,
+				D88A31911897E3A80054FD7B /* BMUsersViewController.m */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -548,6 +556,8 @@
 				D821E85118752D02005C1604 /* BMCustomButton.m */,
 				42C4E7791885285200E650BE /* BMSNSLoginButton.h */,
 				42C4E77A1885285200E650BE /* BMSNSLoginButton.m */,
+				D88A318D1897D1560054FD7B /* BMUserButton.h */,
+				D88A318E1897D1560054FD7B /* BMUserButton.m */,
 			);
 			path = Button;
 			sourceTree = "<group>";
@@ -953,6 +963,8 @@
 				42C6D2A81872A11C00F796FB /* IIViewDeckController.m in Sources */,
 				42C4E78318866B8E00E650BE /* L_FeedbackTableViewCell.m in Sources */,
 				42C7BAC81871059100BD6382 /* AppDelegate.m in Sources */,
+				D88A31921897E3A80054FD7B /* BMUsersViewController.m in Sources */,
+				D88A318F1897D1560054FD7B /* BMUserButton.m in Sources */,
 				42EC5AB0188CB57600FC00F9 /* BMCommentCell.m in Sources */,
 				42C6D298187285EB00F796FB /* BMNavigationBar.m in Sources */,
 				D88A31891897A92F0054FD7B /* BMSearchListViewController.m in Sources */,

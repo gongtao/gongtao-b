@@ -10,11 +10,13 @@
 
 #import "BMDetailNewsViewController.h"
 
-#import "BMUserSearchView.h"
-
 #import "BMSearchView.h"
 
 #import "BMNewsListCell.h"
+
+#import "BMUserInfoViewController.h"
+
+#import "BMUsersViewController.h"
 
 @interface BMSearchListViewController ()
 
@@ -25,6 +27,8 @@
 @property (nonatomic, strong) UITableViewCell *userCell;
 
 @property (nonatomic, strong) UITableViewCell *newsInfoCell;
+
+@property (nonatomic, strong) UILabel *newsInfoLabel;
 
 - (void)_searchButtonPressed:(id)sender;
 
@@ -49,20 +53,24 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    _userCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+    _userCell.selectionStyle = UITableViewCellSelectionStyleNone;
+    _userCell.backgroundColor = [UIColor clearColor];
+    _userSearchView = [[BMUserSearchView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 108.0)];
+    _userSearchView.delegate = self;
+    [_userCell.contentView addSubview:_userSearchView];
+    _userSearchView.users = [[BMNewsManager sharedManager] getAllSearchUsers:[self managedObjectContext]];
+    
     self.view.backgroundColor = [UIColor clearColor];
     self.tableView.backgroundColor = [UIColor clearColor];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    _isSearch = NO;
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-- (void)dealloc
-{
-    [[BMNewsManager sharedManager] clearSearchData:nil];
 }
 
 #pragma mark - Private
@@ -89,18 +97,24 @@
         [alertView show];
         return;
     }
+    _isSearch = YES;
+    self.tableView.backgroundColor = Color_ContentBg;
+    _userSearchView.users = nil;
     __block BMNewsManager *manager = [BMNewsManager sharedManager];
     [manager clearSearchData:^(void){
         [manager getSearchUsers:text
                         success:^(void){
+                            _userSearchView.users = [manager getAllSearchUsers:[self managedObjectContext]];
                             [manager getSearchNews:text
                                            success:^(void){
-                                                
+                                               _isSearch = NO;
                                            }
                                            failure:^(NSError *error){
+                                               _isSearch = NO;
                                            }];
                         }
                         failure:^(NSError *error){
+                            _isSearch = NO;
                         }];
     }];
 }
@@ -132,7 +146,9 @@
         [_searchView becomeFirstResponder];
     }
     else if (1 == row) {
-        
+        BMUsersViewController *vc = [self.parentViewController.storyboard instantiateViewControllerWithIdentifier:@"usersViewController"];
+        vc.users = _userSearchView.users;
+        [self.navigationController pushViewController:vc animated:YES];
     }
     else if (2 == row) {
         return;
@@ -159,12 +175,15 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     NSInteger count = [[[self.fetchedResultsController sections] objectAtIndex:0] numberOfObjects];
-    if (count == 0 &&
+    if (count == 0 && !_isSearch &&
         (!_userSearchView.users || _userSearchView.users.count==0)) {
         self.tableView.backgroundColor = [UIColor clearColor];
     }
     else {
         self.tableView.backgroundColor = Color_ContentBg;
+    }
+    if (_newsInfoLabel) {
+        _newsInfoLabel.text = [NSString stringWithFormat:@"相关信息（%i）", count];
     }
     return 3+count;
 }
@@ -178,7 +197,7 @@
         if (!_userSearchView.users || _userSearchView.users.count==0) {
             return 0.0;
         }
-        return 96.0;
+        return 108.0;
     }
     NSInteger count = [[[self.fetchedResultsController sections] objectAtIndex:0] numberOfObjects];
     if (2 == [indexPath row]) {
@@ -231,20 +250,29 @@
         }
     }
     else if (1 == row) {
-        if (!_userCell) {
-            _userCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
-            _userCell.backgroundColor = [UIColor clearColor];
-            
-            _userSearchView = [[BMUserSearchView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 96.0)];
-            [_userCell.contentView addSubview:_userSearchView];
-        }
         return _userCell;
     }
     else if (2 == row) {
         if (!_newsInfoCell) {
             _newsInfoCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
             _newsInfoCell.backgroundColor = [UIColor clearColor];
+            _newsInfoCell.selectionStyle = UITableViewCellSelectionStyleNone;
+            
+            UIView *contentView = [[UIView alloc] initWithFrame:CGRectMake(6.0, 6.0, 308.0, 24.0)];
+            contentView.backgroundColor = [UIColor whiteColor];
+            contentView.layer.borderWidth = 1.0;
+            contentView.layer.borderColor = Color_GrayLine.CGColor;
+            contentView.layer.cornerRadius = 2.0;
+            [_newsInfoCell.contentView addSubview:contentView];
+            
+            _newsInfoLabel = [[UILabel alloc] initWithFrame:CGRectMake(6.0, 0.0, 200.0, 24.0)];
+            _newsInfoLabel.font = Font_NewsTitle;
+            _newsInfoLabel.textColor = Color_NewsFont;
+            _newsInfoLabel.backgroundColor = [UIColor clearColor];
+            [contentView addSubview:_newsInfoLabel];
         }
+        NSInteger count = [[[self.fetchedResultsController sections] objectAtIndex:0] numberOfObjects];
+        _newsInfoLabel.text = [NSString stringWithFormat:@"相关信息（%i）", count];
         return _newsInfoCell;
     }
     else {
@@ -289,6 +317,15 @@
 {
     News *news = [self.fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:_postId inSection:0]];
     [[BMNewsManager sharedManager] shareToSite:news.nid.integerValue success:nil failure:nil];
+}
+
+#pragma mark - BMUserSearchViewDelegate
+
+- (void)didSelectUser:(User *)user
+{
+    BMUserInfoViewController *vc = [self.parentViewController.storyboard instantiateViewControllerWithIdentifier:@"userInfoViewController"];
+    vc.user = user;
+    [self.parentViewController.navigationController pushViewController:vc animated:YES];
 }
 
 @end

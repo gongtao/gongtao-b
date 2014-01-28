@@ -141,7 +141,7 @@
             __block CGFloat x = 6.0;
             [_imageArray enumerateObjectsUsingBlock:^(BMNewsImageView *obj, NSUInteger idx, BOOL *stop){
                 Media *media = news.medias[idx];
-                if (3 == idx) {
+                if (2 == idx) {
                     y += kCellMediumImgHeight+4.0;
                     x = 6.0;
                 }
@@ -159,14 +159,14 @@
         }
         else if (count>4) {
             __block CGFloat x = 6.0;
-            y -= kCellMediumImgHeight+4.0;
+            y -= kCellSmallImgHeight+4.0;
             [_imageArray enumerateObjectsUsingBlock:^(BMNewsImageView *obj, NSUInteger idx, BOOL *stop){
                 Media *media = news.medias[idx];
                 if (idx%3 == 0) {
-                    y += kCellMediumImgHeight+4.0;
+                    y += kCellSmallImgHeight+4.0;
                     x = 6.0;
                 }
-                obj.frame = CGRectMake(x, y, kCellMediumImgWidth, kCellMediumImgHeight);
+                obj.frame = CGRectMake(x, y, kCellSmallImgWidth, kCellSmallImgHeight);
                 [obj setImageSize:CGSizeMake(media.small_width.floatValue, media.small_height.floatValue)];
                 __block BMNewsImageView *imageView = obj;
                 [obj.imageView setImageWithURL:[NSURL URLWithString:media.small] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType){
@@ -174,9 +174,9 @@
                         imageView.alpha = 1.0;
                     }];
                 }];
-                x += kCellMediumImgWidth+4.0;
+                x += kCellSmallImgWidth+4.0;
             }];
-            y += kCellMediumImgHeight;
+            y += kCellSmallImgHeight;
         }
         
         y += 6.0;

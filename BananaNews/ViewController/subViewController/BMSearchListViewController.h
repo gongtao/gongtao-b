@@ -8,8 +8,11 @@
 
 #import "GTTableViewController.h"
 
-@interface BMSearchListViewController : GTTableViewController <UMSocialUIDelegate, UITextFieldDelegate>
+#import "BMUserSearchView.h"
+
+@interface BMSearchListViewController : GTTableViewController <UMSocialUIDelegate, UITextFieldDelegate, BMUserSearchViewDelegate>
 {
+    BOOL _isSearch;
     
     NSInteger _postId;
 }
