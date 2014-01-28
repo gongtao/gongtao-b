@@ -15,6 +15,7 @@
 
 @dynamic avatar;
 @dynamic isMainUser;
+@dynamic isSearch;
 @dynamic name;
 @dynamic uid;
 @dynamic comments;

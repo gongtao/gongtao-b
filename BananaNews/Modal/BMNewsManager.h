@@ -26,6 +26,7 @@
 
 #define News_Entity             @"News"
 #define kNid                    @"nid"
+#define kIsNewsSearch           @"isSearch"
 
 #define Comment_Entity          @"Comment"
 #define kCommentDate            @"date"
@@ -34,6 +35,7 @@
 #define User_Entity             @"User"
 #define kUid                    @"uid"
 #define kIsMainUser             @"isMainUser"
+#define kIsUserSearch           @"isSearch"
 
 #define NewsCategory_Entity     @"NewsCategory"
 #define kCategoryId             @"category_id"
@@ -73,9 +75,15 @@
 
 - (void)createNewsFromNetworking:(NSDictionary *)dic newsCategory:(NewsCategory *)newsCategory context:(NSManagedObjectContext *)context;
 
+- (void)createSearchNewsFromNetworking:(NSDictionary *)dic context:(NSManagedObjectContext *)context;
+
+- (void)createSearchUsersFromNetworking:(NSArray *)array context:(NSManagedObjectContext *)context;
+
 - (void)createCommentsFromNetworking:(NSDictionary *)dic news:(News *)news context:(NSManagedObjectContext *)context;
 
 - (void)clearCacheData:(void (^)(void))finished;
+
+- (void)clearSearchData:(void (^)(void))finished;
 
 /** Database **/
 
@@ -85,6 +93,8 @@
 - (News *)getNewsById:(NSUInteger)nid context:(NSManagedObjectContext *)context;
 
 - (NSArray *)getAllNews:(NSManagedObjectContext *)context;
+
+- (NSArray *)getAllSearchNews:(NSManagedObjectContext *)context;
 
 //Media
 - (Media *)createMedia:(NSDictionary *)dic context:(NSManagedObjectContext *)context;
@@ -102,6 +112,8 @@
 - (User *)createUser:(NSDictionary *)dic context:(NSManagedObjectContext *)context;
 
 - (User *)getUserById:(NSUInteger)uid context:(NSManagedObjectContext *)context;
+
+- (NSArray *)getAllSearchUsers:(NSManagedObjectContext *)context;
 
 - (User *)getMainUserWithContext:(NSManagedObjectContext *)context;
 
@@ -153,5 +165,13 @@
 - (AFHTTPRequestOperation *)getUserInfoById:(NSInteger)uid
                                     success:(void (^)(NSString *des))success
                                     failure:(void (^)(NSError *error))failure;
+
+- (AFHTTPRequestOperation *)getSearchUsers:(NSString *)key
+                                   success:(void (^)(void))success
+                                   failure:(void (^)(NSError *error))failure;
+
+- (AFHTTPRequestOperation *)getSearchNews:(NSString *)key
+                                  success:(void (^)(void))success
+                                  failure:(void (^)(NSError *error))failure;
 
 @end

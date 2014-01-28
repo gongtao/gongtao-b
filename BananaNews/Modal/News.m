@@ -18,6 +18,7 @@
 @dynamic comment_count;
 @dynamic fa_count;
 @dynamic image_height;
+@dynamic isSearch;
 @dynamic like_count;
 @dynamic name;
 @dynamic ndate;

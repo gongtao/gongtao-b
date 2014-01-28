@@ -95,6 +95,8 @@
 		D821E855187560AF005C1604 /* BMCollectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D821E854187560AF005C1604 /* BMCollectViewController.m */; };
 		D821E85818757A80005C1604 /* BMSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D821E85718757A80005C1604 /* BMSettingViewController.m */; };
 		D821E85E18759AC6005C1604 /* BMUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = D821E85D18759AC6005C1604 /* BMUtils.m */; };
+		D88A31891897A92F0054FD7B /* BMSearchListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D88A31881897A92F0054FD7B /* BMSearchListViewController.m */; };
+		D88A318C1897ADB50054FD7B /* BMUserSearchView.m in Sources */ = {isa = PBXBuildFile; fileRef = D88A318B1897ADB50054FD7B /* BMUserSearchView.m */; };
 		D8C503A81893547F0092CAC0 /* News.m in Sources */ = {isa = PBXBuildFile; fileRef = D8C503A71893547F0092CAC0 /* News.m */; };
 		D8C503AE189360BF0092CAC0 /* BMCollectListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8C503AD189360BF0092CAC0 /* BMCollectListViewController.m */; };
 		D8C503B11894F85C0092CAC0 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = D8C503B01894F85C0092CAC0 /* User.m */; };
@@ -274,6 +276,10 @@
 		D821E85718757A80005C1604 /* BMSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMSettingViewController.m; sourceTree = "<group>"; };
 		D821E85C18759AC6005C1604 /* BMUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMUtils.h; sourceTree = "<group>"; };
 		D821E85D18759AC6005C1604 /* BMUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMUtils.m; sourceTree = "<group>"; };
+		D88A31871897A92F0054FD7B /* BMSearchListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMSearchListViewController.h; sourceTree = "<group>"; };
+		D88A31881897A92F0054FD7B /* BMSearchListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMSearchListViewController.m; sourceTree = "<group>"; };
+		D88A318A1897ADB50054FD7B /* BMUserSearchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMUserSearchView.h; sourceTree = "<group>"; };
+		D88A318B1897ADB50054FD7B /* BMUserSearchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMUserSearchView.m; sourceTree = "<group>"; };
 		D8C503A61893547F0092CAC0 /* News.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = News.h; sourceTree = "<group>"; };
 		D8C503A71893547F0092CAC0 /* News.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = News.m; sourceTree = "<group>"; };
 		D8C503AC189360BF0092CAC0 /* BMCollectListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMCollectListViewController.h; sourceTree = "<group>"; };
@@ -508,6 +514,8 @@
 				D8EA5912187C0FD500EEB573 /* BMNewsImageView.m */,
 				42C4E776188526E800E650BE /* BMSNSLoginView.h */,
 				42C4E777188526E800E650BE /* BMSNSLoginView.m */,
+				D88A318A1897ADB50054FD7B /* BMUserSearchView.h */,
+				D88A318B1897ADB50054FD7B /* BMUserSearchView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -590,6 +598,8 @@
 				D8C503AD189360BF0092CAC0 /* BMCollectListViewController.m */,
 				D8F72B9518969CFF0093978C /* BMUserDetailViewController.h */,
 				D8F72B9618969CFF0093978C /* BMUserDetailViewController.m */,
+				D88A31871897A92F0054FD7B /* BMSearchListViewController.h */,
+				D88A31881897A92F0054FD7B /* BMSearchListViewController.m */,
 			);
 			path = subViewController;
 			sourceTree = "<group>";
@@ -945,6 +955,7 @@
 				42C7BAC81871059100BD6382 /* AppDelegate.m in Sources */,
 				42EC5AB0188CB57600FC00F9 /* BMCommentCell.m in Sources */,
 				42C6D298187285EB00F796FB /* BMNavigationBar.m in Sources */,
+				D88A31891897A92F0054FD7B /* BMSearchListViewController.m in Sources */,
 				42C6D29218725EC500F796FB /* BMDetailNewsViewController.m in Sources */,
 				42C5844D187A762600D919EB /* BMSubmissionViewController.m in Sources */,
 				D8EA59191880B0C800EEB573 /* GTCyclePageView.m in Sources */,
@@ -955,6 +966,7 @@
 				42C4E77B1885285200E650BE /* BMSNSLoginButton.m in Sources */,
 				42E21127188E33BB00E2EC89 /* NewsCategory.m in Sources */,
 				D821E84C18751228005C1604 /* BMSearchViewController.m in Sources */,
+				D88A318C1897ADB50054FD7B /* BMUserSearchView.m in Sources */,
 				42E8681A18764A2500B02A0B /* BMNewsManager.m in Sources */,
 				42C7BAFB18710E6700BD6382 /* BMLeftViewController.m in Sources */,
 				42E8681718764A1A00B02A0B /* Database.xcdatamodeld in Sources */,

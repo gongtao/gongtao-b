@@ -8,17 +8,13 @@
 
 #import "BMSearchViewController.h"
 
-#import "BMSearchView.h"
+#import "BMSearchListViewController.h"
 
 @interface BMSearchViewController ()
-
-@property (nonatomic, strong) BMSearchView *searchView;
 
 @property (nonatomic, strong) UIImageView *imageView;
 
 @property (nonatomic, strong) UILabel *label;
-
-- (void)_searchButtonPressed:(id)sender;
 
 @end
 
@@ -51,100 +47,17 @@
     _label.textColor = Color_GrayFont;
     [self.view addSubview:_label];
     
-    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0.0, y, 320.0, self.view.frame.size.height-y)];
-    _tableView.dataSource = self;
-    _tableView.delegate = self;
-    _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    _tableView.backgroundColor = [UIColor clearColor];
-    [self.view addSubview:_tableView];
+    BMSearchListViewController *vc = [[BMSearchListViewController alloc] initWithNibName:nil bundle:nil];
+    vc.view.frame = CGRectMake(0.0, y, 320.0, self.view.frame.size.height-y);
+    vc.tableView.frame = vc.view.bounds;
+    [self addChildViewController:vc];
+    [self.view addSubview:vc.view];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-#pragma mark - Private
-
-- (void)_searchButtonPressed:(id)sender
-{
-    [self.view endEditing:YES];
-}
-
-#pragma mark - UITableViewDelegate
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (0 == [indexPath row]) {
-        [_searchView becomeFirstResponder];
-    }
-}
-
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView
-{
-    [self.view endEditing:YES];
-}
-
-#pragma mark - UITableViewDataSource
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return 1;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    NSInteger count = 1;
-    if (count < 2) {
-        self.tableView.backgroundColor = [UIColor clearColor];
-    }
-    else {
-        self.tableView.backgroundColor = Color_ContentBg;
-    }
-    return 1;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (0 == [indexPath row]) {
-        return 55.0;
-    }
-    return 0.0;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    NSInteger row = [indexPath row];
-    UITableViewCell *cell = nil;
-    if (0 == row) {
-        static NSString *searchIdentifier = @"searchCell";
-        cell = [tableView dequeueReusableCellWithIdentifier:searchIdentifier];
-        if (!cell) {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:searchIdentifier];
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            cell.backgroundColor = [UIColor clearColor];
-            cell.contentView.backgroundColor = [UIColor clearColor];
-            if (_searchView) {
-                [_searchView removeFromSuperview];
-            }
-            else {
-                _searchView = [[BMSearchView alloc] initWithFrame:CGRectMake(6.0, 9.0, 308.0, 40.0)];
-                _searchView.textField.delegate = self;
-                [_searchView.searchButton addTarget:self action:@selector(_searchButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-            }
-            [cell.contentView addSubview:_searchView];
-        }
-    }
-    return cell;
-}
-
-#pragma mark - UITextFieldDelegate
-
-- (BOOL)textFieldShouldReturn:(UITextField *)textField
-{
-    [self _searchButtonPressed:nil];
-    return YES;
 }
 
 @end

@@ -15,6 +15,7 @@
 
 @property (nonatomic, retain) NSString * avatar;
 @property (nonatomic, retain) NSNumber * isMainUser;
+@property (nonatomic, retain) NSNumber * isSearch;
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSNumber * uid;
 @property (nonatomic, retain) NSSet *comments;

@@ -224,6 +224,36 @@
     }];
 }
 
+- (void)createSearchNewsFromNetworking:(NSDictionary *)dic context:(NSManagedObjectContext *)context
+{
+    if (!context) {
+        context = [self managedObjectContext];
+    }
+    NSArray *array = dic[@"posts"];
+    if (!array || (NSNull *)array == [NSNull null]) {
+        return;
+    }
+    [array enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop){
+        NSDictionary *newsInfo = (NSDictionary *)obj;
+        News *news = [self createNews:newsInfo context:context];
+        news.isSearch = [NSNumber numberWithBool:YES];
+    }];
+}
+
+- (void)createSearchUsersFromNetworking:(NSArray *)array context:(NSManagedObjectContext *)context
+{
+    if (!context) {
+        context = [self managedObjectContext];
+    }
+    if (!array || (NSNull *)array == [NSNull null]) {
+        return;
+    }
+    [array enumerateObjectsUsingBlock:^(NSDictionary *obj, NSUInteger idx, BOOL *stop){
+        User *user = [self createUser:obj context:context];
+        user.isSearch = [NSNumber numberWithBool:YES];
+    }];
+}
+
 - (void)createCommentsFromNetworking:(NSDictionary *)dic news:(News *)news context:(NSManagedObjectContext *)context
 {
     if (!context) {
@@ -253,6 +283,42 @@
         [array enumerateObjectsUsingBlock:^(News *obj, NSUInteger idx, BOOL *stop){
             obj.category = nil;
             if (![obj.collectUsers containsObject:user]) {
+                [temporaryContext deleteObject:obj];
+            }
+        }];
+        [self saveContext:temporaryContext];
+        // save parent to disk asynchronously
+        [temporaryContext.parentContext performBlock:^{
+            [self saveContext:temporaryContext.parentContext];
+            if (finished) {
+                finished();
+            }
+        }];
+    }];
+}
+
+- (void)clearSearchData:(void (^)(void))finished
+{
+    NSManagedObjectContext *temporaryContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
+    temporaryContext.parentContext = [self managedObjectContext];
+    
+    [temporaryContext performBlock:^(void){
+        //清除News
+        NSArray *array = [self getAllSearchNews:temporaryContext];
+        [array enumerateObjectsUsingBlock:^(News *obj, NSUInteger idx, BOOL *stop){
+            obj.isSearch = [NSNumber numberWithBool:NO];
+            if (!obj.category && obj.collectUsers.count==0) {
+                [temporaryContext deleteObject:obj];
+            }
+        }];
+        //清除User
+        array = [self getAllSearchUsers:temporaryContext];
+        [array enumerateObjectsUsingBlock:^(User *obj, NSUInteger idx, BOOL *stop){
+            obj.isSearch = [NSNumber numberWithBool:NO];
+            if (obj.news.count==0 &&
+                obj.collectNews.count==0 &&
+                obj.comments.count==0 &&
+                obj.replyComment.count==0) {
                 [temporaryContext deleteObject:obj];
             }
         }];
@@ -388,6 +454,25 @@
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:News_Entity inManagedObjectContext:context];
     
+    [request setEntity:entity];
+    
+    NSSortDescriptor *sortDesciptor = [NSSortDescriptor sortDescriptorWithKey:kNid ascending:NO];
+    [request setSortDescriptors:[NSArray arrayWithObject:sortDesciptor]];
+    
+    NSError *error;
+    NSArray *results = [context executeFetchRequest:request error:&error];
+    
+    if (!error && results.count > 0) {
+        return results;
+    }
+    return nil;
+}
+
+- (NSArray *)getAllSearchNews:(NSManagedObjectContext *)context
+{
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:News_Entity inManagedObjectContext:context];
+    [request setPredicate:[NSPredicate predicateWithFormat:@"%K == %@", kIsNewsSearch, [NSNumber numberWithBool:YES]]];
     [request setEntity:entity];
     
     NSSortDescriptor *sortDesciptor = [NSSortDescriptor sortDescriptorWithKey:kNid ascending:NO];
@@ -565,6 +650,23 @@
     
     if (!error && results.count > 0) {
         return results[0];
+    }
+    return nil;
+}
+
+- (NSArray *)getAllSearchUsers:(NSManagedObjectContext *)context
+{
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:User_Entity inManagedObjectContext:context];
+    
+    [request setEntity:entity];
+    [request setPredicate:[NSPredicate predicateWithFormat:@"%K == %@", kIsUserSearch, [NSNumber numberWithBool:YES]]];
+    
+    NSError *error;
+    NSArray *results = [context executeFetchRequest:request error:&error];
+    
+    if (!error && results.count > 0) {
+        return results;
     }
     return nil;
 }
@@ -1114,6 +1216,94 @@
     };
     
     AFHTTPRequestOperation *op = [_manager GET:[NSString stringWithFormat:@"wp_api/v1/users/%i", uid] parameters:nil success:requestSuccess failure:requestFailure];
+    NSLog(@"request: %@", op.request.URL.absoluteString);
+    return op;
+}
+
+- (AFHTTPRequestOperation *)getSearchUsers:(NSString *)key
+                                   success:(void (^)(void))success
+                                   failure:(void (^)(NSError *error))failure
+{
+    NSDictionary *param = @{@"s": key};
+    
+    void (^requestSuccess)(AFHTTPRequestOperation *, id) = ^(AFHTTPRequestOperation *operation, id responseObject) {
+        if (responseObject != [NSNull null]) {
+            NSLog(@"%@", responseObject);
+            
+            NSManagedObjectContext *temporaryContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
+            temporaryContext.parentContext = [self managedObjectContext];
+            
+            [temporaryContext performBlock:^{
+                [self createSearchUsersFromNetworking:responseObject context:temporaryContext];
+                [self saveContext:temporaryContext];
+                // save parent to disk asynchronously
+                [temporaryContext.parentContext performBlock:^{
+                    [self saveContext:temporaryContext.parentContext];
+                    if (success) {
+                        success();
+                    }
+                }];
+            }];
+        }
+        else {
+            if (failure) {
+                failure(nil);
+            }
+        }
+    };
+    
+    void (^requestFailure)(AFHTTPRequestOperation *, NSError *) = ^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+        if (failure) {
+            failure(error);
+        }
+    };
+    
+    AFHTTPRequestOperation *op = [_manager POST:@"wp_api/v1/users/search" parameters:param success:requestSuccess failure:requestFailure];
+    NSLog(@"request: %@", op.request.URL.absoluteString);
+    return op;
+}
+
+- (AFHTTPRequestOperation *)getSearchNews:(NSString *)key
+                                  success:(void (^)(void))success
+                                  failure:(void (^)(NSError *error))failure
+{
+    NSDictionary *param = @{@"s": key};
+    
+    void (^requestSuccess)(AFHTTPRequestOperation *, id) = ^(AFHTTPRequestOperation *operation, id responseObject) {
+        if (responseObject != [NSNull null]) {
+            NSLog(@"%@", responseObject);
+            
+            NSManagedObjectContext *temporaryContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
+            temporaryContext.parentContext = [self managedObjectContext];
+            
+            [temporaryContext performBlock:^{
+                [self createSearchNewsFromNetworking:responseObject context:temporaryContext];
+                [self saveContext:temporaryContext];
+                // save parent to disk asynchronously
+                [temporaryContext.parentContext performBlock:^{
+                    [self saveContext:temporaryContext.parentContext];
+                    if (success) {
+                        success();
+                    }
+                }];
+            }];
+        }
+        else {
+            if (failure) {
+                failure(nil);
+            }
+        }
+    };
+    
+    void (^requestFailure)(AFHTTPRequestOperation *, NSError *) = ^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+        if (failure) {
+            failure(error);
+        }
+    };
+    
+    AFHTTPRequestOperation *op = [_manager GET:@"wp_api/v1/posts" parameters:param success:requestSuccess failure:requestFailure];
     NSLog(@"request: %@", op.request.URL.absoluteString);
     return op;
 }
