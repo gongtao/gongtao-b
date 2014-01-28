@@ -75,6 +75,8 @@
 
 - (void)createCommentsFromNetworking:(NSDictionary *)dic news:(News *)news context:(NSManagedObjectContext *)context;
 
+- (void)clearCacheData:(void (^)(void))finished;
+
 /** Database **/
 
 //News

@@ -112,6 +112,7 @@
 		D8F72B92189697AD0093978C /* 80.png in Resources */ = {isa = PBXBuildFile; fileRef = D8F72B8A189697AD0093978C /* 80.png */; };
 		D8F72B9718969CFF0093978C /* BMUserDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8F72B9618969CFF0093978C /* BMUserDetailViewController.m */; };
 		D8F72B991896B4370093978C /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = D8F72B981896B4370093978C /* iTunesArtwork */; };
+		D8F72B9C1897465E0093978C /* BMSettingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D8F72B9B1897465E0093978C /* BMSettingCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -297,6 +298,8 @@
 		D8F72B9518969CFF0093978C /* BMUserDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMUserDetailViewController.h; sourceTree = "<group>"; };
 		D8F72B9618969CFF0093978C /* BMUserDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMUserDetailViewController.m; sourceTree = "<group>"; };
 		D8F72B981896B4370093978C /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; path = iTunesArtwork; sourceTree = "<group>"; };
+		D8F72B9A1897465E0093978C /* BMSettingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMSettingCell.h; sourceTree = "<group>"; };
+		D8F72B9B1897465E0093978C /* BMSettingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMSettingCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -512,6 +515,8 @@
 				42CA255518769C4A00FB1764 /* BMNewsListCell.m */,
 				42EC5AAE188CB57600FC00F9 /* BMCommentCell.h */,
 				42EC5AAF188CB57600FC00F9 /* BMCommentCell.m */,
+				D8F72B9A1897465E0093978C /* BMSettingCell.h */,
+				D8F72B9B1897465E0093978C /* BMSettingCell.m */,
 				42C4E77F18866B8E00E650BE /* L_FeedbackTableViewCell.h */,
 				42C4E78018866B8E00E650BE /* L_FeedbackTableViewCell.m */,
 				42C4E78118866B8E00E650BE /* R_FeedbackTableViewCell.h */,
@@ -931,6 +936,7 @@
 				42C6D29218725EC500F796FB /* BMDetailNewsViewController.m in Sources */,
 				42C5844D187A762600D919EB /* BMSubmissionViewController.m in Sources */,
 				D8EA59191880B0C800EEB573 /* GTCyclePageView.m in Sources */,
+				D8F72B9C1897465E0093978C /* BMSettingCell.m in Sources */,
 				42C7BAFE18710E7300BD6382 /* BMHomeViewController.m in Sources */,
 				42E3AD71187F885100ADFAD9 /* BMTabViewController.m in Sources */,
 				D821E855187560AF005C1604 /* BMCollectViewController.m in Sources */,

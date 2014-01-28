@@ -67,6 +67,8 @@
         [self.tableView addSubview:view];
         _refreshHeaderView = view;
     }
+    
+    [NSFetchedResultsController deleteCacheWithName:[self cacheName]];
 }
 
 - (void)didReceiveMemoryWarning

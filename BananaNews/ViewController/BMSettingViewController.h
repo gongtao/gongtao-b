@@ -8,6 +8,6 @@
 
 #import "BMRootViewController.h"
 
-@interface BMSettingViewController : BMRootViewController
+@interface BMSettingViewController : BMRootViewController <UITableViewDataSource, UITableViewDelegate>
 
 @end

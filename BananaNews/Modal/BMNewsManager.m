@@ -242,6 +242,31 @@
     newsNew.comments = [[NSOrderedSet alloc] initWithArray:comments];
 }
 
+- (void)clearCacheData:(void (^)(void))finished
+{
+    NSManagedObjectContext *temporaryContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
+    temporaryContext.parentContext = [self managedObjectContext];
+    
+    [temporaryContext performBlock:^(void){
+        NSArray *array = [self getAllNews:temporaryContext];
+        User *user = [self getMainUserWithContext:temporaryContext];
+        [array enumerateObjectsUsingBlock:^(News *obj, NSUInteger idx, BOOL *stop){
+            obj.category = nil;
+            if (![obj.collectUsers containsObject:user]) {
+                [temporaryContext deleteObject:obj];
+            }
+        }];
+        [self saveContext:temporaryContext];
+        // save parent to disk asynchronously
+        [temporaryContext.parentContext performBlock:^{
+            [self saveContext:temporaryContext.parentContext];
+            if (finished) {
+                finished();
+            }
+        }];
+    }];
+}
+
 #pragma mark - Database
 
 //News
