@@ -149,7 +149,7 @@
                                 failure:(void (^)(NSError *error))failure;
 
 - (AFHTTPRequestOperation *)getUserInfoById:(NSInteger)uid
-                                    success:(void (^)(void))success
+                                    success:(void (^)(NSString *des))success
                                     failure:(void (^)(NSError *error))failure;
 
 @end

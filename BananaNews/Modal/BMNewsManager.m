@@ -1049,11 +1049,35 @@
 }
 
 - (AFHTTPRequestOperation *)getUserInfoById:(NSInteger)uid
-                                    success:(void (^)(void))success
+                                    success:(void (^)(NSString *des))success
                                     failure:(void (^)(NSError *error))failure
 {
     void (^requestSuccess)(AFHTTPRequestOperation *, id) = ^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"%@", responseObject);
+        if (responseObject != [NSNull null]) {
+            NSManagedObjectContext *temporaryContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
+            temporaryContext.parentContext = [self managedObjectContext];
+            
+            [temporaryContext performBlock:^(void){
+                [self createUser:responseObject context:temporaryContext];
+                [self saveContext:temporaryContext];
+                // save parent to disk asynchronously
+                [temporaryContext.parentContext performBlock:^{
+                    [self saveContext:temporaryContext.parentContext];
+                    NSDictionary *meta = responseObject[@"meta"];
+                    if (meta && (NSNull *)meta != [NSNull null]) {
+                        if (success) {
+                            success(meta[@"description"]);
+                        }
+                    }
+                }];
+            }];
+        }
+        else {
+            if (failure) {
+                failure(nil);
+            }
+        }
     };
     
     void (^requestFailure)(AFHTTPRequestOperation *, NSError *) = ^(AFHTTPRequestOperation *operation, NSError *error) {
