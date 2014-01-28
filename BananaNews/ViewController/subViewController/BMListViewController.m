@@ -13,19 +13,35 @@
 @interface BMListViewController ()
 {
     NSString *_cache;
+    
+    UIView *_footerLoadingView;
+    
+    UIButton *_footerButton;
+    
+    UIActivityIndicatorView *_activityView;
+    
+    AFHTTPRequestOperation *_request;
+    
+    UITableViewCell *_footerView;
+    
+    NSInteger _page;
 }
 
 @property (nonatomic, strong) NSFetchRequest *fetchRequest;
 
 - (void)reloadTableViewDataSource;
 
-- (void)doneLoadingTableViewData;
-
 - (void)_dingButtonPressed:(UIButton *)sender;
 
 - (void)_shareButtonPressed:(UIButton *)sender;
 
 - (void)_collectButtonPressed:(UIButton *)sender;
+
+- (void)_finishLoadMore:(BOOL)isFinished;
+
+- (void)_loadMore:(UIButton *)sender;
+
+- (void)_initFooterView;
 
 @end
 
@@ -68,6 +84,8 @@
         _refreshHeaderView = view;
     }
     
+    [self _initFooterView];
+    
     [NSFetchedResultsController deleteCacheWithName:[self cacheName]];
 }
 
@@ -89,6 +107,28 @@
     [_refreshHeaderView refreshLastUpdatedDate];
 }
 
+- (void)startLoadingTableViewData
+{
+    if (_reloading) {
+        [self doneLoadingTableViewData];
+    }
+    NSInteger count = [[[self.fetchedResultsController sections] objectAtIndex:0] numberOfObjects];
+    if (0 == count) {
+        _page = 1;
+        [_refreshHeaderView egoRefreshScrollViewWillBeginDragging:self.tableView];
+        [UIView animateWithDuration:0.3
+                         animations:^(void){
+                             self.tableView.contentOffset = CGPointMake(0.0, -65.0);
+                         }
+                         completion:^(BOOL finished){
+                             [_refreshHeaderView egoRefreshScrollViewDidEndDragging:self.tableView];
+                         }];
+    }
+    else {
+        _page = count/10+((count%10!=0)?2:1);
+    }
+}
+
 #pragma mark - Private
 
 - (void)_dingButtonPressed:(UIButton *)sender
@@ -107,6 +147,66 @@
 - (void)_collectButtonPressed:(UIButton *)sender
 {
     
+}
+
+- (void)_finishLoadMore:(BOOL)isFinished
+{
+    if (isFinished) {
+        [_activityView stopAnimating];
+    }
+    else {
+        [_activityView startAnimating];
+    }
+    [_footerLoadingView setHidden:isFinished];
+    [_footerButton setHidden:!isFinished];
+}
+
+- (void)_loadMore:(UIButton *)sender
+{
+    [self _finishLoadMore:NO];
+    _request = [[BMNewsManager sharedManager] getDownloadList:self.categoryId
+                                                         page:_page
+                                                      success:^(NSArray *array){
+                                                          [self _finishLoadMore:YES];
+                                                      }
+                                                      failure:^(NSError *error){
+                                                          [self _finishLoadMore:YES];
+                                                      }];
+}
+
+- (void)_initFooterView
+{
+    if (!_footerView) {
+        _footerView = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+        _footerView.backgroundColor = [UIColor clearColor];
+        _footerView.selectionStyle = UITableViewCellSelectionStyleNone;
+        
+        _footerButton = [[UIButton alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 50.0)];
+        _footerButton.titleLabel.font = Font_NewsTitle;
+        [_footerButton setTitle:@"点击加载更多" forState:UIControlStateNormal];
+        [_footerButton setTitleColor:Color_NewsSmallFont forState:UIControlStateNormal];
+        [_footerButton addTarget:self action:@selector(_loadMore:) forControlEvents:UIControlEventTouchUpInside];
+        [_footerView addSubview:_footerButton];
+        
+        _footerLoadingView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 50.0)];
+        _footerLoadingView.backgroundColor = [UIColor clearColor];
+        [_footerView addSubview:_footerLoadingView];
+        
+        UILabel *label = [[UILabel alloc] init];
+        label.backgroundColor = [UIColor clearColor];
+        label.font = Font_NewsTitle;
+        label.textColor = Color_NewsSmallFont;
+        label.text = @"正在加载更多。。。";
+        [label sizeToFit];
+        label.center = CGPointMake(160.0, 25.0);
+        [_footerLoadingView addSubview:label];
+        
+        _activityView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+        _activityView.center = CGPointMake(70.0, 25.0);
+        [_footerLoadingView addSubview:_activityView];
+        
+        [self _finishLoadMore:YES];
+    }
 }
 
 #pragma mark - Override
@@ -146,6 +246,11 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath fetchedResultsController:(NSFetchedResultsController *)fetchedResultsController
 {
+    int count = [[[self.fetchedResultsController sections] objectAtIndex:0] numberOfObjects];
+    if ([indexPath row] == count) {
+        [self _initFooterView];
+        return _footerView;
+    }
     static NSString *CellIdentifier = @"ListCell";
     BMNewsListCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
@@ -165,9 +270,15 @@
 
 - (void)reloadTableViewDataSource
 {
+    if (_request) {
+        [_request cancel];
+        _request = nil;
+    }
+    [self _finishLoadMore:YES];
     _reloading = YES;
+    _page = 1;
     [[BMNewsManager sharedManager] getDownloadList:self.categoryId
-                                              page:1
+                                              page:_page
                                            success:^(NSArray *array){
                                                [self doneLoadingTableViewData];
                                            }
@@ -188,6 +299,7 @@
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     if (scrollView == self.tableView) {
+        NSLog(@"scroll：%f", scrollView.contentOffset.y);
         [_refreshHeaderView egoRefreshScrollViewDidScroll:scrollView];
     }
 }
@@ -210,6 +322,10 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    int count = [[[self.fetchedResultsController sections] objectAtIndex:0] numberOfObjects];
+    if ([indexPath row] == count) {
+        return;
+    }
     BMDetailNewsViewController *vc = [self.parentViewController.storyboard instantiateViewControllerWithIdentifier:@"detailNewsViewController"];
     vc.news = [self.fetchedResultsController objectAtIndexPath:indexPath];
     [self.navigationController pushViewController:vc animated:YES];
@@ -217,8 +333,30 @@
 
 #pragma mark - UITableViewDataSource
 
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    int count = [[[self.fetchedResultsController sections] objectAtIndex:0] numberOfObjects];
+    if (0 == count) {
+        _page = 1;
+    }
+    else {
+        _page = count/10+((count%10==0)?1:2);
+    }
+    return count+1;
+}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    int row = [indexPath row];
+    int count = [[[self.fetchedResultsController sections] objectAtIndex:0] numberOfObjects];
+    if (row == count) {
+        if (count < 10) {
+            return 0.0;
+        }
+        else {
+            return 50.0;
+        }
+    }
     News *news = [self.fetchedResultsController objectAtIndexPath:indexPath];
     if (!news.medias || news.medias.count == 0) {
         return news.text_height.floatValue+52.0;

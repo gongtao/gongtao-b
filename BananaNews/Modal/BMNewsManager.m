@@ -864,7 +864,7 @@
         }
     };
     
-    AFHTTPRequestOperation *op = [_manager GET:[NSString stringWithFormat:@"wp_api/v1/posts/%@/comments", news.nid] parameters:@{@"paged": [NSNumber numberWithInteger:page]} success:requestSuccess failure:requestFailure];
+    AFHTTPRequestOperation *op = [_manager GET:[NSString stringWithFormat:@"wp_api/v1/posts/%@/comments", news.nid] parameters:@{@"paged": [NSNumber numberWithInteger:page], @"per_page": [NSNumber numberWithInteger:10]} success:requestSuccess failure:requestFailure];
     NSLog(@"request: %@", op.request.URL.absoluteString);
     return op;
 }

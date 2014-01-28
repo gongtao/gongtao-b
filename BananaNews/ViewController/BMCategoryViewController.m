@@ -43,20 +43,26 @@
     request.predicate = [NSPredicate predicateWithFormat:@"category.category_id == %@",self.category.category_id];
     [request setSortDescriptors:[NSArray arrayWithObject:sortDesciptor]];
     
-    BMListViewController *listVC = [[BMListViewController alloc] initWithRequest:request cacheName:[NSString stringWithFormat:@"CacheCategory%@", self.category.category_id]];
-    listVC.categoryId = self.category.category_id;
-    listVC.view.frame = frame;
+    _listVC = [[BMListViewController alloc] initWithRequest:request cacheName:[NSString stringWithFormat:@"CacheCategory%@", self.category.category_id]];
+    _listVC.categoryId = self.category.category_id;
+    _listVC.view.frame = frame;
     frame.origin.y = 0.0;
-    listVC.tableView.frame = frame;
-    [self addChildViewController:listVC];
-    [self.view addSubview:listVC.view];
-    [listVC refreshLastUpdateTime];
+    _listVC.tableView.frame = frame;
+    [self addChildViewController:_listVC];
+    [self.view addSubview:_listVC.view];
+    [_listVC refreshLastUpdateTime];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [_listVC performSelector:@selector(startLoadingTableViewData) withObject:nil afterDelay:0.3];
 }
 
 @end

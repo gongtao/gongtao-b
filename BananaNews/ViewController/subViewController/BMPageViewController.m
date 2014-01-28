@@ -111,6 +111,9 @@
 - (void)didPageChangedCyclePageView:(GTCyclePageView *)cyclePageView
 {
     [_tabViewController setPage:cyclePageView.currentPage];
+    GTCyclePageViewCell *cell = [cyclePageView cyclePageViewCellAtIndex:cyclePageView.currentPage];
+    BMListViewController *vc = (BMListViewController *)cell.viewController;
+    [vc performSelector:@selector(startLoadingTableViewData) withObject:nil afterDelay:0.3];
 }
 
 #pragma mark - BMTabViewControllerDelegate

@@ -31,4 +31,8 @@
 
 - (void)refreshLastUpdateTime;
 
+- (void)startLoadingTableViewData;
+
+- (void)doneLoadingTableViewData;
+
 @end

@@ -20,4 +20,6 @@
 
 - (id)initWithRequest:(News *)news;
 
+- (void)scrollToComments;
+
 @end

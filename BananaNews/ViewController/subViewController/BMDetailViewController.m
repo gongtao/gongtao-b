@@ -19,6 +19,19 @@
 #import <UIImageView+WebCache.h>
 
 @interface BMDetailViewController ()
+{
+    UIView *_footerLoadingView;
+    
+    UIButton *_footerButton;
+    
+    UIActivityIndicatorView *_activityView;
+    
+    AFHTTPRequestOperation *_request;
+    
+    UITableViewCell *_footerView;
+    
+    NSInteger _page;
+}
 
 @property (nonatomic, strong) News *news;
 
@@ -37,6 +50,12 @@
 - (void)_replyUserBtnPressed:(UIButton *)button;
 
 - (void)_presentUserInfo:(User *)user;
+
+- (void)_finishLoadMore:(BOOL)isFinished;
+
+- (void)_loadMore:(UIButton *)sender;
+
+- (void)_initFooterView;
 
 @end
 
@@ -73,12 +92,36 @@
     self.tableView.contentInset = insets;
     
     [self _initNewsCell];
+    
+    [self _initFooterView];
+    
+    _page = 1;
+    int count = [[[self.fetchedResultsController sections] objectAtIndex:0] numberOfObjects];
+    if (0 == count) {
+        [[BMNewsManager sharedManager] getCommentsByNews:self.news page:_page success:nil failure:nil];
+    }
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - Public
+
+- (void)scrollToComments
+{
+    CGFloat height = self.tableView.contentSize.height;
+    if (height-_newsCell.frame.size.height >= self.tableView.bounds.size.height-40.0) {
+        [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
+    }
+    else if (height <= self.tableView.bounds.size.height-40.0) {
+        return;
+    }
+    else {
+        [self.tableView scrollRectToVisible:CGRectMake(0.0, height+40.0-self.tableView.bounds.size.height, 320.0, self.tableView.bounds.size.height) animated:YES];
+    }
 }
 
 #pragma mark - Private
@@ -203,6 +246,66 @@
     [[BMNewsManager sharedManager] dingToSite:self.news.nid.integerValue success:nil failure:nil];
 }
 
+- (void)_finishLoadMore:(BOOL)isFinished
+{
+    if (isFinished) {
+        [_activityView stopAnimating];
+    }
+    else {
+        [_activityView startAnimating];
+    }
+    [_footerLoadingView setHidden:isFinished];
+    [_footerButton setHidden:!isFinished];
+}
+
+- (void)_loadMore:(UIButton *)sender
+{
+    [self _finishLoadMore:NO];
+    _request = [[BMNewsManager sharedManager] getCommentsByNews:self.news
+                                                           page:_page
+                                                        success:^(void){
+                                                            [self _finishLoadMore:YES];
+                                                        }
+                                                        failure:^(NSError *error){
+                                                            [self _finishLoadMore:YES];
+                                                        }];
+}
+
+- (void)_initFooterView
+{
+    if (!_footerView) {
+        _footerView = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+        _footerView.backgroundColor = [UIColor clearColor];
+        _footerView.selectionStyle = UITableViewCellSelectionStyleNone;
+        
+        _footerButton = [[UIButton alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 50.0)];
+        _footerButton.titleLabel.font = Font_NewsTitle;
+        [_footerButton setTitle:@"点击加载更多" forState:UIControlStateNormal];
+        [_footerButton setTitleColor:Color_NewsSmallFont forState:UIControlStateNormal];
+        [_footerButton addTarget:self action:@selector(_loadMore:) forControlEvents:UIControlEventTouchUpInside];
+        [_footerView addSubview:_footerButton];
+        
+        _footerLoadingView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 50.0)];
+        _footerLoadingView.backgroundColor = [UIColor clearColor];
+        [_footerView addSubview:_footerLoadingView];
+        
+        UILabel *label = [[UILabel alloc] init];
+        label.backgroundColor = [UIColor clearColor];
+        label.font = Font_NewsTitle;
+        label.textColor = Color_NewsSmallFont;
+        label.text = @"正在加载更多。。。";
+        [label sizeToFit];
+        label.center = CGPointMake(160.0, 25.0);
+        [_footerLoadingView addSubview:label];
+        
+        _activityView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+        _activityView.center = CGPointMake(70.0, 25.0);
+        [_footerLoadingView addSubview:_activityView];
+        
+        [self _finishLoadMore:YES];
+    }
+}
+
 #warning 备用
 - (void)_userBtnPressed:(UIButton *)button
 {
@@ -248,7 +351,12 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath fetchedResultsController:(NSFetchedResultsController *)fetchedResultsController
 {
-    if (0 == [indexPath row]) {
+    int count = [[[self.fetchedResultsController sections] objectAtIndex:0] numberOfObjects];
+    if ([indexPath row] == count+2) {
+        [self _initFooterView];
+        return _footerView;
+    }
+    else if (0 == [indexPath row]) {
         return _newsCell;
     }
     else if (1 == [indexPath row]) {
@@ -317,6 +425,10 @@
     if (0 == [indexPath row] || 1 == [indexPath row]) {
         return;
     }
+    int count = [[[self.fetchedResultsController sections] objectAtIndex:0] numberOfObjects];
+    if ([indexPath row] == count+2) {
+        return;
+    }
     Comment *comment = [self.fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:[indexPath row]-2 inSection:[indexPath section]]];
     User *user = [[BMNewsManager sharedManager] getMainUser];
     if (user.uid.integerValue != comment.author.uid.integerValue) {
@@ -341,6 +453,15 @@
             return 0.0;
         }
     }
+    int count = [[[self.fetchedResultsController sections] objectAtIndex:0] numberOfObjects];
+    if (count+2 == [indexPath row]) {
+        if (count < 10) {
+            return 0.0;
+        }
+        else {
+            return 50.0;
+        }
+    }
     Comment *comment = [self.fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:indexPath.row-2 inSection:indexPath.section]];
     if (indexPath.row-1 == [self.fetchedResultsController.fetchedObjects count]) {
         return 60.0+comment.height.floatValue;
@@ -350,11 +471,14 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    int count = [self.fetchedResultsController.fetchedObjects count];
-    if (count > 0) {
-        return count+2;
+    int count = [[[self.fetchedResultsController sections] objectAtIndex:0] numberOfObjects];
+    if (0 == count) {
+        _page = 1;
     }
-    return 2;
+    else {
+        _page = count/10+((count%10==0)?1:2);
+    }
+    return count+3;
 }
 
 @end

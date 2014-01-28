@@ -16,6 +16,8 @@
 
 @interface BMDetailNewsViewController ()
 
+@property (nonatomic, strong) BMDetailViewController *detailVC;
+
 @property (nonatomic, strong) Comment *replyComment;
 
 @property (nonatomic, strong) UIControl *inputBgView;
@@ -64,12 +66,12 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     CGFloat y = self.customNavigationBar.frame.size.height;
-    BMDetailViewController *vc = [[BMDetailViewController alloc] initWithRequest:self.news];
-    vc.delegate = self;
-    vc.view.frame = CGRectMake(0.0, y, 320.0, self.view.frame.size.height-y);
-    vc.tableView.frame = vc.view.bounds;
-    [self addChildViewController:vc];
-    [self.view addSubview:vc.view];
+    _detailVC = [[BMDetailViewController alloc] initWithRequest:self.news];
+    _detailVC.delegate = self;
+    _detailVC.view.frame = CGRectMake(0.0, y, 320.0, self.view.frame.size.height-y);
+    _detailVC.tableView.frame = _detailVC.view.bounds;
+    [self addChildViewController:_detailVC];
+    [self.view addSubview:_detailVC.view];
     
     BMCustomButton *button = [[BMCustomButton alloc] initWithFrame:CGRectMake(0.0, 0.0, 45.0, 44.0)];
     button.imageRect = CGRectMake(10.0, 3.0, 25.0, 25.0);
@@ -152,8 +154,6 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_keyboardWillShow:) name:UIKeyboardWillChangeFrameNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_loginToSite:) name:kLoginSuccessNotification object:nil];
-    
-    [[BMNewsManager sharedManager] getCommentsByNews:self.news page:1 success:nil failure:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -215,6 +215,12 @@
 
 - (void)_comment:(id)sender
 {
+    int count = [[[_detailVC.fetchedResultsController sections] objectAtIndex:0] numberOfObjects];
+    if (count > 0) {
+        [_detailVC scrollToComments];
+        return;
+    }
+    
     self.replyComment = nil;
     if (![[NSUserDefaults standardUserDefaults] objectForKey:kLoginKey]) {
         _isCommentLogin = YES;
