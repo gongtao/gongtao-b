@@ -113,9 +113,9 @@
 		D8F72B9718969CFF0093978C /* BMUserDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8F72B9618969CFF0093978C /* BMUserDetailViewController.m */; };
 		D8F72B991896B4370093978C /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = D8F72B981896B4370093978C /* iTunesArtwork */; };
 		D8F72B9C1897465E0093978C /* BMSettingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D8F72B9B1897465E0093978C /* BMSettingCell.m */; };
-		D8F72BA0189762950093978C /* Default-568@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D8F72B9D189762950093978C /* Default-568@2x.jpg */; };
-		D8F72BA1189762950093978C /* Default.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D8F72B9E189762950093978C /* Default.jpg */; };
-		D8F72BA2189762950093978C /* Default@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D8F72B9F189762950093978C /* Default@2x.jpg */; };
+		D8F72BA0189762950093978C /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D8F72B9D189762950093978C /* Default-568h@2x.png */; };
+		D8F72BA1189762950093978C /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = D8F72B9E189762950093978C /* Default.png */; };
+		D8F72BA2189762950093978C /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D8F72B9F189762950093978C /* Default@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -303,9 +303,9 @@
 		D8F72B981896B4370093978C /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; path = iTunesArtwork; sourceTree = "<group>"; };
 		D8F72B9A1897465E0093978C /* BMSettingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMSettingCell.h; sourceTree = "<group>"; };
 		D8F72B9B1897465E0093978C /* BMSettingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMSettingCell.m; sourceTree = "<group>"; };
-		D8F72B9D189762950093978C /* Default-568@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Default-568@2x.jpg"; sourceTree = "<group>"; };
-		D8F72B9E189762950093978C /* Default.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Default.jpg; sourceTree = "<group>"; };
-		D8F72B9F189762950093978C /* Default@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Default@2x.jpg"; sourceTree = "<group>"; };
+		D8F72B9D189762950093978C /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		D8F72B9E189762950093978C /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		D8F72B9F189762950093978C /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -736,9 +736,9 @@
 		D8F72B82189697AD0093978C /* Image */ = {
 			isa = PBXGroup;
 			children = (
-				D8F72B9D189762950093978C /* Default-568@2x.jpg */,
-				D8F72B9E189762950093978C /* Default.jpg */,
-				D8F72B9F189762950093978C /* Default@2x.jpg */,
+				D8F72B9D189762950093978C /* Default-568h@2x.png */,
+				D8F72B9E189762950093978C /* Default.png */,
+				D8F72B9F189762950093978C /* Default@2x.png */,
 				D8F72B981896B4370093978C /* iTunesArtwork */,
 				D8F72B84189697AD0093978C /* Icon@2x.png */,
 				D8F72B85189697AD0093978C /* Icon-120.png */,
@@ -837,7 +837,7 @@
 				D81DB82E18877AEF002D27B5 /* UMSCommentInputController.xib in Resources */,
 				D81DB83418877AEF002D27B5 /* UMSShareListController.xib in Resources */,
 				D81DB83E18877AEF002D27B5 /* ios-social-sdk-login-quick.html in Resources */,
-				D8F72BA0189762950093978C /* Default-568@2x.jpg in Resources */,
+				D8F72BA0189762950093978C /* Default-568h@2x.png in Resources */,
 				D81DB84318877AEF002D27B5 /* markdown.css in Resources */,
 				D81DB83118877AEF002D27B5 /* UMShareEditViewControlleriPad.xib in Resources */,
 				D81DB82D18877AEF002D27B5 /* UMSCommentDetailController.xib in Resources */,
@@ -848,10 +848,10 @@
 				D8F72B90189697AD0093978C /* Icon.png in Resources */,
 				D81DB83A18877AEF002D27B5 /* ios-social-sdk-comment-detail.html in Resources */,
 				D81DB83318877AEF002D27B5 /* UMSnsAccountViewController.xib in Resources */,
-				D8F72BA1189762950093978C /* Default.jpg in Resources */,
+				D8F72BA1189762950093978C /* Default.png in Resources */,
 				D81DB83D18877AEF002D27B5 /* ios-social-sdk-login-detail.html in Resources */,
 				D81DB83C18877AEF002D27B5 /* ios-social-sdk-like.html in Resources */,
-				D8F72BA2189762950093978C /* Default@2x.jpg in Resources */,
+				D8F72BA2189762950093978C /* Default@2x.png in Resources */,
 				D81DB83F18877AEF002D27B5 /* ios-social-sdk-shake.html in Resources */,
 				D81DB83818877AEF002D27B5 /* iOS-social-analytics-releasenote.html in Resources */,
 				D81DB83518877AEF002D27B5 /* UMSocialSDKResourcesNew.bundle in Resources */,
