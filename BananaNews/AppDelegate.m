@@ -35,7 +35,7 @@
     [UMSocialConfig setSupportSinaSSO:YES];
     [UMSocialConfig setSupportQzoneSSO:YES importClasses:nil];
     
-    [UMSocialConfig setSnsPlatformNames:@[UMShareToSina, UMShareToWechatTimeline, UMShareToWechatSession, UMShareToTencent, UMShareToQQ, UMShareToRenren]];
+    [UMSocialConfig setSnsPlatformNames:@[UMShareToSina, UMShareToWechatTimeline, UMShareToWechatSession, UMShareToTencent, UMShareToQQ, UMShareToQzone, UMShareToRenren, UMShareToSms]];
     
     //检查版本更新
     [MobClick checkUpdate];

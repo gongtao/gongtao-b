@@ -208,7 +208,7 @@
     }
     y += 8.0;
     
-    NSString *dingCount = [NSString stringWithFormat:@"(%@)", self.news.like_count];
+    NSString *dingCount = [NSString stringWithFormat:@"%@", self.news.like_count];
     CGSize size = [dingCount sizeWithFont:Font_NewsTitle];
     if (size.width < 50.0) {
         size.width = 50.0;
