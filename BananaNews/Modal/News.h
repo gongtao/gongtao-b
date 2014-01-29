@@ -2,7 +2,7 @@
 //  News.h
 //  BananaNews
 //
-//  Created by 龚 涛 on 14-1-25.
+//  Created by 龚 涛 on 14-1-29.
 //  Copyright (c) 2014年 龚涛. All rights reserved.
 //
 
@@ -16,7 +16,6 @@
 @property (nonatomic, retain) NSNumber * comment_count;
 @property (nonatomic, retain) NSNumber * fa_count;
 @property (nonatomic, retain) NSNumber * image_height;
-@property (nonatomic, retain) NSNumber * isSearch;
 @property (nonatomic, retain) NSNumber * like_count;
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSDate * ndate;
@@ -25,14 +24,30 @@
 @property (nonatomic, retain) NSNumber * text_height;
 @property (nonatomic, retain) NSString * title;
 @property (nonatomic, retain) NSString * url;
-@property (nonatomic, retain) NewsCategory *category;
+@property (nonatomic, retain) NSNumber * isSearch;
+@property (nonatomic, retain) NSOrderedSet *category;
+@property (nonatomic, retain) NSSet *collectUsers;
 @property (nonatomic, retain) NSOrderedSet *comments;
 @property (nonatomic, retain) NSOrderedSet *medias;
 @property (nonatomic, retain) User *user;
-@property (nonatomic, retain) NSSet *collectUsers;
 @end
 
 @interface News (CoreDataGeneratedAccessors)
+
+- (void)insertObject:(NewsCategory *)value inCategoryAtIndex:(NSUInteger)idx;
+- (void)removeObjectFromCategoryAtIndex:(NSUInteger)idx;
+- (void)insertCategory:(NSArray *)value atIndexes:(NSIndexSet *)indexes;
+- (void)removeCategoryAtIndexes:(NSIndexSet *)indexes;
+- (void)replaceObjectInCategoryAtIndex:(NSUInteger)idx withObject:(NewsCategory *)value;
+- (void)replaceCategoryAtIndexes:(NSIndexSet *)indexes withCategory:(NSArray *)values;
+- (void)addCategoryObject:(NewsCategory *)value;
+- (void)removeCategoryObject:(NewsCategory *)value;
+- (void)addCategory:(NSOrderedSet *)values;
+- (void)removeCategory:(NSOrderedSet *)values;
+- (void)addCollectUsersObject:(User *)value;
+- (void)removeCollectUsersObject:(User *)value;
+- (void)addCollectUsers:(NSSet *)values;
+- (void)removeCollectUsers:(NSSet *)values;
 
 - (void)insertObject:(Comment *)value inCommentsAtIndex:(NSUInteger)idx;
 - (void)removeObjectFromCommentsAtIndex:(NSUInteger)idx;
@@ -54,9 +69,4 @@
 - (void)removeMediasObject:(Media *)value;
 - (void)addMedias:(NSOrderedSet *)values;
 - (void)removeMedias:(NSOrderedSet *)values;
-- (void)addCollectUsersObject:(User *)value;
-- (void)removeCollectUsersObject:(User *)value;
-- (void)addCollectUsers:(NSSet *)values;
-- (void)removeCollectUsers:(NSSet *)values;
-
 @end

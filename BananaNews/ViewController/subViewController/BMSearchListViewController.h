@@ -15,6 +15,8 @@
     BOOL _isSearch;
     
     NSInteger _postId;
+    
+    UIActivityIndicatorView *_indicatorView;
 }
 
 @end

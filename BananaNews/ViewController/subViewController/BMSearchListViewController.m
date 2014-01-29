@@ -65,6 +65,11 @@
     self.tableView.backgroundColor = [UIColor clearColor];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     _isSearch = NO;
+    
+    _indicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    _indicatorView.center = CGPointMake(self.view.bounds.size.width/2.0, self.view.bounds.size.height/2.0);
+    _indicatorView.hidden = YES;
+    [self.view addSubview:_indicatorView];
 }
 
 - (void)didReceiveMemoryWarning
@@ -100,6 +105,8 @@
     _isSearch = YES;
     self.tableView.backgroundColor = Color_ContentBg;
     _userSearchView.users = nil;
+    [_indicatorView startAnimating];
+    _indicatorView.hidden = NO;
     __block BMNewsManager *manager = [BMNewsManager sharedManager];
     [manager clearSearchData:^(void){
         [manager getSearchUsers:text
@@ -108,13 +115,29 @@
                             [manager getSearchNews:text
                                            success:^(void){
                                                _isSearch = NO;
+                                               [_indicatorView stopAnimating];
+                                               _indicatorView.hidden = YES;
                                            }
                                            failure:^(NSError *error){
                                                _isSearch = NO;
+                                               [_indicatorView stopAnimating];
+                                               _indicatorView.hidden = YES;
                                            }];
                         }
                         failure:^(NSError *error){
                             _isSearch = NO;
+                            _userSearchView.users = [manager getAllSearchUsers:[self managedObjectContext]];
+                            [manager getSearchNews:text
+                                           success:^(void){
+                                               _isSearch = NO;
+                                               [_indicatorView stopAnimating];
+                                               _indicatorView.hidden = YES;
+                                           }
+                                           failure:^(NSError *error){
+                                               _isSearch = NO;
+                                               [_indicatorView stopAnimating];
+                                               _indicatorView.hidden = YES;
+                                           }];
                         }];
     }];
 }

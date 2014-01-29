@@ -2,8 +2,8 @@
 //  Category.h
 //  BananaNews
 //
-//  Created by 龚涛 on 1/21/14.
-//  Copyright (c) 2014 龚涛. All rights reserved.
+//  Created by 龚 涛 on 14-1-29.
+//  Copyright (c) 2014年 龚涛. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>

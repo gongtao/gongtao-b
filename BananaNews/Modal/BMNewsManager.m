@@ -220,7 +220,9 @@
     [array enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop){
         NSDictionary *newsInfo = (NSDictionary *)obj;
         News *news = [self createNews:newsInfo context:context];
-        news.category = newsCategory;
+        NSMutableOrderedSet *set = [NSMutableOrderedSet orderedSetWithOrderedSet:newsCategory.list];
+        [set addObject:news];
+        newsCategory.list = set;
     }];
 }
 
@@ -281,7 +283,7 @@
         NSArray *array = [self getAllNews:temporaryContext];
         User *user = [self getMainUserWithContext:temporaryContext];
         [array enumerateObjectsUsingBlock:^(News *obj, NSUInteger idx, BOOL *stop){
-            obj.category = nil;
+            obj.category = [NSOrderedSet orderedSet];
             if (![obj.collectUsers containsObject:user]) {
                 [temporaryContext deleteObject:obj];
             }
@@ -307,7 +309,7 @@
         NSArray *array = [self getAllSearchNews:temporaryContext];
         [array enumerateObjectsUsingBlock:^(News *obj, NSUInteger idx, BOOL *stop){
             obj.isSearch = [NSNumber numberWithBool:NO];
-            if (!obj.category && obj.collectUsers.count==0) {
+            if (obj.category.count==0 && obj.collectUsers.count==0) {
                 [temporaryContext deleteObject:obj];
             }
         }];

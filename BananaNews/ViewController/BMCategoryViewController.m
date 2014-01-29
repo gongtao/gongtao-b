@@ -40,7 +40,7 @@
     NSEntityDescription *entity = [NSEntityDescription entityForName:News_Entity inManagedObjectContext:[appDelegate managedObjectContext]];
     [request setEntity:entity];
     NSSortDescriptor *sortDesciptor = [NSSortDescriptor sortDescriptorWithKey:kNid ascending:NO];
-    request.predicate = [NSPredicate predicateWithFormat:@"category.category_id == %@",self.category.category_id];
+    request.predicate = [NSPredicate predicateWithFormat:@"ANY category.category_id == %@",self.category.category_id];
     [request setSortDescriptors:[NSArray arrayWithObject:sortDesciptor]];
     
     _listVC = [[BMListViewController alloc] initWithRequest:request cacheName:[NSString stringWithFormat:@"CacheCategory%@", self.category.category_id]];

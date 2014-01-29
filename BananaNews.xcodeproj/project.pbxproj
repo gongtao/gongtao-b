@@ -59,7 +59,6 @@
 		42C7BB2318715E3100BD6382 /* BMNavBackButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C7BB2218715E3100BD6382 /* BMNavBackButton.m */; };
 		42CA255618769C4A00FB1764 /* BMNewsListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 42CA255518769C4A00FB1764 /* BMNewsListCell.m */; };
 		42D05F76187E417700DC5E7E /* BMDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42D05F75187E417700DC5E7E /* BMDetailViewController.m */; };
-		42E21127188E33BB00E2EC89 /* NewsCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 42E21126188E33BB00E2EC89 /* NewsCategory.m */; };
 		42E3AD6B187F872400ADFAD9 /* BMPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42E3AD6A187F872400ADFAD9 /* BMPageViewController.m */; };
 		42E3AD71187F885100ADFAD9 /* BMTabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42E3AD70187F885100ADFAD9 /* BMTabViewController.m */; };
 		42E8681718764A1A00B02A0B /* Database.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 42E8681518764A1A00B02A0B /* Database.xcdatamodeld */; };
@@ -99,7 +98,8 @@
 		D88A318C1897ADB50054FD7B /* BMUserSearchView.m in Sources */ = {isa = PBXBuildFile; fileRef = D88A318B1897ADB50054FD7B /* BMUserSearchView.m */; };
 		D88A318F1897D1560054FD7B /* BMUserButton.m in Sources */ = {isa = PBXBuildFile; fileRef = D88A318E1897D1560054FD7B /* BMUserButton.m */; };
 		D88A31921897E3A80054FD7B /* BMUsersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D88A31911897E3A80054FD7B /* BMUsersViewController.m */; };
-		D8C503A81893547F0092CAC0 /* News.m in Sources */ = {isa = PBXBuildFile; fileRef = D8C503A71893547F0092CAC0 /* News.m */; };
+		D88A31981898A3A90054FD7B /* News.m in Sources */ = {isa = PBXBuildFile; fileRef = D88A31971898A3A90054FD7B /* News.m */; };
+		D88A319B1898A3AA0054FD7B /* NewsCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = D88A319A1898A3AA0054FD7B /* NewsCategory.m */; };
 		D8C503AE189360BF0092CAC0 /* BMCollectListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8C503AD189360BF0092CAC0 /* BMCollectListViewController.m */; };
 		D8C503B11894F85C0092CAC0 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = D8C503B01894F85C0092CAC0 /* User.m */; };
 		D8C503B41894F85D0092CAC0 /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = D8C503B31894F85D0092CAC0 /* Comment.m */; };
@@ -213,8 +213,6 @@
 		42CA255518769C4A00FB1764 /* BMNewsListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMNewsListCell.m; sourceTree = "<group>"; };
 		42D05F74187E417700DC5E7E /* BMDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMDetailViewController.h; sourceTree = "<group>"; };
 		42D05F75187E417700DC5E7E /* BMDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMDetailViewController.m; sourceTree = "<group>"; };
-		42E21125188E33BB00E2EC89 /* NewsCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsCategory.h; sourceTree = "<group>"; };
-		42E21126188E33BB00E2EC89 /* NewsCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsCategory.m; sourceTree = "<group>"; };
 		42E3AD69187F872400ADFAD9 /* BMPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMPageViewController.h; sourceTree = "<group>"; };
 		42E3AD6A187F872400ADFAD9 /* BMPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMPageViewController.m; sourceTree = "<group>"; };
 		42E3AD6F187F885100ADFAD9 /* BMTabViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMTabViewController.h; sourceTree = "<group>"; };
@@ -286,8 +284,10 @@
 		D88A318E1897D1560054FD7B /* BMUserButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMUserButton.m; sourceTree = "<group>"; };
 		D88A31901897E3A80054FD7B /* BMUsersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMUsersViewController.h; sourceTree = "<group>"; };
 		D88A31911897E3A80054FD7B /* BMUsersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMUsersViewController.m; sourceTree = "<group>"; };
-		D8C503A61893547F0092CAC0 /* News.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = News.h; sourceTree = "<group>"; };
-		D8C503A71893547F0092CAC0 /* News.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = News.m; sourceTree = "<group>"; };
+		D88A31961898A3A90054FD7B /* News.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = News.h; sourceTree = "<group>"; };
+		D88A31971898A3A90054FD7B /* News.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = News.m; sourceTree = "<group>"; };
+		D88A31991898A3AA0054FD7B /* NewsCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsCategory.h; sourceTree = "<group>"; };
+		D88A319A1898A3AA0054FD7B /* NewsCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsCategory.m; sourceTree = "<group>"; };
 		D8C503AC189360BF0092CAC0 /* BMCollectListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMCollectListViewController.h; sourceTree = "<group>"; };
 		D8C503AD189360BF0092CAC0 /* BMCollectListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMCollectListViewController.m; sourceTree = "<group>"; };
 		D8C503AF1894F85C0092CAC0 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
@@ -581,14 +581,14 @@
 				42E8681918764A2500B02A0B /* BMNewsManager.m */,
 				42C4E79418891F9200E650BE /* Media.h */,
 				42C4E79518891F9200E650BE /* Media.m */,
-				42E21125188E33BB00E2EC89 /* NewsCategory.h */,
-				42E21126188E33BB00E2EC89 /* NewsCategory.m */,
-				D8C503A61893547F0092CAC0 /* News.h */,
-				D8C503A71893547F0092CAC0 /* News.m */,
 				D8C503B21894F85D0092CAC0 /* Comment.h */,
 				D8C503B31894F85D0092CAC0 /* Comment.m */,
 				D8C503AF1894F85C0092CAC0 /* User.h */,
 				D8C503B01894F85C0092CAC0 /* User.m */,
+				D88A31991898A3AA0054FD7B /* NewsCategory.h */,
+				D88A319A1898A3AA0054FD7B /* NewsCategory.m */,
+				D88A31961898A3A90054FD7B /* News.h */,
+				D88A31971898A3A90054FD7B /* News.m */,
 			);
 			path = Modal;
 			sourceTree = "<group>";
@@ -819,6 +819,9 @@
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = "龚涛";
 				TargetAttributes = {
+					42C7BAB31871059100BD6382 = {
+						DevelopmentTeam = F2R2934BF3;
+					};
 					42C7BAD41871059100BD6382 = {
 						TestTargetID = 42C7BAB31871059100BD6382;
 					};
@@ -941,7 +944,6 @@
 				42C4E778188526E800E650BE /* BMSNSLoginView.m in Sources */,
 				42C7BB0618712BF700BD6382 /* BMLeftViewCell.m in Sources */,
 				D8C503B7189536650092CAC0 /* BMUserInfoViewController.m in Sources */,
-				D8C503A81893547F0092CAC0 /* News.m in Sources */,
 				42C7BB0118710E7F00BD6382 /* BMRightViewController.m in Sources */,
 				42C5844A187A73A700D919EB /* BMCategoryViewController.m in Sources */,
 				D821E85218752D02005C1604 /* BMCustomButton.m in Sources */,
@@ -959,6 +961,7 @@
 				42C7BAEF18710C2000BD6382 /* BMSidePanelController.m in Sources */,
 				D8F72B9718969CFF0093978C /* BMUserDetailViewController.m in Sources */,
 				42E3AD6B187F872400ADFAD9 /* BMPageViewController.m in Sources */,
+				D88A31981898A3A90054FD7B /* News.m in Sources */,
 				42C4E78418866B8E00E650BE /* R_FeedbackTableViewCell.m in Sources */,
 				42C6D2A81872A11C00F796FB /* IIViewDeckController.m in Sources */,
 				42C4E78318866B8E00E650BE /* L_FeedbackTableViewCell.m in Sources */,
@@ -976,7 +979,6 @@
 				42E3AD71187F885100ADFAD9 /* BMTabViewController.m in Sources */,
 				D821E855187560AF005C1604 /* BMCollectViewController.m in Sources */,
 				42C4E77B1885285200E650BE /* BMSNSLoginButton.m in Sources */,
-				42E21127188E33BB00E2EC89 /* NewsCategory.m in Sources */,
 				D821E84C18751228005C1604 /* BMSearchViewController.m in Sources */,
 				D88A318C1897ADB50054FD7B /* BMUserSearchView.m in Sources */,
 				42E8681A18764A2500B02A0B /* BMNewsManager.m in Sources */,
@@ -986,6 +988,7 @@
 				42E8681E187657C500B02A0B /* BMListViewController.m in Sources */,
 				D8EA5913187C0FD500EEB573 /* BMNewsImageView.m in Sources */,
 				D8C503AE189360BF0092CAC0 /* BMCollectListViewController.m in Sources */,
+				D88A319B1898A3AA0054FD7B /* NewsCategory.m in Sources */,
 				42C7BB2318715E3100BD6382 /* BMNavBackButton.m in Sources */,
 				42C7BB0A1871447100BD6382 /* BMNavigationController.m in Sources */,
 				D8EA591A1880B0C800EEB573 /* GTCyclePageViewCell.m in Sources */,
@@ -1068,6 +1071,7 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -1108,7 +1112,8 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: FAN YUERU (F2R2934BF3)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: FAN YUERU (F2R2934BF3)";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -1119,6 +1124,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 				VALID_ARCHS = "armv7 armv7s";
@@ -1130,6 +1136,9 @@
 			baseConfigurationReference = CA26BFD3CEFE45ABAC84ECBE /* Pods.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COMPRESS_PNG_FILES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					BananaNews/ThirdParty/UmengSocial3.3.3/UMSocial_Sdk_Extra_Frameworks/TencentOpenAPI,
@@ -1143,6 +1152,7 @@
 					BananaNews/ThirdParty/UmengSocial3.3.3/UMSocial_Sdk_3.3.3/frameworks/Wechat,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1153,6 +1163,9 @@
 			baseConfigurationReference = CA26BFD3CEFE45ABAC84ECBE /* Pods.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: FAN YUERU (F2R2934BF3)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: FAN YUERU (F2R2934BF3)";
+				COMPRESS_PNG_FILES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					BananaNews/ThirdParty/UmengSocial3.3.3/UMSocial_Sdk_Extra_Frameworks/TencentOpenAPI,
@@ -1166,6 +1179,7 @@
 					BananaNews/ThirdParty/UmengSocial3.3.3/UMSocial_Sdk_3.3.3/frameworks/Wechat,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;
 			};

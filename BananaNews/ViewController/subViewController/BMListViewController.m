@@ -299,7 +299,6 @@
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     if (scrollView == self.tableView) {
-        NSLog(@"scroll：%f", scrollView.contentOffset.y);
         [_refreshHeaderView egoRefreshScrollViewDidScroll:scrollView];
     }
 }
