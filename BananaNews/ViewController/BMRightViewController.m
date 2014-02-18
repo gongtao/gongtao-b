@@ -81,22 +81,20 @@
     [self.view addSubview:_loginButton];
     
     y = CGRectGetMaxY(_loginButton.frame)+35.0;
-#warning 下一版本做
-//    offset = (kSidePanelRightWidth-146.0)/2;
-//    BMCustomButton *submitButton = [[BMCustomButton alloc] initWithFrame:CGRectMake(320.0-kSidePanelRightWidth+offset, y, 58.0, 63.0)];
-//    submitButton.imageRect = CGRectMake(9.0, 0.0, 40.0, 40.0);
-//    submitButton.titleRect = CGRectMake(0.0, 40.0, 58.0, 23.0);
-//    [submitButton setImage:[UIImage imageNamed:@"右侧投稿.png"] forState:UIControlStateNormal];
-//    [submitButton setImage:[UIImage imageNamed:@"右侧投稿按下.png"] forState:UIControlStateHighlighted];
-//    [submitButton setTitle:@"投 稿" forState:UIControlStateNormal];
-//    submitButton.titleLabel.font = [UIFont systemFontOfSize:12.0];
-//    [submitButton setTitleColor:Color_SideFont forState:UIControlStateNormal];
-//    submitButton.titleLabel.textAlignment = NSTextAlignmentCenter;
-//    [submitButton addTarget:self action:@selector(_submitButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-//    [self.view addSubview:submitButton];
-//    
-//    BMCustomButton *collectButton = [[BMCustomButton alloc] initWithFrame:CGRectMake(CGRectGetMaxX(submitButton.frame)+30.0, y, 58.0, 63.0)];
-    BMCustomButton *collectButton = [[BMCustomButton alloc] initWithFrame:CGRectMake(CGRectGetMidX(_loginButton.frame)-29.0, y, 58.0, 63.0)];
+    offset = (kSidePanelRightWidth-146.0)/2;
+    BMCustomButton *submitButton = [[BMCustomButton alloc] initWithFrame:CGRectMake(320.0-kSidePanelRightWidth+offset, y, 58.0, 63.0)];
+    submitButton.imageRect = CGRectMake(9.0, 0.0, 40.0, 40.0);
+    submitButton.titleRect = CGRectMake(0.0, 40.0, 58.0, 23.0);
+    [submitButton setImage:[UIImage imageNamed:@"右侧投稿.png"] forState:UIControlStateNormal];
+    [submitButton setImage:[UIImage imageNamed:@"右侧投稿按下.png"] forState:UIControlStateHighlighted];
+    [submitButton setTitle:@"投 稿" forState:UIControlStateNormal];
+    submitButton.titleLabel.font = [UIFont systemFontOfSize:12.0];
+    [submitButton setTitleColor:Color_SideFont forState:UIControlStateNormal];
+    submitButton.titleLabel.textAlignment = NSTextAlignmentCenter;
+    [submitButton addTarget:self action:@selector(_submitButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:submitButton];
+    
+    BMCustomButton *collectButton = [[BMCustomButton alloc] initWithFrame:CGRectMake(CGRectGetMaxX(submitButton.frame)+30.0, y, 58.0, 63.0)];
     collectButton.imageRect = CGRectMake(9.0, 0.0, 40.0, 40.0);
     collectButton.titleRect = CGRectMake(0.0, 40.0, 58.0, 23.0);
     [collectButton setImage:[UIImage imageNamed:@"右侧收藏.png"] forState:UIControlStateNormal];

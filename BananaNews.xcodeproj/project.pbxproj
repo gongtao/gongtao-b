@@ -819,9 +819,6 @@
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = "龚涛";
 				TargetAttributes = {
-					42C7BAB31871059100BD6382 = {
-						DevelopmentTeam = F2R2934BF3;
-					};
 					42C7BAD41871059100BD6382 = {
 						TestTargetID = 42C7BAB31871059100BD6382;
 					};
@@ -1163,7 +1160,7 @@
 			baseConfigurationReference = CA26BFD3CEFE45ABAC84ECBE /* Pods.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
-				CODE_SIGN_IDENTITY = "iPhone Distribution: FAN YUERU (F2R2934BF3)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: FAN YUERU (F2R2934BF3)";
 				COMPRESS_PNG_FILES = YES;
 				FRAMEWORK_SEARCH_PATHS = (

@@ -22,7 +22,7 @@
 		</dict>
 	</dict>
 	<key>CFBundleIdentifier</key>
-	<string>com.news.${PRODUCT_NAME:rfc1034identifier}</string>
+	<string>com.daily.${PRODUCT_NAME:rfc1034identifier}</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -42,7 +42,7 @@
 			<string>SinaWeibo</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>sina.52cc8b8a56240b6c8c023b74</string>
+				<string>sina.2504371573</string>
 			</array>
 		</dict>
 		<dict>
