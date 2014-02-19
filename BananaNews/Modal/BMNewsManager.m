@@ -1310,4 +1310,67 @@
     return op;
 }
 
+- (AFHTTPRequestOperation *)getSubmission:(NSString *)file
+                                  success:(void (^)(void))success
+                                  failure:(void (^)(NSError *error))failure
+{
+    NSString *token = [[NSUserDefaults standardUserDefaults] objectForKey:kLoginToken];
+    NSDictionary *param = @{@"title": @"测试",
+                            @"token": token};
+    
+    void (^requestSuccess)(AFHTTPRequestOperation *, id) = ^(AFHTTPRequestOperation *operation, id responseObject) {
+        if (responseObject != [NSNull null]) {
+            NSLog(@"%@", responseObject);
+            
+//            NSManagedObjectContext *temporaryContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
+//            temporaryContext.parentContext = [self managedObjectContext];
+//            
+//            [temporaryContext performBlock:^{
+//                [self createSearchNewsFromNetworking:responseObject context:temporaryContext];
+//                [self saveContext:temporaryContext];
+//                // save parent to disk asynchronously
+//                [temporaryContext.parentContext performBlock:^{
+//                    [self saveContext:temporaryContext.parentContext];
+//                    if (success) {
+//                        success();
+//                    }
+//                }];
+//            }];
+        }
+        else {
+            if (failure) {
+                failure(nil);
+            }
+        }
+    };
+    
+    void (^requestFailure)(AFHTTPRequestOperation *, NSError *) = ^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+        if (failure) {
+            failure(error);
+        }
+    };
+    
+    AFHTTPRequestOperation *op = [_manager POST:@"wp_api/v1/post/add"
+                                     parameters:param constructingBodyWithBlock:^(id<AFMultipartFormData> formData){
+                                         NSError *error;
+                                         
+                                         [formData appendPartWithFileURL:[[NSBundle mainBundle] URLForResource:@"Default" withExtension:@"png"] name:@"pic1" error:&error];
+                                         
+                                         if (error) {
+                                             NSLog(@"error: %@", [error localizedDescription]);
+                                         }
+                                         
+                                         [formData appendPartWithFileURL:[[NSBundle mainBundle] URLForResource:@"Default@2x" withExtension:@"png"] name:@"pic2" error:&error];
+                                         
+                                         if (error) {
+                                             NSLog(@"error: %@", [error localizedDescription]);
+                                         }
+                                     }
+                                        success:requestSuccess
+                                        failure:requestFailure];
+    NSLog(@"request: %@", op.request.URL.absoluteString);
+    return op;
+}
+
 @end
