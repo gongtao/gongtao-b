@@ -12,6 +12,8 @@
 
 + (NSURL *)applicationDocumentsDirectory;
 
++ (NSURL *)applicationTempDirectory;
+
 + (NSDate *)dateFromString:(NSString *)str;
 
 + (NSString *)stringFromDate:(NSDate *)date;
@@ -21,5 +23,7 @@
 + (void)showToast:(NSString *)toast;
 
 + (void)showErrorToast:(NSString *)toast;
+
++ (UIImage *)scaleImage:(UIImage *)image size:(CGSize)size;
 
 @end

@@ -20,6 +20,7 @@
 @dynamic small_height;
 @dynamic small_width;
 @dynamic type;
+@dynamic url;
 @dynamic news;
 
 @end

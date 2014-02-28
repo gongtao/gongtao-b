@@ -17,9 +17,9 @@
 
 #define kLoginSuccessNotification   @"LoginSuccessNotification"
 
-//#define kBaseURL    [NSURL URLWithString:@"http://bp1/bcy3.info"]
+#define kBaseURL    [NSURL URLWithString:@"http://xiangjiaoribao.com"]
 
-#define kBaseURL    [NSURL URLWithString:@"http://115.29.43.107/site/"]
+//#define kBaseURL    [NSURL URLWithString:@"http://115.29.43.107/site/"]
 
 #define IS_IOS7     ([[[UIDevice currentDevice]systemVersion] floatValue] >= 7.0)
 
@@ -51,6 +51,7 @@
 #define Color_NewsFont      [UIColor colorWithHexString:@"333333"]
 #define Color_NewsSmallFont [UIColor colorWithHexString:@"999999"]
 #define Color_CommentUser   [UIColor colorWithHexString:@"348ad2"]
+#define Color_UploadFrameBg [UIColor colorWithHexString:@"f9f9f9"]
 
 
 #endif

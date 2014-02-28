@@ -338,8 +338,10 @@
 
 -(void)didFinishGetUMSocialDataInViewController:(UMSocialResponseEntity *)response
 {
-    News *news = [self.fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:_postId inSection:0]];
-    [[BMNewsManager sharedManager] shareToSite:news.nid.integerValue success:nil failure:nil];
+    if (response.responseCode == UMSResponseCodeSuccess) {
+        News *news = [self.fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:_postId inSection:0]];
+        [[BMNewsManager sharedManager] shareToSite:news.nid.integerValue success:nil failure:nil];
+    }
 }
 
 #pragma mark - BMUserSearchViewDelegate

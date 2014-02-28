@@ -19,6 +19,7 @@
         <attribute name="small_height" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="small_width" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="type" attributeType="String" syncable="YES"/>
+        <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="news" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="News" inverseName="medias" inverseEntity="News" syncable="YES"/>
     </entity>
     <entity name="News" representedClassName="News" syncable="YES">

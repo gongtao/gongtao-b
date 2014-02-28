@@ -41,7 +41,7 @@
         [_contentView addSubview:button1];
         
         BMSNSLoginButton *button2 = [[BMSNSLoginButton alloc] initWithFrame:CGRectMake(0.0, 56.0, 183.0, 55.0)];
-        button2.titleLabel.text = @"腾讯QQ登陆";
+        button2.titleLabel.text = @"腾讯QQ登录";
         [button2 addTarget:self action:@selector(selectSNS:) forControlEvents:UIControlEventTouchUpInside];
         button2.tag = 1;
         button2.imageView.image = [UIImage imageNamed:@"QQlogo.png"];
@@ -116,17 +116,28 @@
     }
     if ([self.loginType isEqualToString:UMShareToSina]) {
         param[@"login_type"] = @"sianweibo";
+        
+        [[UMSocialDataService defaultDataService] requestSnsInformation:self.loginType completion:^(UMSocialResponseEntity *response){
+            NSLog(@"SnsInformation is %@",response.data);
+            NSString *description = response.data[@"description"];
+            if (description) {
+                param[@"description"] = description;
+            }
+            //用户登陆http
+            [[BMNewsManager sharedManager] userLogin:param
+                                             success:^(User *user){
+                                                 [[NSUserDefaults standardUserDefaults] setObject:self.loginType forKey:kLoginKey];
+                                                 [[NSNotificationCenter defaultCenter] postNotificationName:kLoginSuccessNotification object:nil userInfo:@{@"user": user}];
+                                                 [self dismiss];
+                                             }
+                                             failure:^(NSError *error){
+                                                 [self dismiss];
+                                             }];
+        }];
     }
     else if ([self.loginType isEqualToString:UMShareToQQ]) {
         param[@"login_type"] = @"qqsns";
-    }
-    
-    [[UMSocialDataService defaultDataService] requestSnsInformation:self.loginType completion:^(UMSocialResponseEntity *response){
-        NSLog(@"SnsInformation is %@",response.data);
-        NSString *description = response.data[@"description"];
-        if (description) {
-            param[@"description"] = description;
-        }
+        
         //用户登陆http
         [[BMNewsManager sharedManager] userLogin:param
                                          success:^(User *user){
@@ -137,7 +148,7 @@
                                          failure:^(NSError *error){
                                              [self dismiss];
                                          }];
-    }];
+    }
 }
 
 #pragma mark - Public

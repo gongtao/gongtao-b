@@ -340,7 +340,9 @@
 
 -(void)didFinishGetUMSocialDataInViewController:(UMSocialResponseEntity *)response
 {
-    [[BMNewsManager sharedManager] shareToSite:self.news.nid.integerValue success:nil failure:nil];
+    if (response.responseCode == UMSResponseCodeSuccess) {
+        [[BMNewsManager sharedManager] shareToSite:self.news.nid.integerValue success:nil failure:nil];
+    }
 }
 
 #pragma mark - UIAlertViewDelegate

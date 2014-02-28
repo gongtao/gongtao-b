@@ -21,6 +21,7 @@
 @property (nonatomic, retain) NSNumber * small_height;
 @property (nonatomic, retain) NSNumber * small_width;
 @property (nonatomic, retain) NSString * type;
+@property (nonatomic, retain) NSString * url;
 @property (nonatomic, retain) NSSet *news;
 @end
 

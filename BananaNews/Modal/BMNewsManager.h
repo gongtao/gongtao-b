@@ -174,7 +174,8 @@
                                   success:(void (^)(void))success
                                   failure:(void (^)(NSError *error))failure;
 
-- (AFHTTPRequestOperation *)getSubmission:(NSString *)file
+- (AFHTTPRequestOperation *)getSubmission:(NSString *)content
+                                 imageNum:(NSArray *)imageArray
                                   success:(void (^)(void))success
                                   failure:(void (^)(NSError *error))failure;
 

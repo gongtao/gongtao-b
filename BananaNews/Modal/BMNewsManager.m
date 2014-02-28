@@ -12,6 +12,10 @@
 
 #import <SDImageCache.h>
 
+#import <TencentOpenAPI/QQApiInterface.h>
+
+#import <TencentOpenAPI/TencentOAuth.h>
+
 @interface BMNewsManager ()
 {
     AFHTTPRequestOperationManager *_manager;
@@ -146,12 +150,18 @@
 
 - (void)shareNews:(News *)news delegate:(id<UMSocialUIDelegate>)delegate
 {
-    int length = 125-news.url.length;
+    int length = 100-news.url.length;
     NSString *content = news.title;
     if (length < content.length) {
         content = [NSString stringWithFormat:@"%@...", [content substringToIndex:length-1]];
     }
     NSString *shareText = [NSString stringWithFormat:@"我在看香蕉日报：%@ 网址：%@", content, news.url];
+    
+    [UMSocialConfig setWXAppId:@"wx99241afe3a816006" url:news.url];
+    
+    [UMSocialConfig setQQAppId:@"101028148" url:news.url importClasses:@[[QQApiInterface class],[TencentOAuth class]]];
+    
+    [UMSocialConfig setShareQzoneWithQQSDK:YES url:news.url importClasses:@[[QQApiInterface class],[TencentOAuth class],[TCUploadPicDic class],[TCAddShareDic class]]];
     
     UIImage *image = nil;
     if (news.medias.count > 0) {
@@ -406,7 +416,9 @@
     if (mediaArray && (NSNull *)mediaArray != [NSNull null]) {
         [mediaArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop){
             Media *media = [self createMedia:obj context:context];
-            [medias addObject:media];
+            if (media) {
+                [medias addObject:media];
+            }
         }];
         news.medias = [[NSOrderedSet alloc] initWithArray:medias];
     }
@@ -510,21 +522,30 @@
         media.type = type;
     }
     
-    NSArray *array = dic[@"sizes"];
-    if (array && (NSNull *)array != [NSNull null]) {
-        for (NSDictionary *obj in array) {
-            NSString *size = obj[@"name"];
-            if (!media.small && ([size isEqualToString:@"medium"] || [size isEqualToString:@"hot"] || [size isEqualToString:@"show"])) {
-                media.small = obj[@"url"];
-                media.small_width = obj[@"width"];
-                media.small_height = obj[@"height"];
-                continue;
-            }
-            if (!media.large && [size isEqualToString:@"full"]) {
-                media.large = obj[@"url"];
-                media.large_width = obj[@"width"];
-                media.large_height = obj[@"height"];
-                continue;
+    if ([type rangeOfString:@"image"].location == NSNotFound) {
+        media.url = dic[@"url"];
+        media.small_width = [NSNumber numberWithFloat:160.0];
+        media.small_height = [NSNumber numberWithFloat:120.0];
+        media.large_width = [NSNumber numberWithFloat:160.0];
+        media.large_height = [NSNumber numberWithFloat:120.0];
+    }
+    else {
+        NSArray *array = dic[@"sizes"];
+        if (array && (NSNull *)array != [NSNull null]) {
+            for (NSDictionary *obj in array) {
+                NSString *size = obj[@"name"];
+                if (!media.small && ([size isEqualToString:@"medium"] || [size isEqualToString:@"hot"] || [size isEqualToString:@"show"])) {
+                    media.small = obj[@"url"];
+                    media.small_width = obj[@"width"];
+                    media.small_height = obj[@"height"];
+                    continue;
+                }
+                if (!media.large && [size isEqualToString:@"full"]) {
+                    media.large = obj[@"url"];
+                    media.large_width = obj[@"width"];
+                    media.large_height = obj[@"height"];
+                    continue;
+                }
             }
         }
     }
@@ -790,7 +811,7 @@
     
     void (^requestSuccess)(AFHTTPRequestOperation *, id) = ^(AFHTTPRequestOperation *operation, id responseObject) {
         if (responseObject != [NSNull null]) {
-//            NSLog(@"%@", responseObject);
+            NSLog(@"%@", responseObject);
             
             NSManagedObjectContext *temporaryContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
             temporaryContext.parentContext = [self managedObjectContext];
@@ -876,7 +897,7 @@
 {
     void (^requestSuccess)(AFHTTPRequestOperation *, id) = ^(AFHTTPRequestOperation *operation, id responseObject) {
         if (responseObject != [NSNull null]) {
-            NSLog(@"%@", responseObject);
+//            NSLog(@"%@", responseObject);
             
             __block NSDictionary *dic = (NSDictionary *)responseObject;
             NSData *data = [NSJSONSerialization dataWithJSONObject:dic options:NSJSONWritingPrettyPrinted error:nil];
@@ -960,7 +981,7 @@
 {
     void (^requestSuccess)(AFHTTPRequestOperation *, id) = ^(AFHTTPRequestOperation *operation, id responseObject) {
         if (responseObject != [NSNull null]) {
-//            NSLog(@"%@", responseObject);
+            NSLog(@"%@", responseObject);
             
             NSString *token = responseObject[@"token"];
             if (token) {
@@ -1004,6 +1025,7 @@
     };
     AFHTTPRequestOperation *op = [_manager POST:@"wp_api/v1/users/login" parameters:param success:requestSuccess failure:requestFailure];
     NSLog(@"request: %@", op.request.URL.absoluteString);
+    NSLog(@"param: %@", param);
     return op;
 }
 
@@ -1310,32 +1332,21 @@
     return op;
 }
 
-- (AFHTTPRequestOperation *)getSubmission:(NSString *)file
+- (AFHTTPRequestOperation *)getSubmission:(NSString *)content
+                                 imageNum:(NSArray *)imageArray
                                   success:(void (^)(void))success
                                   failure:(void (^)(NSError *error))failure
 {
     NSString *token = [[NSUserDefaults standardUserDefaults] objectForKey:kLoginToken];
-    NSDictionary *param = @{@"title": @"测试",
+    NSDictionary *param = @{@"title": content,
                             @"token": token};
     
     void (^requestSuccess)(AFHTTPRequestOperation *, id) = ^(AFHTTPRequestOperation *operation, id responseObject) {
         if (responseObject != [NSNull null]) {
             NSLog(@"%@", responseObject);
-            
-//            NSManagedObjectContext *temporaryContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
-//            temporaryContext.parentContext = [self managedObjectContext];
-//            
-//            [temporaryContext performBlock:^{
-//                [self createSearchNewsFromNetworking:responseObject context:temporaryContext];
-//                [self saveContext:temporaryContext];
-//                // save parent to disk asynchronously
-//                [temporaryContext.parentContext performBlock:^{
-//                    [self saveContext:temporaryContext.parentContext];
-//                    if (success) {
-//                        success();
-//                    }
-//                }];
-//            }];
+            if (success) {
+                success();
+            }
         }
         else {
             if (failure) {
@@ -1345,28 +1356,25 @@
     };
     
     void (^requestFailure)(AFHTTPRequestOperation *, NSError *) = ^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"Error: %@", error);
+        NSLog(@"Error: %@ %@", error, operation.responseString);
         if (failure) {
             failure(error);
         }
     };
     
     AFHTTPRequestOperation *op = [_manager POST:@"wp_api/v1/post/add"
-                                     parameters:param constructingBodyWithBlock:^(id<AFMultipartFormData> formData){
-                                         NSError *error;
-                                         
-                                         [formData appendPartWithFileURL:[[NSBundle mainBundle] URLForResource:@"Default" withExtension:@"png"] name:@"pic1" error:&error];
-                                         
-                                         if (error) {
-                                             NSLog(@"error: %@", [error localizedDescription]);
-                                         }
-                                         
-                                         [formData appendPartWithFileURL:[[NSBundle mainBundle] URLForResource:@"Default@2x" withExtension:@"png"] name:@"pic2" error:&error];
-                                         
-                                         if (error) {
-                                             NSLog(@"error: %@", [error localizedDescription]);
-                                         }
-                                     }
+                                     parameters:param
+                      constructingBodyWithBlock:^(id<AFMultipartFormData> formData){
+                          [imageArray enumerateObjectsUsingBlock:^(NSURL *obj, NSUInteger idx, BOOL *stop){
+                              NSError *error;
+                              [formData appendPartWithFileURL:obj name:[NSString stringWithFormat:@"pic%i", idx+1] fileName:[obj lastPathComponent] mimeType:@"image/jpeg" error:&error];
+//                              [formData appendPartWithFileURL:obj name:[NSString stringWithFormat:@"pic%i", idx+1] error:&error];
+                              if (error) {
+                                  NSLog(@"error:%@", error);
+                              }
+                              
+                          }];
+                      }
                                         success:requestSuccess
                                         failure:requestFailure];
     NSLog(@"request: %@", op.request.URL.absoluteString);

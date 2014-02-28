@@ -20,6 +20,11 @@
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
 }
 
++ (NSURL *)applicationTempDirectory
+{
+    return [NSURL fileURLWithPath:NSTemporaryDirectory() isDirectory:YES];
+}
+
 + (NSDate *)dateFromString:(NSString *)str
 {
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
@@ -74,6 +79,19 @@
     [MMProgressHUD setPresentationStyle:MMProgressHUDPresentationStyleFade];
     [MMProgressHUD showWithTitle:@"" status:@""];
     [MMProgressHUD dismissWithError:toast afterDelay:2];
+}
+
++ (UIImage *)scaleImage:(UIImage *)image size:(CGSize)size
+{
+    UIGraphicsBeginImageContext(size);
+    // 绘制改变大小的图片
+    [image drawInRect:CGRectMake(0, 0, size.width, size.height)];
+    // 从当前context中创建一个改变大小后的图片
+    UIImage* scaledImage = UIGraphicsGetImageFromCurrentImageContext();
+    // 使当前的context出堆栈
+    UIGraphicsEndImageContext();
+    // 返回新的改变大小后的图片
+    return scaledImage;
 }
 
 @end

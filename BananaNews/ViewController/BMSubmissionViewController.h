@@ -8,6 +8,6 @@
 
 #import "BMRootViewController.h"
 
-@interface BMSubmissionViewController : BMRootViewController
+@interface BMSubmissionViewController : BMRootViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIScrollViewDelegate>
 
 @end
