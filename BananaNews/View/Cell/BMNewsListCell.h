@@ -37,6 +37,8 @@ typedef enum {
 
 @property (nonatomic, assign) BMNewsListCellType type;
 
+@property (nonatomic, strong) News *news;
+
 - (void)configCellNews:(News *)news;
 
 @end

@@ -104,6 +104,7 @@
 		D8C503B11894F85C0092CAC0 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = D8C503B01894F85C0092CAC0 /* User.m */; };
 		D8C503B41894F85D0092CAC0 /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = D8C503B31894F85D0092CAC0 /* Comment.m */; };
 		D8C503B7189536650092CAC0 /* BMUserInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8C503B6189536650092CAC0 /* BMUserInfoViewController.m */; };
+		D8D2CD8918C0C8E8003309A2 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8D2CD8818C0C8E8003309A2 /* MediaPlayer.framework */; };
 		D8EA5913187C0FD500EEB573 /* BMNewsImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = D8EA5912187C0FD500EEB573 /* BMNewsImageView.m */; };
 		D8EA59191880B0C800EEB573 /* GTCyclePageView.m in Sources */ = {isa = PBXBuildFile; fileRef = D8EA59161880B0C800EEB573 /* GTCyclePageView.m */; };
 		D8EA591A1880B0C800EEB573 /* GTCyclePageViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D8EA59181880B0C800EEB573 /* GTCyclePageViewCell.m */; };
@@ -296,6 +297,7 @@
 		D8C503B31894F85D0092CAC0 /* Comment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Comment.m; sourceTree = "<group>"; };
 		D8C503B5189536650092CAC0 /* BMUserInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMUserInfoViewController.h; sourceTree = "<group>"; };
 		D8C503B6189536650092CAC0 /* BMUserInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMUserInfoViewController.m; sourceTree = "<group>"; };
+		D8D2CD8818C0C8E8003309A2 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		D8EA5911187C0FD500EEB573 /* BMNewsImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMNewsImageView.h; sourceTree = "<group>"; };
 		D8EA5912187C0FD500EEB573 /* BMNewsImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMNewsImageView.m; sourceTree = "<group>"; };
 		D8EA59151880B0C800EEB573 /* GTCyclePageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTCyclePageView.h; sourceTree = "<group>"; };
@@ -325,6 +327,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D8D2CD8918C0C8E8003309A2 /* MediaPlayer.framework in Frameworks */,
 				42C4E7261884F9D800E650BE /* libz.dylib in Frameworks */,
 				42C4E7241884F9CB00E650BE /* libstdc++.dylib in Frameworks */,
 				42C4E7221884F9BB00E650BE /* CoreTelephony.framework in Frameworks */,
@@ -403,6 +406,7 @@
 		42C7BAB61871059100BD6382 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D8D2CD8818C0C8E8003309A2 /* MediaPlayer.framework */,
 				42C4E7251884F9D800E650BE /* libz.dylib */,
 				42C4E7231884F9CB00E650BE /* libstdc++.dylib */,
 				42C4E7211884F9BB00E650BE /* CoreTelephony.framework */,

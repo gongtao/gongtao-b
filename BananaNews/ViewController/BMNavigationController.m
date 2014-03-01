@@ -57,6 +57,21 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (BOOL)shouldAutorotate
+{
+    return NO;
+}
+
+- (NSUInteger)supportedInterfaceOrientations
+{
+    return UIInterfaceOrientationMaskPortrait;
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
+{
+    return (UIInterfaceOrientationPortrait==toInterfaceOrientation);
+}
+
 // override the push method
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated
 {

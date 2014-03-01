@@ -39,9 +39,7 @@
     [UMSocialConfig setSupportSinaSSO:YES];
     [UMSocialConfig setSupportQzoneSSO:YES importClasses:nil];
     
-//    [UMSocialConfig setQQAppId:@"101028148" url:nil importClasses:@[[QQApiInterface class],[TencentOAuth class]]];
-//    
-//    [UMSocialConfig setShareQzoneWithQQSDK:YES url:@"http://www.umeng.com/social" importClasses:@[[QQApiInterface class],[TencentOAuth class],[TCUploadPicDic class],[TCAddShareDic class]]];
+    [UMSocialConfig setQQAppId:@"101028148" url:nil importClasses:@[[QQApiInterface class],[TencentOAuth class]]];
     
     [UMSocialConfig setSnsPlatformNames:@[UMShareToSina, UMShareToWechatTimeline, UMShareToWechatSession, UMShareToTencent, UMShareToQQ, UMShareToQzone, UMShareToRenren, UMShareToSms]];
     

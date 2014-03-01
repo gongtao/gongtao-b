@@ -106,6 +106,7 @@
             }
             else if (row == 0) {
                 vc = [self.storyboard instantiateViewControllerWithIdentifier:@"homeViewController"];
+                self.controllerDic[index] = vc;
             }
             else {
                 NewsCategory *newsCategory = [self.fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:row-1 inSection:0]];
@@ -113,8 +114,8 @@
                 vc.title = newsCategory.cname;
                 BMCategoryViewController *cvc = (BMCategoryViewController *)vc;
                 cvc.category = newsCategory;
+                self.controllerDic[index] = vc;
             }
-            self.controllerDic[index] = vc;
         }
         
         BMLeftViewCell *cell = nil;

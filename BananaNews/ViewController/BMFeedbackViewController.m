@@ -152,7 +152,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *content = @"您好，感谢您使用香蕉日报，希望您能留下您的使用感受和宝贵建议，我们会在第一时间给您回复。";
+    NSString *content = @"您好，感谢您使用芝麻短片，希望您能留下您的使用感受和宝贵建议，我们会在第一时间给您回复。";
     if (indexPath.row > 0) {
         content = [[self.mFeedbackDatas objectAtIndex:indexPath.row-1] objectForKey:@"content"];
     }
@@ -175,7 +175,7 @@
             cell = [[L_FeedbackTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:L_CellIdentifier];
         }
         
-        cell.textLabel.text = @"您好，感谢您使用香蕉日报，希望您能留下您的使用感受和宝贵建议，我们会在第一时间给您回复。";
+        cell.textLabel.text = @"您好，感谢您使用芝麻短片，希望您能留下您的使用感受和宝贵建议，我们会在第一时间给您回复。";
         
         return cell;
     }

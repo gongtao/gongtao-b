@@ -162,6 +162,11 @@
 
 - (void)_submitButtonPressed:(id)sender
 {
+    if (![[NSUserDefaults standardUserDefaults] objectForKey:kLoginKey]) {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"投稿" message:@"亲~请先登录" delegate:nil cancelButtonTitle:@"我知道了" otherButtonTitles:nil];
+        [alertView show];
+        return;
+    }
     BMLeftViewController *leftVC = (BMLeftViewController *)self.viewDeckController.leftController;
     int row = [[[leftVC.fetchedResultsController sections] objectAtIndex:0] numberOfObjects]+1;
     [leftVC selectVCAtIndex:row];

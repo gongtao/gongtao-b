@@ -165,6 +165,11 @@
 - (void)_submit:(UIButton *)button
 {
     [self.view endEditing:YES];
+    if (![[NSUserDefaults standardUserDefaults] objectForKey:kLoginKey]) {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"投稿" message:@"亲~请先登录" delegate:nil cancelButtonTitle:@"我知道了" otherButtonTitles:nil];
+        [alertView show];
+        return;
+    }
     if (!self.textView.text || self.textView.text.length>0) {
         [MMProgressHUD setDisplayStyle:MMProgressHUDDisplayStylePlain];
         [MMProgressHUD setPresentationStyle:MMProgressHUDPresentationStyleFade];
@@ -177,7 +182,6 @@
                                              }
                                              failure:^(NSError *error){
                                                  [MMProgressHUD dismissWithError:@"投稿失败"];
-                                                 [self _clearContent];
                                              }];
     }
     else {

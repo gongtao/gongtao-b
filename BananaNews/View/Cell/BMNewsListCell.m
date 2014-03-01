@@ -14,6 +14,14 @@
 
 #import <UIImageView+WebCache.h>
 
+@interface BMNewsListCell ()
+
+- (void)_initMovieView:(BMNewsImageView *)obj;
+
+- (void)_moviePlay:(UITapGestureRecognizer *)gesture;
+
+@end
+
 @implementation BMNewsListCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -80,6 +88,8 @@
 
 - (void)configCellNews:(News *)news
 {
+    self.news = news;
+    
     CGFloat textHeight = news.text_height.floatValue;
     
     _newsTitleLabel.text = news.title;
@@ -111,8 +121,14 @@
             [_imageArray addObject:view];
         }
         [_imageArray enumerateObjectsUsingBlock:^(BMNewsImageView *obj, NSUInteger idx, BOOL *stop){
+            obj.tag = idx;
             obj.imageView.image = nil;
             obj.alpha = 0.0;
+            obj.userInteractionEnabled = NO;
+            [obj.gestureRecognizers enumerateObjectsUsingBlock:^(UIGestureRecognizer *obj1, NSUInteger idx, BOOL *stop){
+                [obj removeGestureRecognizer:obj1];
+                *stop = YES;
+            }];
         }];
         
         if (count == 1) {
@@ -128,12 +144,17 @@
                 }
                 obj.frame = CGRectMake(6.0, y, w, h);
                 [obj setImageSize:CGSizeMake(media.small_width.floatValue, media.small_height.floatValue)];
-                __block BMNewsImageView *imageView = obj;
-                [obj.imageView setImageWithURL:[NSURL URLWithString:media.small] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType){
-                    [UIView animateWithDuration:0.3 animations:^(void){
-                        imageView.alpha = 1.0;
+                if (media.url && media.url.length>0) {
+                    [self _initMovieView:obj];
+                }
+                else {
+                    __block BMNewsImageView *imageView = obj;
+                    [obj.imageView setImageWithURL:[NSURL URLWithString:media.small] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType){
+                        [UIView animateWithDuration:0.3 animations:^(void){
+                            imageView.alpha = 1.0;
+                        }];
                     }];
-                }];
+                }
                 y += h;
             }];
         }
@@ -147,12 +168,17 @@
                 }
                 obj.frame = CGRectMake(x, y, kCellMediumImgWidth, kCellMediumImgHeight);
                 [obj setImageSize:CGSizeMake(media.small_width.floatValue, media.small_height.floatValue)];
-                __block BMNewsImageView *imageView = obj;
-                [obj.imageView setImageWithURL:[NSURL URLWithString:media.small] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType){
-                    [UIView animateWithDuration:0.3 animations:^(void){
-                        imageView.alpha = 1.0;
+                if (media.url && media.url.length>0) {
+                    [self _initMovieView:obj];
+                }
+                else {
+                    __block BMNewsImageView *imageView = obj;
+                    [obj.imageView setImageWithURL:[NSURL URLWithString:media.small] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType){
+                        [UIView animateWithDuration:0.3 animations:^(void){
+                            imageView.alpha = 1.0;
+                        }];
                     }];
-                }];
+                }
                 x += kCellMediumImgWidth+4.0;
             }];
             y += kCellMediumImgHeight;
@@ -168,12 +194,17 @@
                 }
                 obj.frame = CGRectMake(x, y, kCellSmallImgWidth, kCellSmallImgHeight);
                 [obj setImageSize:CGSizeMake(media.small_width.floatValue, media.small_height.floatValue)];
-                __block BMNewsImageView *imageView = obj;
-                [obj.imageView setImageWithURL:[NSURL URLWithString:media.small] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType){
-                    [UIView animateWithDuration:0.3 animations:^(void){
-                        imageView.alpha = 1.0;
+                if (media.url && media.url.length>0) {
+                    [self _initMovieView:obj];
+                }
+                else {
+                    __block BMNewsImageView *imageView = obj;
+                    [obj.imageView setImageWithURL:[NSURL URLWithString:media.small] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType){
+                        [UIView animateWithDuration:0.3 animations:^(void){
+                            imageView.alpha = 1.0;
+                        }];
                     }];
-                }];
+                }
                 x += kCellSmallImgWidth+4.0;
             }];
             y += kCellSmallImgHeight;
@@ -209,6 +240,25 @@
     [_dingButton setTitle:[NSString stringWithFormat:@"(%@)", news.like_count] forState:UIControlStateNormal];
     
     [_shareButton setTitle:[NSString stringWithFormat:@"(%@)", news.share_count] forState:UIControlStateNormal];
+}
+
+#pragma mark - Private
+
+- (void)_initMovieView:(BMNewsImageView *)obj
+{
+    obj.imageView.image = [UIImage imageNamed:@"视频播放.png"];
+    obj.alpha = 1.0;
+    UITapGestureRecognizer *gesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(_moviePlay:)];
+    obj.userInteractionEnabled = YES;
+    [obj addGestureRecognizer:gesture];
+}
+
+- (void)_moviePlay:(UITapGestureRecognizer *)gesture
+{
+    int index = gesture.view.tag;
+    Media *media = self.news.medias[index];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:PlayAppsVideoNotification object:media.url];
 }
 
 @end

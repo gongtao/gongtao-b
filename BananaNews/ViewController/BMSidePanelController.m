@@ -8,11 +8,15 @@
 
 #import "BMSidePanelController.h"
 
+#import <MediaPlayer/MediaPlayer.h>
+
 @interface IIViewDeckController (Custom)
 
 - (void)notifyWillOpenSide:(IIViewDeckSide)viewDeckSide animated:(BOOL)animated;
 
 - (void)notifyWillCloseSide:(IIViewDeckSide)viewDeckSide animated:(BOOL)animated;
+
+- (void)playAppsVideo:(NSNotification *)notice;
 
 @end
 
@@ -41,12 +45,19 @@
         }
                                                 failure:nil];
     }];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playAppsVideo:) name:PlayAppsVideoNotification object:nil];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)notifyWillOpenSide:(IIViewDeckSide)viewDeckSide animated:(BOOL)animated
@@ -59,6 +70,14 @@
 {
     [self.view endEditing:YES];
     [super notifyWillCloseSide:viewDeckSide animated:animated];
+}
+
+- (void)playAppsVideo:(NSNotification *)notice
+{
+    NSString *url = (NSString *)notice.object;
+    NSLog(@"play video: %@", url);
+    MPMoviePlayerViewController *vc = [[MPMoviePlayerViewController alloc] initWithContentURL:[NSURL URLWithString:url]];
+    [self presentMoviePlayerViewControllerAnimated:vc];
 }
 
 @end

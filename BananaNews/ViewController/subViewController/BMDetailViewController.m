@@ -8,7 +8,7 @@
 
 #import "BMDetailViewController.h"
 
-//#import "BMUserInfoViewController.h"
+#import "BMUserInfoViewController.h"
 
 #import "BMNewsImageView.h"
 
@@ -195,13 +195,21 @@
             BMNewsImageView *imageView = [[BMNewsImageView alloc] initWithFrame:CGRectMake(28.0, y, w, h)];
             [imageView setImageSize:CGSizeMake(obj.large_width.floatValue, obj.large_height.floatValue)];
             [newsContentView addSubview:imageView];
-            imageView.alpha = 0.0;
-            __block BMNewsImageView *blockView = imageView;
-            [imageView.imageView setImageWithURL:[NSURL URLWithString:obj.large] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType){
-                [UIView animateWithDuration:0.3 animations:^(void){
-                    blockView.alpha = 1.0;
+            if (obj.url && obj.url.length>0) {
+                imageView.imageView.image = [UIImage imageNamed:@"视频播放.png"];
+                UITapGestureRecognizer *gesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(_moviePlay:)];
+                imageView.userInteractionEnabled = YES;
+                [imageView addGestureRecognizer:gesture];
+            }
+            else {
+                imageView.alpha = 0.0;
+                __block BMNewsImageView *blockView = imageView;
+                [imageView.imageView setImageWithURL:[NSURL URLWithString:obj.large] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType){
+                    [UIView animateWithDuration:0.3 animations:^(void){
+                        blockView.alpha = 1.0;
+                    }];
                 }];
-            }];
+            }
             
             y += h;
         }];
@@ -306,27 +314,34 @@
     }
 }
 
-#warning 备用
 - (void)_userBtnPressed:(UIButton *)button
 {
-//    Comment *comment = [self.fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:button.tag inSection:0]];
-//    [self _presentUserInfo:comment.author];
+    Comment *comment = [self.fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:button.tag inSection:0]];
+    [self _presentUserInfo:comment.author];
 }
 
 - (void)_replyUserBtnPressed:(UIButton *)button
 {
-//    Comment *comment = [self.fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:button.tag inSection:0]];
-//    [self _presentUserInfo:comment.replyUser];
+    Comment *comment = [self.fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:button.tag inSection:0]];
+    [self _presentUserInfo:comment.replyUser];
 }
 
 - (void)_presentUserInfo:(User *)user
 {
-//    if (user) {
-//        BMUserInfoViewController *vc = [self.parentViewController.storyboard instantiateViewControllerWithIdentifier:@"userInfoViewController"];
-//        vc.user = user;
-//        [self.parentViewController.navigationController pushViewController:vc animated:YES];
-//    }
+    if (user) {
+        BMUserInfoViewController *vc = [self.parentViewController.storyboard instantiateViewControllerWithIdentifier:@"userInfoViewController"];
+        vc.user = user;
+        [self.parentViewController.navigationController pushViewController:vc animated:YES];
+    }
     
+}
+
+- (void)_moviePlay:(UITapGestureRecognizer *)gesture
+{
+    int index = gesture.view.tag;
+    Media *media = self.news.medias[index];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:PlayAppsVideoNotification object:media.url];
 }
 
 #pragma mark - Override

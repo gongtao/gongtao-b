@@ -11,11 +11,15 @@
 
 #define kAppKey     @"52cc8b8a56240b6c8c023b74"
 
+#define kWXAppKey   @"wx0a4285548e1b5eb2"
+
 #define kLoginKey   @"isLogin"
 
 #define kLoginToken @"loginToken"
 
 #define kLoginSuccessNotification   @"LoginSuccessNotification"
+
+#define PlayAppsVideoNotification   @"PlayAppsVideoNotification"
 
 #define kBaseURL    [NSURL URLWithString:@"http://xiangjiaoribao.com"]
 

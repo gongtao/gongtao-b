@@ -72,7 +72,17 @@
 			<string>wx</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>wx99241afe3a816006</string>
+				<string>wx0a4285548e1b5eb2</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>renren</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>renren264964</string>
 			</array>
 		</dict>
 	</array>
@@ -94,6 +104,8 @@
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 </dict>
 </plist>

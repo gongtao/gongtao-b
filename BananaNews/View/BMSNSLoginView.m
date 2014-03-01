@@ -100,15 +100,15 @@
     NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
     
     if (account.userName) {
-        if (account.userName.length>12) {
-            param[@"user_login"] = [account.userName substringToIndex:11];
-        }
-        else {
-            param[@"user_login"] = account.userName;
-        }
         param[@"display_name"] = account.userName;
     }
     if (account.usid) {
+        if (account.usid.length>12) {
+            param[@"user_login"] = [account.usid substringToIndex:11];
+        }
+        else {
+            param[@"user_login"] = account.usid;
+        }
         param[@"unid"] = account.usid;
     }
     if (account.iconURL) {

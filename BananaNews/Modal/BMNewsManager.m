@@ -155,9 +155,9 @@
     if (length < content.length) {
         content = [NSString stringWithFormat:@"%@...", [content substringToIndex:length-1]];
     }
-    NSString *shareText = [NSString stringWithFormat:@"我在看香蕉日报：%@ 网址：%@", content, news.url];
+    NSString *shareText = [NSString stringWithFormat:@"我在看芝麻短片：%@ 网址：%@", content, news.url];
     
-    [UMSocialConfig setWXAppId:@"wx99241afe3a816006" url:news.url];
+    [UMSocialConfig setWXAppId:kWXAppKey url:news.url];
     
     [UMSocialConfig setQQAppId:@"101028148" url:news.url importClasses:@[[QQApiInterface class],[TencentOAuth class]]];
     
@@ -523,7 +523,9 @@
     }
     
     if ([type rangeOfString:@"image"].location == NSNotFound) {
-        media.url = dic[@"url"];
+        NSString *url = dic[@"url"];
+        url = [url stringByReplacingOccurrencesOfString:@"player.youku.com/player.php/sid/" withString:@"v.youku.com/player/getRealM3U8/vid/"];
+        media.url = [url stringByReplacingOccurrencesOfString:@"/v.swf" withString:@"/type/video.m3u8"];
         media.small_width = [NSNumber numberWithFloat:160.0];
         media.small_height = [NSNumber numberWithFloat:120.0];
         media.large_width = [NSNumber numberWithFloat:160.0];
