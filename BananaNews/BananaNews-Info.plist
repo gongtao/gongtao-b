@@ -94,7 +94,6 @@
 	<string>Main</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
-		<string>armv7</string>
 		<string>sms</string>
 		<string>still-camera</string>
 		<string>auto-focus-camera</string>

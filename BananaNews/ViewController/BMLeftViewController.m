@@ -226,7 +226,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [[[self.fetchedResultsController sections] objectAtIndex:section] numberOfObjects]+2;
+    return [[[self.fetchedResultsController sections] objectAtIndex:section] numberOfObjects]+1;
 }
 
 @end
