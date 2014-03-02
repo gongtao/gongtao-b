@@ -36,6 +36,8 @@
 
 @protocol BMTabViewControllerDelegate <NSObject>
 
+@optional
+
 - (void)didSelectTab:(BMTabViewController *)tabViewController index:(NSUInteger)index;
 
 - (void)didReloadTab:(BMTabViewController *)tabViewController index:(NSUInteger)index;
