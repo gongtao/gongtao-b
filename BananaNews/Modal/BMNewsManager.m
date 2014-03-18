@@ -121,12 +121,14 @@
             [array enumerateObjectsUsingBlock:^(NSDictionary *obj, NSUInteger idx, BOOL *stop){
                 NewsCategory *newsCategory = [self createNewsCategory:obj context:temporaryContext];
                 newsCategory.isHead = [NSNumber numberWithBool:NO];
+                NSLog(@"%@", obj);
             }];
             
             array = dic[@"head"];
             [array enumerateObjectsUsingBlock:^(NSDictionary *obj, NSUInteger idx, BOOL *stop){
                 NewsCategory *newsCategory = [self createNewsCategory:obj context:temporaryContext];
                 newsCategory.isHead = [NSNumber numberWithBool:YES];
+                NSLog(@"%@", obj);
             }];
             
             [self saveContext:temporaryContext];
