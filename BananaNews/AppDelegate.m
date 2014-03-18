@@ -12,7 +12,7 @@
 
 #import <SDImageCache.h>
 
-#import <MobClick.h>
+#import "MobClick.h"
 
 #import "UMSocial.h"
 
