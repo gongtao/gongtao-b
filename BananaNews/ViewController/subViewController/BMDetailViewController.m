@@ -239,7 +239,7 @@
 
 - (void)_ding:(id)sender
 {
-    NSString *dingCount = [NSString stringWithFormat:@"(%i)", self.news.like_count.integerValue+1];
+    NSString *dingCount = [NSString stringWithFormat:@"%i", self.news.like_count.integerValue+1];
     CGSize size = [dingCount sizeWithFont:Font_NewsTitle];
     if (size.width < 50.0) {
         size.width = 50.0;
