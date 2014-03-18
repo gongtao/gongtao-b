@@ -65,6 +65,8 @@
 		42E8681A18764A2500B02A0B /* BMNewsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 42E8681918764A2500B02A0B /* BMNewsManager.m */; };
 		42E8681E187657C500B02A0B /* BMListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42E8681D187657C500B02A0B /* BMListViewController.m */; };
 		42EC5AB0188CB57600FC00F9 /* BMCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 42EC5AAF188CB57600FC00F9 /* BMCommentCell.m */; };
+		42FE59B118D8451700C7B3A7 /* libMobClickLibrary_armv6.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 42FE59AE18D8451700C7B3A7 /* libMobClickLibrary_armv6.a */; };
+		42FE59B218D8451700C7B3A7 /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 42FE59AF18D8451700C7B3A7 /* libMobClickLibrary.a */; };
 		CE8BC6AFDCC940D28D1B30C8 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 620E8C38B3E24A3191C52FA1 /* libPods.a */; };
 		D81DB82A18877AEF002D27B5 /* UMSocialLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D81DB7FA18877AEF002D27B5 /* UMSocialLocalizable.strings */; };
 		D81DB82D18877AEF002D27B5 /* UMSCommentDetailController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D81DB80F18877AEF002D27B5 /* UMSCommentDetailController.xib */; };
@@ -225,6 +227,9 @@
 		42E8681D187657C500B02A0B /* BMListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMListViewController.m; sourceTree = "<group>"; };
 		42EC5AAE188CB57600FC00F9 /* BMCommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMCommentCell.h; sourceTree = "<group>"; };
 		42EC5AAF188CB57600FC00F9 /* BMCommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMCommentCell.m; sourceTree = "<group>"; };
+		42FE59AE18D8451700C7B3A7 /* libMobClickLibrary_armv6.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libMobClickLibrary_armv6.a; sourceTree = "<group>"; };
+		42FE59AF18D8451700C7B3A7 /* libMobClickLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libMobClickLibrary.a; sourceTree = "<group>"; };
+		42FE59B018D8451700C7B3A7 /* MobClick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobClick.h; sourceTree = "<group>"; };
 		620E8C38B3E24A3191C52FA1 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA26BFD3CEFE45ABAC84ECBE /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		D81DB7FB18877AEF002D27B5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/UMSocialLocalizable.strings; sourceTree = "<group>"; };
@@ -330,11 +335,13 @@
 				D8D2CD8918C0C8E8003309A2 /* MediaPlayer.framework in Frameworks */,
 				42C4E7261884F9D800E650BE /* libz.dylib in Frameworks */,
 				42C4E7241884F9CB00E650BE /* libstdc++.dylib in Frameworks */,
+				42FE59B118D8451700C7B3A7 /* libMobClickLibrary_armv6.a in Frameworks */,
 				42C4E7221884F9BB00E650BE /* CoreTelephony.framework in Frameworks */,
 				42C4E7201884F9AD00E650BE /* libsqlite3.dylib in Frameworks */,
 				42C4E71E1884F98F00E650BE /* SystemConfiguration.framework in Frameworks */,
 				42C4E71C1884F97C00E650BE /* libiconv.dylib in Frameworks */,
 				42C4E71A1884F96A00E650BE /* Security.framework in Frameworks */,
+				42FE59B218D8451700C7B3A7 /* libMobClickLibrary.a in Frameworks */,
 				42C6D28F18725C3F00F796FB /* QuartzCore.framework in Frameworks */,
 				42C7BABA1871059100BD6382 /* CoreGraphics.framework in Frameworks */,
 				42C7BABC1871059100BD6382 /* UIKit.framework in Frameworks */,
@@ -569,6 +576,7 @@
 		42C7BB2418716DE700BD6382 /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
+				42FE59AD18D844CE00C7B3A7 /* UMAnalytics_Sdk_2.2.2.OpenUDID */,
 				D81DB7F818877AEF002D27B5 /* UmengSocial3.3.3 */,
 				D8EA591B1881381E00EEB573 /* EGORefreshTableHeaderView */,
 				D8EA59141880B0C800EEB573 /* GTCyclePageView */,
@@ -616,6 +624,16 @@
 				D88A31881897A92F0054FD7B /* BMSearchListViewController.m */,
 			);
 			path = subViewController;
+			sourceTree = "<group>";
+		};
+		42FE59AD18D844CE00C7B3A7 /* UMAnalytics_Sdk_2.2.2.OpenUDID */ = {
+			isa = PBXGroup;
+			children = (
+				42FE59AE18D8451700C7B3A7 /* libMobClickLibrary_armv6.a */,
+				42FE59AF18D8451700C7B3A7 /* libMobClickLibrary.a */,
+				42FE59B018D8451700C7B3A7 /* MobClick.h */,
+			);
+			path = UMAnalytics_Sdk_2.2.2.OpenUDID;
 			sourceTree = "<group>";
 		};
 		D81DB7F818877AEF002D27B5 /* UmengSocial3.3.3 */ = {
@@ -1151,6 +1169,7 @@
 					"$(inherited)",
 					BananaNews/ThirdParty/UmengSocial3.3.3/UMSocial_Sdk_3.3.3,
 					BananaNews/ThirdParty/UmengSocial3.3.3/UMSocial_Sdk_3.3.3/frameworks/Wechat,
+					"/Users/gongtao/Desktop/gongtao-b/BananaNews/ThirdParty/UMAnalytics_Sdk_2.2.2.OpenUDID",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -1178,6 +1197,7 @@
 					"$(inherited)",
 					BananaNews/ThirdParty/UmengSocial3.3.3/UMSocial_Sdk_3.3.3,
 					BananaNews/ThirdParty/UmengSocial3.3.3/UMSocial_Sdk_3.3.3/frameworks/Wechat,
+					"/Users/gongtao/Desktop/gongtao-b/BananaNews/ThirdParty/UMAnalytics_Sdk_2.2.2.OpenUDID",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
