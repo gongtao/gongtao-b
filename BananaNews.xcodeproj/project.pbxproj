@@ -11,6 +11,9 @@
 		424C36BD18D92FE400B693F5 /* BMHomeTabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 424C36BC18D92FE400B693F5 /* BMHomeTabViewController.m */; };
 		424C36C218D9412B00B693F5 /* BMToolBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 424C36C118D9412B00B693F5 /* BMToolBar.m */; };
 		424C36C518D9439600B693F5 /* BMRecommendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 424C36C418D9439600B693F5 /* BMRecommendViewController.m */; };
+		424C36C818D9840200B693F5 /* BMSubCategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 424C36C718D9840200B693F5 /* BMSubCategoryViewController.m */; };
+		424C36CB18D9841B00B693F5 /* BMSubUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 424C36CA18D9841B00B693F5 /* BMSubUserViewController.m */; };
+		424C36CE18D9842900B693F5 /* BMSubSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 424C36CD18D9842900B693F5 /* BMSubSettingsViewController.m */; };
 		42C4E6CC1884D21100E650BE /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 42C4E6CB1884D21100E650BE /* Localizable.strings */; };
 		42C4E71A1884F96A00E650BE /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42C4E7191884F96900E650BE /* Security.framework */; };
 		42C4E71C1884F97C00E650BE /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 42C4E71B1884F97C00E650BE /* libiconv.dylib */; };
@@ -148,6 +151,12 @@
 		424C36C118D9412B00B693F5 /* BMToolBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMToolBar.m; sourceTree = "<group>"; };
 		424C36C318D9439600B693F5 /* BMRecommendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMRecommendViewController.h; sourceTree = "<group>"; };
 		424C36C418D9439600B693F5 /* BMRecommendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMRecommendViewController.m; sourceTree = "<group>"; };
+		424C36C618D9840200B693F5 /* BMSubCategoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMSubCategoryViewController.h; sourceTree = "<group>"; };
+		424C36C718D9840200B693F5 /* BMSubCategoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMSubCategoryViewController.m; sourceTree = "<group>"; };
+		424C36C918D9841B00B693F5 /* BMSubUserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMSubUserViewController.h; sourceTree = "<group>"; };
+		424C36CA18D9841B00B693F5 /* BMSubUserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMSubUserViewController.m; sourceTree = "<group>"; };
+		424C36CC18D9842900B693F5 /* BMSubSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMSubSettingsViewController.h; sourceTree = "<group>"; };
+		424C36CD18D9842900B693F5 /* BMSubSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMSubSettingsViewController.m; sourceTree = "<group>"; };
 		42C4E6CB1884D21100E650BE /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		42C4E7191884F96900E650BE /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		42C4E71B1884F97C00E650BE /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = usr/lib/libiconv.dylib; sourceTree = SDKROOT; };
@@ -576,6 +585,12 @@
 				424C36BC18D92FE400B693F5 /* BMHomeTabViewController.m */,
 				424C36C318D9439600B693F5 /* BMRecommendViewController.h */,
 				424C36C418D9439600B693F5 /* BMRecommendViewController.m */,
+				424C36C618D9840200B693F5 /* BMSubCategoryViewController.h */,
+				424C36C718D9840200B693F5 /* BMSubCategoryViewController.m */,
+				424C36C918D9841B00B693F5 /* BMSubUserViewController.h */,
+				424C36CA18D9841B00B693F5 /* BMSubUserViewController.m */,
+				424C36CC18D9842900B693F5 /* BMSubSettingsViewController.h */,
+				424C36CD18D9842900B693F5 /* BMSubSettingsViewController.m */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -998,6 +1013,7 @@
 			files = (
 				42C4E778188526E800E650BE /* BMSNSLoginView.m in Sources */,
 				42C7BB0618712BF700BD6382 /* BMLeftViewCell.m in Sources */,
+				424C36CB18D9841B00B693F5 /* BMSubUserViewController.m in Sources */,
 				D8C503B7189536650092CAC0 /* BMUserInfoViewController.m in Sources */,
 				42C7BB0118710E7F00BD6382 /* BMRightViewController.m in Sources */,
 				42C5844A187A73A700D919EB /* BMCategoryViewController.m in Sources */,
@@ -1024,6 +1040,7 @@
 				42C7BAC81871059100BD6382 /* AppDelegate.m in Sources */,
 				D88A31921897E3A80054FD7B /* BMUsersViewController.m in Sources */,
 				D88A318F1897D1560054FD7B /* BMUserButton.m in Sources */,
+				424C36CE18D9842900B693F5 /* BMSubSettingsViewController.m in Sources */,
 				42EC5AB0188CB57600FC00F9 /* BMCommentCell.m in Sources */,
 				42C6D298187285EB00F796FB /* BMNavigationBar.m in Sources */,
 				D88A31891897A92F0054FD7B /* BMSearchListViewController.m in Sources */,
@@ -1042,6 +1059,7 @@
 				42E8681718764A1A00B02A0B /* Database.xcdatamodeld in Sources */,
 				42C4E78718866E0500E650BE /* BMPlaceHolderTextView.m in Sources */,
 				424C36C218D9412B00B693F5 /* BMToolBar.m in Sources */,
+				424C36C818D9840200B693F5 /* BMSubCategoryViewController.m in Sources */,
 				42E8681E187657C500B02A0B /* BMListViewController.m in Sources */,
 				D8EA5913187C0FD500EEB573 /* BMNewsImageView.m in Sources */,
 				D8C503AE189360BF0092CAC0 /* BMCollectListViewController.m in Sources */,

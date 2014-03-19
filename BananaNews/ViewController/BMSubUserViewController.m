@@ -1,18 +1,18 @@
 //
-//  BMRecommendViewController.m
+//  BMSubUserViewController.m
 //  BananaNews
 //
 //  Created by 龚涛 on 3/19/14.
 //  Copyright (c) 2014 龚涛. All rights reserved.
 //
 
-#import "BMRecommendViewController.h"
+#import "BMSubUserViewController.h"
 
-@interface BMRecommendViewController ()
+@interface BMSubUserViewController ()
 
 @end
 
-@implementation BMRecommendViewController
+@implementation BMSubUserViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {

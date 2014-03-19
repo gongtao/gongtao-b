@@ -69,6 +69,18 @@
             identifier = @"recommendViewController";
             break;
         }
+        case 1: {
+            identifier = @"subCategoryViewController";
+            break;
+        }
+        case 2: {
+            identifier = @"subUserViewController";
+            break;
+        }
+        case 3: {
+            identifier = @"subSettingsViewController";
+            break;
+        }
         default:
             break;
     }

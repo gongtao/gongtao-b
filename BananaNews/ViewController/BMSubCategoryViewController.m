@@ -1,18 +1,18 @@
 //
-//  BMRecommendViewController.m
+//  BMSubCategoryViewController.m
 //  BananaNews
 //
 //  Created by 龚涛 on 3/19/14.
 //  Copyright (c) 2014 龚涛. All rights reserved.
 //
 
-#import "BMRecommendViewController.h"
+#import "BMSubCategoryViewController.h"
 
-@interface BMRecommendViewController ()
+@interface BMSubCategoryViewController ()
 
 @end
 
-@implementation BMRecommendViewController
+@implementation BMSubCategoryViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
