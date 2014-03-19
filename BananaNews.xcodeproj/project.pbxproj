@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		264D252918D96F4C00D2F3D1 /* BMOperateSubView.m in Sources */ = {isa = PBXBuildFile; fileRef = 264D252818D96F4C00D2F3D1 /* BMOperateSubView.m */; };
 		424C36BA18D92F5500B693F5 /* BMBaseSubViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 424C36B918D92F5500B693F5 /* BMBaseSubViewController.m */; };
 		424C36BD18D92FE400B693F5 /* BMHomeTabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 424C36BC18D92FE400B693F5 /* BMHomeTabViewController.m */; };
 		424C36C218D9412B00B693F5 /* BMToolBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 424C36C118D9412B00B693F5 /* BMToolBar.m */; };
@@ -143,6 +144,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		264D252718D96F4C00D2F3D1 /* BMOperateSubView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMOperateSubView.h; sourceTree = "<group>"; };
+		264D252818D96F4C00D2F3D1 /* BMOperateSubView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMOperateSubView.m; sourceTree = "<group>"; };
 		424C36B818D92F5500B693F5 /* BMBaseSubViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMBaseSubViewController.h; sourceTree = "<group>"; };
 		424C36B918D92F5500B693F5 /* BMBaseSubViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMBaseSubViewController.m; sourceTree = "<group>"; };
 		424C36BB18D92FE400B693F5 /* BMHomeTabViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMHomeTabViewController.h; sourceTree = "<group>"; };
@@ -604,6 +607,8 @@
 				42C7BB0318712BBB00BD6382 /* Cell */,
 				424C36C018D9412B00B693F5 /* BMToolBar.h */,
 				424C36C118D9412B00B693F5 /* BMToolBar.m */,
+				264D252718D96F4C00D2F3D1 /* BMOperateSubView.h */,
+				264D252818D96F4C00D2F3D1 /* BMOperateSubView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1071,6 +1076,7 @@
 				D821E85818757A80005C1604 /* BMSettingViewController.m in Sources */,
 				42C4E77E18866B5500E650BE /* BMFeedbackViewController.m in Sources */,
 				42C7BAC41871059100BD6382 /* main.m in Sources */,
+				264D252918D96F4C00D2F3D1 /* BMOperateSubView.m in Sources */,
 				42C6D2A91872A11C00F796FB /* IIWrapController.m in Sources */,
 				424C36BA18D92F5500B693F5 /* BMBaseSubViewController.m in Sources */,
 			);
