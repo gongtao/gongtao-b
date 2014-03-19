@@ -8,7 +8,11 @@
 
 #import "BMHomeTabViewController.h"
 
+#import "BMRecommendViewController.h"
+
 @interface BMHomeTabViewController ()
+
+- (void)_selectSubVCAtIndex:(NSUInteger)index;
 
 @end
 
@@ -38,12 +42,47 @@
     self.customNavigationBar = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, y)];
     self.customNavigationBar.backgroundColor = Color_NavBarBg;
     [self.view addSubview:self.customNavigationBar];
+    
+    self.subVCDic = [[NSMutableDictionary alloc] initWithCapacity:4];
+    
+    [self _selectSubVCAtIndex:0];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - Private
+
+- (void)_selectSubVCAtIndex:(NSUInteger)index
+{
+    NSString *identifier = nil;
+    switch (index) {
+        case 0: {
+            identifier = @"recommendViewController";
+            break;
+        }
+        default:
+            break;
+    }
+    if (identifier) {
+        if (self.currentVC) {
+            [self.currentVC.view removeFromSuperview];
+            [self.currentVC removeFromParentViewController];
+            self.currentVC = nil;
+        }
+        self.currentVC = [self.subVCDic objectForKey:identifier];
+        if (!self.currentVC) {
+            self.currentVC = [self.storyboard instantiateViewControllerWithIdentifier:identifier];
+            self.currentVC.view.frame = self.contentView.bounds;
+            [self.subVCDic setObject:self.currentVC forKey:identifier];
+        }
+        [self.contentView addSubview:self.currentVC.view];
+        [self addChildViewController:self.currentVC];
+        self.index = 0;
+    }
 }
 
 @end

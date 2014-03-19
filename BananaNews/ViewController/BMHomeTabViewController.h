@@ -14,4 +14,10 @@
 
 @property (nonatomic, strong) UIView *contentView;
 
+@property (nonatomic, strong) UIViewController *currentVC;
+
+@property (nonatomic, strong) NSMutableDictionary *subVCDic;
+
+@property (nonatomic, assign) NSUInteger index;
+
 @end

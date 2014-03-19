@@ -10,6 +10,7 @@
 		424C36BA18D92F5500B693F5 /* BMBaseSubViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 424C36B918D92F5500B693F5 /* BMBaseSubViewController.m */; };
 		424C36BD18D92FE400B693F5 /* BMHomeTabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 424C36BC18D92FE400B693F5 /* BMHomeTabViewController.m */; };
 		424C36C218D9412B00B693F5 /* BMToolBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 424C36C118D9412B00B693F5 /* BMToolBar.m */; };
+		424C36C518D9439600B693F5 /* BMRecommendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 424C36C418D9439600B693F5 /* BMRecommendViewController.m */; };
 		42C4E6CC1884D21100E650BE /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 42C4E6CB1884D21100E650BE /* Localizable.strings */; };
 		42C4E71A1884F96A00E650BE /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42C4E7191884F96900E650BE /* Security.framework */; };
 		42C4E71C1884F97C00E650BE /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 42C4E71B1884F97C00E650BE /* libiconv.dylib */; };
@@ -145,6 +146,8 @@
 		424C36BC18D92FE400B693F5 /* BMHomeTabViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMHomeTabViewController.m; sourceTree = "<group>"; };
 		424C36C018D9412B00B693F5 /* BMToolBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMToolBar.h; sourceTree = "<group>"; };
 		424C36C118D9412B00B693F5 /* BMToolBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMToolBar.m; sourceTree = "<group>"; };
+		424C36C318D9439600B693F5 /* BMRecommendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMRecommendViewController.h; sourceTree = "<group>"; };
+		424C36C418D9439600B693F5 /* BMRecommendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMRecommendViewController.m; sourceTree = "<group>"; };
 		42C4E6CB1884D21100E650BE /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		42C4E7191884F96900E650BE /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		42C4E71B1884F97C00E650BE /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = usr/lib/libiconv.dylib; sourceTree = SDKROOT; };
@@ -571,6 +574,8 @@
 				424C36B918D92F5500B693F5 /* BMBaseSubViewController.m */,
 				424C36BB18D92FE400B693F5 /* BMHomeTabViewController.h */,
 				424C36BC18D92FE400B693F5 /* BMHomeTabViewController.m */,
+				424C36C318D9439600B693F5 /* BMRecommendViewController.h */,
+				424C36C418D9439600B693F5 /* BMRecommendViewController.m */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -1014,6 +1019,7 @@
 				D88A31981898A3A90054FD7B /* News.m in Sources */,
 				42C4E78418866B8E00E650BE /* R_FeedbackTableViewCell.m in Sources */,
 				42C6D2A81872A11C00F796FB /* IIViewDeckController.m in Sources */,
+				424C36C518D9439600B693F5 /* BMRecommendViewController.m in Sources */,
 				42C4E78318866B8E00E650BE /* L_FeedbackTableViewCell.m in Sources */,
 				42C7BAC81871059100BD6382 /* AppDelegate.m in Sources */,
 				D88A31921897E3A80054FD7B /* BMUsersViewController.m in Sources */,
