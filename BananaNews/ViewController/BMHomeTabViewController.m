@@ -12,6 +12,8 @@
 
 @interface BMHomeTabViewController ()
 
+@property (nonatomic, strong) BMToolBar *toolBar;
+
 - (void)_selectSubVCAtIndex:(NSUInteger)index;
 
 @end
@@ -45,7 +47,10 @@
     
     self.subVCDic = [[NSMutableDictionary alloc] initWithCapacity:4];
     
-    [self _selectSubVCAtIndex:0];
+    self.toolBar = [[BMToolBar alloc] initWithFrame:CGRectMake(0.0, CGRectGetMaxY(self.contentView.frame), 320.0, 48.0)];
+    self.toolBar.delegate = self;
+    [self.view addSubview:self.toolBar];
+    [self.toolBar selectedTagAtIndex:0];
 }
 
 - (void)didReceiveMemoryWarning
@@ -81,8 +86,15 @@
         }
         [self.contentView addSubview:self.currentVC.view];
         [self addChildViewController:self.currentVC];
-        self.index = 0;
+        self.index = index;
     }
+}
+
+#pragma mark - BMToolBarDelegate
+
+- (void)didSelectTagAtIndex:(NSUInteger)index
+{
+    [self _selectSubVCAtIndex:index];
 }
 
 @end

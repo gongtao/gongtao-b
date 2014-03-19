@@ -8,7 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BMHomeTabViewController : UIViewController
+#import "BMToolBar.h"
+
+@interface BMHomeTabViewController : UIViewController <BMToolBarDelegate>
 
 @property (nonatomic, strong) UIView *customNavigationBar;
 

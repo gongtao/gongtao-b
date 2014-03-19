@@ -8,6 +8,21 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol BMToolBarDelegate <NSObject>
+
+- (void)didSelectTagAtIndex:(NSUInteger)index;
+
+@end
+
 @interface BMToolBar : UIView
+{
+    NSUInteger _lastIndex;
+    
+    NSArray *_titleArray;
+}
+
+@property (nonatomic, weak) id<BMToolBarDelegate> delegate;
+
+- (void)selectedTagAtIndex:(NSUInteger)index;
 
 @end
