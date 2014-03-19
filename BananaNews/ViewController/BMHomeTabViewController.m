@@ -54,7 +54,23 @@
     [self.view addSubview:self.toolBar];
     [self.toolBar selectedTagAtIndex:0];
     
+    NSURL *url = [NSURL URLWithString:@"http://www.baidu.com"];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10];
     
+    AFDownloadRequestOperation *requestOperation = [[AFDownloadRequestOperation alloc] initWithRequest:request targetPath:[AFDownloadRequestOperation cacheFolder] shouldResume:YES];
+    
+    [requestOperation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"Successfully downloaded file");
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+    }];
+    
+    [requestOperation setProgressiveDownloadProgressBlock:^(NSInteger bytesRead, long long totalBytesRead, long long totalBytesExpected, long long totalBytesReadForFile, long long totalBytesExpectedToReadForFile) {
+//        NSDictionary *dic = @{@"readFileBytes": [NSNumber numberWithLongLong:totalBytesReadForFile],
+//                              @"totalFileBytes": [NSNumber numberWithLongLong:totalBytesExpectedToReadForFile],
+//                              @"obj": obj};
+    }];
+//    [requestOperation start];
 }
 
 - (void)didReceiveMemoryWarning
