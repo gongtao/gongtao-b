@@ -10,6 +10,8 @@
 
 #import "BMRecommendViewController.h"
 
+#import "AFDownloadRequestOperation.h"
+
 @interface BMHomeTabViewController ()
 
 @property (nonatomic, strong) BMToolBar *toolBar;
@@ -51,6 +53,8 @@
     self.toolBar.delegate = self;
     [self.view addSubview:self.toolBar];
     [self.toolBar selectedTagAtIndex:0];
+    
+    
 }
 
 - (void)didReceiveMemoryWarning

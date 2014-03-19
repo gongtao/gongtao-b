@@ -15,6 +15,7 @@
 		424C36C818D9840200B693F5 /* BMSubCategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 424C36C718D9840200B693F5 /* BMSubCategoryViewController.m */; };
 		424C36CB18D9841B00B693F5 /* BMSubUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 424C36CA18D9841B00B693F5 /* BMSubUserViewController.m */; };
 		424C36CE18D9842900B693F5 /* BMSubSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 424C36CD18D9842900B693F5 /* BMSubSettingsViewController.m */; };
+		424C36D218D98F8900B693F5 /* AFDownloadRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 424C36D118D98F8900B693F5 /* AFDownloadRequestOperation.m */; };
 		42C4E6CC1884D21100E650BE /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 42C4E6CB1884D21100E650BE /* Localizable.strings */; };
 		42C4E71A1884F96A00E650BE /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42C4E7191884F96900E650BE /* Security.framework */; };
 		42C4E71C1884F97C00E650BE /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 42C4E71B1884F97C00E650BE /* libiconv.dylib */; };
@@ -160,6 +161,8 @@
 		424C36CA18D9841B00B693F5 /* BMSubUserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMSubUserViewController.m; sourceTree = "<group>"; };
 		424C36CC18D9842900B693F5 /* BMSubSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMSubSettingsViewController.h; sourceTree = "<group>"; };
 		424C36CD18D9842900B693F5 /* BMSubSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMSubSettingsViewController.m; sourceTree = "<group>"; };
+		424C36D018D98F8900B693F5 /* AFDownloadRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFDownloadRequestOperation.h; sourceTree = "<group>"; };
+		424C36D118D98F8900B693F5 /* AFDownloadRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFDownloadRequestOperation.m; sourceTree = "<group>"; };
 		42C4E6CB1884D21100E650BE /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		42C4E7191884F96900E650BE /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		42C4E71B1884F97C00E650BE /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = usr/lib/libiconv.dylib; sourceTree = SDKROOT; };
@@ -465,6 +468,15 @@
 			name = old;
 			sourceTree = "<group>";
 		};
+		424C36CF18D98F8900B693F5 /* AFDownloadRequestOperation */ = {
+			isa = PBXGroup;
+			children = (
+				424C36D018D98F8900B693F5 /* AFDownloadRequestOperation.h */,
+				424C36D118D98F8900B693F5 /* AFDownloadRequestOperation.m */,
+			);
+			path = AFDownloadRequestOperation;
+			sourceTree = "<group>";
+		};
 		42C6D2A01872A11C00F796FB /* ViewDeck */ = {
 			isa = PBXGroup;
 			children = (
@@ -632,6 +644,7 @@
 		42C7BB2418716DE700BD6382 /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
+				424C36CF18D98F8900B693F5 /* AFDownloadRequestOperation */,
 				42FE59A718D8439300C7B3A7 /* UMAnalytics_Sdk_2.2.2.OpenUDID */,
 				D81DB7F818877AEF002D27B5 /* UmengSocial3.3.3 */,
 				D8EA591B1881381E00EEB573 /* EGORefreshTableHeaderView */,
@@ -1032,6 +1045,7 @@
 				42C4E79618891F9200E650BE /* Media.m in Sources */,
 				D821E85E18759AC6005C1604 /* BMUtils.m in Sources */,
 				D8EA591E1881381E00EEB573 /* EGORefreshTableHeaderView.m in Sources */,
+				424C36D218D98F8900B693F5 /* AFDownloadRequestOperation.m in Sources */,
 				42C6D2AE1872AA8600F796FB /* BMSearchView.m in Sources */,
 				42C6D2951872843800F796FB /* BMBaseViewController.m in Sources */,
 				42C7BAEF18710C2000BD6382 /* BMSidePanelController.m in Sources */,
