@@ -27,6 +27,10 @@
 
 #define IS_IOS7     ([[[UIDevice currentDevice]systemVersion] floatValue] >= 7.0)
 
+#define Color_NavBarBg              [UIColor colorWithHexString:@"82ce24"]
+#define Color_ViewBg                [UIColor colorWithHexString:@"f3f3f3"]
+
+//1.0版本数据
 #define kSidePanelLeftWidth     232.0
 #define kSidePanelRightWidth    220.0
 
