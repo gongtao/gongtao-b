@@ -19,6 +19,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        
     }
     return self;
 }
@@ -28,6 +29,9 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     self.view.backgroundColor = Color_ViewBg;
+    self.operateSubview = [[BMOperateSubView alloc] initWithFrame:CGRectMake(130, 65, 380, 85)];
+    self.operateSubview.delegate = self;
+    [self.view addSubview:self.operateSubview];
 }
 
 - (void)didReceiveMemoryWarning
@@ -35,5 +39,19 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+-(void)videoDelete
+{
+}
+
+-(void)videoShare
+{
+}
+
+-(void)videoGood
+{}
+
+-(void)videoBad
+{}
 
 @end

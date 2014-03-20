@@ -8,13 +8,35 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol BMOperateSubViewDelegate <NSObject>
+
+//-(void)didSelectButtonAtTag:(NSUInteger)tag;
+
+//-(void)videoOperation:(UIButton *)button buttonState:(BOOL *)clicked;
+
+-(void)videoDelete;
+
+-(void)videoShare;
+
+-(void)videoGood;
+
+-(void)videoBad;
+
+@end
+
 @interface BMOperateSubView : UIView
 
-@property (nonatomic,strong) UIButton *SocialButton;
+{
+    //BOOL *clicked;
+}
 
-@property (nonatomic,strong) UIButton *DeleteButton;
+@property (nonatomic,weak) id<BMOperateSubViewDelegate> delegate;
 
-@property (nonatomic,strong) UIButton *ShareButton;
+//@property (nonatomic,strong) UIButton *SocialButton;
+
+//@property (nonatomic,strong) UIButton *DeleteButton;
+
+//@property (nonatomic,strong) UIButton *ShareButton;
 
 
 @end

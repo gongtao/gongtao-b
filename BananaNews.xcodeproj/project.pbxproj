@@ -1247,7 +1247,7 @@
 					"$(inherited)",
 					BananaNews/ThirdParty/UmengSocial3.3.3/UMSocial_Sdk_3.3.3,
 					BananaNews/ThirdParty/UmengSocial3.3.3/UMSocial_Sdk_3.3.3/frameworks/Wechat,
-					"/Users/gongtao/Desktop/gongtao-b/BananaNews/ThirdParty/UMAnalytics_Sdk_2.2.2.OpenUDID",
+					BananaNews/ThirdParty/UMAnalytics_Sdk_2.2.2.OpenUDID,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -1275,7 +1275,7 @@
 					"$(inherited)",
 					BananaNews/ThirdParty/UmengSocial3.3.3/UMSocial_Sdk_3.3.3,
 					BananaNews/ThirdParty/UmengSocial3.3.3/UMSocial_Sdk_3.3.3/frameworks/Wechat,
-					"/Users/gongtao/Desktop/gongtao-b/BananaNews/ThirdParty/UMAnalytics_Sdk_2.2.2.OpenUDID",
+					BananaNews/ThirdParty/UMAnalytics_Sdk_2.2.2.OpenUDID,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";

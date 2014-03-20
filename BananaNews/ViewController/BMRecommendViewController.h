@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BMRecommendViewController : UIViewController
+#import "BMOperateSubView.h"
+
+@interface BMRecommendViewController : UIViewController <BMOperateSubViewDelegate>
+
+@property (nonatomic,strong)BMOperateSubView *operateSubview;
 
 @end
