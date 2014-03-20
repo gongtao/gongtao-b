@@ -19,26 +19,26 @@
         NSArray *imageName=@[@"视频操作",@"视频删除",@"视频分享"];
         __block CGFloat x=0.0;
         [imageName enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-            BMCustomButton *button=[[BMCustomButton alloc]initWithFrame:CGRectMake(x, 80, 80, 80)];
-            button.imageRect=CGRectMake(0.0, 0.0, 80, 80);
+            BMCustomButton *button=[[BMCustomButton alloc]initWithFrame:CGRectMake(x, 40, 40, 40)];
+            button.imageRect=CGRectMake(0.0, 0.0, 40, 40);
             [button setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@.png",obj]] forState:UIControlStateNormal];
             [button addTarget:self action:@selector(_buttonDidPush:) forControlEvents:UIControlEventTouchUpInside];
             button.tag=idx+50;
             [self addSubview:button];
-            x+=150;
+            x+=70;
             
         }];
         
-        BMCustomButton *buttonGood=[[BMCustomButton alloc]initWithFrame:CGRectMake(0, 0, 80, 80)];
-        buttonGood.imageRect=CGRectMake(0, 0, 80, 80);
+        BMCustomButton *buttonGood=[[BMCustomButton alloc]initWithFrame:CGRectMake(0, 0, 40, 40)];
+        buttonGood.imageRect=CGRectMake(0, 0, 40, 40);
         [buttonGood setImage:[UIImage imageNamed:@"视频分享.png"] forState:UIControlStateNormal];
         [buttonGood addTarget:self action:@selector(_buttonDidPush:) forControlEvents:UIControlEventTouchUpInside];
         buttonGood.tag=53;
         buttonGood.hidden=NO;
         [self addSubview:buttonGood];
         
-        BMCustomButton *buttonBad=[[BMCustomButton alloc]initWithFrame:CGRectMake(0, 160, 80, 80)];
-        buttonBad.imageRect=CGRectMake(0, 0, 80, 80);
+        BMCustomButton *buttonBad=[[BMCustomButton alloc]initWithFrame:CGRectMake(0, 80, 40, 40)];
+        buttonBad.imageRect=CGRectMake(0, 0, 40, 40);
         [buttonBad setImage:[UIImage imageNamed:@"视频分享.png"] forState:UIControlStateNormal];
         [buttonBad addTarget:self action:@selector(_buttonDidPush:) forControlEvents:UIControlEventTouchUpInside];
         buttonBad.tag=54;

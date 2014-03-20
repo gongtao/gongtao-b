@@ -29,7 +29,7 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     self.view.backgroundColor = Color_ViewBg;
-    self.operateSubview = [[BMOperateSubView alloc] initWithFrame:CGRectMake(130, 65, 380, 85)];
+    self.operateSubview = [[BMOperateSubView alloc] initWithFrame:CGRectMake(65, 250, 190, 40)];
     self.operateSubview.delegate = self;
     [self.view addSubview:self.operateSubview];
 }
