@@ -25,18 +25,15 @@
 @end
 
 @interface BMOperateSubView : UIView
-
 {
-    //BOOL *clicked;
+    BOOL _isHidden;
 }
 
 @property (nonatomic,weak) id<BMOperateSubViewDelegate> delegate;
 
-//@property (nonatomic,strong) UIButton *SocialButton;
+@property (nonatomic,strong) UIButton *buttonGood;
 
-//@property (nonatomic,strong) UIButton *DeleteButton;
-
-//@property (nonatomic,strong) UIButton *ShareButton;
+@property (nonatomic,strong) UIButton *buttonComment;
 
 
 @end

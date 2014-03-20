@@ -25,7 +25,9 @@
 
 //#define kBaseURL    [NSURL URLWithString:@"http://115.29.43.107/site/"]
 
-#define IS_IOS7     ([[[UIDevice currentDevice]systemVersion] floatValue] >= 7.0)
+#define IS_IOS7     ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0)
+
+#define IS_IPhone5_or_5s    ([UIScreen mainScreen].bounds.size.width == 568.0)
 
 #define Color_NavBarBg              [UIColor colorWithHexString:@"82ce24"]
 #define Color_ViewBg                [UIColor colorWithHexString:@"f3f3f3"]

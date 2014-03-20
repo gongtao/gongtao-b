@@ -29,7 +29,10 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     self.view.backgroundColor = Color_ViewBg;
-    self.operateSubview = [[BMOperateSubView alloc] initWithFrame:CGRectMake(65, 250, 190, 40)];
+    
+    CGFloat y = IS_IPhone5_or_5s?275.0:248.0;
+    
+    self.operateSubview = [[BMOperateSubView alloc] initWithFrame:CGRectMake(65.0, y, 190.0, 120.0)];
     self.operateSubview.delegate = self;
     [self.view addSubview:self.operateSubview];
 }

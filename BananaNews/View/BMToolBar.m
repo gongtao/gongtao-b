@@ -22,6 +22,8 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
+        self.backgroundColor = [UIColor whiteColor];
+        
         UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, frame.size.width, 1.0)];
         lineView.backgroundColor = [UIColor colorWithHexString:@"999999"];
         [self addSubview:lineView];

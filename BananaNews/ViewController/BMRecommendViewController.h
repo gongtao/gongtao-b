@@ -12,6 +12,6 @@
 
 @interface BMRecommendViewController : UIViewController <BMOperateSubViewDelegate>
 
-@property (nonatomic,strong)BMOperateSubView *operateSubview;
+@property (nonatomic,strong) BMOperateSubView *operateSubview;
 
 @end
