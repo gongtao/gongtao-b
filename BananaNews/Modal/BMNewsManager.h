@@ -10,7 +10,7 @@
 
 #import <CoreData/CoreData.h>
 
-#import <AFNetworking.h>
+#import "AFDownloadRequestOperation.h"
 
 #import "UMSocial.h"
 
@@ -49,6 +49,7 @@
 #define kLarge                  @"large"
 #define kLargeWidth             @"large_width"
 #define kLargeHeight            @"large_height"
+#define kUrl                    @"url"
 
 @interface BMNewsManager : NSObject
 {
@@ -100,6 +101,8 @@
 - (Media *)createMedia:(NSDictionary *)dic context:(NSManagedObjectContext *)context;
 
 - (Media *)getMediaById:(NSUInteger)mid context:(NSManagedObjectContext *)context;
+
+- (Media *)getMediaVideoByVid:(NSString *)vid context:(NSManagedObjectContext *)context;
 
 //NewsCategory
 - (NewsCategory *)createNewsCategory:(NSDictionary *)dic context:(NSManagedObjectContext *)context;
@@ -179,8 +182,13 @@
                                   success:(void (^)(void))success
                                   failure:(void (^)(NSError *error))failure;
 
-- (void)downloadVideo:(NSString *)vid
-              success:(void (^)(void))success
-              failure:(void (^)(NSError *error))failure;
+- (AFHTTPRequestOperation *)getDownloadVideoUrl:(NSString *)vid
+                                        success:(void (^)(NSString *url))success
+                                        failure:(void (^)(NSError *error))failure;
+
+- (AFDownloadRequestOperation *)getDownloadVideo:(NSString *)vid
+                                             url:(NSString *)url
+                                         success:(void (^)(void))success
+                                         failure:(void (^)(NSError *error))failure;
 
 @end

@@ -10,6 +10,8 @@
 
 #import "BMRecommendViewController.h"
 
+#import "AFDownloadRequestOperation.h"
+
 #import <MediaPlayer/MediaPlayer.h>
 
 @interface BMHomeTabViewController ()
@@ -54,7 +56,13 @@
     [self.view addSubview:self.toolBar];
     [self.toolBar selectedTagAtIndex:0];
     
-    [[BMNewsManager sharedManager] downloadVideo:@"XNjU4MzUyNDQw" success:nil failure:nil];
+    [[BMNewsManager sharedManager] getDownloadVideoUrl:@"XNjU4MzUyNDQw" success:^(NSString *url){
+        [[BMNewsManager sharedManager] getDownloadVideo:@"XNjU4MzUyNDQw" url:url success:^(void){
+            NSString *url = [[AFDownloadRequestOperation cacheFolder] stringByAppendingPathComponent:@"XNjU4MzUyNDQw.mp4"];
+            MPMoviePlayerViewController *vc = [[MPMoviePlayerViewController alloc] initWithContentURL:[NSURL fileURLWithPath:url]];
+            [self presentMoviePlayerViewControllerAnimated:vc];
+        } failure:nil];
+    } failure:nil];
 }
 
 - (void)didReceiveMemoryWarning

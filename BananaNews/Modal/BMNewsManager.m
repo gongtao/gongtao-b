@@ -10,8 +10,6 @@
 
 #import "BMUtils.h"
 
-#import "AFDownloadRequestOperation.h"
-
 #import <SDImageCache.h>
 
 #import <TencentOpenAPI/QQApiInterface.h>
@@ -527,13 +525,7 @@
     }
     
     if ([type rangeOfString:@"image"].location == NSNotFound) {
-        NSString *url = dic[@"url"];
-        url = [url stringByReplacingOccurrencesOfString:@"player.youku.com/player.php/sid/" withString:@"v.youku.com/player/getRealM3U8/vid/"];
-        media.url = [url stringByReplacingOccurrencesOfString:@"/v.swf" withString:@"/type/video.m3u8"];
-        media.small_width = [NSNumber numberWithFloat:160.0];
-        media.small_height = [NSNumber numberWithFloat:120.0];
-        media.large_width = [NSNumber numberWithFloat:160.0];
-        media.large_height = [NSNumber numberWithFloat:120.0];
+        media.url = dic[@"video_id"];
     }
     else {
         NSArray *array = dic[@"sizes"];
@@ -566,6 +558,23 @@
     
     [request setEntity:entity];
     [request setPredicate:[NSPredicate predicateWithFormat:@"%K == %i", kMid, mid]];
+    
+    NSError *error;
+    NSArray *results = [context executeFetchRequest:request error:&error];
+    
+    if (!error && results.count > 0) {
+        return results[0];
+    }
+    return nil;
+}
+
+- (Media *)getMediaVideoByVid:(NSString *)vid context:(NSManagedObjectContext *)context
+{
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:Media_Entity inManagedObjectContext:context];
+    
+    [request setEntity:entity];
+    [request setPredicate:[NSPredicate predicateWithFormat:@"%K == %i", kUrl, vid]];
     
     NSError *error;
     NSArray *results = [context executeFetchRequest:request error:&error];
@@ -1387,9 +1396,9 @@
     return op;
 }
 
-- (void)downloadVideo:(NSString *)vid
-              success:(void (^)(void))success
-              failure:(void (^)(NSError *error))failure
+- (AFHTTPRequestOperation *)getDownloadVideoUrl:(NSString *)vid
+                                        success:(void (^)(NSString *url))success
+                                        failure:(void (^)(NSError *error))failure;
 {
     NSDictionary *param = @{@"point": [NSNumber numberWithInteger:1],
                             @"id": vid,
@@ -1404,50 +1413,14 @@
     NSString *url = [NSString stringWithFormat:@"http://api.3g.youku.com/layout/phone2_1/play"];
     
     void (^requestSuccess)(AFHTTPRequestOperation *, id) = ^(AFHTTPRequestOperation *operation, id responseObject) {
-        if (responseObject != [NSNull null]) {
-            NSLog(@"%@", responseObject);
-            
-//            NSURL *url = [NSURL URLWithString:@"http://f.youku.com/player/getFlvPath/sid/139536564420324_01/st/mp4/fileid/0300200100532AE7EB3E000634800B1BA1EF67-91A8-C8F6-AC71-DA168AA045B9?K=4628f5b76deae9252829667a&hd=0&ts=2400&ctype=40"];
-//            NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10];
-//            
-//            AFDownloadRequestOperation *requestOperation = [[AFDownloadRequestOperation alloc] initWithRequest:request targetPath:[AFDownloadRequestOperation cacheFolder] shouldResume:YES];
-//            
-//            [requestOperation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-//                NSLog(@"Successfully downloaded file");
-//                
-//                AFDownloadRequestOperation *op = (AFDownloadRequestOperation *)operation;
-//                NSLog(@"%@", op.targetPath);
-//                MPMoviePlayerViewController *vc = [[MPMoviePlayerViewController alloc] initWithContentURL:[NSURL fileURLWithPath:op.targetPath]];
-//                [self presentMoviePlayerViewControllerAnimated:vc];
-//                
-//            } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-//                NSLog(@"Error: %@", error);
-//            }];
-//            
-//            [requestOperation setProgressiveDownloadProgressBlock:^(NSInteger bytesRead, long long totalBytesRead, long long totalBytesExpected, long long totalBytesReadForFile, long long totalBytesExpectedToReadForFile) {
-//                NSDictionary *dic = @{@"readFileBytes": [NSNumber numberWithLongLong:totalBytesReadForFile],
-//                                      @"totalFileBytes": [NSNumber numberWithLongLong:totalBytesExpectedToReadForFile]};
-//                NSLog(@"%lli,%lli", totalBytesExpectedToReadForFile, totalBytesReadForFile);
-//            }];
-//            [requestOperation start];
-            
-            
-            
-            
-//            NSManagedObjectContext *temporaryContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
-//            temporaryContext.parentContext = [self managedObjectContext];
-//            
-//            [temporaryContext performBlock:^{
-//                
-//                [self saveContext:temporaryContext];
-//                // save parent to disk asynchronously
-//                [temporaryContext.parentContext performBlock:^{
-//                    [self saveContext:temporaryContext.parentContext];
-//                    if (success) {
-//                        success();
-//                    }
-//                }];
-//            }];
+        NSLog(@"%@", responseObject);
+        if (responseObject != [NSNull null] && [responseObject[@"status"] isEqualToString:@"success"]) {
+            NSDictionary *dic = responseObject[@"results"];
+            NSArray *array = dic[@"3gphd"];
+            dic = array[0];
+            if (success) {
+                success(dic[@"url"]);
+            }
         }
         else {
             if (failure) {
@@ -1465,6 +1438,42 @@
     
     AFHTTPRequestOperation *op = [_manager GET:url parameters:param success:requestSuccess failure:requestFailure];
     NSLog(@"request: %@", op.request.URL.absoluteString);
+    return op;
+}
+
+- (AFDownloadRequestOperation *)getDownloadVideo:(NSString *)vid
+                                             url:(NSString *)url
+                                         success:(void (^)(void))success
+                                         failure:(void (^)(NSError *error))failure
+{
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:30];
+    AFDownloadRequestOperation *requestOperation = [[AFDownloadRequestOperation alloc] initWithRequest:request fileName:[NSString stringWithFormat:@"%@.mp4", vid] targetPath:[AFDownloadRequestOperation cacheFolder] shouldResume:YES];
+    
+    [requestOperation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"Successfully downloaded file");
+        
+        AFDownloadRequestOperation *op = (AFDownloadRequestOperation *)operation;
+        NSLog(@"%@", op.targetPath);
+        
+        if (success) {
+            success();
+        }
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+        if (failure) {
+            failure(error);
+        }
+    }];
+    
+    [requestOperation setProgressiveDownloadProgressBlock:^(NSInteger bytesRead, long long totalBytesRead, long long totalBytesExpected, long long totalBytesReadForFile, long long totalBytesExpectedToReadForFile) {
+//        NSDictionary *dic = @{@"readFileBytes": [NSNumber numberWithLongLong:totalBytesReadForFile],
+//                              @"totalFileBytes": [NSNumber numberWithLongLong:totalBytesExpectedToReadForFile]};
+//        NSLog(@"%lli,%lli", totalBytesExpectedToReadForFile, totalBytesReadForFile);
+    }];
+    
+    [requestOperation start];
+    return requestOperation;
 }
 
 @end
