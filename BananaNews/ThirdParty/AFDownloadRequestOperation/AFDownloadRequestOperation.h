@@ -29,6 +29,11 @@
  */
 @interface AFDownloadRequestOperation : AFHTTPRequestOperation
 
+/**
+ 添加自定义的文件名
+ */
+@property (strong) NSString *fileName;
+
 /** 
  A String value that defines the target path or directory.
  
@@ -66,6 +71,16 @@
 ///----------------------------------
 /// @name Creating Request Operations
 ///----------------------------------
+
+/**
+ Creates and returns an `AFDownloadRequestOperation`
+ @param urlRequest The request object to be loaded asynchronously during execution of the operation
+ @param fileName 自定义文件名
+ @param targetPath The target path (with or without file name)
+ @param shouldResume If YES, tries to resume a partial download if found.
+ @return A new download request operation
+ */
+- (id)initWithRequest:(NSURLRequest *)urlRequest fileName:(NSString *)fileName targetPath:(NSString *)targetPath shouldResume:(BOOL)shouldResume;
 
 /**
  Creates and returns an `AFDownloadRequestOperation`

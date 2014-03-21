@@ -99,11 +99,66 @@ typedef void (^AFURLConnectionProgressiveOperationProgressBlock)(NSInteger bytes
         BOOL isDirectory;
         if(![[NSFileManager defaultManager] fileExistsAtPath:targetPath isDirectory:&isDirectory]) {
             isDirectory = NO;
-        }        
+        }
         // if targetPath is a directory, use the file name we got from the urlRequest.
         if (isDirectory) {
             NSString *fileName = [urlRequest.URL lastPathComponent];
             _targetPath = [NSString pathWithComponents:[NSArray arrayWithObjects:targetPath, fileName, nil]];
+        }else {
+            _targetPath = targetPath;
+        }
+        
+        // download is saved into a temporal file and remaned upon completion
+        NSString *tempPath = [self tempPath];
+        
+        // do we need to resume the file?
+        BOOL isResuming = NO;
+        if (shouldResume) {
+            unsigned long long downloadedBytes = [self fileSizeForPath:tempPath];
+            if (downloadedBytes > 0) {
+                NSMutableURLRequest *mutableURLRequest = [urlRequest mutableCopy];
+                NSString *requestRange = [NSString stringWithFormat:@"bytes=%llu-", downloadedBytes];
+                [mutableURLRequest setValue:requestRange forHTTPHeaderField:@"Range"];
+                self.request = mutableURLRequest;
+                isResuming = YES;
+            }
+        }
+        
+        // try to create/open a file at the target location
+        if (!isResuming) {
+            int fileDescriptor = open([tempPath UTF8String], O_CREAT | O_EXCL | O_RDWR, 0666);
+            if (fileDescriptor > 0) {
+                close(fileDescriptor);
+            }
+        }
+        
+        self.outputStream = [NSOutputStream outputStreamToFileAtPath:tempPath append:isResuming];
+        
+        // if the output stream can't be created, instantly destroy the object.
+        if (!self.outputStream) {
+            return nil;
+        }
+    }
+    return self;
+}
+
+- (id)initWithRequest:(NSURLRequest *)urlRequest fileName:(NSString *)fileName targetPath:(NSString *)targetPath shouldResume:(BOOL)shouldResume {
+    if ((self = [super initWithRequest:urlRequest])) {
+        NSParameterAssert(targetPath != nil && urlRequest != nil);
+        _shouldResume = shouldResume;
+        
+        self.runLoopModes = [NSSet setWithObject:NSRunLoopCommonModes];
+        
+        _fileName = fileName;
+        
+        // we assume that at least the directory has to exist on the targetPath
+        BOOL isDirectory;
+        if(![[NSFileManager defaultManager] fileExistsAtPath:targetPath isDirectory:&isDirectory]) {
+            isDirectory = NO;
+        }        
+        // if targetPath is a directory, use the file name we got from the urlRequest.
+        if (isDirectory) {
+            _targetPath = [NSString pathWithComponents:[NSArray arrayWithObjects:targetPath, _fileName, nil]];
         }else {
             _targetPath = targetPath;
         }
@@ -159,8 +214,7 @@ typedef void (^AFURLConnectionProgressiveOperationProgressBlock)(NSInteger bytes
 - (NSString *)tempPath {
     NSString *tempPath = nil;
     if (self.targetPath) {
-        NSString *fileName = [self.request.URL lastPathComponent];
-        tempPath = [[[self class] cacheFolder] stringByAppendingPathComponent:fileName];
+        tempPath = [[[self class] cacheFolder] stringByAppendingPathComponent:_fileName];
     }
     return tempPath;
 }

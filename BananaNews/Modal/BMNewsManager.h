@@ -179,4 +179,8 @@
                                   success:(void (^)(void))success
                                   failure:(void (^)(NSError *error))failure;
 
+- (void)downloadVideo:(NSString *)vid
+              success:(void (^)(void))success
+              failure:(void (^)(NSError *error))failure;
+
 @end
