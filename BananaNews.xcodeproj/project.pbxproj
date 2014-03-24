@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		264D252918D96F4C00D2F3D1 /* BMOperateSubView.m in Sources */ = {isa = PBXBuildFile; fileRef = 264D252818D96F4C00D2F3D1 /* BMOperateSubView.m */; };
+		2691053118DC365B00CFDB3A /* BMCommonScrollorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2691053018DC365B00CFDB3A /* BMCommonScrollorView.m */; };
 		424C36BA18D92F5500B693F5 /* BMBaseSubViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 424C36B918D92F5500B693F5 /* BMBaseSubViewController.m */; };
 		424C36BD18D92FE400B693F5 /* BMHomeTabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 424C36BC18D92FE400B693F5 /* BMHomeTabViewController.m */; };
 		424C36C218D9412B00B693F5 /* BMToolBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 424C36C118D9412B00B693F5 /* BMToolBar.m */; };
@@ -147,6 +148,8 @@
 /* Begin PBXFileReference section */
 		264D252718D96F4C00D2F3D1 /* BMOperateSubView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMOperateSubView.h; sourceTree = "<group>"; };
 		264D252818D96F4C00D2F3D1 /* BMOperateSubView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMOperateSubView.m; sourceTree = "<group>"; };
+		2691052F18DC365B00CFDB3A /* BMCommonScrollorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMCommonScrollorView.h; sourceTree = "<group>"; };
+		2691053018DC365B00CFDB3A /* BMCommonScrollorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMCommonScrollorView.m; sourceTree = "<group>"; };
 		424C36B818D92F5500B693F5 /* BMBaseSubViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMBaseSubViewController.h; sourceTree = "<group>"; };
 		424C36B918D92F5500B693F5 /* BMBaseSubViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMBaseSubViewController.m; sourceTree = "<group>"; };
 		424C36BB18D92FE400B693F5 /* BMHomeTabViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMHomeTabViewController.h; sourceTree = "<group>"; };
@@ -621,6 +624,8 @@
 				424C36C118D9412B00B693F5 /* BMToolBar.m */,
 				264D252718D96F4C00D2F3D1 /* BMOperateSubView.h */,
 				264D252818D96F4C00D2F3D1 /* BMOperateSubView.m */,
+				2691052F18DC365B00CFDB3A /* BMCommonScrollorView.h */,
+				2691053018DC365B00CFDB3A /* BMCommonScrollorView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1031,6 +1036,7 @@
 			files = (
 				42C4E778188526E800E650BE /* BMSNSLoginView.m in Sources */,
 				42C7BB0618712BF700BD6382 /* BMLeftViewCell.m in Sources */,
+				2691053118DC365B00CFDB3A /* BMCommonScrollorView.m in Sources */,
 				424C36CB18D9841B00B693F5 /* BMSubUserViewController.m in Sources */,
 				D8C503B7189536650092CAC0 /* BMUserInfoViewController.m in Sources */,
 				42C7BB0118710E7F00BD6382 /* BMRightViewController.m in Sources */,
