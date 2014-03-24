@@ -8,6 +8,12 @@
 
 #import "BMRecommendViewController.h"
 
+#import "BMMovieItemView.h"
+
+#import "BMSNSLoginView.h"
+
+#import "BMCommentViewController.h"
+
 @interface BMRecommendViewController ()
 
 @end
@@ -42,6 +48,8 @@
     scView.dataSource=self;
 //    scView.delegate=self;
     [self.view addSubview:scView];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_loginToSite:) name:kLoginSuccessNotification object:nil];
 }
 
 /*-(int)numberOfPages
@@ -51,9 +59,8 @@
 
 -(UIView *)pageAtIndex:(NSInteger)index withFrame:(CGRect)frame;
 {
-    UIImageView *imageView=[[UIImageView alloc]initWithFrame:frame];
-    [imageView setImage:[UIImage imageNamed:@"视频框.png"]];
-    return imageView;
+    BMMovieItemView *item = [[BMMovieItemView alloc] initWithFrame:frame];
+    return item;
 }
 
 - (void)didReceiveMemoryWarning
@@ -62,18 +69,68 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - Private
+
+- (void)_loginToSite:(NSNotification *)notice
+{
+    User *user = notice.userInfo[@"user"];
+    if (user) {
+        [self _comment];
+    }
+}
+
+- (void)_comment
+{
+    BMCommentViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"commentViewController"];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+#pragma mark -
+
 -(void)videoDelete
 {
+    
 }
 
 -(void)videoShare
 {
+//    [[BMNewsManager sharedManager] shareNews:news delegate:self];
 }
 
 -(void)videoGood
-{}
+{
+    
+}
 
 -(void)videoBad
-{}
+{
+    if ([[NSUserDefaults standardUserDefaults] objectForKey:kLoginKey]) {
+        [self _comment];
+    }
+    else {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"评论" message:@"亲~请先登录再评论" delegate:self cancelButtonTitle:@"暂不" otherButtonTitles:@"登录", nil];
+        [alertView show];
+    }
+}
+
+#pragma mark - UIAlertViewDelegate
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    NSString *title = [alertView buttonTitleAtIndex:buttonIndex];
+    if ([title isEqualToString:@"登录"]) {
+        BMSNSLoginView *loginView = [[BMSNSLoginView alloc] initWithFrame:self.parentViewController.view.bounds];
+        [loginView showInView:self.parentViewController.view];
+    }
+}
+
+#pragma mark - UMSocialUIDelegate
+
+-(void)didFinishGetUMSocialDataInViewController:(UMSocialResponseEntity *)response
+{
+    if (response.responseCode == UMSResponseCodeSuccess) {
+//        [[BMNewsManager sharedManager] shareToSite:news.nid.integerValue success:nil failure:nil];
+    }
+}
 
 @end

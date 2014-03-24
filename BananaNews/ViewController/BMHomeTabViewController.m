@@ -14,8 +14,6 @@
 
 #import <MediaPlayer/MediaPlayer.h>
 
-#import "BMSNSLoginView.h"
-
 @interface BMHomeTabViewController ()
 
 @property (nonatomic, strong) BMToolBar *toolBar;
@@ -75,14 +73,6 @@
 //            [self presentMoviePlayerViewControllerAnimated:vc];
 //        } failure:nil];
 //    } failure:nil];
-    
-//    if ([[NSUserDefaults standardUserDefaults] objectForKey:kLoginKey]) {
-//        
-//    }
-//    else {
-//        BMSNSLoginView *loginView = [[BMSNSLoginView alloc] initWithFrame:self.view.bounds];
-//        [loginView showInView:self.view];
-//    }
 }
 
 - (void)didReceiveMemoryWarning
