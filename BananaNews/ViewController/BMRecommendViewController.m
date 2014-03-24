@@ -35,6 +35,25 @@
     self.operateSubview = [[BMOperateSubView alloc] initWithFrame:CGRectMake(65.0, y, 190.0, 120.0)];
     self.operateSubview.delegate = self;
     [self.view addSubview:self.operateSubview];
+    
+    y=IS_IPhone5_or_5s?80.0:60;
+    
+    BMCommonScrollorView *scView=[[BMCommonScrollorView alloc]initWithFrame:CGRectMake(0, y, self.view.bounds.size.width, 160)];
+    scView.dataSource=self;
+//    scView.delegate=self;
+    [self.view addSubview:scView];
+}
+
+/*-(int)numberOfPages
+{
+    return 3;
+}*/
+
+-(UIView *)pageAtIndex:(NSInteger)index withFrame:(CGRect)frame;
+{
+    UIImageView *imageView=[[UIImageView alloc]initWithFrame:frame];
+    [imageView setImage:[UIImage imageNamed:@"视频框.png"]];
+    return imageView;
 }
 
 - (void)didReceiveMemoryWarning

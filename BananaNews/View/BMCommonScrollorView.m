@@ -22,11 +22,11 @@
         //_scrollView.contentSize=CGSizeMake(self.bounds.size.width*_totalPages, self.bounds.size.height);
         _scrollView.contentSize=CGSizeMake(250*_totalPages, self.bounds.size.height);
         _scrollView.showsHorizontalScrollIndicator=NO;
-        _offset=210;
-        //_scrollView.contentOffset=CGPointMake(self.bounds.size.width, 0);
-        _scrollView.contentOffset=CGPointMake(_offset, 0);
+        //_offset=210;
+        _scrollView.contentOffset=CGPointMake(250, 0);
+        //_scrollView.contentOffset=CGPointMake(_offset, 0);
         _scrollView.pagingEnabled=YES;
-        //_scrollView.clipToBounds=NO;
+        _scrollView.clipsToBounds=NO;
         [self addSubview:_scrollView];
         
         _currentPage=_totalPages/2;
@@ -50,7 +50,7 @@
 {
     for (int i=0; i<_totalPages; i++) {
         CGRect rect=self.bounds;
-        rect.origin.x=40;
+        //rect.origin.x=40;
         rect.size.width=210;
         UIView *view=[_dataSource pageAtIndex:i withFrame:rect];
         view.frame=CGRectOffset(view.frame, (view.frame.size.width+20)*i, 0);

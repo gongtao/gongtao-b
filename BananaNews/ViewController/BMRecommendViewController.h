@@ -10,6 +10,8 @@
 
 #import "BMOperateSubView.h"
 
+#import "BMCommonScrollorView.h"
+
 @interface BMRecommendViewController : UIViewController <BMOperateSubViewDelegate>
 
 @property (nonatomic,strong) BMOperateSubView *operateSubview;
