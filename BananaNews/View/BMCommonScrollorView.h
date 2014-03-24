@@ -32,7 +32,9 @@
 {
     NSInteger _totalPages;
     NSInteger _currentPage;
-    NSInteger _offset;
+    NSInteger _pageWidth;
+    float _currentOffset;
+    NSMutableArray *_curViews;
 }
 
 

@@ -10,26 +10,27 @@
 
 @implementation BMCommonScrollorView
 
+
+
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
-        //_scrollView=[[UIScrollView alloc]initWithFrame:self.bounds];
-        _scrollView=[[UIScrollView alloc]initWithFrame:CGRectMake(50, 0, 250, self.bounds.size.height)];
+        [self setPageWidth];
+        int offset=(self.bounds.size.width-_pageWidth)/2;
+        _scrollView=[[UIScrollView alloc]initWithFrame:CGRectMake(offset, 0, _pageWidth, self.bounds.size.height)];
         _scrollView.delegate=self;
         [self setTotalPages];
-        //_scrollView.contentSize=CGSizeMake(self.bounds.size.width*_totalPages, self.bounds.size.height);
-        _scrollView.contentSize=CGSizeMake(250*_totalPages, self.bounds.size.height);
+        _scrollView.contentSize=CGSizeMake(_pageWidth*_totalPages, self.bounds.size.height);
         _scrollView.showsHorizontalScrollIndicator=NO;
-        //_offset=210;
-        _scrollView.contentOffset=CGPointMake(250, 0);
-        //_scrollView.contentOffset=CGPointMake(_offset, 0);
+        //_scrollView.contentOffset=CGPointMake(_pageWidth, 0);
         _scrollView.pagingEnabled=YES;
         _scrollView.clipsToBounds=NO;
         [self addSubview:_scrollView];
+        _currentOffset=0;
         
-        _currentPage=_totalPages/2;
+        _curViews = [[NSMutableArray alloc] init];
         
     }
     return self;
@@ -40,47 +41,83 @@
     _totalPages=3;
 }
 
+-(void)setPageWidth
+{
+    _pageWidth=230;
+}
+
 -(void)setDataSource:(id<BMCommonScrollorViewDataSource>)dataSource
 {
     _dataSource=dataSource;
     [self loadData];
+    _currentPage=0;
+    //_prePage=_currentPage;
+    UIView *view=[_curViews objectAtIndex:_currentPage];
+    view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.0, 1.3);//CGAffineTransformMakeScale(1.2f,1.2f);
+    
+
 }
 
 -(void)loadData
 {
     for (int i=0; i<_totalPages; i++) {
         CGRect rect=self.bounds;
-        //rect.origin.x=40;
+        rect.origin.x=10;
         rect.size.width=210;
         UIView *view=[_dataSource pageAtIndex:i withFrame:rect];
         view.frame=CGRectOffset(view.frame, (view.frame.size.width+20)*i, 0);
         [_scrollView addSubview:view];
+        [_curViews addObject:view];
     }
 }
 
 #pragma mark - UIScrollViewDelegate
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    int x=scrollView.contentOffset.x;
-    //往下翻
-    if (x>=(2*self.frame.size.width)) {
-        //_currentPage=[_delegate validPageValue:_currentPage+1];
-        _currentPage=_currentPage+1;
-        if (_currentPage>_totalPages-1) {
-            _currentPage=_totalPages-1;
+    float x=_scrollView.contentOffset.x;
+    if (x>_currentOffset) {
+        //往左边滑动
+        int page=x/_pageWidth;
+        UIView *view=[_curViews objectAtIndex:page];
+        int x1=(int)x%_pageWidth;
+        view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.0, 1.0+0.3*(1-((float)x1/_pageWidth)));
+        if (page+1<_totalPages) {
+            UIView *preView=[_curViews objectAtIndex:page+1];
+            preView.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.0, 1.0+0.3*(float)x1/_pageWidth);
+            
         }
-        //_currentPage=1;
+         _currentOffset=x;
+
+
+        /*if (x<2*_pageWidth) {
+            <#statements#>
+        }*/
     }
-    //往上翻
-    else if(x<0)
-    {
-        //_currentPage=[_delegate validPageValue:_currentPage-1];
-        _currentPage=_currentPage-1;
-        if (_currentPage<0) {
-            _currentPage=0;
+    else if (x<_currentOffset)
+    {//往右滑动
+       /* if (x>0) {
+            statements
+        }*/
+        int page=x/_pageWidth;
+        int x1=_pageWidth-(int)x%_pageWidth;
+        if (page+1<_totalPages) {
+            UIView *view=[_curViews objectAtIndex:page+1];
+            view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.0, 1.0+0.3*(1-((float)x1/_pageWidth)));
         }
-        //_currentPage=0;
+        UIView *preView=[_curViews objectAtIndex:page];
+        preView.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.0, 1.0+0.3*(float)x1/_pageWidth);
+        _currentOffset=x;
+        
     }
+    
+    
+ /*   int page=x/_pageWidth;
+    UIView *view=[_curViews objectAtIndex:page];
+    view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.0, 1.0+0.3*(float)((int)x%(int)_pageWidth)/_pageWidth);
+    
+    UIView *preView=[_curViews objectAtIndex:_currentPage];
+    preView.transform=CGAffineTransformScale(CGAffineTransformIdentity, 1.0, 1.0+0.3*(float)((int)x%(int)_pageWidth)/_pageWidth);
+    _currentPage=page;*/
 }
 
 -(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
@@ -96,8 +133,6 @@
         [_scrollView setContentOffset:CGPointMake(x-_offset, 0) animated:YES];
     }
      */
-    
-
 }
 /*
 // Only override drawRect: if you perform custom drawing.
