@@ -16,6 +16,10 @@
 
 @interface BMRecommendViewController ()
 
+@property (nonatomic, strong) UILabel *pageLabel;
+
+@property (nonatomic, strong) UILabel *titleLabel;
+
 @end
 
 @implementation BMRecommendViewController
@@ -42,25 +46,30 @@
     self.operateSubview.delegate = self;
     [self.view addSubview:self.operateSubview];
     
-    y=IS_IPhone5_or_5s?80.0:60;
+    y = IS_IPhone5_or_5s?45.0:30.0;
     
-    BMCommonScrollorView *scView=[[BMCommonScrollorView alloc]initWithFrame:CGRectMake(0, y, self.view.bounds.size.width, 160)];
-    scView.dataSource=self;
-//    scView.delegate=self;
+    self.pageLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, y)];
+    self.pageLabel.backgroundColor = [UIColor clearColor];
+    self.pageLabel.textColor = Color_NavBarBg;
+    self.pageLabel.font = [UIFont systemFontOfSize:17.0];
+    self.pageLabel.text = @"1/3";
+    self.pageLabel.textAlignment = NSTextAlignmentCenter;
+    [self.view addSubview:self.pageLabel];
+    
+    BMCommonScrollorView *scView=[[BMCommonScrollorView alloc] initWithFrame:CGRectMake(0, y, self.view.bounds.size.width, 180.0)];
+    scView.dataSource = self;
+    scView.delegate = self;
     [self.view addSubview:scView];
     
+    self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(58.0, CGRectGetMaxY(scView.frame)-5.0, 204.0, 45.0)];
+    self.titleLabel.backgroundColor = [UIColor clearColor];
+    self.titleLabel.textColor = [UIColor blackColor];
+    self.titleLabel.font = [UIFont systemFontOfSize:17.0];
+    self.titleLabel.numberOfLines = 0;
+    self.titleLabel.textAlignment = NSTextAlignmentCenter;
+    [self.view addSubview:self.titleLabel];
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_loginToSite:) name:kLoginSuccessNotification object:nil];
-}
-
-/*-(int)numberOfPages
-{
-    return 3;
-}*/
-
--(UIView *)pageAtIndex:(NSInteger)index withFrame:(CGRect)frame;
-{
-    BMMovieItemView *item = [[BMMovieItemView alloc] initWithFrame:frame];
-    return item;
 }
 
 - (void)didReceiveMemoryWarning
@@ -87,22 +96,22 @@
 
 #pragma mark -
 
--(void)videoDelete
+- (void)videoDelete
 {
     
 }
 
--(void)videoShare
+- (void)videoShare
 {
 //    [[BMNewsManager sharedManager] shareNews:news delegate:self];
 }
 
--(void)videoGood
+- (void)videoGood
 {
     
 }
 
--(void)videoBad
+- (void)videoBad
 {
     if ([[NSUserDefaults standardUserDefaults] objectForKey:kLoginKey]) {
         [self _comment];
@@ -126,11 +135,26 @@
 
 #pragma mark - UMSocialUIDelegate
 
--(void)didFinishGetUMSocialDataInViewController:(UMSocialResponseEntity *)response
+- (void)didFinishGetUMSocialDataInViewController:(UMSocialResponseEntity *)response
 {
     if (response.responseCode == UMSResponseCodeSuccess) {
 //        [[BMNewsManager sharedManager] shareToSite:news.nid.integerValue success:nil failure:nil];
     }
+}
+
+#pragma mark - BMCommonScrollorViewDataSource
+
+- (UIView *)pageAtIndex:(NSInteger)index withFrame:(CGRect)frame;
+{
+    BMMovieItemView *item = [[BMMovieItemView alloc] initWithFrame:frame];
+    return item;
+}
+
+#pragma mark - BMCommonScrollorViewDataSource
+
+- (void)commonScrollorViewDidSelectPage:(NSUInteger)index
+{
+    self.pageLabel.text = [NSString stringWithFormat:@"%i/3", index+1];
 }
 
 @end

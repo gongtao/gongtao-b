@@ -9,20 +9,19 @@
 #import <UIKit/UIKit.h>
 
 
-/*@protocol BMCommonScrollorViewDelegate <NSObject>
+@protocol BMCommonScrollorViewDelegate <NSObject>
 
 @optional
 
-//-(NSInteger)validPageValue:(NSInteger)value;
+- (void)commonScrollorViewDidSelectPage:(NSUInteger)index;
+
+//- (NSInteger)validPageValue:(NSInteger)value;
 
 @end
-*/
 
 @protocol BMCommonScrollorViewDataSource <NSObject>
 
 @required
-
-//-(int)numberOfPages;
 
 -(UIView *)pageAtIndex:(NSInteger)index withFrame:(CGRect)frame;
 
@@ -31,18 +30,22 @@
 @interface BMCommonScrollorView : UIView<UIScrollViewDelegate>
 {
     NSInteger _totalPages;
-    NSInteger _currentPage;
     NSInteger _pageWidth;
     float _currentOffset;
     NSMutableArray *_curViews;
 }
 
 
-//@property (nonatomic,weak) id<BMCommonScrollorViewDelegate> delegate;
+@property (nonatomic, weak) id<BMCommonScrollorViewDelegate> delegate;
 
-@property (nonatomic,strong,setter =setDataSource:) id<BMCommonScrollorViewDataSource> dataSource;
+@property (nonatomic, strong, setter=setDataSource:) id<BMCommonScrollorViewDataSource> dataSource;
 
-@property (nonatomic,strong) UIScrollView *scrollView;
+@property (nonatomic, strong) UIScrollView *scrollView;
 
+@property (nonatomic, assign, readonly) NSUInteger currentPage;
+
+- (UIView *)viewForPage:(NSUInteger)page;
+
+- (UIView *)currentSelectedView;
 
 @end
