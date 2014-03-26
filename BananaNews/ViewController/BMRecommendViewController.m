@@ -70,12 +70,61 @@
     [self.view addSubview:self.titleLabel];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_loginToSite:) name:kLoginSuccessNotification object:nil];
+    
+    [self fetchedResultsController];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - DataBase method
+
+- (NSFetchedResultsController *)fetchedResultsController
+{
+    if (_fetchedResultsController) {
+        return _fetchedResultsController;
+    }
+    
+    _fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:[self fetchRequest] managedObjectContext:[self managedObjectContext] sectionNameKeyPath:nil cacheName:@"recommend"];
+    _fetchedResultsController.delegate = self;
+    
+    [self performFetch];
+    
+    return _fetchedResultsController;
+}
+
+- (NSManagedObjectContext *)managedObjectContext
+{
+    id appDelegate = [UIApplication sharedApplication].delegate;
+    return [appDelegate managedObjectContext];
+}
+
+- (NSFetchRequest *)fetchRequest
+{
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:News_Entity inManagedObjectContext:[self managedObjectContext]];
+    [request setEntity:entity];
+    NSSortDescriptor *sortDesciptor = [NSSortDescriptor sortDescriptorWithKey:kNid ascending:NO];
+    request.predicate = [NSPredicate predicateWithFormat:@"ANY category.isHead == %@", [NSNumber numberWithBool:YES]];
+    [request setSortDescriptors:[NSArray arrayWithObject:sortDesciptor]];
+    return request;
+}
+
+- (void)performFetch
+{
+    if (!_fetchedResultsController) {
+        [self fetchedResultsController];
+        return;
+    }
+    
+    NSError *error = NULL;
+    if (![_fetchedResultsController performFetch:&error]) {
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        abort();
+    }
 }
 
 #pragma mark - Private
@@ -156,5 +205,67 @@
 {
     self.pageLabel.text = [NSString stringWithFormat:@"%i/3", index+1];
 }
+
+#pragma mark - NSFetchedResultsControllerDelegate
+
+- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller
+{
+    NSLog(@"willChange");
+}
+
+- (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath
+{
+    NSLog(@"didChangeObject");
+//    int number = [[[controller sections] objectAtIndex:[indexPath section]] numberOfObjects];
+//    
+//    switch(type) {
+//            
+//        case NSFetchedResultsChangeInsert:
+//            if (_numberOfFetchLimit <= number) {
+//                if ([newIndexPath row] < _numberOfFetchLimit) {
+//                    [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:_numberOfFetchLimit-1 inSection:[newIndexPath section]]] withRowAnimation:_rowAnimation];
+//                    [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:_rowAnimation];
+//                }
+//            }
+//            else {
+//                [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:_rowAnimation];
+//            }
+//            break;
+//            
+//        case NSFetchedResultsChangeDelete:
+//            if (_numberOfFetchLimit <= number) {
+//                if ([indexPath row] < _numberOfFetchLimit) {
+//                    [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:_rowAnimation];
+//                    [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:_numberOfFetchLimit-1 inSection:[indexPath section]]] withRowAnimation:_rowAnimation];
+//                }
+//            }
+//            else {
+//                [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:_rowAnimation];
+//            }
+//            break;
+//            
+//        case NSFetchedResultsChangeUpdate:
+//            [self configCell:[self.tableView cellForRowAtIndexPath:indexPath] cellForRowAtIndexPath:indexPath fetchedResultsController:self.fetchedResultsController];
+//            break;
+//            
+//        case NSFetchedResultsChangeMove:
+//            [self.tableView deleteRowsAtIndexPaths:[NSArray
+//                                                    arrayWithObject:indexPath] withRowAnimation:_rowAnimation];
+//            [self.tableView insertRowsAtIndexPaths:[NSArray
+//                                                    arrayWithObject:newIndexPath] withRowAnimation:_rowAnimation];
+//            break;
+//    }
+}
+
+- (void)controller:(NSFetchedResultsController *)controller didChangeSection:(id<NSFetchedResultsSectionInfo>)sectionInfo atIndex:(NSUInteger)sectionIndex forChangeType:(NSFetchedResultsChangeType)type
+{
+    
+}
+
+- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
+{
+    NSLog(@"didChange");
+}
+
 
 @end
