@@ -63,7 +63,7 @@
     
     self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(58.0, CGRectGetMaxY(scView.frame)-5.0, 204.0, 45.0)];
     self.titleLabel.backgroundColor = [UIColor clearColor];
-    self.titleLabel.textColor = [UIColor blackColor];
+    self.titleLabel.textColor = [UIColor colorWithHexString:@"666666"];
     self.titleLabel.font = [UIFont systemFontOfSize:17.0];
     self.titleLabel.numberOfLines = 0;
     self.titleLabel.textAlignment = NSTextAlignmentCenter;
