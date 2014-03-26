@@ -10,7 +10,11 @@
 
 @interface BMMovieItemView : UIView
 {
+    UIImageView *_bgImageView;
     UIImageView *_frameImageView;
+    UIImageView *_contentImageView;
 }
+
+@property (nonatomic, strong) News *news;
 
 @end

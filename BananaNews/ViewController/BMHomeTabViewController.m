@@ -49,6 +49,10 @@
     self.customNavigationBar.backgroundColor = Color_NavBarBg;
     [self.view addSubview:self.customNavigationBar];
     
+    UIImageView *titleView = [[UIImageView alloc] initWithFrame:CGRectMake(122.0, y-31.0, 76.0, 18.0)];
+    titleView.image = [UIImage imageNamed:@"芝麻短片logo.png"];
+    [self.customNavigationBar addSubview:titleView];
+    
     self.subVCDic = [[NSMutableDictionary alloc] initWithCapacity:4];
     
     self.toolBar = [[BMToolBar alloc] initWithFrame:CGRectMake(0.0, CGRectGetMaxY(self.contentView.frame), 320.0, 48.0)];
