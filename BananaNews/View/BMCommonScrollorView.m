@@ -15,6 +15,14 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
+        NSString *key = @"dataBaseRecommendNewsIndex";
+        NSNumber *index = [[NSUserDefaults standardUserDefaults] objectForKey:key];
+        if (!index) {
+            index = [NSNumber numberWithInteger:0];
+            [[NSUserDefaults standardUserDefaults] setObject:index forKey:key];
+        }
+        _newsIndex = index.integerValue;
+        
         [self setPageWidth];
         int offset=(self.bounds.size.width-_pageWidth)/2;
         _scrollView=[[UIScrollView alloc]initWithFrame:CGRectMake(offset, 0, _pageWidth, self.bounds.size.height)];

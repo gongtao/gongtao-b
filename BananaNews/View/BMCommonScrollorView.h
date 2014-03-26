@@ -33,6 +33,8 @@
     NSInteger _pageWidth;
     float _currentOffset;
     NSMutableArray *_curViews;
+    
+    NSInteger _newsIndex;
 }
 
 
