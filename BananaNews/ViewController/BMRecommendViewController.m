@@ -20,6 +20,16 @@
 
 @property (nonatomic, strong) UILabel *titleLabel;
 
+@property (nonatomic, assign) BOOL isReachable;
+
+- (void)_networkNotice:(NSNotification *)notice;
+
+- (void)_updateData;
+
+- (void)_loginToSite:(NSNotification *)notice;
+
+- (void)_comment;
+
 @end
 
 @implementation BMRecommendViewController
@@ -38,6 +48,8 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    _isReachable = NO;
+    
     self.view.backgroundColor = Color_ViewBg;
     
     CGFloat y = IS_IPhone5_or_5s?275.0:248.0;
@@ -71,7 +83,12 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_loginToSite:) name:kLoginSuccessNotification object:nil];
     
-    [self fetchedResultsController];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_networkNotice:) name:AFNetworkingReachabilityDidChangeNotification object:nil];
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)didReceiveMemoryWarning
@@ -107,9 +124,8 @@
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:News_Entity inManagedObjectContext:[self managedObjectContext]];
     [request setEntity:entity];
-    NSSortDescriptor *sortDesciptor = [NSSortDescriptor sortDescriptorWithKey:kNid ascending:NO];
-    request.predicate = [NSPredicate predicateWithFormat:@"ANY category.isHead == %@", [NSNumber numberWithBool:YES]];
-    [request setSortDescriptors:[NSArray arrayWithObject:sortDesciptor]];
+    request.predicate = [NSPredicate predicateWithFormat:@"(ANY category.isHead == %@) AND (%K >= %@)", [NSNumber numberWithBool:YES], kStatus, [NSNumber numberWithInt:0]];
+    [request setSortDescriptors:[NSArray arrayWithObjects:[NSSortDescriptor sortDescriptorWithKey:kNid ascending:NO], [NSSortDescriptor sortDescriptorWithKey:kStatus ascending:NO], nil]];
     return request;
 }
 
@@ -128,6 +144,63 @@
 }
 
 #pragma mark - Private
+
+- (void)_networkNotice:(NSNotification *)notice
+{
+    NSNumber *status = notice.userInfo[AFNetworkingReachabilityNotificationStatusItem];
+    
+    BOOL isReachable = status.integerValue>AFNetworkReachabilityStatusNotReachable;
+    if (isReachable && !_isReachable) {
+        _isReachable = isReachable;
+        BMNewsManager *manager = [BMNewsManager sharedManager];
+        [manager configInit:^(void){
+            [manager getConfigSuccess:^(void){
+#warning 更新数据
+                [self _updateData];
+            }
+                              failure:nil];
+        }];
+    }
+    
+    switch (status.integerValue) {
+        case AFNetworkReachabilityStatusUnknown:
+        case AFNetworkReachabilityStatusNotReachable: {
+            NSLog(@"网络不给力");
+            break;
+        }
+        case AFNetworkReachabilityStatusReachableViaWWAN: {
+            NSLog(@"WWAN");
+            break;
+        }
+        case AFNetworkReachabilityStatusReachableViaWiFi: {
+            NSLog(@"WIFI");
+            break;
+        }
+        default:
+            break;
+    }
+}
+
+- (void)_updateData
+{
+    int count = [[[self.fetchedResultsController sections] objectAtIndex:0] numberOfObjects];
+    NSLog(@"%i", count);
+    if (count < 3) {
+#warning 请求网络
+        BMNewsManager *manager = [BMNewsManager sharedManager];
+        NewsCategory *category = [manager getRecommendNewsCategory:[self managedObjectContext]];
+        if (category) {
+            [manager getDownloadList:category.category_id
+                                page:1
+                             success:^(NSArray *array){
+                                 
+                             }
+                             failure:^(NSError *error){
+                                 
+                             }];
+        }
+    }
+}
 
 - (void)_loginToSite:(NSNotification *)notice
 {
@@ -265,6 +338,7 @@
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
 {
     NSLog(@"didChange");
+    [self _updateData];
 }
 
 

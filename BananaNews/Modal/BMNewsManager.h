@@ -27,6 +27,7 @@
 #define News_Entity             @"News"
 #define kNid                    @"nid"
 #define kIsNewsSearch           @"isSearch"
+#define kStatus                 @"status"
 
 #define Comment_Entity          @"Comment"
 #define kCommentDate            @"date"
@@ -108,6 +109,8 @@
 - (NewsCategory *)createNewsCategory:(NSDictionary *)dic context:(NSManagedObjectContext *)context;
 
 - (NewsCategory *)getNewsCategoryById:(NSString *)cid context:(NSManagedObjectContext *)context;
+
+- (NewsCategory *)getRecommendNewsCategory:(NSManagedObjectContext *)context;
 
 - (NSArray *)getAllNewsCategory:(NSManagedObjectContext *)context;
 

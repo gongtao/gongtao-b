@@ -60,16 +60,8 @@
     [self.view addSubview:self.toolBar];
     [self.toolBar selectedTagAtIndex:0];
     
-    //获取配置信息
-    [[BMNewsManager sharedManager] configInit:^(void){
-        [[BMNewsManager sharedManager] getConfigSuccess:^(void){
-        }
-                                                failure:nil];
-    }];
-    
 #warning 测试
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notice:) name:AFNetworkingReachabilityDidChangeNotification object:nil];
-//    
+//
 //    [[BMNewsManager sharedManager] getDownloadVideoUrl:@"XNjU4MzUyNDQw" success:^(NSString *url){
 //        [[BMNewsManager sharedManager] getDownloadVideo:@"XNjU4MzUyNDQw" url:url success:^(void){
 //            NSString *url = [[AFDownloadRequestOperation cacheFolder] stringByAppendingPathComponent:@"XNjU4MzUyNDQw.mp4"];
@@ -84,28 +76,6 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-//- (void)notice:(NSNotification *)notice
-//{
-//    NSNumber *status = notice.userInfo[AFNetworkingReachabilityNotificationStatusItem];
-//    switch (status.integerValue) {
-//        case AFNetworkReachabilityStatusUnknown:
-//        case AFNetworkReachabilityStatusNotReachable: {
-//            NSLog(@"网络不给力");
-//            break;
-//        }
-//        case AFNetworkReachabilityStatusReachableViaWWAN: {
-//            NSLog(@"WWAN");
-//            break;
-//        }
-//        case AFNetworkReachabilityStatusReachableViaWiFi: {
-//            NSLog(@"WIFI");
-//            break;
-//        }
-//        default:
-//            break;
-//    }
-//}
 
 #pragma mark - Private
 

@@ -23,6 +23,7 @@
 @dynamic ndate;
 @dynamic nid;
 @dynamic share_count;
+@dynamic status;
 @dynamic text_height;
 @dynamic title;
 @dynamic url;

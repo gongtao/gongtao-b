@@ -21,6 +21,7 @@
 @property (nonatomic, retain) NSDate * ndate;
 @property (nonatomic, retain) NSNumber * nid;
 @property (nonatomic, retain) NSNumber * share_count;
+@property (nonatomic, retain) NSNumber * status;
 @property (nonatomic, retain) NSNumber * text_height;
 @property (nonatomic, retain) NSString * title;
 @property (nonatomic, retain) NSString * url;

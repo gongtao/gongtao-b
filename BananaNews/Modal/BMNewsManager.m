@@ -627,6 +627,23 @@
     return nil;
 }
 
+- (NewsCategory *)getRecommendNewsCategory:(NSManagedObjectContext *)context
+{
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:NewsCategory_Entity inManagedObjectContext:context];
+    
+    [request setEntity:entity];
+    [request setPredicate:[NSPredicate predicateWithFormat:@"%K == %@", kIsHead, [NSNumber numberWithBool:YES]]];
+    
+    NSError *error;
+    NSArray *results = [context executeFetchRequest:request error:&error];
+    
+    if (!error && results.count > 0) {
+        return results[0];
+    }
+    return nil;
+}
+
 - (NSArray *)getAllNewsCategory:(NSManagedObjectContext *)context
 {
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
