@@ -87,14 +87,31 @@
 
 #pragma mark - Public
 
-- (UIView *)viewForPage:(NSUInteger)page
+- (BMMovieItemView *)viewForPage:(NSUInteger)page
 {
     return [_curViews objectAtIndex:page];
 }
 
-- (UIView *)currentSelectedView
+- (BMMovieItemView *)currentSelectedView
 {
     return [_curViews objectAtIndex:_currentPage];
+}
+
+- (void)updateSubViewData:(NSFetchedResultsController *)fetchedResultsController
+{
+    int count = [[[fetchedResultsController sections] objectAtIndex:0] numberOfObjects];
+    if (count == 0) {
+        return;
+    }
+    __block int index = 0;
+    [_curViews enumerateObjectsUsingBlock:^(BMMovieItemView *obj, NSUInteger idx, BOOL *stop){
+        if (!obj.news && index<count) {
+            News *news = [fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
+            news.status = [NSNumber numberWithInteger:obj.tag];
+            index++;
+        }
+    }];
+    [[BMNewsManager sharedManager] saveContext];
 }
 
 #pragma mark - UIScrollViewDelegate

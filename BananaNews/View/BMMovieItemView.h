@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BMMovieItemView : UIView
+@interface BMMovieItemView : UIView <NSFetchedResultsControllerDelegate>
 {
     UIImageView *_bgImageView;
     UIImageView *_frameImageView;
@@ -16,5 +16,9 @@
 }
 
 @property (nonatomic, strong) News *news;
+
+@property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
+
+- (void)createFetchData:(NSInteger)index;
 
 @end

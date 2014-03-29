@@ -194,4 +194,9 @@
                                          success:(void (^)(void))success
                                          failure:(void (^)(NSError *error))failure;
 
+- (AFHTTPRequestOperation *)getRecommendList:(NSString *)cid
+                                        page:(NSUInteger)page
+                                     success:(void (^)(BOOL isLastPage, int newPage))success
+                                     failure:(void (^)(NSError *error))failure;
+
 @end

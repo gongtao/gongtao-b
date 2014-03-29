@@ -16,11 +16,19 @@
 
 @interface BMRecommendViewController ()
 
+@property (nonatomic, strong) BMCommonScrollorView *scView;
+
 @property (nonatomic, strong) UILabel *pageLabel;
 
 @property (nonatomic, strong) UILabel *titleLabel;
 
 @property (nonatomic, assign) BOOL isReachable;
+
+@property (nonatomic, assign) BOOL isLastPage;
+
+@property (nonatomic, assign) BOOL isDownloading;
+
+@property (nonatomic, assign) NSUInteger page;
 
 - (void)_networkNotice:(NSNotification *)notice;
 
@@ -49,6 +57,9 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     _isReachable = NO;
+    _isLastPage = NO;
+    _isDownloading = NO;
+    _page = 1;
     
     self.view.backgroundColor = Color_ViewBg;
     
@@ -68,12 +79,12 @@
     self.pageLabel.textAlignment = NSTextAlignmentCenter;
     [self.view addSubview:self.pageLabel];
     
-    BMCommonScrollorView *scView=[[BMCommonScrollorView alloc] initWithFrame:CGRectMake(0, y, self.view.bounds.size.width, 180.0)];
-    scView.dataSource = self;
-    scView.delegate = self;
-    [self.view addSubview:scView];
+    _scView=[[BMCommonScrollorView alloc] initWithFrame:CGRectMake(0, y, self.view.bounds.size.width, 180.0)];
+    _scView.dataSource = self;
+    _scView.delegate = self;
+    [self.view addSubview:_scView];
     
-    self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(58.0, CGRectGetMaxY(scView.frame)-5.0, 204.0, 45.0)];
+    self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(58.0, CGRectGetMaxY(_scView.frame)-5.0, 204.0, 45.0)];
     self.titleLabel.backgroundColor = [UIColor clearColor];
     self.titleLabel.textColor = [UIColor colorWithHexString:@"666666"];
     self.titleLabel.font = [UIFont systemFontOfSize:17.0];
@@ -124,7 +135,7 @@
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:News_Entity inManagedObjectContext:[self managedObjectContext]];
     [request setEntity:entity];
-    request.predicate = [NSPredicate predicateWithFormat:@"(ANY category.isHead == %@) AND (%K >= %@)", [NSNumber numberWithBool:YES], kStatus, [NSNumber numberWithInt:0]];
+    request.predicate = [NSPredicate predicateWithFormat:@"(ANY category.isHead == %@) AND (%K == %@)", [NSNumber numberWithBool:YES], kStatus, [NSNumber numberWithInt:0]];
     [request setSortDescriptors:[NSArray arrayWithObjects:[NSSortDescriptor sortDescriptorWithKey:kNid ascending:NO], [NSSortDescriptor sortDescriptorWithKey:kStatus ascending:NO], nil]];
     return request;
 }
@@ -184,20 +195,34 @@
 - (void)_updateData
 {
     int count = [[[self.fetchedResultsController sections] objectAtIndex:0] numberOfObjects];
-    NSLog(@"%i", count);
-    if (count < 3) {
+    if (count == 0) {
 #warning 请求网络
+        if (_isLastPage) {
+            NSLog(@"最后一页了");
+            return;
+        }
+        if (_isDownloading) {
+            return;
+        }
+        _isDownloading = YES;
         BMNewsManager *manager = [BMNewsManager sharedManager];
         NewsCategory *category = [manager getRecommendNewsCategory:[self managedObjectContext]];
         if (category) {
-            [manager getDownloadList:category.category_id
-                                page:1
-                             success:^(NSArray *array){
-                                 
-                             }
-                             failure:^(NSError *error){
-                                 
-                             }];
+            [manager getRecommendList:category.category_id
+                                 page:_page
+                              success:^(BOOL isLast, int newPage){
+                                  _isDownloading = NO;
+                                  _isLastPage = isLast;
+                                  self.page = newPage;
+                                  
+                                  if (_isLastPage) {
+                                      NSLog(@"最后一页了");
+                                  }
+                                  [_scView updateSubViewData:self.fetchedResultsController];
+                              }
+                              failure:^(NSError *error){
+                                  _isDownloading = NO;
+                              }];
         }
     }
 }
@@ -266,9 +291,10 @@
 
 #pragma mark - BMCommonScrollorViewDataSource
 
-- (UIView *)pageAtIndex:(NSInteger)index withFrame:(CGRect)frame;
+- (BMMovieItemView *)pageAtIndex:(NSInteger)index withFrame:(CGRect)frame;
 {
     BMMovieItemView *item = [[BMMovieItemView alloc] initWithFrame:frame];
+    [item createFetchData:index+1];
     return item;
 }
 
@@ -281,63 +307,8 @@
 
 #pragma mark - NSFetchedResultsControllerDelegate
 
-- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller
-{
-    NSLog(@"willChange");
-}
-
-- (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath
-{
-    NSLog(@"didChangeObject");
-//    int number = [[[controller sections] objectAtIndex:[indexPath section]] numberOfObjects];
-//    
-//    switch(type) {
-//            
-//        case NSFetchedResultsChangeInsert:
-//            if (_numberOfFetchLimit <= number) {
-//                if ([newIndexPath row] < _numberOfFetchLimit) {
-//                    [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:_numberOfFetchLimit-1 inSection:[newIndexPath section]]] withRowAnimation:_rowAnimation];
-//                    [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:_rowAnimation];
-//                }
-//            }
-//            else {
-//                [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:_rowAnimation];
-//            }
-//            break;
-//            
-//        case NSFetchedResultsChangeDelete:
-//            if (_numberOfFetchLimit <= number) {
-//                if ([indexPath row] < _numberOfFetchLimit) {
-//                    [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:_rowAnimation];
-//                    [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:_numberOfFetchLimit-1 inSection:[indexPath section]]] withRowAnimation:_rowAnimation];
-//                }
-//            }
-//            else {
-//                [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:_rowAnimation];
-//            }
-//            break;
-//            
-//        case NSFetchedResultsChangeUpdate:
-//            [self configCell:[self.tableView cellForRowAtIndexPath:indexPath] cellForRowAtIndexPath:indexPath fetchedResultsController:self.fetchedResultsController];
-//            break;
-//            
-//        case NSFetchedResultsChangeMove:
-//            [self.tableView deleteRowsAtIndexPaths:[NSArray
-//                                                    arrayWithObject:indexPath] withRowAnimation:_rowAnimation];
-//            [self.tableView insertRowsAtIndexPaths:[NSArray
-//                                                    arrayWithObject:newIndexPath] withRowAnimation:_rowAnimation];
-//            break;
-//    }
-}
-
-- (void)controller:(NSFetchedResultsController *)controller didChangeSection:(id<NSFetchedResultsSectionInfo>)sectionInfo atIndex:(NSUInteger)sectionIndex forChangeType:(NSFetchedResultsChangeType)type
-{
-    
-}
-
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
 {
-    NSLog(@"didChange");
     [self _updateData];
 }
 

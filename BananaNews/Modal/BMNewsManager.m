@@ -525,7 +525,16 @@
     }
     
     if ([type rangeOfString:@"image"].location == NSNotFound) {
-        media.url = dic[@"video_id"];
+        NSString *video_id = dic[@"video_id"];
+        if (video_id && (NSNull *)video_id != [NSNull null]) {
+            media.url = dic[@"video_id"];
+        }
+        else {
+            NSString *url = dic[@"url"];
+            video_id = [[url componentsSeparatedByString:@"sid/"] objectAtIndex:1];
+            video_id = [[video_id componentsSeparatedByString:@"/"] objectAtIndex:0];
+            media.url = video_id;
+        }
     }
     else {
         NSArray *array = dic[@"sizes"];
@@ -1491,6 +1500,89 @@
     
     [requestOperation start];
     return requestOperation;
+}
+
+- (AFHTTPRequestOperation *)getRecommendList:(NSString *)cid
+                                        page:(NSUInteger)page
+                                     success:(void (^)(BOOL isLastPage, int newPage))success
+                                     failure:(void (^)(NSError *error))failure
+{
+    NSDictionary *param = @{@"cat": cid,
+                            @"paged": [NSNumber numberWithInt:page],
+                            @"per_page": [NSNumber numberWithInt:10]};
+    
+    void (^requestSuccess)(AFHTTPRequestOperation *, id) = ^(AFHTTPRequestOperation *operation, id responseObject) {
+        if (responseObject != [NSNull null]) {
+            NSLog(@"%@", responseObject);
+            
+            NSManagedObjectContext *temporaryContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
+            temporaryContext.parentContext = [self managedObjectContext];
+            
+            [temporaryContext performBlock:^{
+                NewsCategory *newsCategory = [self getNewsCategoryById:cid context:temporaryContext];
+                
+                NSNumber *num = responseObject[@"found"];
+                if (!num || (NSNull *)num == [NSNull null] || num.intValue == 0) {
+                    if (success) {
+                        success(YES, page);
+                        return;
+                    }
+                }
+                
+                int count = newsCategory.list.count;
+                
+                if (1 == page) {
+                    newsCategory.list = [NSOrderedSet orderedSet];
+                    newsCategory.refreshTime = [NSDate date];
+                }
+                
+                [self createNewsFromNetworking:responseObject newsCategory:newsCategory context:temporaryContext];
+                int count1 = newsCategory.list.count;
+                [self saveContext:temporaryContext];
+                // save parent to disk asynchronously
+                [temporaryContext.parentContext performBlock:^{
+                    [self saveContext:temporaryContext.parentContext];
+                    if (num.intValue < 10) {
+                        if (success) {
+                            success(YES, page);
+                        }
+                    }
+                    else if (num.intValue==10 && count==count1) {
+                        [self getRecommendList:cid
+                                          page:page+1
+                                       success:^(BOOL isLastPage, int newPage){
+                                           if (success) {
+                                               success(YES, newPage);
+                                           }
+                                       }
+                                       failure:failure];
+                        return;
+                    }
+                    else {
+                        if (success) {
+                            success(NO, page+1);
+                        }
+                    }
+                }];
+            }];
+        }
+        else {
+            if (failure) {
+                failure(nil);
+            }
+        }
+    };
+    
+    void (^requestFailure)(AFHTTPRequestOperation *, NSError *) = ^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+        if (failure) {
+            failure(error);
+        }
+    };
+    
+    AFHTTPRequestOperation *op = [_manager GET:@"wp_api/v1/posts" parameters:param success:requestSuccess failure:requestFailure];
+    NSLog(@"request: %@", op.request.URL.absoluteString);
+    return op;
 }
 
 @end

@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+#import "BMMovieItemView.h"
+
 
 @protocol BMCommonScrollorViewDelegate <NSObject>
 
@@ -23,7 +25,7 @@
 
 @required
 
--(UIView *)pageAtIndex:(NSInteger)index withFrame:(CGRect)frame;
+-(BMMovieItemView *)pageAtIndex:(NSInteger)index withFrame:(CGRect)frame;
 
 @end
 
@@ -46,8 +48,10 @@
 
 @property (nonatomic, assign, readonly) NSUInteger currentPage;
 
-- (UIView *)viewForPage:(NSUInteger)page;
+- (BMMovieItemView *)viewForPage:(NSUInteger)page;
 
-- (UIView *)currentSelectedView;
+- (BMMovieItemView *)currentSelectedView;
+
+- (void)updateSubViewData:(NSFetchedResultsController *)fetchedResultsController;
 
 @end
