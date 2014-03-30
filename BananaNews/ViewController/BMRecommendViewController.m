@@ -226,10 +226,15 @@
 
 - (void)videoDelete
 {
+    int count = [[[self.fetchedResultsController sections] objectAtIndex:0] numberOfObjects];
+    if (_isLastPage && count == 0) {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"视频" message:@"亲~没有可以加载的视频了哦~" delegate:nil cancelButtonTitle:@"我知道了" otherButtonTitles:nil];
+        [alertView show];
+        return;
+    }
     BMMovieItemView *item = [_scView currentSelectedView];
     if (item.news) {
         [item deleteNews];
-        int count = [[[self.fetchedResultsController sections] objectAtIndex:0] numberOfObjects];
         if (count == 0) {
             [self _updateData];
         }
@@ -238,6 +243,9 @@
             news.status = [NSNumber numberWithInteger:item.tag];
             [[BMNewsManager sharedManager] saveContext];
         }
+    }
+    else {
+        [self _updateData];
     }
 }
 

@@ -56,8 +56,6 @@
         
         _button = [[BMCustomButton alloc] initWithFrame:frame];
         [_button setImageRect:CGRectMake(self.bounds.size.width/2.0-40.0, 38.0, 80.0, 80.0)];
-        [_button setImage:[UIImage imageNamed:@"视频框播放.png"] forState:UIControlStateNormal];
-        [_button setImage:[UIImage imageNamed:@"视频框播放高亮.png"] forState:UIControlStateHighlighted];
         [_button addTarget:self action:@selector(_buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:_button];
         
@@ -138,14 +136,23 @@
     }
     _status = status;
     switch (_status) {
-        case BMMovieItemStatusNone:
+        case BMMovieItemStatusNone: {
+            [_frameImageView setImage:[UIImage imageNamed:@"视频框.png"]];
+            [_button setImage:nil forState:UIControlStateNormal];
+            [_button setImage:nil forState:UIControlStateHighlighted];
+            break;
+        }
         case BMMovieItemStatusNormal:
         case BMMovieItemStatusDownloaded: {
             [_frameImageView setImage:[UIImage imageNamed:@"视频框.png"]];
+            [_button setImage:[UIImage imageNamed:@"视频框播放.png"] forState:UIControlStateNormal];
+            [_button setImage:[UIImage imageNamed:@"视频框播放高亮.png"] forState:UIControlStateHighlighted];
             break;
         }
         case BMMovieItemStatusDownloading: {
             [_frameImageView setImage:[UIImage imageNamed:@"视频框下载.png"]];
+            [_button setImage:nil forState:UIControlStateNormal];
+            [_button setImage:nil forState:UIControlStateHighlighted];
             break;
         }
         default:
