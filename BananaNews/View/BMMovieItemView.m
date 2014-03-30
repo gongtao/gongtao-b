@@ -8,6 +8,10 @@
 
 #import "BMMovieItemView.h"
 
+#import "BMCustomButton.h"
+
+#import <MediaPlayer/MediaPlayer.h>
+
 @interface BMMovieItemView ()
 
 @property (nonatomic, strong) AFDownloadRequestOperation *request;
@@ -15,6 +19,8 @@
 - (NSString *)_getVideoFilePath;
 
 - (void)_downloadVideo;
+
+- (void)_buttonPressed:(UIButton *)button;
 
 @end
 
@@ -47,6 +53,13 @@
         _frameImageView = [[UIImageView alloc] initWithFrame:self.bounds];
         [_frameImageView setImage:[UIImage imageNamed:@"视频框.png"]];
         [self addSubview:_frameImageView];
+        
+        _button = [[BMCustomButton alloc] initWithFrame:frame];
+        [_button setImageRect:CGRectMake(self.bounds.size.width/2.0-40.0, 38.0, 80.0, 80.0)];
+        [_button setImage:[UIImage imageNamed:@"视频框播放.png"] forState:UIControlStateNormal];
+        [_button setImage:[UIImage imageNamed:@"视频框播放高亮.png"] forState:UIControlStateHighlighted];
+        [_button addTarget:self action:@selector(_buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:_button];
         
         int count = [[[self.fetchedResultsController sections] objectAtIndex:0] numberOfObjects];
         if (count != 0) {
@@ -193,9 +206,6 @@
         return;
     }
     if (_request) {
-//        if ([_request isPaused]) {
-//            [_request resume];
-//        }
         return;
     }
     self.status = BMMovieItemStatusDownloading;
@@ -210,6 +220,43 @@
             self.status = BMMovieItemStatusNormal;
         }];
     } failure:nil];
+}
+
+- (void)_playVideo
+{
+    NSString *path = [self _getVideoFilePath];
+    NSURL *url = nil;
+    if ([[NSFileManager defaultManager] fileExistsAtPath:path]) {
+        self.status = BMMovieItemStatusDownloaded;
+        url = [NSURL fileURLWithPath:path];
+    }
+    else {
+        path = [NSString stringWithFormat:@"http://v.youku.com/player/getRealM3U8/vid/%@/type/mp4/v.m3u8", _videoMedia.url];
+        url = [NSURL URLWithString:path];
+    }
+    if (url) {
+        MPMoviePlayerViewController *vc = [[MPMoviePlayerViewController alloc] initWithContentURL:url];
+        UIViewController *rootVC = [UIApplication sharedApplication].keyWindow.rootViewController;
+        [rootVC presentMoviePlayerViewControllerAnimated:vc];
+    }
+}
+
+- (void)_buttonPressed:(UIButton *)button
+{
+    switch (_status) {
+        case BMMovieItemStatusNormal:
+        case BMMovieItemStatusDownloaded: {
+            [self _playVideo];
+            break;
+        }
+        case BMMovieItemStatusDownloading: {
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"视频" message:@"亲~视频还没下载好，请耐心等待哦~" delegate:nil cancelButtonTitle:@"我知道了" otherButtonTitles:nil];
+            [alertView show];
+            break;
+        }
+        default:
+            break;
+    }
 }
 
 #pragma mark - DataBase method

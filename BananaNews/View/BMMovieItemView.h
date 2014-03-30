@@ -17,11 +17,14 @@ typedef enum {
 
 @protocol BMMovieItemViewDelegate;
 
+@class BMCustomButton;
+
 @interface BMMovieItemView : UIView <NSFetchedResultsControllerDelegate>
 {
     UIImageView *_bgImageView;
     UIImageView *_frameImageView;
     UIImageView *_contentImageView;
+    BMCustomButton *_button;
 }
 
 @property (nonatomic, strong) News *news;
