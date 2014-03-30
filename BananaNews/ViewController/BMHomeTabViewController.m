@@ -59,16 +59,6 @@
     self.toolBar.delegate = self;
     [self.view addSubview:self.toolBar];
     [self.toolBar selectedTagAtIndex:0];
-    
-#warning 测试
-//
-//    [[BMNewsManager sharedManager] getDownloadVideoUrl:@"XNjU4MzUyNDQw" success:^(NSString *url){
-//        [[BMNewsManager sharedManager] getDownloadVideo:@"XNjU4MzUyNDQw" url:url success:^(void){
-//            NSString *url = [[AFDownloadRequestOperation cacheFolder] stringByAppendingPathComponent:@"XNjU4MzUyNDQw.mp4"];
-//            MPMoviePlayerViewController *vc = [[MPMoviePlayerViewController alloc] initWithContentURL:[NSURL fileURLWithPath:url]];
-//            [self presentMoviePlayerViewControllerAnimated:vc];
-//        } failure:nil];
-//    } failure:nil];
 }
 
 - (void)didReceiveMemoryWarning

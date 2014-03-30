@@ -17,8 +17,6 @@
 
 - (void)commonScrollorViewDidSelectPage:(NSUInteger)index;
 
-- (void)commonScrollorViewDidCurrentPageUpdate;
-
 @end
 
 @protocol BMCommonScrollorViewDataSource <NSObject>
@@ -29,7 +27,7 @@
 
 @end
 
-@interface BMCommonScrollorView : UIView<UIScrollViewDelegate, BMMovieItemViewDelegate>
+@interface BMCommonScrollorView : UIView<UIScrollViewDelegate>
 {
     NSInteger _totalPages;
     NSInteger _pageWidth;
@@ -51,6 +49,8 @@
 - (BMMovieItemView *)viewForPage:(NSUInteger)page;
 
 - (BMMovieItemView *)currentSelectedView;
+
+- (void)updateNetworking:(AFNetworkReachabilityStatus)status;
 
 - (void)updateSubViewData:(NSFetchedResultsController *)fetchedResultsController;
 

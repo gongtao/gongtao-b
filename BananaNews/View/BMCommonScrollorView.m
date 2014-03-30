@@ -114,6 +114,13 @@
     [[BMNewsManager sharedManager] saveContext];
 }
 
+- (void)updateNetworking:(AFNetworkReachabilityStatus)status
+{
+    [_curViews enumerateObjectsUsingBlock:^(BMMovieItemView *obj, NSUInteger idx, BOOL *stop){
+        [obj updateNetworking:status];
+    }];
+}
+
 #pragma mark - UIScrollViewDelegate
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
@@ -161,16 +168,6 @@
 {
     if (!decelerate) {
         [self updatePage];
-    }
-}
-
-#pragma mark - BMMovieItemViewDelegate
-
-- (void)didUpdateDataMovieItemView:(BMMovieItemView *)itemView
-{
-    if ((_currentPage == itemView.tag-1) &&
-        [self.delegate respondsToSelector:@selector(commonScrollorViewDidCurrentPageUpdate)]) {
-        [self.delegate commonScrollorViewDidCurrentPageUpdate];
     }
 }
 

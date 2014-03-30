@@ -8,6 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+typedef enum {
+    BMMovieItemStatusNone,
+    BMMovieItemStatusNormal,
+    BMMovieItemStatusDownloading,
+    BMMovieItemStatusDownloaded
+}BMMovieItemStatus;
+
 @protocol BMMovieItemViewDelegate;
 
 @interface BMMovieItemView : UIView <NSFetchedResultsControllerDelegate>
@@ -27,9 +34,15 @@
 
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
 
+@property (nonatomic, assign) BMMovieItemStatus status;
+
 @property (nonatomic, assign) id<BMMovieItemViewDelegate> delegate;
 
 - (id)initWithFrame:(CGRect)frame tag:(NSInteger)tag delegate:(id<BMMovieItemViewDelegate>)delegate;
+
+- (void)deleteNews;
+
+- (void)updateNetworking:(AFNetworkReachabilityStatus)status;
 
 @end
 

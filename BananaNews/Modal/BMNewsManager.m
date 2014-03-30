@@ -1473,7 +1473,7 @@
                                          failure:(void (^)(NSError *error))failure
 {
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:30];
-    AFDownloadRequestOperation *requestOperation = [[AFDownloadRequestOperation alloc] initWithRequest:request fileName:[NSString stringWithFormat:@"%@.mp4", vid] targetPath:[AFDownloadRequestOperation cacheFolder] shouldResume:YES];
+    AFDownloadRequestOperation *requestOperation = [[AFDownloadRequestOperation alloc] initWithRequest:request fileName:[NSString stringWithFormat:@"%@", vid] targetPath:[AFDownloadRequestOperation cacheFolder] shouldResume:YES];
     
     [requestOperation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"Successfully downloaded file");
@@ -1495,7 +1495,7 @@
     [requestOperation setProgressiveDownloadProgressBlock:^(NSInteger bytesRead, long long totalBytesRead, long long totalBytesExpected, long long totalBytesReadForFile, long long totalBytesExpectedToReadForFile) {
 //        NSDictionary *dic = @{@"readFileBytes": [NSNumber numberWithLongLong:totalBytesReadForFile],
 //                              @"totalFileBytes": [NSNumber numberWithLongLong:totalBytesExpectedToReadForFile]};
-//        NSLog(@"%lli,%lli", totalBytesExpectedToReadForFile, totalBytesReadForFile);
+        NSLog(@"%lli,%lli", totalBytesExpectedToReadForFile, totalBytesReadForFile);
     }];
     
     [requestOperation start];

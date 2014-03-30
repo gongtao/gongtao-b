@@ -31,6 +31,8 @@
     // Override point for customization after application launch.
     [application setStatusBarHidden:NO];
     
+    [[AFNetworkReachabilityManager sharedManager] startMonitoring];
+    
     //App Store
     [MobClick startWithAppkey:kAppKey reportPolicy:BATCH channelId:nil];
     

@@ -8,6 +8,16 @@
 
 #import "BMMovieItemView.h"
 
+@interface BMMovieItemView ()
+
+@property (nonatomic, strong) AFDownloadRequestOperation *request;
+
+- (NSString *)_getVideoFilePath;
+
+- (void)_downloadVideo;
+
+@end
+
 @implementation BMMovieItemView
 
 - (id)initWithFrame:(CGRect)frame tag:(NSInteger)tag delegate:(id<BMMovieItemViewDelegate>)delegate;
@@ -19,6 +29,7 @@
         self.tag = tag;
         _delegate = delegate;
         _title = @"WIFI时自动下载视频，不费流量";
+        _status = BMMovieItemStatusNone;
         
         _bgImageView = [[UIImageView alloc] initWithFrame:self.bounds];
         [_bgImageView setImage:[UIImage imageNamed:@"视频框背景.png"]];
@@ -49,6 +60,11 @@
     return self;
 }
 
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 - (void)setNews:(News *)news
 {
     if (_news != news) {
@@ -57,17 +73,21 @@
         self.imageMedia = nil;
         if (!_news) {
             _title = @"WIFI时自动下载视频，不费流量";
+            self.status = BMMovieItemStatusNone;
             return;
         }
         _title = news.title;
+        self.status = BMMovieItemStatusNormal;
         [_news.medias enumerateObjectsUsingBlock:^(Media *obj, NSUInteger idx, BOOL *stop){
-            if (!self.videoMedia && ([obj.type rangeOfString:@"image"].location == NSNotFound)) {
-                self.videoMedia = obj;
+            if ([obj.type rangeOfString:@"image"].location == NSNotFound) {
+                if (!self.videoMedia) {
+                    self.videoMedia = obj;
+                }
             }
             else if (!self.imageMedia) {
                 self.imageMedia = obj;
             }
-            else {
+            if (self.imageMedia && self.videoMedia) {
                 *stop = YES;
             }
         }];
@@ -81,6 +101,7 @@
         if (!_videoMedia) {
             return;
         }
+        [self _downloadVideo];
     }
 }
 
@@ -95,6 +116,100 @@
         [_contentImageView setImageWithURL:[NSURL URLWithString:self.imageMedia.large] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType){
         }];
     }
+}
+
+- (void)setStatus:(BMMovieItemStatus)status
+{
+    if (_status == status) {
+        return;
+    }
+    _status = status;
+    switch (_status) {
+        case BMMovieItemStatusNone:
+        case BMMovieItemStatusNormal:
+        case BMMovieItemStatusDownloaded: {
+            [_frameImageView setImage:[UIImage imageNamed:@"视频框.png"]];
+            break;
+        }
+        case BMMovieItemStatusDownloading: {
+            [_frameImageView setImage:[UIImage imageNamed:@"视频框下载.png"]];
+            break;
+        }
+        default:
+            break;
+    }
+}
+
+- (void)deleteNews
+{
+    self.news.status = [NSNumber numberWithInteger:-1];
+    [[BMNewsManager sharedManager] saveContext];
+}
+
+- (void)updateNetworking:(AFNetworkReachabilityStatus)status
+{
+    switch (status) {
+        case AFNetworkReachabilityStatusUnknown:
+        case AFNetworkReachabilityStatusNotReachable:
+        case AFNetworkReachabilityStatusReachableViaWWAN: {
+            if (_request) {
+                [_request pause];
+                _request = nil;
+                self.status = BMMovieItemStatusNormal;
+            }
+            break;
+        }
+        case AFNetworkReachabilityStatusReachableViaWiFi: {
+            [self _downloadVideo];
+            break;
+        }
+        default:
+            break;
+    }
+}
+
+#pragma mark - Private
+
+- (NSString *)_getVideoFilePath
+{
+    if (_videoMedia) {
+        return [[AFDownloadRequestOperation cacheFolder] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.mp4", _videoMedia.url]];
+    }
+    else {
+        return nil;
+    }
+}
+
+- (void)_downloadVideo
+{
+    if (!_videoMedia) {
+        return;
+    }
+    if ([[NSFileManager defaultManager] fileExistsAtPath:[self _getVideoFilePath]]) {
+        self.status = BMMovieItemStatusDownloaded;
+        return;
+    }
+    if (![AFNetworkReachabilityManager sharedManager].isReachableViaWiFi) {
+        return;
+    }
+    if (_request) {
+//        if ([_request isPaused]) {
+//            [_request resume];
+//        }
+        return;
+    }
+    self.status = BMMovieItemStatusDownloading;
+    [[BMNewsManager sharedManager] getDownloadVideoUrl:_videoMedia.url success:^(NSString *url){
+        _request = [[BMNewsManager sharedManager] getDownloadVideo:_videoMedia.url url:url success:^(void){
+            NSString *url = [AFDownloadRequestOperation cacheFolder];
+            [[NSFileManager defaultManager] moveItemAtPath:[url stringByAppendingPathComponent:_videoMedia.url] toPath:[url stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.mp4", _videoMedia.url]] error:nil];
+            _request = nil;
+            self.status = BMMovieItemStatusDownloaded;
+        } failure:^(NSError *error){
+            _request = nil;
+            self.status = BMMovieItemStatusNormal;
+        }];
+    } failure:nil];
 }
 
 #pragma mark - DataBase method

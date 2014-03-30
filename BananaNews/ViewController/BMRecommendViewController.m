@@ -32,8 +32,6 @@
 
 @property (nonatomic, strong) News *shareNews;
 
-- (void)_networkNotice:(NSNotification *)notice;
-
 - (void)_updateData;
 
 - (void)_loginToSite:(NSNotification *)notice;
@@ -81,12 +79,7 @@
     self.pageLabel.textAlignment = NSTextAlignmentCenter;
     [self.view addSubview:self.pageLabel];
     
-    _scView=[[BMCommonScrollorView alloc] initWithFrame:CGRectMake(0, y, self.view.bounds.size.width, 180.0)];
-    _scView.dataSource = self;
-    _scView.delegate = self;
-    [self.view addSubview:_scView];
-    
-    self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(58.0, CGRectGetMaxY(_scView.frame)-5.0, 204.0, 45.0)];
+    self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(58.0, y+175.0, 204.0, 45.0)];
     self.titleLabel.backgroundColor = [UIColor clearColor];
     self.titleLabel.textColor = [UIColor colorWithHexString:@"666666"];
     self.titleLabel.font = [UIFont systemFontOfSize:17.0];
@@ -94,9 +87,28 @@
     self.titleLabel.textAlignment = NSTextAlignmentCenter;
     [self.view addSubview:self.titleLabel];
     
+    _scView = [[BMCommonScrollorView alloc] initWithFrame:CGRectMake(0, y, self.view.bounds.size.width, 180.0)];
+    _scView.delegate = self;
+    _scView.dataSource = self;
+    [self.view addSubview:_scView];
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_loginToSite:) name:kLoginSuccessNotification object:nil];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_networkNotice:) name:AFNetworkingReachabilityDidChangeNotification object:nil];
+    [[AFNetworkReachabilityManager sharedManager] setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status){
+        NSLog(@"haha");
+        [_scView updateNetworking:status];
+        BOOL isReachable = status>AFNetworkReachabilityStatusNotReachable;
+        if (isReachable && !_isReachable) {
+            _isReachable = isReachable;
+            BMNewsManager *manager = [BMNewsManager sharedManager];
+            [manager configInit:^(void){
+                [manager getConfigSuccess:^(void){
+                    [self _updateData];
+                }
+                                  failure:nil];
+            }];
+        }
+    }];
 }
 
 - (void)dealloc
@@ -158,47 +170,10 @@
 
 #pragma mark - Private
 
-- (void)_networkNotice:(NSNotification *)notice
-{
-    NSNumber *status = notice.userInfo[AFNetworkingReachabilityNotificationStatusItem];
-    
-    BOOL isReachable = status.integerValue>AFNetworkReachabilityStatusNotReachable;
-    if (isReachable && !_isReachable) {
-        _isReachable = isReachable;
-        BMNewsManager *manager = [BMNewsManager sharedManager];
-        [manager configInit:^(void){
-            [manager getConfigSuccess:^(void){
-#warning 更新数据
-                [self _updateData];
-            }
-                              failure:nil];
-        }];
-    }
-    
-    switch (status.integerValue) {
-        case AFNetworkReachabilityStatusUnknown:
-        case AFNetworkReachabilityStatusNotReachable: {
-            NSLog(@"网络不给力");
-            break;
-        }
-        case AFNetworkReachabilityStatusReachableViaWWAN: {
-            NSLog(@"WWAN");
-            break;
-        }
-        case AFNetworkReachabilityStatusReachableViaWiFi: {
-            NSLog(@"WIFI");
-            break;
-        }
-        default:
-            break;
-    }
-}
-
 - (void)_updateData
 {
     int count = [[[self.fetchedResultsController sections] objectAtIndex:0] numberOfObjects];
     if (count == 0) {
-#warning 请求网络
         if (_isLastPage) {
             NSLog(@"最后一页了");
             return;
@@ -253,8 +228,7 @@
 {
     BMMovieItemView *item = [_scView currentSelectedView];
     if (item.news) {
-        item.news.status = [NSNumber numberWithInteger:-1];
-        [[BMNewsManager sharedManager] saveContext];
+        [item deleteNews];
         int count = [[[self.fetchedResultsController sections] objectAtIndex:0] numberOfObjects];
         if (count == 0) {
             [self _updateData];
@@ -320,7 +294,7 @@
 
 - (BMMovieItemView *)pageAtIndex:(NSInteger)index withFrame:(CGRect)frame;
 {
-    return [[BMMovieItemView alloc] initWithFrame:frame tag:index+1 delegate:_scView];
+    return [[BMMovieItemView alloc] initWithFrame:frame tag:index+1 delegate:self];
 }
 
 #pragma mark - BMCommonScrollorViewDataSource
@@ -332,17 +306,20 @@
     self.titleLabel.text = item.title;
 }
 
-- (void)commonScrollorViewDidCurrentPageUpdate
-{
-    BMMovieItemView *item = [_scView currentSelectedView];
-    self.titleLabel.text = item.title;
-}
-
 #pragma mark - NSFetchedResultsControllerDelegate
 
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
 {
     [self _updateData];
+}
+
+#pragma mark - BMMovieItemViewDelegate
+
+- (void)didUpdateDataMovieItemView:(BMMovieItemView *)itemView
+{
+    if (_page == itemView.tag) {
+        self.titleLabel.text = itemView.title;
+    }
 }
 
 
