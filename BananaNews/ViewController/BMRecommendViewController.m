@@ -30,6 +30,8 @@
 
 @property (nonatomic, assign) NSUInteger page;
 
+@property (nonatomic, strong) News *shareNews;
+
 - (void)_networkNotice:(NSNotification *)notice;
 
 - (void)_updateData;
@@ -237,25 +239,49 @@
 
 - (void)_comment
 {
-    BMCommentViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"commentViewController"];
-    [self.navigationController pushViewController:vc animated:YES];
+    BMMovieItemView *item = [_scView currentSelectedView];
+    if (item.news) {
+        BMCommentViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"commentViewController"];
+        vc.news = item.news;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 }
 
 #pragma mark -
 
 - (void)videoDelete
 {
-    
+    BMMovieItemView *item = [_scView currentSelectedView];
+    if (item.news) {
+        item.news.status = [NSNumber numberWithInteger:-1];
+        [[BMNewsManager sharedManager] saveContext];
+        int count = [[[self.fetchedResultsController sections] objectAtIndex:0] numberOfObjects];
+        if (count == 0) {
+            [self _updateData];
+        }
+        else {
+            News *news = [self.fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+            news.status = [NSNumber numberWithInteger:item.tag];
+            [[BMNewsManager sharedManager] saveContext];
+        }
+    }
 }
 
 - (void)videoShare
 {
-//    [[BMNewsManager sharedManager] shareNews:news delegate:self];
+    BMMovieItemView *item = [_scView currentSelectedView];
+    if (item.news) {
+        _shareNews = item.news;
+        [[BMNewsManager sharedManager] shareNews:item.news delegate:self];
+    }
 }
 
 - (void)videoGood
 {
-    
+    BMMovieItemView *item = [_scView currentSelectedView];
+    if (item.news) {
+        [[BMNewsManager sharedManager] dingToSite:item.news.nid.integerValue success:nil failure:nil];
+    }
 }
 
 - (void)videoBad
@@ -284,8 +310,9 @@
 
 - (void)didFinishGetUMSocialDataInViewController:(UMSocialResponseEntity *)response
 {
-    if (response.responseCode == UMSResponseCodeSuccess) {
-//        [[BMNewsManager sharedManager] shareToSite:news.nid.integerValue success:nil failure:nil];
+    if ((response.responseCode == UMSResponseCodeSuccess) &&
+        _shareNews) {
+        [[BMNewsManager sharedManager] shareToSite:_shareNews.nid.integerValue success:nil failure:nil];
     }
 }
 
@@ -293,9 +320,7 @@
 
 - (BMMovieItemView *)pageAtIndex:(NSInteger)index withFrame:(CGRect)frame;
 {
-    BMMovieItemView *item = [[BMMovieItemView alloc] initWithFrame:frame];
-    [item createFetchData:index+1];
-    return item;
+    return [[BMMovieItemView alloc] initWithFrame:frame tag:index+1 delegate:_scView];
 }
 
 #pragma mark - BMCommonScrollorViewDataSource
@@ -303,6 +328,14 @@
 - (void)commonScrollorViewDidSelectPage:(NSUInteger)index
 {
     self.pageLabel.text = [NSString stringWithFormat:@"%i/3", index+1];
+    BMMovieItemView *item = [_scView viewForPage:index];
+    self.titleLabel.text = item.title;
+}
+
+- (void)commonScrollorViewDidCurrentPageUpdate
+{
+    BMMovieItemView *item = [_scView currentSelectedView];
+    self.titleLabel.text = item.title;
 }
 
 #pragma mark - NSFetchedResultsControllerDelegate

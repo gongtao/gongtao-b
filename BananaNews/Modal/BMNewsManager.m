@@ -157,7 +157,7 @@
     if (length < content.length) {
         content = [NSString stringWithFormat:@"%@...", [content substringToIndex:length-1]];
     }
-    NSString *shareText = [NSString stringWithFormat:@"我在看芝麻短片：%@ 网址：%@", content, news.url];
+    NSString *shareText = [NSString stringWithFormat:@"我在用芝麻短片观看视频：%@ 网址：%@", content, news.url];
     
     [UMSocialConfig setWXAppId:kWXAppKey url:news.url];
     

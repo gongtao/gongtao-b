@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol BMMovieItemViewDelegate;
+
 @interface BMMovieItemView : UIView <NSFetchedResultsControllerDelegate>
 {
     UIImageView *_bgImageView;
@@ -17,8 +19,22 @@
 
 @property (nonatomic, strong) News *news;
 
+@property (nonatomic, strong) Media *videoMedia;
+
+@property (nonatomic, strong) Media *imageMedia;
+
+@property (nonatomic, strong) NSString *title;
+
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
 
-- (void)createFetchData:(NSInteger)index;
+@property (nonatomic, assign) id<BMMovieItemViewDelegate> delegate;
+
+- (id)initWithFrame:(CGRect)frame tag:(NSInteger)tag delegate:(id<BMMovieItemViewDelegate>)delegate;
+
+@end
+
+@protocol BMMovieItemViewDelegate <NSObject>
+
+- (void)didUpdateDataMovieItemView:(BMMovieItemView *)itemView;
 
 @end

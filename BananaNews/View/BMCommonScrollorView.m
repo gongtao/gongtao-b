@@ -164,4 +164,14 @@
     }
 }
 
+#pragma mark - BMMovieItemViewDelegate
+
+- (void)didUpdateDataMovieItemView:(BMMovieItemView *)itemView
+{
+    if ((_currentPage == itemView.tag-1) &&
+        [self.delegate respondsToSelector:@selector(commonScrollorViewDidCurrentPageUpdate)]) {
+        [self.delegate commonScrollorViewDidCurrentPageUpdate];
+    }
+}
+
 @end

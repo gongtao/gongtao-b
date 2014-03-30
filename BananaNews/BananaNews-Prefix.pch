@@ -16,4 +16,5 @@
     #import "BMConstant.h"
     #import <UIColor+HexString.h>
     #import "BMNewsManager.h"
+    #import <UIImageView+WebCache.h>
 #endif

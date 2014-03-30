@@ -17,7 +17,7 @@
 
 - (void)commonScrollorViewDidSelectPage:(NSUInteger)index;
 
-//- (NSInteger)validPageValue:(NSInteger)value;
+- (void)commonScrollorViewDidCurrentPageUpdate;
 
 @end
 
@@ -29,7 +29,7 @@
 
 @end
 
-@interface BMCommonScrollorView : UIView<UIScrollViewDelegate>
+@interface BMCommonScrollorView : UIView<UIScrollViewDelegate, BMMovieItemViewDelegate>
 {
     NSInteger _totalPages;
     NSInteger _pageWidth;
