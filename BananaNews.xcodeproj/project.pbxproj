@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		264D252918D96F4C00D2F3D1 /* BMOperateSubView.m in Sources */ = {isa = PBXBuildFile; fileRef = 264D252818D96F4C00D2F3D1 /* BMOperateSubView.m */; };
 		2691053118DC365B00CFDB3A /* BMCommonScrollorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2691053018DC365B00CFDB3A /* BMCommonScrollorView.m */; };
+		26B2AA3718E809E600D134D0 /* BMCommentTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26B2AA3618E809E600D134D0 /* BMCommentTableViewController.m */; };
+		26B2AA3A18E80DED00D134D0 /* BMVideoCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 26B2AA3918E80DED00D134D0 /* BMVideoCommentCell.m */; };
 		424C36BA18D92F5500B693F5 /* BMBaseSubViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 424C36B918D92F5500B693F5 /* BMBaseSubViewController.m */; };
 		424C36BD18D92FE400B693F5 /* BMHomeTabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 424C36BC18D92FE400B693F5 /* BMHomeTabViewController.m */; };
 		424C36C218D9412B00B693F5 /* BMToolBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 424C36C118D9412B00B693F5 /* BMToolBar.m */; };
@@ -152,6 +154,10 @@
 		264D252818D96F4C00D2F3D1 /* BMOperateSubView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMOperateSubView.m; sourceTree = "<group>"; };
 		2691052F18DC365B00CFDB3A /* BMCommonScrollorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMCommonScrollorView.h; sourceTree = "<group>"; };
 		2691053018DC365B00CFDB3A /* BMCommonScrollorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMCommonScrollorView.m; sourceTree = "<group>"; };
+		26B2AA3518E809E600D134D0 /* BMCommentTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMCommentTableViewController.h; sourceTree = "<group>"; };
+		26B2AA3618E809E600D134D0 /* BMCommentTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMCommentTableViewController.m; sourceTree = "<group>"; };
+		26B2AA3818E80DED00D134D0 /* BMVideoCommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMVideoCommentCell.h; sourceTree = "<group>"; };
+		26B2AA3918E80DED00D134D0 /* BMVideoCommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMVideoCommentCell.m; sourceTree = "<group>"; };
 		424C36B818D92F5500B693F5 /* BMBaseSubViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMBaseSubViewController.h; sourceTree = "<group>"; };
 		424C36B918D92F5500B693F5 /* BMBaseSubViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMBaseSubViewController.m; sourceTree = "<group>"; };
 		424C36BB18D92FE400B693F5 /* BMHomeTabViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMHomeTabViewController.h; sourceTree = "<group>"; };
@@ -613,6 +619,8 @@
 				424C36CD18D9842900B693F5 /* BMSubSettingsViewController.m */,
 				42C7F19F18E00AB300250D0D /* BMCommentViewController.h */,
 				42C7F1A018E00AB300250D0D /* BMCommentViewController.m */,
+				26B2AA3518E809E600D134D0 /* BMCommentTableViewController.h */,
+				26B2AA3618E809E600D134D0 /* BMCommentTableViewController.m */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -643,6 +651,8 @@
 		42C7BB0318712BBB00BD6382 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				26B2AA3818E80DED00D134D0 /* BMVideoCommentCell.h */,
+				26B2AA3918E80DED00D134D0 /* BMVideoCommentCell.m */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -1045,6 +1055,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				42C4E778188526E800E650BE /* BMSNSLoginView.m in Sources */,
+				26B2AA3A18E80DED00D134D0 /* BMVideoCommentCell.m in Sources */,
 				42C7BB0618712BF700BD6382 /* BMLeftViewCell.m in Sources */,
 				2691053118DC365B00CFDB3A /* BMCommonScrollorView.m in Sources */,
 				424C36CB18D9841B00B693F5 /* BMSubUserViewController.m in Sources */,
@@ -1086,6 +1097,7 @@
 				D8EA59191880B0C800EEB573 /* GTCyclePageView.m in Sources */,
 				D8F72B9C1897465E0093978C /* BMSettingCell.m in Sources */,
 				42C7BAFE18710E7300BD6382 /* BMHomeViewController.m in Sources */,
+				26B2AA3718E809E600D134D0 /* BMCommentTableViewController.m in Sources */,
 				42E3AD71187F885100ADFAD9 /* BMTabViewController.m in Sources */,
 				D821E855187560AF005C1604 /* BMCollectViewController.m in Sources */,
 				42C4E77B1885285200E650BE /* BMSNSLoginButton.m in Sources */,

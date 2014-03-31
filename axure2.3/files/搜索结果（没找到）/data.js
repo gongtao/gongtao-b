@@ -1,0 +1,310 @@
+﻿$axure.loadCurrentPage({
+  "url":"搜索结果（没找到）.html",
+  "generationDate":new Date(1395120472501.63),
+  "isCanvasEnabled":false,
+  "variables":["OnLoadVariable"],
+  "page":{
+    "packageId":"ae1518f385e441808d6f41243e2aa0e7",
+    "type":"Axure:Page",
+    "name":"搜索结果（没找到）",
+    "notes":{
+},
+    "style":{
+      "baseStyle":"627587b6038d43cca051c114ac41ad32",
+      "pageAlignment":"near",
+      "fill":{
+        "fillType":"solid",
+        "color":0xFFFFFFFF},
+      "image":null,
+      "imageHorizontalAlignment":"near",
+      "imageVerticalAlignment":"near",
+      "imageRepeat":"auto",
+      "favicon":null,
+      "sketchFactor":"0",
+      "colorStyle":"appliedColor",
+      "fontName":"应用字体",
+      "borderWidth":"0"},
+    "adaptiveStyles":{
+},
+    "interactionMap":{
+},
+    "diagram":{
+      "objects":[{
+          "id":"f1f6cc1ff24f49709ae879b996785ca4",
+          "label":"",
+          "type":"imageBox",
+          "styleType":"imageBox",
+          "visible":true,
+          "style":{
+            "fontName":"'应用字体 Regular', '应用字体'",
+            "size":{
+              "width":408,
+              "height":817},
+            "borderWidth":"-1"},
+          "adaptiveStyles":{
+},
+          "objects":[{
+              "id":"8fe9956ebb8c45369280adea5eb83680",
+              "label":"",
+              "isContained":true,
+              "type":"richTextPanel",
+              "styleType":"paragraph",
+              "visible":true,
+              "style":{
+                "fontName":"'应用字体 Regular', '应用字体'",
+                "size":{
+                  "width":408,
+                  "height":817},
+                "borderWidth":"-1"},
+              "adaptiveStyles":{
+}}],
+          "images":{
+            "normal~":"images/欢迎页/u0.png"}},
+{
+          "id":"b593ecd276c1411c8ca03f4f866a3120",
+          "label":"",
+          "type":"buttonShape",
+          "styleType":"buttonShape",
+          "visible":true,
+          "style":{
+            "fontName":"'应用字体 Regular', '应用字体'",
+            "location":{
+              "x":43,
+              "y":647},
+            "size":{
+              "width":322,
+              "height":44}},
+          "adaptiveStyles":{
+},
+          "objects":[{
+              "id":"22f728376ef94a349cd573cefda0a030",
+              "label":"",
+              "isContained":true,
+              "type":"richTextPanel",
+              "styleType":"paragraph",
+              "visible":true,
+              "style":{
+                "fontName":"'应用字体 Regular', '应用字体'",
+                "location":{
+                  "x":43,
+                  "y":647},
+                "size":{
+                  "width":322,
+                  "height":44}},
+              "adaptiveStyles":{
+}}],
+          "images":{
+            "normal~":"images/推荐/u12.png"}},
+{
+          "id":"7780af78dedf4aa6b89b34dfc0a1cfc9",
+          "label":"",
+          "type":"buttonShape",
+          "styleType":"buttonShape",
+          "visible":true,
+          "style":{
+            "fontName":"'应用字体 Regular', '应用字体'",
+            "location":{
+              "x":43,
+              "y":123},
+            "size":{
+              "width":322,
+              "height":39}},
+          "adaptiveStyles":{
+},
+          "objects":[{
+              "id":"47aff57536ea4429b013b561c15eb7e7",
+              "label":"",
+              "isContained":true,
+              "type":"richTextPanel",
+              "styleType":"paragraph",
+              "visible":true,
+              "style":{
+                "fontName":"'应用字体 Regular', '应用字体'",
+                "location":{
+                  "x":43,
+                  "y":123},
+                "size":{
+                  "width":322,
+                  "height":39}},
+              "adaptiveStyles":{
+}}],
+          "images":{
+            "normal~":"images/推荐/u2.png"}},
+{
+          "id":"4df964c6617a497c8bfd97ef3d4a8bb0",
+          "label":"",
+          "type":"textBox",
+          "styleType":"textBox",
+          "visible":true,
+          "style":{
+            "fontName":"'应用字体 Regular', '应用字体'",
+            "location":{
+              "x":61,
+              "y":130},
+            "size":{
+              "width":249,
+              "height":25}},
+          "adaptiveStyles":{
+}},
+{
+          "id":"a957500954634a14a1beb44b7d65bcb6",
+          "label":"",
+          "type":"button",
+          "styleType":"button",
+          "visible":true,
+          "style":{
+            "fontName":"'应用字体 Regular', '应用字体'",
+            "location":{
+              "x":320,
+              "y":130},
+            "size":{
+              "width":38,
+              "height":25}},
+          "adaptiveStyles":{
+}},
+{
+          "id":"92247aca55644814b80f086227db0e98",
+          "label":"",
+          "type":"buttonShape",
+          "styleType":"buttonShape",
+          "visible":true,
+          "style":{
+            "fontName":"'应用字体 Regular', '应用字体'",
+            "location":{
+              "x":93,
+              "y":300},
+            "size":{
+              "width":79,
+              "height":80}},
+          "adaptiveStyles":{
+},
+          "objects":[{
+              "id":"0e5c4cd5b5bc4f5db22879ac617a8922",
+              "label":"",
+              "isContained":true,
+              "type":"richTextPanel",
+              "styleType":"paragraph",
+              "visible":true,
+              "style":{
+                "fontName":"'应用字体 Regular', '应用字体'",
+                "location":{
+                  "x":93,
+                  "y":300},
+                "size":{
+                  "width":79,
+                  "height":80}},
+              "adaptiveStyles":{
+}}],
+          "images":{
+            "normal~":"images/搜索/u8.png"}},
+{
+          "id":"5b20e384b83449f88b13acfb195ea2bd",
+          "label":"",
+          "type":"buttonShape",
+          "styleType":"paragraph",
+          "visible":true,
+          "style":{
+            "fontName":"'应用字体 Regular', '应用字体'",
+            "fontSize":"20px",
+            "location":{
+              "x":182,
+              "y":316},
+            "size":{
+              "width":150,
+              "height":48},
+            "rotation":"0",
+            "textRotation":"0"},
+          "adaptiveStyles":{
+},
+          "objects":[{
+              "id":"8770c77b1f0848e2904f4ced68db701a",
+              "label":"",
+              "isContained":true,
+              "type":"richTextPanel",
+              "styleType":"paragraph",
+              "visible":true,
+              "style":{
+                "fontName":"'应用字体 Regular', '应用字体'",
+                "fontSize":"20px",
+                "location":{
+                  "x":182,
+                  "y":316},
+                "size":{
+                  "width":150,
+                  "height":48},
+                "rotation":"0",
+                "textRotation":"0"},
+              "adaptiveStyles":{
+}}],
+          "images":{
+            "normal~":"resources/images/transparent.gif"}},
+{
+          "id":"811c79414bf04f6f989e1d72a2d68ed5",
+          "label":"",
+          "type":"buttonShape",
+          "styleType":"paragraph",
+          "visible":true,
+          "style":{
+            "fontName":"'应用字体 Regular', '应用字体'",
+            "location":{
+              "x":69,
+              "y":661},
+            "size":{
+              "width":279,
+              "height":19},
+            "rotation":"0",
+            "textRotation":"0"},
+          "adaptiveStyles":{
+},
+          "objects":[{
+              "id":"8eb116764b5842259a983643b3be936b",
+              "label":"",
+              "isContained":true,
+              "type":"richTextPanel",
+              "styleType":"paragraph",
+              "visible":true,
+              "style":{
+                "fontName":"'应用字体 Regular', '应用字体'",
+                "location":{
+                  "x":69,
+                  "y":661},
+                "size":{
+                  "width":279,
+                  "height":19},
+                "rotation":"0",
+                "textRotation":"0"},
+              "adaptiveStyles":{
+}}],
+          "images":{
+            "normal~":"resources/images/transparent.gif"}}]}},
+  "masters":{
+},
+  "objectPaths":{
+    "f1f6cc1ff24f49709ae879b996785ca4":{
+      "scriptId":"u0"},
+    "8fe9956ebb8c45369280adea5eb83680":{
+      "scriptId":"u1"},
+    "b593ecd276c1411c8ca03f4f866a3120":{
+      "scriptId":"u2"},
+    "22f728376ef94a349cd573cefda0a030":{
+      "scriptId":"u3"},
+    "7780af78dedf4aa6b89b34dfc0a1cfc9":{
+      "scriptId":"u4"},
+    "47aff57536ea4429b013b561c15eb7e7":{
+      "scriptId":"u5"},
+    "4df964c6617a497c8bfd97ef3d4a8bb0":{
+      "scriptId":"u6"},
+    "a957500954634a14a1beb44b7d65bcb6":{
+      "scriptId":"u7"},
+    "92247aca55644814b80f086227db0e98":{
+      "scriptId":"u8"},
+    "0e5c4cd5b5bc4f5db22879ac617a8922":{
+      "scriptId":"u9"},
+    "5b20e384b83449f88b13acfb195ea2bd":{
+      "scriptId":"u10"},
+    "8770c77b1f0848e2904f4ced68db701a":{
+      "scriptId":"u11"},
+    "811c79414bf04f6f989e1d72a2d68ed5":{
+      "scriptId":"u12"},
+    "8eb116764b5842259a983643b3be936b":{
+      "scriptId":"u13"}}});
