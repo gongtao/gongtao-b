@@ -25,6 +25,7 @@ typedef enum {
     UIImageView *_frameImageView;
     UIImageView *_contentImageView;
     BMCustomButton *_button;
+    UILabel *_titleLabel;
 }
 
 @property (nonatomic, strong) News *news;
@@ -32,8 +33,6 @@ typedef enum {
 @property (nonatomic, strong) Media *videoMedia;
 
 @property (nonatomic, strong) Media *imageMedia;
-
-@property (nonatomic, strong) NSString *title;
 
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
 

@@ -20,8 +20,6 @@
 
 @property (nonatomic, strong) UILabel *pageLabel;
 
-@property (nonatomic, strong) UILabel *titleLabel;
-
 @property (nonatomic, assign) BOOL isReachable;
 
 @property (nonatomic, assign) BOOL isLastPage;
@@ -79,15 +77,7 @@
     self.pageLabel.textAlignment = NSTextAlignmentCenter;
     [self.view addSubview:self.pageLabel];
     
-    self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(58.0, y+175.0, 204.0, 45.0)];
-    self.titleLabel.backgroundColor = [UIColor clearColor];
-    self.titleLabel.textColor = [UIColor colorWithHexString:@"666666"];
-    self.titleLabel.font = [UIFont systemFontOfSize:17.0];
-    self.titleLabel.numberOfLines = 0;
-    self.titleLabel.textAlignment = NSTextAlignmentCenter;
-    [self.view addSubview:self.titleLabel];
-    
-    _scView = [[BMCommonScrollorView alloc] initWithFrame:CGRectMake(0, y, self.view.bounds.size.width, 180.0)];
+    _scView = [[BMCommonScrollorView alloc] initWithFrame:CGRectMake(0, y, self.view.bounds.size.width, 220.0)];
     _scView.delegate = self;
     _scView.dataSource = self;
     [self.view addSubview:_scView];
@@ -310,8 +300,6 @@
 - (void)commonScrollorViewDidSelectPage:(NSUInteger)index
 {
     self.pageLabel.text = [NSString stringWithFormat:@"%i/3", index+1];
-    BMMovieItemView *item = [_scView viewForPage:index];
-    self.titleLabel.text = item.title;
 }
 
 #pragma mark - NSFetchedResultsControllerDelegate
@@ -325,9 +313,7 @@
 
 - (void)didUpdateDataMovieItemView:(BMMovieItemView *)itemView
 {
-    if (_page == itemView.tag) {
-        self.titleLabel.text = itemView.title;
-    }
+    
 }
 
 

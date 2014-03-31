@@ -126,6 +126,9 @@
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     CGFloat x=_scrollView.contentOffset.x;
+    if (x < 0.0 || x > _totalPages*_pageWidth) {
+        return;
+    }
     CGFloat scale = 0.0;
     if (x>_currentOffset) {
         //往左边滑动
