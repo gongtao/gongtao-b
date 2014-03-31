@@ -21,7 +21,7 @@
 
 #define PlayAppsVideoNotification   @"PlayAppsVideoNotification"
 
-#define kBaseURL    [NSURL URLWithString:@"http://xiangjiaoribao.com"]
+#define kBaseURL    [NSURL URLWithString:@"http://zhimapian.com"]
 
 //#define kBaseURL    [NSURL URLWithString:@"http://115.29.43.107/site/"]
 
