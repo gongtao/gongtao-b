@@ -8,6 +8,8 @@
 
 #import "BMCommentViewController.h"
 
+#import "BMCommentTableViewController.h"
+
 @interface BMCommentViewController ()
 
 @end
@@ -27,6 +29,19 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    id appDelegate = [UIApplication sharedApplication].delegate;
+    
+    NSEntityDescription *entity = [NSEntityDescription entityForName:News_Entity inManagedObjectContext:[appDelegate managedObjectContext]];
+    [request setEntity:entity];
+
+    BMCommentTableViewController *commentVC = [[BMCommentTableViewController alloc] initWithRequest:request cacheName:@"cacheData"];
+    commentVC.view.frame = self.view.bounds;
+    commentVC.tableView.frame = self.view.bounds;
+    //commentVC.categoryId = category.category_id;
+    [self addChildViewController:commentVC];
+    [self.view addSubview:commentVC.view];
+
 }
 
 - (void)didReceiveMemoryWarning
