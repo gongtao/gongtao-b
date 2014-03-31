@@ -34,15 +34,20 @@
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     id appDelegate = [UIApplication sharedApplication].delegate;
     
-    NSEntityDescription *entity = [NSEntityDescription entityForName:News_Entity inManagedObjectContext:[appDelegate managedObjectContext]];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:Comment_Entity inManagedObjectContext:[appDelegate managedObjectContext]];
     [request setEntity:entity];
+    NSSortDescriptor *sortDesciptor = [NSSortDescriptor sortDescriptorWithKey:kCommentDate ascending:NO];
+    //request.predicate = [NSPredicate predicateWithFormat:@"ANY category.category_id == %@",category.category_id];
+    [request setSortDescriptors:[NSArray arrayWithObject:sortDesciptor]];
 
     BMCommentTableViewController *commentVC = [[BMCommentTableViewController alloc] initWithRequest:request cacheName:@"cacheData"];
     commentVC.view.frame = self.view.bounds;
     commentVC.tableView.frame = self.view.bounds;
+    commentVC.news=_news;
     //commentVC.categoryId = category.category_id;
     [self addChildViewController:commentVC];
     [self.view addSubview:commentVC.view];
+    [commentVC startLoadingTableViewData];
 
 }
 

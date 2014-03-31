@@ -147,14 +147,22 @@
 - (void)_loadMore:(UIButton *)sender
 {
     [self _finishLoadMore:NO];
-    _request = [[BMNewsManager sharedManager] getDownloadList:self.categoryId
+    _request=[[BMNewsManager sharedManager]getCommentsByNews:_news
+                                                        page:_page
+                                                     success:^{
+                                                         [self _finishLoadMore:YES];
+                                                     }
+                                                     failure:^(NSError *error){
+                                                         [self _finishLoadMore:YES];
+                                                     }];
+    /*_request = [[BMNewsManager sharedManager] getDownloadList:self.categoryId
                                                          page:_page
                                                       success:^(NSArray *array){
                                                           [self _finishLoadMore:YES];
                                                       }
                                                       failure:^(NSError *error){
                                                           [self _finishLoadMore:YES];
-                                                      }];
+                                                      }];*/
 }
 
 - (void)_initFooterView
@@ -201,7 +209,7 @@
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:Comment_Entity inManagedObjectContext:[self managedObjectContext]];
     [request setEntity:entity];
-    NSSortDescriptor *sortDesciptor = [NSSortDescriptor sortDescriptorWithKey:kNid ascending:NO];
+    NSSortDescriptor *sortDesciptor = [NSSortDescriptor sortDescriptorWithKey:kCommentDate ascending:NO];
     [request setSortDescriptors:[NSArray arrayWithObject:sortDesciptor]];
     return request;
 }
@@ -270,7 +278,15 @@
     [self _finishLoadMore:YES];
     _reloading = YES;
     _page = 1;
-    [[BMNewsManager sharedManager] getDownloadList:self.categoryId
+    [[BMNewsManager sharedManager]getCommentsByNews:_news
+                                               page:_page
+                                            success:^{
+                                               [self doneLoadingTableViewData];
+                                           }
+                                            failure:^(NSError *error){
+                                                [self doneLoadingTableViewData];
+                                            }];
+    /*[[BMNewsManager sharedManager] getDownloadList:self.categoryId
                                               page:_page
                                            success:^(NSArray *array){
                                                [self doneLoadingTableViewData];
@@ -278,6 +294,7 @@
                                            failure:^(NSError *error){
                                                [self doneLoadingTableViewData];
                                            }];
+     */
 }
 
 - (void)doneLoadingTableViewData
@@ -337,11 +354,12 @@
             return 50.0;
         }
     }
-    News *news = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    return 90;
+    /*News *news = [self.fetchedResultsController objectAtIndexPath:indexPath];
     if (!news.medias || news.medias.count == 0) {
         return news.text_height.floatValue+52.0;
     }
-    return news.text_height.floatValue+news.image_height.floatValue+64.0;
+    return news.text_height.floatValue+news.image_height.floatValue+64.0;*/
 }
 
 #pragma mark EGORefreshTableHeaderDelegate
@@ -359,6 +377,7 @@
 - (NSDate *)egoRefreshTableHeaderDataSourceLastUpdated:(EGORefreshTableHeaderView*)view
 {
     BMNewsManager *manager = [BMNewsManager sharedManager];
+    
     NewsCategory *category = [manager getNewsCategoryById:self.categoryId context:[manager managedObjectContext]];
     return category.refreshTime;// should return date data source was last changed
 }

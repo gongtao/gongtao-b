@@ -20,9 +20,11 @@
 
 }
 
-@property (nonatomic, strong) NSString *categoryId;
+//@property (nonatomic, strong) NSString *categoryId;
 
 //@property (nonatomic, assign) BMNewsListCellType type;
+
+@property (nonatomic,assign)News *news;
 
 - (id)initWithRequest:(NSFetchRequest *)request cacheName:(NSString *)cache;
 
