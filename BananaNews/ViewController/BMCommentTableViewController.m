@@ -376,10 +376,11 @@
 
 - (NSDate *)egoRefreshTableHeaderDataSourceLastUpdated:(EGORefreshTableHeaderView*)view
 {
-    BMNewsManager *manager = [BMNewsManager sharedManager];
+    //BMNewsManager *manager = [BMNewsManager sharedManager];
     
-    NewsCategory *category = [manager getNewsCategoryById:self.categoryId context:[manager managedObjectContext]];
-    return category.refreshTime;// should return date data source was last changed
+    //NewsCategory *category = [manager getNewsCategoryById:self.categoryId context:[manager managedObjectContext]];
+    //return category.refreshTime;// should return date data source was last changed
+    return _news.refreshDate;
 }
 
 @end
