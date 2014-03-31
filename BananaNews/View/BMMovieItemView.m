@@ -55,7 +55,7 @@
         [self addSubview:_frameImageView];
         
         _button = [[BMCustomButton alloc] initWithFrame:frame];
-        [_button setImageRect:CGRectMake(self.bounds.size.width/2.0-40.0, 38.0, 80.0, 80.0)];
+        [_button setImageRect:CGRectMake(self.bounds.size.width/2.0-20.0, 58.0, 40.0, 40.0)];
         [_button addTarget:self action:@selector(_buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:_button];
         
