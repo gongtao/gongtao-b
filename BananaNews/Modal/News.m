@@ -22,6 +22,7 @@
 @dynamic name;
 @dynamic ndate;
 @dynamic nid;
+@dynamic refreshDate;
 @dynamic share_count;
 @dynamic status;
 @dynamic text_height;

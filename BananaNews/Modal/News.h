@@ -20,6 +20,7 @@
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSDate * ndate;
 @property (nonatomic, retain) NSNumber * nid;
+@property (nonatomic, retain) NSDate * refreshDate;
 @property (nonatomic, retain) NSNumber * share_count;
 @property (nonatomic, retain) NSNumber * status;
 @property (nonatomic, retain) NSNumber * text_height;
