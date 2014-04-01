@@ -230,7 +230,7 @@
 	if ([_delegate respondsToSelector:@selector(egoRefreshTableHeaderDataSourceIsLoading:)]) {
 		_loading = [_delegate egoRefreshTableHeaderDataSourceIsLoading:self];
 	}
-	
+	//NSLog(@"%f",scrollView.contentOffset.y);
 	if (scrollView.contentOffset.y <= - _lastEdgeInsets.top - 65.0f && !_loading) {
 		
 		if ([_delegate respondsToSelector:@selector(egoRefreshTableHeaderDidTriggerRefresh:)]) {

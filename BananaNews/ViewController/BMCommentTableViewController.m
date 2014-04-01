@@ -122,8 +122,12 @@
         [UIView animateWithDuration:0.3
                          animations:^(void){
                              self.tableView.contentOffset = CGPointMake(0.0, -65.0);
-                         }
+                             //NSLog(@"1、%f",self.tableView.contentOffset.y);
+
+                                                      }
                          completion:^(BOOL finished){
+                            // NSLog(@"2、%f",self.tableView.contentOffset.y);
+                             self.tableView.contentOffset = CGPointMake(0.0, -65.0);
                              [_refreshHeaderView egoRefreshScrollViewDidEndDragging:self.tableView];
                          }];
     }
@@ -278,7 +282,7 @@
     [self _finishLoadMore:YES];
     _reloading = YES;
     _page = 1;
-    [[BMNewsManager sharedManager]getCommentsByNews:_news
+    _request=[[BMNewsManager sharedManager]getCommentsByNews:_news
                                                page:_page
                                             success:^{
                                                [self doneLoadingTableViewData];

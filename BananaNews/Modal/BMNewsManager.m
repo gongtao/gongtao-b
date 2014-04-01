@@ -274,6 +274,7 @@
         context = [self managedObjectContext];
     }
     NSArray *array = dic[@"comments"];
+    
     if (!array || (NSNull *)array == [NSNull null]) {
         return;
     }
@@ -774,6 +775,7 @@
     }
     
     NSString *content = dic[@"content"];
+    //NSLog(@"content:%@",content);
     if (content && (NSNull *)content != [NSNull null]) {
         comment.content = content;
         CGSize size = [content sizeWithFont:Font_NewsTitle constrainedToSize:CGSizeMake(257.0, NSUIntegerMax)];
@@ -781,6 +783,7 @@
     }
     
     NSString *date = dic[@"date"];
+    //NSLog(@"date:%@",date);
     if (date && (NSNull *)date != [NSNull null]) {
         comment.date = [BMUtils dateFromString:date];
     }
