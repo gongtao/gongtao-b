@@ -8,7 +8,7 @@
 
 #import "BMCommentTableViewController.h"
 
-#import "BMVideoCommentCell.h"
+
 
 @interface BMCommentTableViewController ()
 {
@@ -380,6 +380,7 @@
     
     //NewsCategory *category = [manager getNewsCategoryById:self.categoryId context:[manager managedObjectContext]];
     //return category.refreshTime;// should return date data source was last changed
+    //BMNewsManager *manager = [BMNewsManager sharedManager];
     return _news.refreshDate;
 }
 

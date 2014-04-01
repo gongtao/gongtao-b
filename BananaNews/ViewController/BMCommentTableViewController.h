@@ -10,6 +10,8 @@
 
 #import "EGORefreshTableHeaderView.h"
 
+#import "BMVideoCommentCell.h"
+
 @interface BMCommentTableViewController : GTTableViewController<EGORefreshTableHeaderDelegate>
 {
     EGORefreshTableHeaderView *_refreshHeaderView;

@@ -37,14 +37,14 @@
     NSEntityDescription *entity = [NSEntityDescription entityForName:Comment_Entity inManagedObjectContext:[appDelegate managedObjectContext]];
     [request setEntity:entity];
     NSSortDescriptor *sortDesciptor = [NSSortDescriptor sortDescriptorWithKey:kCommentDate ascending:NO];
-    //request.predicate = [NSPredicate predicateWithFormat:@"ANY category.category_id == %@",category.category_id];
+    request.predicate = [NSPredicate predicateWithFormat:@" news.nid == %i",_news.nid];
     [request setSortDescriptors:[NSArray arrayWithObject:sortDesciptor]];
 
-    BMCommentTableViewController *commentVC = [[BMCommentTableViewController alloc] initWithRequest:request cacheName:@"cacheData"];
+    BMCommentTableViewController *commentVC = [[BMCommentTableViewController alloc] initWithRequest:request cacheName:@"cacheCommentData"];
     commentVC.view.frame = self.view.bounds;
     commentVC.tableView.frame = self.view.bounds;
     commentVC.news=_news;
-    //commentVC.categoryId = category.category_id;
+    commentVC.dataSource=self;
     [self addChildViewController:commentVC];
     [self.view addSubview:commentVC.view];
     [commentVC startLoadingTableViewData];
