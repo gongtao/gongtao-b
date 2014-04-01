@@ -258,13 +258,14 @@
 
 - (void)videoBad
 {
-    if ([[NSUserDefaults standardUserDefaults] objectForKey:kLoginKey]) {
-        [self _comment];
-    }
-    else {
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"评论" message:@"亲~请先登录再评论" delegate:self cancelButtonTitle:@"暂不" otherButtonTitles:@"登录", nil];
-        [alertView show];
-    }
+    [self _comment];
+//    if ([[NSUserDefaults standardUserDefaults] objectForKey:kLoginKey]) {
+//        [self _comment];
+//    }
+//    else {
+//        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"评论" message:@"亲~请先登录再评论" delegate:self cancelButtonTitle:@"暂不" otherButtonTitles:@"登录", nil];
+//        [alertView show];
+//    }
 }
 
 #pragma mark - UIAlertViewDelegate
