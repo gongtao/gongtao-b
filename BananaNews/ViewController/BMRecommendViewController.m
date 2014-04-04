@@ -12,8 +12,6 @@
 
 #import "BMSNSLoginView.h"
 
-#import "BMCommentViewController.h"
-
 @interface BMRecommendViewController ()
 
 @property (nonatomic, strong) BMCommonScrollorView *scView;
@@ -208,6 +206,7 @@
     if (item.news) {
         BMCommentViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"commentViewController"];
         vc.news = item.news;
+        vc.delegate = self;
         [self.parentViewController presentViewController:vc animated:YES completion:nil];
     }
 }
@@ -315,6 +314,13 @@
 - (void)didUpdateDataMovieItemView:(BMMovieItemView *)itemView
 {
     
+}
+
+#pragma mark - BMCommentViewControllerDelegate
+
+- (void)didCancelCommentViewController
+{
+    [self.parentViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
 

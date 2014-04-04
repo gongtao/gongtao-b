@@ -8,8 +8,16 @@
 
 #import "BMBaseSubViewController.h"
 
+@protocol BMCommentViewControllerDelegate <NSObject>
+
+- (void)didCancelCommentViewController;
+
+@end
+
 @interface BMCommentViewController : BMBaseSubViewController
 
 @property (nonatomic, strong) News *news;
+
+@property (nonatomic, assign) id<BMCommentViewControllerDelegate> delegate;
 
 @end

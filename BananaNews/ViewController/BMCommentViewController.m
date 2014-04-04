@@ -10,7 +10,11 @@
 
 #import "BMCommentTableViewController.h"
 
+#import "BMCustomButton.h"
+
 @interface BMCommentViewController ()
+
+- (void)_cancel:(UIButton *)button;
 
 @end
 
@@ -45,7 +49,12 @@
     titleLabel.textAlignment = NSTextAlignmentCenter;
     [navigationBar addSubview:titleLabel];
     
-    
+    BMCustomButton *button = [[BMCustomButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width-44.0, y-44.0, 44.0, 44.0)];
+    button.imageRect = CGRectMake(14.0, 14.0, 15.0, 15.0);
+    [button setImage:[UIImage imageNamed:@"评论界面取消.png"] forState:UIControlStateNormal];
+    [button setImage:[UIImage imageNamed:@"评论界面取消高亮.png"] forState:UIControlStateHighlighted];
+    [button addTarget:self action:@selector(_cancel:) forControlEvents:UIControlEventTouchUpInside];
+    [navigationBar addSubview:button];
     
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     id appDelegate = [UIApplication sharedApplication].delegate;
@@ -57,21 +66,27 @@
     [request setSortDescriptors:[NSArray arrayWithObject:sortDesciptor]];
 
     BMCommentTableViewController *commentVC = [[BMCommentTableViewController alloc] initWithRequest:request cacheName:@"cacheCommentData"];
-    //commentVC.view.frame = self.view.bounds;
-    commentVC.view.frame=CGRectMake(0, 32, self.view.bounds.size.width, self.view.bounds.size.height-85);
-    //commentVC.tableView.frame = self.view.bounds;
-    commentVC.tableView.frame=CGRectMake(0, 32, self.view.bounds.size.width, self.view.bounds.size.height-85);
+    commentVC.view.frame=CGRectMake(0.0, y, self.view.bounds.size.width, self.view.bounds.size.height-y-48.0);
+    commentVC.tableView.frame=CGRectMake(0.0, 0.0, self.view.bounds.size.width, self.view.bounds.size.height-y-48.0);
     commentVC.news = _news;
     [self addChildViewController:commentVC];
     [self.view addSubview:commentVC.view];
     [commentVC startLoadingTableViewData];
-
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - Private
+
+- (void)_cancel:(UIButton *)button
+{
+    if ([self.delegate respondsToSelector:@selector(didCancelCommentViewController)]) {
+        [self.delegate didCancelCommentViewController];
+    }
 }
 
 @end

@@ -12,7 +12,9 @@
 
 #import "BMCommonScrollorView.h"
 
-@interface BMRecommendViewController : UIViewController <BMOperateSubViewDelegate, UMSocialUIDelegate, BMCommonScrollorViewDataSource, BMMovieItemViewDelegate, BMCommonScrollorViewDelegate, NSFetchedResultsControllerDelegate>
+#import "BMCommentViewController.h"
+
+@interface BMRecommendViewController : UIViewController <BMOperateSubViewDelegate, UMSocialUIDelegate, BMCommonScrollorViewDataSource, BMMovieItemViewDelegate, BMCommonScrollorViewDelegate, NSFetchedResultsControllerDelegate, BMCommentViewControllerDelegate>
 
 @property (nonatomic, strong) BMOperateSubView *operateSubview;
 
