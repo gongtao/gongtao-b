@@ -18,6 +18,8 @@
 
 @property (nonatomic,strong)UIImageView *userImage;
 
+@property (nonatomic,strong)UIImageView *userFrameImage;
+
 @property (nonatomic,strong)UILabel *userName;
 
 @property (nonatomic,strong)UILabel *time;
@@ -25,6 +27,8 @@
 @property (nonatomic,strong)UILabel *dingNumber;
 
 @property (nonatomic,strong)UILabel *content;
+
+@property (nonatomic,strong)UIView *lineView;
 
 
 

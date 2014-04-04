@@ -208,7 +208,7 @@
     if (item.news) {
         BMCommentViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"commentViewController"];
         vc.news = item.news;
-        [self.navigationController pushViewController:vc animated:YES];
+        [self.parentViewController presentViewController:vc animated:YES completion:nil];
     }
 }
 

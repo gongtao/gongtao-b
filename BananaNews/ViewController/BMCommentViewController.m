@@ -29,7 +29,23 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    NSLog(@"%@", self.news);
+    self.view.backgroundColor = Color_ViewBg;
+    
+    CGFloat y = IS_IOS7?64.0:44.0;
+    
+    UIView *navigationBar = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, self.view.frame.size.width, y)];
+    navigationBar.backgroundColor = Color_CommentBlue;
+    [self.view addSubview:navigationBar];
+    
+    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.0, y-44.0, self.view.frame.size.width, 44.0)];
+    titleLabel.backgroundColor = [UIColor clearColor];
+    titleLabel.font = [UIFont systemFontOfSize:18.0];
+    titleLabel.textColor = [UIColor whiteColor];
+    titleLabel.text = @"评论";
+    titleLabel.textAlignment = NSTextAlignmentCenter;
+    [navigationBar addSubview:titleLabel];
+    
+    
     
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     id appDelegate = [UIApplication sharedApplication].delegate;

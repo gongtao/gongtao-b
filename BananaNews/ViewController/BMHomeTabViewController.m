@@ -39,6 +39,8 @@
 	// Do any additional setup after loading the view.
     self.navigationController.navigationBarHidden = YES;
     
+    self.view.backgroundColor = Color_ViewBg;
+    
     CGFloat y = IS_IOS7?64.0:44.0;
     
     self.contentView = [[UIView alloc] initWithFrame:CGRectMake(0.0, y, 320.0, self.view.frame.size.height-y-48.0)];
@@ -59,6 +61,8 @@
     self.toolBar.delegate = self;
     [self.view addSubview:self.toolBar];
     [self.toolBar selectedTagAtIndex:0];
+    
+    self.toolBar.hidden = YES;
 }
 
 - (void)didReceiveMemoryWarning
