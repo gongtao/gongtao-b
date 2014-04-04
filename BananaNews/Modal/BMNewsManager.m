@@ -778,7 +778,7 @@
     //NSLog(@"content:%@",content);
     if (content && (NSNull *)content != [NSNull null]) {
         comment.content = content;
-        CGSize size = [content sizeWithFont:Font_NewsTitle constrainedToSize:CGSizeMake(257.0, NSUIntegerMax)];
+        CGSize size = [content sizeWithFont:[UIFont systemFontOfSize:14.0] constrainedToSize:CGSizeMake(220.0, NSUIntegerMax)];
         comment.height = [NSNumber numberWithFloat:size.height];
     }
     

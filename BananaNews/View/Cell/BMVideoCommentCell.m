@@ -51,7 +51,6 @@
         _content.font=[UIFont systemFontOfSize:14.0];
         _content.numberOfLines = 0;
         _content.textColor=[UIColor colorWithHexString:@"666666"];
-        _content.numberOfLines=2;
         [self.contentView addSubview:_content];
         
         _time=[[UILabel alloc]initWithFrame:CGRectMake(90, 70, 150, 15)];
@@ -60,7 +59,6 @@
         _time.textColor=[UIColor colorWithHexString:@"cccccc"];
         _time.numberOfLines=1;
         [self.contentView addSubview:_time];
-
         
         _dingNumber=[[UILabel alloc]initWithFrame:CGRectMake(295, 70, 15, 15)];
         _dingNumber.font=[UIFont systemFontOfSize:14.0];
@@ -89,6 +87,11 @@
     _dingNumber.text=[[[NSNumberFormatter alloc]init]stringFromNumber:comment.ding];
     [_userImage setImageWithURL:[NSURL URLWithString:comment.author.avatar] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType){
     }];
+    
+    _content.frame = CGRectMake(90.0, 35.0, 220.0, comment.height.floatValue);
+    CGFloat y = CGRectGetMaxY(_content.frame)+5.0;
+    _time.frame = CGRectMake(90, y, 150, 15);
+    _dingNumber.frame = CGRectMake(295, y, 15, 15);
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated

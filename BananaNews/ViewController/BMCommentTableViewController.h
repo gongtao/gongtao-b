@@ -12,6 +12,12 @@
 
 #import "BMVideoCommentCell.h"
 
+@protocol BMCommentTableViewControllerDelegate <NSObject>
+
+- (void)willReplyComment:(Comment *)comment;
+
+@end
+
 @interface BMCommentTableViewController : GTTableViewController<EGORefreshTableHeaderDelegate>
 {
     EGORefreshTableHeaderView *_refreshHeaderView;
@@ -26,7 +32,9 @@
 
 //@property (nonatomic, assign) BMNewsListCellType type;
 
-@property (nonatomic,assign)News *news;
+@property (nonatomic,assign) News *news;
+
+@property (nonatomic,assign) id<BMCommentTableViewControllerDelegate> delegate;
 
 - (id)initWithRequest:(NSFetchRequest *)request cacheName:(NSString *)cache;
 

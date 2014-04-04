@@ -290,15 +290,6 @@
                                             failure:^(NSError *error){
                                                 [self doneLoadingTableViewData];
                                             }];
-    /*[[BMNewsManager sharedManager] getDownloadList:self.categoryId
-                                              page:_page
-                                           success:^(NSArray *array){
-                                               [self doneLoadingTableViewData];
-                                           }
-                                           failure:^(NSError *error){
-                                               [self doneLoadingTableViewData];
-                                           }];
-     */
 }
 
 - (void)doneLoadingTableViewData
@@ -358,12 +349,11 @@
             return 50.0;
         }
     }
-    return 90;
-    /*News *news = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    if (!news.medias || news.medias.count == 0) {
-        return news.text_height.floatValue+52.0;
+    Comment *comment = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    if (comment.height.floatValue > 35.0) {
+        return comment.height.floatValue+55.0;
     }
-    return news.text_height.floatValue+news.image_height.floatValue+64.0;*/
+    return 90.0;
 }
 
 #pragma mark EGORefreshTableHeaderDelegate
@@ -386,6 +376,17 @@
     //return category.refreshTime;// should return date data source was last changed
     //BMNewsManager *manager = [BMNewsManager sharedManager];
     return _news.refreshDate;
+}
+
+#pragma mark - UITableViewDelegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+    Comment *comment = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    if ([self.delegate respondsToSelector:@selector(willReplyComment:)]) {
+        [self.delegate willReplyComment:comment];
+    }
 }
 
 @end

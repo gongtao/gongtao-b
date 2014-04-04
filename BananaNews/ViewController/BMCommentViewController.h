@@ -8,13 +8,17 @@
 
 #import "BMBaseSubViewController.h"
 
+#import "BMSNSLoginView.h"
+
+#import "BMCommentTableViewController.h"
+
 @protocol BMCommentViewControllerDelegate <NSObject>
 
 - (void)didCancelCommentViewController;
 
 @end
 
-@interface BMCommentViewController : BMBaseSubViewController
+@interface BMCommentViewController : BMBaseSubViewController <UITextFieldDelegate, UIAlertViewDelegate, BMCommentTableViewControllerDelegate>
 
 @property (nonatomic, strong) News *news;
 

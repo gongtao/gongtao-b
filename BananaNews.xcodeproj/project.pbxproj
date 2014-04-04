@@ -82,6 +82,7 @@
 		42FE59AB18D8439300C7B3A7 /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 42FE59A818D8439300C7B3A7 /* libMobClickLibrary.a */; };
 		42FE59AC18D8439300C7B3A7 /* libMobClickLibrary_armv6.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 42FE59A918D8439300C7B3A7 /* libMobClickLibrary_armv6.a */; };
 		CE8BC6AFDCC940D28D1B30C8 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 620E8C38B3E24A3191C52FA1 /* libPods.a */; };
+		D8059A6718EE48BC009E0CBF /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = D8059A6618EE48BC009E0CBF /* iTunesArtwork */; };
 		D81DB82A18877AEF002D27B5 /* UMSocialLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D81DB7FA18877AEF002D27B5 /* UMSocialLocalizable.strings */; };
 		D81DB82D18877AEF002D27B5 /* UMSCommentDetailController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D81DB80F18877AEF002D27B5 /* UMSCommentDetailController.xib */; };
 		D81DB82E18877AEF002D27B5 /* UMSCommentInputController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D81DB81018877AEF002D27B5 /* UMSCommentInputController.xib */; };
@@ -116,7 +117,6 @@
 		D88A31921897E3A80054FD7B /* BMUsersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D88A31911897E3A80054FD7B /* BMUsersViewController.m */; };
 		D88A31981898A3A90054FD7B /* News.m in Sources */ = {isa = PBXBuildFile; fileRef = D88A31971898A3A90054FD7B /* News.m */; };
 		D88A319B1898A3AA0054FD7B /* NewsCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = D88A319A1898A3AA0054FD7B /* NewsCategory.m */; };
-		D8932B9C18C3038000809673 /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = D8932B9B18C3038000809673 /* iTunesArtwork */; };
 		D8C503AE189360BF0092CAC0 /* BMCollectListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8C503AD189360BF0092CAC0 /* BMCollectListViewController.m */; };
 		D8C503B11894F85C0092CAC0 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = D8C503B01894F85C0092CAC0 /* User.m */; };
 		D8C503B41894F85D0092CAC0 /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = D8C503B31894F85D0092CAC0 /* Comment.m */; };
@@ -274,6 +274,7 @@
 		42FE59AA18D8439300C7B3A7 /* MobClick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobClick.h; sourceTree = "<group>"; };
 		620E8C38B3E24A3191C52FA1 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA26BFD3CEFE45ABAC84ECBE /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		D8059A6618EE48BC009E0CBF /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; path = iTunesArtwork; sourceTree = "<group>"; };
 		D81DB7FB18877AEF002D27B5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/UMSocialLocalizable.strings; sourceTree = "<group>"; };
 		D81DB7FE18877AEF002D27B5 /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
 		D81DB7FF18877AEF002D27B5 /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
@@ -336,7 +337,6 @@
 		D88A31971898A3A90054FD7B /* News.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = News.m; sourceTree = "<group>"; };
 		D88A31991898A3AA0054FD7B /* NewsCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsCategory.h; sourceTree = "<group>"; };
 		D88A319A1898A3AA0054FD7B /* NewsCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsCategory.m; sourceTree = "<group>"; };
-		D8932B9B18C3038000809673 /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; path = iTunesArtwork; sourceTree = "<group>"; };
 		D8C503AC189360BF0092CAC0 /* BMCollectListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMCollectListViewController.h; sourceTree = "<group>"; };
 		D8C503AD189360BF0092CAC0 /* BMCollectListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMCollectListViewController.m; sourceTree = "<group>"; };
 		D8C503AF1894F85C0092CAC0 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
@@ -872,7 +872,7 @@
 		D8F72B82189697AD0093978C /* Image */ = {
 			isa = PBXGroup;
 			children = (
-				D8932B9B18C3038000809673 /* iTunesArtwork */,
+				D8059A6618EE48BC009E0CBF /* iTunesArtwork */,
 				D8F72B9D189762950093978C /* Default-568h@2x.png */,
 				D8F72B9E189762950093978C /* Default.png */,
 				D8F72B9F189762950093978C /* Default@2x.png */,
@@ -993,7 +993,7 @@
 				D81DB83518877AEF002D27B5 /* UMSocialSDKResourcesNew.bundle in Resources */,
 				D81DB84018877AEF002D27B5 /* ios-social-sdk-share-detail.html in Resources */,
 				42C5844F187A8B5700D919EB /* Config.json in Resources */,
-				D8932B9C18C3038000809673 /* iTunesArtwork in Resources */,
+				D8059A6718EE48BC009E0CBF /* iTunesArtwork in Resources */,
 				D81DB83918877AEF002D27B5 /* iOS-social-releasenote.html in Resources */,
 				D81DB83218877AEF002D27B5 /* UMSLoginViewController.xib in Resources */,
 				D81DB84218877AEF002D27B5 /* ios-social-sdk-socialBar.html in Resources */,

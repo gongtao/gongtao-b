@@ -28,11 +28,15 @@
 
 @property (nonatomic, strong) News *shareNews;
 
+@property (nonatomic, strong) NSTimer *timer;
+
 - (void)_updateData;
 
 - (void)_loginToSite:(NSNotification *)notice;
 
 - (void)_comment;
+
+- (void)_timerFire;
 
 @end
 
@@ -83,7 +87,6 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_loginToSite:) name:kLoginSuccessNotification object:nil];
     
     [[AFNetworkReachabilityManager sharedManager] setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status){
-        NSLog(@"haha");
         [_scView updateNetworking:status];
         BOOL isReachable = status>AFNetworkReachabilityStatusNotReachable;
         if (isReachable && !_isReachable) {
@@ -97,11 +100,14 @@
             }];
         }
     }];
+    
+    _timer = [NSTimer scheduledTimerWithTimeInterval:3600 target:self selector:@selector(_timerFire) userInfo:nil repeats:YES];
 }
 
 - (void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [_timer invalidate];
 }
 
 - (void)didReceiveMemoryWarning
@@ -211,6 +217,14 @@
     }
 }
 
+- (void)_timerFire
+{
+    if (_isLastPage) {
+        _isLastPage = NO;
+        _page = 1;
+    }
+}
+
 #pragma mark -
 
 - (void)videoDelete
@@ -258,13 +272,6 @@
 - (void)videoBad
 {
     [self _comment];
-//    if ([[NSUserDefaults standardUserDefaults] objectForKey:kLoginKey]) {
-//        [self _comment];
-//    }
-//    else {
-//        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"评论" message:@"亲~请先登录再评论" delegate:self cancelButtonTitle:@"暂不" otherButtonTitles:@"登录", nil];
-//        [alertView show];
-//    }
 }
 
 #pragma mark - UIAlertViewDelegate
