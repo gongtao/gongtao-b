@@ -24,19 +24,17 @@
     
     UITableViewCell *_footerView;
     
+    UILabel *_emptyLabel;
+    
     NSInteger _page;
 
 }
 
-@property (nonatomic,strong)NSFetchRequest* fetchRequest;
+@property (nonatomic,strong) NSFetchRequest* fetchRequest;
 
 - (void)reloadTableViewDataSource;
 
 - (void)_dingButtonPressed:(UIButton *)sender;
-
-//- (void)_shareButtonPressed:(UIButton *)sender;
-
-//- (void)_collectButtonPressed:(UIButton *)sender;
 
 - (void)_finishLoadMore:(BOOL)isFinished;
 
@@ -76,8 +74,17 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     self.rowAnimation = UITableViewRowAnimationNone;
-    self.tableView.backgroundColor = [UIColor clearColor];
+    self.tableView.backgroundColor = Color_ViewBg;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
+    _emptyLabel = [[UILabel alloc] init];
+    _emptyLabel.backgroundColor = [UIColor clearColor];
+    _emptyLabel.font = [UIFont systemFontOfSize:12.0];
+    _emptyLabel.textColor = Color_NewsSmallFont;
+    _emptyLabel.text = @"还没有评论哦~";
+    _emptyLabel.hidden = YES;
+    [_emptyLabel sizeToFit];
+    [self.view insertSubview:_emptyLabel belowSubview:self.tableView];
     
     if (_refreshHeaderView == nil) {
         EGORefreshTableHeaderView *view = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0.0f, 0.0f - self.tableView.bounds.size.height, self.tableView.frame.size.width, self.tableView.bounds.size.height)];
@@ -90,6 +97,12 @@
     
     [NSFetchedResultsController deleteCacheWithName:[self cacheName]];
 
+}
+
+- (void)viewDidLayoutSubviews
+{
+    [super viewDidLayoutSubviews];
+    _emptyLabel.center = CGPointMake(self.view.bounds.size.width/2.0, self.view.bounds.size.height/2.0);
 }
 
 - (void)didReceiveMemoryWarning
@@ -330,9 +343,13 @@
     int count = [[[self.fetchedResultsController sections] objectAtIndex:0] numberOfObjects];
     if (0 == count) {
         _page = 1;
+        self.tableView.backgroundColor = [UIColor clearColor];
+        _emptyLabel.hidden = NO;
     }
     else {
         _page = count/10+((count%10==0)?1:2);
+        self.tableView.backgroundColor = Color_ViewBg;
+        _emptyLabel.hidden = YES;
     }
     return count+1;
 }

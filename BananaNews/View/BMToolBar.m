@@ -25,7 +25,7 @@
         self.backgroundColor = [UIColor whiteColor];
         
         UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, frame.size.width, 1.0)];
-        lineView.backgroundColor = [UIColor colorWithHexString:@"999999"];
+        lineView.backgroundColor = Color_NewsSmallFont;
         [self addSubview:lineView];
         
         _titleArray = @[@"推荐", @"分类", @"我的", @"设置"];
@@ -36,7 +36,7 @@
             button.titleRect = CGRectMake(28.0, 28.0, 24.0, 18.0);
             button.titleLabel.font = [UIFont systemFontOfSize:12.0];
             [button setTitle:obj forState:UIControlStateNormal];
-            [button setTitleColor:[UIColor colorWithHexString:@"999999"] forState:UIControlStateNormal];
+            [button setTitleColor:Color_NewsSmallFont forState:UIControlStateNormal];
             [button setTitleColor:Color_NavBarBg forState:UIControlStateHighlighted];
             [button setImage:[UIImage imageNamed:[NSString stringWithFormat:@"工具栏%@.png", obj]] forState:UIControlStateNormal];
             [button setImage:[UIImage imageNamed:[NSString stringWithFormat:@"工具栏%@高亮.png", obj]] forState:UIControlStateHighlighted];
@@ -64,7 +64,7 @@
     if (_lastIndex!=-1) {
         UIButton *lastButton = (UIButton *)[self viewWithTag:_lastIndex+100];
         NSString *title = _titleArray[_lastIndex];
-        [lastButton setTitleColor:[UIColor colorWithHexString:@"999999"] forState:UIControlStateNormal];
+        [lastButton setTitleColor:Color_NewsSmallFont forState:UIControlStateNormal];
         [lastButton setImage:[UIImage imageNamed:[NSString stringWithFormat:@"工具栏%@.png", title]] forState:UIControlStateNormal];
         [lastButton setImage:[UIImage imageNamed:[NSString stringWithFormat:@"工具栏%@高亮.png", title]] forState:UIControlStateHighlighted];
     }

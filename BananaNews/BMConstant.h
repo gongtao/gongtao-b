@@ -32,6 +32,7 @@
 #define Color_NavBarBg              [UIColor colorWithHexString:@"82ce24"]
 #define Color_ViewBg                [UIColor colorWithHexString:@"f3f3f3"]
 #define Color_CommentBlue           [UIColor colorWithHexString:@"38b7ea"]
+#define Color_NewsSmallFont         [UIColor colorWithHexString:@"999999"]
 
 //1.0版本数据
 #define kSidePanelLeftWidth     232.0
@@ -60,7 +61,6 @@
 #define Color_SideFont      [UIColor colorWithHexString:@"666666"]
 #define Color_GrayFont      [UIColor colorWithHexString:@"c6c6c6"]
 #define Color_NewsFont      [UIColor colorWithHexString:@"333333"]
-#define Color_NewsSmallFont [UIColor colorWithHexString:@"999999"]
 #define Color_CommentUser   [UIColor colorWithHexString:@"348ad2"]
 #define Color_UploadFrameBg [UIColor colorWithHexString:@"f9f9f9"]
 
