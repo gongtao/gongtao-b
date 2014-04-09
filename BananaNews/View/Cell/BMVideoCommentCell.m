@@ -16,6 +16,7 @@
     if (self) {
         // Initialization code
         self.viewForBaselineLayout.backgroundColor=Color_ViewBg;
+        self.selectionStyle = UITableViewCellSelectionStyleNone;
         
         _lineView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, self.frame.size.width, 1)];
         _lineView.backgroundColor=[UIColor colorWithHexString:@"cccccc"];

@@ -1498,7 +1498,7 @@
     [requestOperation setProgressiveDownloadProgressBlock:^(NSInteger bytesRead, long long totalBytesRead, long long totalBytesExpected, long long totalBytesReadForFile, long long totalBytesExpectedToReadForFile) {
 //        NSDictionary *dic = @{@"readFileBytes": [NSNumber numberWithLongLong:totalBytesReadForFile],
 //                              @"totalFileBytes": [NSNumber numberWithLongLong:totalBytesExpectedToReadForFile]};
-        NSLog(@"%lli,%lli", totalBytesExpectedToReadForFile, totalBytesReadForFile);
+//        NSLog(@"%lli,%lli", totalBytesExpectedToReadForFile, totalBytesReadForFile);
     }];
     
     [requestOperation start];
