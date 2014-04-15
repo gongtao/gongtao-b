@@ -44,6 +44,7 @@
     CGFloat y = IS_IOS7?64.0:44.0;
     
     self.contentView = [[UIView alloc] initWithFrame:CGRectMake(0.0, y, 320.0, self.view.frame.size.height-y-48.0)];
+    //NSLog(@"%f",self.view.frame.size.height-48.0);
     self.contentView.backgroundColor = Color_ViewBg;
     [self.view addSubview:self.contentView];
     
@@ -58,11 +59,12 @@
     self.subVCDic = [[NSMutableDictionary alloc] initWithCapacity:4];
     
     self.toolBar = [[BMToolBar alloc] initWithFrame:CGRectMake(0.0, CGRectGetMaxY(self.contentView.frame), 320.0, 48.0)];
+    //NSLog(@"%f",CGRectGetMaxY(self.contentView.frame));
     self.toolBar.delegate = self;
     [self.view addSubview:self.toolBar];
     [self.toolBar selectedTagAtIndex:0];
     
-    self.toolBar.hidden = YES;
+    //self.toolBar.hidden = YES;
 }
 
 - (void)didReceiveMemoryWarning
