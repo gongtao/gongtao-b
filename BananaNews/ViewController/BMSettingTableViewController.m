@@ -73,45 +73,56 @@ static NSString *cellIdentifier = @"settingCell";
     //static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
     cell.backgroundColor=Color_ViewBg;
-    UIButton *button=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, cellHeight)];
-    [button setTitleColor:Color_NewsSmallFont forState:UIControlStateNormal];
-    [button setTitleColor:Color_NavBarBg forState:UIControlStateHighlighted];
-    button.titleLabel.font=[UIFont systemFontOfSize:12.0];
-    button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-    button.contentEdgeInsets = UIEdgeInsetsMake(0,20, 0, 0);
-    button.backgroundColor=[UIColor whiteColor];
-    button.tag=100+[indexPath row];
-    [button addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
+    cell.selectionStyle=UITableViewCellSelectionStyleNone;
+    UILabel *label=[[UILabel alloc]initWithFrame:CGRectMake(20, 10, 50, 20)];
+    label.textColor=Color_NewsSmallFont;
+    label.font=[UIFont systemFontOfSize:12.0];
+    //button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+    //button.contentEdgeInsets = UIEdgeInsetsMake(0,20, 0, 0);
+    label.backgroundColor=[UIColor clearColor];
+    cell.backgroundColor=[UIColor whiteColor];
     UIView *lineView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 1)];
     lineView.backgroundColor=Color_NavBarBg;
-    [button addSubview:lineView];
+    [cell addSubview:lineView];
     switch ([indexPath row]) {
         case 0:
-            [button setTitle:@"意见反馈" forState:UIControlStateNormal];
+            label.text=@"意见反馈";
+            //[button setTitle:@"意见反馈" forState:UIControlStateNormal];
             break;
         case 1:
-            [button setTitle:@"给我评分" forState:UIControlStateNormal];
+            label.text=@"给我评分";
+            //[button setTitle:@"给我评分" forState:UIControlStateNormal];
             break;
         case 2:
-            [button setTitle:@"检查更新" forState:UIControlStateNormal];
+            label.text=@"检查更新";
+            //[button setTitle:@"检查更新" forState:UIControlStateNormal];
             break;
         case 3:
-            [button setTitle:@"清除缓存" forState:UIControlStateNormal];
+            label.text=@"清除缓存";
+            //[button setTitle:@"清除缓存" forState:UIControlStateNormal];
             break;
         case 4:
-            [button setTitle:@"关于我们" forState:UIControlStateNormal];
+            label.text=@"关于我们";
+            //[button setTitle:@"关于我们" forState:UIControlStateNormal];
             break;
         case 5:
-        {[button setTitle:@"免责声明" forState:UIControlStateNormal];
+            label.text=@"免责声明";
+        {//[button setTitle:@"免责声明" forState:UIControlStateNormal];
             UIView *lineView=[[UIView alloc]initWithFrame:CGRectMake(0, cellHeight-1, self.view.frame.size.width, 1)];
             lineView.backgroundColor=Color_NavBarBg;
-            [button addSubview:lineView];
+            [cell addSubview:lineView];
             break;}
         default:
             break;
     }
-    [cell addSubview:button];
+    [cell addSubview:label];
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    int row=[indexPath row];
+    
 }
 
 -(void)buttonClick:(UIButton *)button
