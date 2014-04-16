@@ -9,8 +9,13 @@
 #import "BMSettingTableViewController.h"
 
 @interface BMSettingTableViewController ()
+{
+    CGFloat cellHeight;
+}
 
 @end
+
+static NSString *cellIdentifier = @"settingCell";
 
 @implementation BMSettingTableViewController
 
@@ -19,6 +24,7 @@
     self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
+        cellHeight=40;
     }
     return self;
 }
@@ -26,6 +32,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.view.backgroundColor=Color_ViewBg;
+    self.tableView.backgroundColor=Color_ViewBg;
+    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:cellIdentifier];
+    [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -46,26 +58,71 @@
 {
 #warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
 #warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 0;
+    return 6;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    
-    // Configure the cell...
-    
+    //static NSString *CellIdentifier = @"Cell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
+    cell.backgroundColor=Color_ViewBg;
+    UIButton *button=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, cellHeight)];
+    [button setTitleColor:Color_NewsSmallFont forState:UIControlStateNormal];
+    [button setTitleColor:Color_NavBarBg forState:UIControlStateHighlighted];
+    button.titleLabel.font=[UIFont systemFontOfSize:12.0];
+    button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+    button.contentEdgeInsets = UIEdgeInsetsMake(0,20, 0, 0);
+    button.backgroundColor=[UIColor whiteColor];
+    button.tag=100+[indexPath row];
+    [button addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
+    UIView *lineView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 1)];
+    lineView.backgroundColor=Color_NavBarBg;
+    [button addSubview:lineView];
+    switch ([indexPath row]) {
+        case 0:
+            [button setTitle:@"意见反馈" forState:UIControlStateNormal];
+            break;
+        case 1:
+            [button setTitle:@"给我评分" forState:UIControlStateNormal];
+            break;
+        case 2:
+            [button setTitle:@"检查更新" forState:UIControlStateNormal];
+            break;
+        case 3:
+            [button setTitle:@"清除缓存" forState:UIControlStateNormal];
+            break;
+        case 4:
+            [button setTitle:@"关于我们" forState:UIControlStateNormal];
+            break;
+        case 5:
+        {[button setTitle:@"免责声明" forState:UIControlStateNormal];
+            UIView *lineView=[[UIView alloc]initWithFrame:CGRectMake(0, cellHeight-1, self.view.frame.size.width, 1)];
+            lineView.backgroundColor=Color_NavBarBg;
+            [button addSubview:lineView];
+            break;}
+        default:
+            break;
+    }
+    [cell addSubview:button];
     return cell;
 }
 
+-(void)buttonClick:(UIButton *)button
+{
+    
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return cellHeight;
+}
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath

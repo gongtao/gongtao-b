@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BMSettingTableViewController : UITableViewController
+@interface BMSettingTableViewController : UITableViewController<UITableViewDataSource,UITableViewDelegate>
+
 
 @end
