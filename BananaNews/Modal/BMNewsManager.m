@@ -598,18 +598,20 @@
 //NewsCategory
 - (NewsCategory *)createNewsCategory:(NSDictionary *)dic context:(NSManagedObjectContext *)context
 {
-    NSNumber *cid = dic[@"category_id"];
+    id cid = dic[@"category_id"];
     
     if (!cid || (NSNull *)cid == [NSNull null]) {
         NSLog(@"NewsCategory: cid null");
         return nil;
     }
     
-    NewsCategory *newsCategory = [self getNewsCategoryById:cid.stringValue context:context];
+    NSString *cidStr = [NSString stringWithFormat:@"%@", cid];
+    
+    NewsCategory *newsCategory = [self getNewsCategoryById:cidStr context:context];
     
     if (!newsCategory) {
         newsCategory = [NSEntityDescription insertNewObjectForEntityForName:NewsCategory_Entity inManagedObjectContext:context];
-        newsCategory.category_id = cid.stringValue;
+        newsCategory.category_id = cidStr;
     }
     
     NSString *name = dic[@"name"];
