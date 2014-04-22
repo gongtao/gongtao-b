@@ -13,7 +13,6 @@
 @interface BMCategoryTableViewController ()
 {
     NSString *_cache;
-    //AFHTTPRequestOperation *_request;
     NSArray *nCategoryArray;
     int categoryCount;
 }

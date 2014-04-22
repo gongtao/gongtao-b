@@ -770,11 +770,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BananaNews/ViewController/BMCategoryTableViewController.m"
-            timestampString = "419849139.210597"
+            timestampString = "419853126.116607"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "105"
-            endingLineNumber = "105"
+            startingLineNumber = "104"
+            endingLineNumber = "104"
             landmarkName = "-configCell:cellForRowAtIndexPath:fetchedResultsController:"
             landmarkType = "5">
          </BreakpointContent>
@@ -786,11 +786,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BananaNews/ViewController/BMCategoryTableViewController.m"
-            timestampString = "419852907.487019"
+            timestampString = "419853126.116607"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "156"
-            endingLineNumber = "156"
+            startingLineNumber = "155"
+            endingLineNumber = "155"
             landmarkName = "-tableView:numberOfRowsInSection:"
             landmarkType = "5">
          </BreakpointContent>
@@ -802,11 +802,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BananaNews/ViewController/BMCategoryTableViewController.m"
-            timestampString = "419852348.69076"
+            timestampString = "419853126.116607"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "134"
-            endingLineNumber = "134"
+            startingLineNumber = "133"
+            endingLineNumber = "133"
             landmarkName = "-tableView:cellForRowAtIndexPath:fetchedResultsController:"
             landmarkType = "5">
          </BreakpointContent>
@@ -818,11 +818,27 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BananaNews/ViewController/BMCategoryTableViewController.m"
-            timestampString = "419849139.210597"
+            timestampString = "419853126.116607"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "107"
-            endingLineNumber = "107"
+            startingLineNumber = "106"
+            endingLineNumber = "106"
+            landmarkName = "-configCell:cellForRowAtIndexPath:fetchedResultsController:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BananaNews/ViewController/BMCategoryTableViewController.m"
+            timestampString = "419853122.574283"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "108"
+            endingLineNumber = "108"
             landmarkName = "-configCell:cellForRowAtIndexPath:fetchedResultsController:"
             landmarkType = "5">
          </BreakpointContent>
