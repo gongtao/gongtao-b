@@ -407,6 +407,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="Bw5-wH-B1C"/>
+                    <connections>
+                        <segue destination="T16-p7-UMP" kind="push" id="6e1-fk-cIu"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Srh-6T-Jd8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -468,6 +471,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iIl-zc-Iap" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-138" y="-1345"/>
+        </scene>
+        <!--Sub Category Detail View Controller-->
+        <scene sceneID="pTX-sk-TR7">
+            <objects>
+                <viewController storyboardIdentifier="subCategoryDetailViewController" id="T16-p7-UMP" customClass="BMSubCategoryDetailViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="a4q-eH-L6w"/>
+                        <viewControllerLayoutGuide type="bottom" id="VHU-Rh-1uH"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="mMn-mn-7KS">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="90G-3e-rZy"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YXS-4M-EDt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-138" y="-648"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

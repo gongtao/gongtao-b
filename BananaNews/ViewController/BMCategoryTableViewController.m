@@ -10,6 +10,8 @@
 
 #import "BMNewsCategoryTableViewCell.h"
 
+#import "BMSubCategoryDetailViewController.h"
+
 @interface BMCategoryTableViewController ()
 {
     NSString *_cache;
@@ -111,15 +113,15 @@
     
     if (!cell) {
         cell = [[BMNewsCategoryTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-        [self configCell:cell cellForRowAtIndexPath:[NSIndexPath indexPathForRow:[indexPath row]*2 inSection:0] fetchedResultsController:fetchedResultsController];
-        [self configCell:cell cellForRowAtIndexPath:[NSIndexPath indexPathForRow:[indexPath row]*2+1 inSection:0] fetchedResultsController:fetchedResultsController];
-        cell.button1.tag=100+[indexPath row]*2;
-        cell.button2.tag=100+[indexPath row]*2+1;
         [cell.button1 addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
         [cell.button2 addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
     }
     
-    //[cell.contentView addSubview:cell.button];
+    [self configCell:cell cellForRowAtIndexPath:[NSIndexPath indexPathForRow:[indexPath row]*2 inSection:0] fetchedResultsController:fetchedResultsController];
+    [self configCell:cell cellForRowAtIndexPath:[NSIndexPath indexPathForRow:[indexPath row]*2+1 inSection:0] fetchedResultsController:fetchedResultsController];
+    cell.button1.tag=100+[indexPath row]*2;
+    cell.button2.tag=100+[indexPath row]*2+1;
+    
     return cell;
 }
 
@@ -128,6 +130,9 @@
     int row=button.tag-100;
     NSIndexPath *indexPath=[NSIndexPath indexPathForRow:row inSection:0];
     NewsCategory *newsCategory = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    BMSubCategoryDetailViewController *vc = [self.parentViewController.storyboard instantiateViewControllerWithIdentifier:@"subCategoryDetailViewController"];
+    vc.category = newsCategory;
+    [self.parentViewController.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma mark - UITableViewDataSource
