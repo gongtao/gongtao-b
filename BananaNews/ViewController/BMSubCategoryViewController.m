@@ -8,6 +8,8 @@
 
 #import "BMSubCategoryViewController.h"
 
+#import "BMCategoryTableViewController.h"
+
 //#import "BMNewsManager.h"
 
 @interface BMSubCategoryViewController ()
@@ -42,12 +44,12 @@
     
     [request setSortDescriptors:[NSArray arrayWithObject:sortDesciptor]];
     
-   // QFCollectionTableViewController *newsVC = [[QFCollectionTableViewController alloc] initWithRequest:request cacheName:@"cacheCategory"];
-    //newsVC.view.frame=CGRectMake(0, y, self.view.bounds.size.width, self.view.bounds.size.height);
-   // newsVC.tableView.frame=CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height);
-   // newsVC.view.backgroundColor=[UIColor clearColor];
-   // [self addChildViewController:newsVC];
-   // [self.view addSubview:newsVC.view];
+    BMCategoryTableViewController *newsVC = [[BMCategoryTableViewController alloc] initWithRequest:request cacheName:@"cacheCategory"];
+    newsVC.view.frame=CGRectMake(0, y, self.view.bounds.size.width, self.view.bounds.size.height);
+    newsVC.tableView.frame=CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height);
+    newsVC.view.backgroundColor=[UIColor clearColor];
+    [self addChildViewController:newsVC];
+    [self.view addSubview:newsVC.view];
 
 }
 
