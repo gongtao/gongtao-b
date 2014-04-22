@@ -10,6 +10,7 @@
 		264D252918D96F4C00D2F3D1 /* BMOperateSubView.m in Sources */ = {isa = PBXBuildFile; fileRef = 264D252818D96F4C00D2F3D1 /* BMOperateSubView.m */; };
 		2691053118DC365B00CFDB3A /* BMCommonScrollorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2691053018DC365B00CFDB3A /* BMCommonScrollorView.m */; };
 		269628CD18FD7D5500A11DD3 /* BMSettingTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 269628CC18FD7D5500A11DD3 /* BMSettingTableViewController.m */; };
+		269A85EA19061AF600D96DB3 /* BMCategoryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 269A85E919061AF600D96DB3 /* BMCategoryTableViewController.m */; };
 		26B2AA3718E809E600D134D0 /* BMCommentTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26B2AA3618E809E600D134D0 /* BMCommentTableViewController.m */; };
 		26B2AA3A18E80DED00D134D0 /* BMVideoCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 26B2AA3918E80DED00D134D0 /* BMVideoCommentCell.m */; };
 		424C36BA18D92F5500B693F5 /* BMBaseSubViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 424C36B918D92F5500B693F5 /* BMBaseSubViewController.m */; };
@@ -157,6 +158,8 @@
 		2691053018DC365B00CFDB3A /* BMCommonScrollorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMCommonScrollorView.m; sourceTree = "<group>"; };
 		269628CB18FD7D5500A11DD3 /* BMSettingTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMSettingTableViewController.h; sourceTree = "<group>"; };
 		269628CC18FD7D5500A11DD3 /* BMSettingTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMSettingTableViewController.m; sourceTree = "<group>"; };
+		269A85E819061AF600D96DB3 /* BMCategoryTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMCategoryTableViewController.h; sourceTree = "<group>"; };
+		269A85E919061AF600D96DB3 /* BMCategoryTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMCategoryTableViewController.m; sourceTree = "<group>"; };
 		26B2AA3518E809E600D134D0 /* BMCommentTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMCommentTableViewController.h; sourceTree = "<group>"; };
 		26B2AA3618E809E600D134D0 /* BMCommentTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMCommentTableViewController.m; sourceTree = "<group>"; };
 		26B2AA3818E80DED00D134D0 /* BMVideoCommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMVideoCommentCell.h; sourceTree = "<group>"; };
@@ -616,6 +619,8 @@
 				424C36C418D9439600B693F5 /* BMRecommendViewController.m */,
 				424C36C618D9840200B693F5 /* BMSubCategoryViewController.h */,
 				424C36C718D9840200B693F5 /* BMSubCategoryViewController.m */,
+				269A85E819061AF600D96DB3 /* BMCategoryTableViewController.h */,
+				269A85E919061AF600D96DB3 /* BMCategoryTableViewController.m */,
 				424C36C918D9841B00B693F5 /* BMSubUserViewController.h */,
 				424C36CA18D9841B00B693F5 /* BMSubUserViewController.m */,
 				424C36CC18D9842900B693F5 /* BMSubSettingsViewController.h */,
@@ -1063,6 +1068,7 @@
 				26B2AA3A18E80DED00D134D0 /* BMVideoCommentCell.m in Sources */,
 				42C7BB0618712BF700BD6382 /* BMLeftViewCell.m in Sources */,
 				2691053118DC365B00CFDB3A /* BMCommonScrollorView.m in Sources */,
+				269A85EA19061AF600D96DB3 /* BMCategoryTableViewController.m in Sources */,
 				424C36CB18D9841B00B693F5 /* BMSubUserViewController.m in Sources */,
 				D8C503B7189536650092CAC0 /* BMUserInfoViewController.m in Sources */,
 				42C7BB0118710E7F00BD6382 /* BMRightViewController.m in Sources */,
