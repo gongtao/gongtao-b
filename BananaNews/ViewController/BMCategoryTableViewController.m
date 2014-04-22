@@ -38,7 +38,7 @@
     if (self) {
         // Custom initialization
         _fetchRequest = request;
-        _fetchRequest.fetchBatchSize = 1000;
+        _fetchRequest.fetchBatchSize = 16;
         _cache = cache;
     }
     return self;
@@ -56,16 +56,6 @@
     categoryCount = [[[self.fetchedResultsController sections] objectAtIndex:0] numberOfObjects];
     //[self reloadTableViewDataSource];
     
-}
-
-- (void)reloadTableViewDataSource
-{
-    id appDelegate = [UIApplication sharedApplication].delegate;
-    nCategoryArray=[[BMNewsManager sharedManager]getAllNewsCategory:[appDelegate managedObjectContext]];
-    [nCategoryArray enumerateObjectsUsingBlock:^(NewsCategory *obj, NSUInteger idx, BOOL *stop){
-        //NSLog(@"%@",obj.cname);
-        //NSLog(@"%@",obj.isHead);
-    }];
 }
 
 - (NSFetchRequest *)fetchRequest
@@ -100,8 +90,6 @@
 
 - (void)configCell:(UITableViewCell *)cell cellForRowAtIndexPath:(NSIndexPath *)indexPath fetchedResultsController:(NSFetchedResultsController *)fetchedResultsController
 {
-    //NSLog(@"%i",[indexPath row]);
-    //NSLog(@"%@",newsCategory.cname);
     BMNewsCategoryTableViewCell *categoryCell = (BMNewsCategoryTableViewCell *)cell;
     int row=[indexPath row];
     if ([indexPath row]==categoryCount) {
@@ -140,16 +128,12 @@
     int row=button.tag-100;
     NSIndexPath *indexPath=[NSIndexPath indexPathForRow:row inSection:0];
     NewsCategory *newsCategory = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    NSLog(@"%@",newsCategory.cname);
 }
 
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    //int count = [[[self.fetchedResultsController sections] objectAtIndex:0] numberOfObjects];
-    //NSLog(@"section:%ld",(long)section);
-    //NSLog(@"count:%i",count);
     int count=categoryCount/2;
     count=count+(categoryCount%2==0?0:1);
     return count;

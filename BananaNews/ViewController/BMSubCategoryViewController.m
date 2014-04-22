@@ -14,6 +14,8 @@
 
 @interface BMSubCategoryViewController ()
 
+@property (nonatomic, strong) BMCategoryTableViewController *newsVC;
+
 @end
 
 @implementation BMSubCategoryViewController
@@ -44,13 +46,18 @@
     
     [request setSortDescriptors:[NSArray arrayWithObject:sortDesciptor]];
     
-    BMCategoryTableViewController *newsVC = [[BMCategoryTableViewController alloc] initWithRequest:request cacheName:@"cacheCategory"];
-    newsVC.view.frame=CGRectMake(0, 5, self.view.bounds.size.width, self.view.bounds.size.height);
-    newsVC.tableView.frame=CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height);
-    newsVC.view.backgroundColor=[UIColor clearColor];
-    [self addChildViewController:newsVC];
-    [self.view addSubview:newsVC.view];
+    _newsVC = [[BMCategoryTableViewController alloc] initWithRequest:request cacheName:@"cacheCategory"];
+    _newsVC.view.backgroundColor=[UIColor clearColor];
+    [self addChildViewController:_newsVC];
+    [self.view addSubview:_newsVC.view];
 
+}
+
+- (void)viewDidLayoutSubviews
+{
+    [super viewDidLayoutSubviews];
+    _newsVC.view.frame=CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height);
+    _newsVC.tableView.frame=CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height);
 }
 
 - (void)didReceiveMemoryWarning
