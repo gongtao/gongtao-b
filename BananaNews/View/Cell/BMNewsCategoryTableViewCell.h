@@ -10,4 +10,10 @@
 
 @interface BMNewsCategoryTableViewCell : UITableViewCell
 
+@property (nonatomic,strong)UIButton *button1;
+
+@property (nonatomic,strong)UIButton *button2;
+
+-(void)configCellWithString:(NSString *)name atButton:(int )tag isHidden:(BOOL)is_hidden;
+
 @end
