@@ -49,8 +49,6 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    [super viewDidLoad];
-	// Do any additional setup after loading the view.
     self.rowAnimation = UITableViewRowAnimationNone;
     self.tableView.backgroundColor = [UIColor clearColor];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -126,11 +124,24 @@
     
     if (!cell) {
         cell = [[BMNewsCategoryTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        [self configCell:cell cellForRowAtIndexPath:[NSIndexPath indexPathForRow:[indexPath row]*2 inSection:0] fetchedResultsController:fetchedResultsController];
+        [self configCell:cell cellForRowAtIndexPath:[NSIndexPath indexPathForRow:[indexPath row]*2+1 inSection:0] fetchedResultsController:fetchedResultsController];
+        cell.button1.tag=100+[indexPath row]*2;
+        cell.button2.tag=100+[indexPath row]*2+1;
+        [cell.button1 addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
+        [cell.button2 addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
     }
-    [self configCell:cell cellForRowAtIndexPath:[NSIndexPath indexPathForRow:[indexPath row]*2 inSection:0] fetchedResultsController:fetchedResultsController];
-    [self configCell:cell cellForRowAtIndexPath:[NSIndexPath indexPathForRow:[indexPath row]*2+1 inSection:0] fetchedResultsController:fetchedResultsController];
+    
     //[cell.contentView addSubview:cell.button];
     return cell;
+}
+
+-(void)buttonClick:(UIButton *)button
+{
+    int row=button.tag-100;
+    NSIndexPath *indexPath=[NSIndexPath indexPathForRow:row inSection:0];
+    NewsCategory *newsCategory = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    NSLog(@"%@",newsCategory.cname);
 }
 
 #pragma mark - UITableViewDataSource

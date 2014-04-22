@@ -45,7 +45,7 @@
     [request setSortDescriptors:[NSArray arrayWithObject:sortDesciptor]];
     
     BMCategoryTableViewController *newsVC = [[BMCategoryTableViewController alloc] initWithRequest:request cacheName:@"cacheCategory"];
-    newsVC.view.frame=CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height);
+    newsVC.view.frame=CGRectMake(0, 5, self.view.bounds.size.width, self.view.bounds.size.height);
     newsVC.tableView.frame=CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height);
     newsVC.view.backgroundColor=[UIColor clearColor];
     [self addChildViewController:newsVC];

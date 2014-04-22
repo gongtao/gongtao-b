@@ -14,6 +14,10 @@
 
 @property (nonatomic,strong)UIButton *button2;
 
+@property (nonatomic,strong)UILabel *label1;
+
+@property (nonatomic,strong)UILabel *label2;
+
 -(void)configCellWithString:(NSString *)name atButton:(int )tag isHidden:(BOOL)is_hidden;
 
 @end
