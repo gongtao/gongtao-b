@@ -15,6 +15,7 @@
 
 @property (nonatomic, retain) NSNumber * comment_count;
 @property (nonatomic, retain) NSNumber * fa_count;
+@property (nonatomic, retain) NSString * history_day;
 @property (nonatomic, retain) NSNumber * image_height;
 @property (nonatomic, retain) NSNumber * like_count;
 @property (nonatomic, retain) NSString * name;

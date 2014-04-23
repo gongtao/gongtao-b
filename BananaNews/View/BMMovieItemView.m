@@ -252,6 +252,11 @@
         url = [NSURL URLWithString:path];
     }
     if (url) {
+        NSDate *date = [NSDate new];
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        [formatter setDateFormat:@"yyyy-MM-dd"];
+        self.news.history_day = [formatter stringFromDate:date];
+        
         MPMoviePlayerViewController *vc = [[MPMoviePlayerViewController alloc] initWithContentURL:url];
         UIViewController *rootVC = [UIApplication sharedApplication].keyWindow.rootViewController;
         [rootVC presentMoviePlayerViewControllerAnimated:vc];

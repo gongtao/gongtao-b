@@ -17,6 +17,7 @@
 
 @dynamic comment_count;
 @dynamic fa_count;
+@dynamic history_day;
 @dynamic image_height;
 @dynamic like_count;
 @dynamic name;

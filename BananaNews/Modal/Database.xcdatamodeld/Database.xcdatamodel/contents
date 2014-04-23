@@ -25,6 +25,7 @@
     <entity name="News" representedClassName="News" syncable="YES">
         <attribute name="comment_count" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="fa_count" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="history_day" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="image_height" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="isSearch" optional="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="like_count" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
