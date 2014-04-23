@@ -8,6 +8,10 @@
 
 #import "GTTableViewController.h"
 
-@interface BMHistoryTableViewController : GTTableViewController
+#import "BMHistoryTableViewCell.h"
+
+@interface BMHistoryTableViewController : GTTableViewController<BMHistoryTableViewCellDelegate>
+
+- (id)initWithRequest:(NSFetchRequest *)request cacheName:(NSString *)cache;
 
 @end

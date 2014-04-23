@@ -8,6 +8,18 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol BMHistoryTableViewCellDelegate <NSObject>
+
+-(void)deleteButtonClickAtNews:(News *)news;
+
+-(void)shareButtonClickAtNews:(News *)news;
+
+@end
+
 @interface BMHistoryTableViewCell : UITableViewCell
+
+@property(nonatomic,strong)id<BMHistoryTableViewCellDelegate>delegate;
+
+-(void)configCellWithNews:(News *)news;
 
 @end
