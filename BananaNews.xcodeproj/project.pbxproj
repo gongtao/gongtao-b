@@ -10,6 +10,7 @@
 		264D252918D96F4C00D2F3D1 /* BMOperateSubView.m in Sources */ = {isa = PBXBuildFile; fileRef = 264D252818D96F4C00D2F3D1 /* BMOperateSubView.m */; };
 		2691053118DC365B00CFDB3A /* BMCommonScrollorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2691053018DC365B00CFDB3A /* BMCommonScrollorView.m */; };
 		269628CD18FD7D5500A11DD3 /* BMSettingTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 269628CC18FD7D5500A11DD3 /* BMSettingTableViewController.m */; };
+		26989CBA1907AC2B00A8A4BB /* BMHistoryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26989CB91907AC2B00A8A4BB /* BMHistoryTableViewController.m */; };
 		269A85EA19061AF600D96DB3 /* BMCategoryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 269A85E919061AF600D96DB3 /* BMCategoryTableViewController.m */; };
 		269A85ED19063B9500D96DB3 /* BMNewsCategoryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 269A85EC19063B9500D96DB3 /* BMNewsCategoryTableViewCell.m */; };
 		26B2AA3718E809E600D134D0 /* BMCommentTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26B2AA3618E809E600D134D0 /* BMCommentTableViewController.m */; };
@@ -160,6 +161,8 @@
 		2691053018DC365B00CFDB3A /* BMCommonScrollorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMCommonScrollorView.m; sourceTree = "<group>"; };
 		269628CB18FD7D5500A11DD3 /* BMSettingTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMSettingTableViewController.h; sourceTree = "<group>"; };
 		269628CC18FD7D5500A11DD3 /* BMSettingTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMSettingTableViewController.m; sourceTree = "<group>"; };
+		26989CB81907AC2A00A8A4BB /* BMHistoryTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMHistoryTableViewController.h; sourceTree = "<group>"; };
+		26989CB91907AC2B00A8A4BB /* BMHistoryTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMHistoryTableViewController.m; sourceTree = "<group>"; };
 		269A85E819061AF600D96DB3 /* BMCategoryTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMCategoryTableViewController.h; sourceTree = "<group>"; };
 		269A85E919061AF600D96DB3 /* BMCategoryTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMCategoryTableViewController.m; sourceTree = "<group>"; };
 		269A85EB19063B9500D96DB3 /* BMNewsCategoryTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMNewsCategoryTableViewCell.h; sourceTree = "<group>"; };
@@ -639,6 +642,8 @@
 				42C7F1A018E00AB300250D0D /* BMCommentViewController.m */,
 				26B2AA3518E809E600D134D0 /* BMCommentTableViewController.h */,
 				26B2AA3618E809E600D134D0 /* BMCommentTableViewController.m */,
+				26989CB81907AC2A00A8A4BB /* BMHistoryTableViewController.h */,
+				26989CB91907AC2B00A8A4BB /* BMHistoryTableViewController.m */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -1141,6 +1146,7 @@
 				42C7BB2318715E3100BD6382 /* BMNavBackButton.m in Sources */,
 				42C7BB0A1871447100BD6382 /* BMNavigationController.m in Sources */,
 				D8EA591A1880B0C800EEB573 /* GTCyclePageViewCell.m in Sources */,
+				26989CBA1907AC2B00A8A4BB /* BMHistoryTableViewController.m in Sources */,
 				D821E85818757A80005C1604 /* BMSettingViewController.m in Sources */,
 				42C4E77E18866B5500E650BE /* BMFeedbackViewController.m in Sources */,
 				42C7BAC41871059100BD6382 /* main.m in Sources */,
