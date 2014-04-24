@@ -48,7 +48,7 @@
     UIButton *userButton=[[UIButton alloc]initWithFrame:CGRectMake(130, 30, 60, 60)];
     
     [userButton addTarget:self action:@selector(loginButtonClick) forControlEvents:UIControlEventTouchUpInside];
-    UILabel *label=[[UILabel alloc]initWithFrame:CGRectMake(10, 100, 300, 15)];
+    UILabel *label=[[UILabel alloc]initWithFrame:CGRectMake(10, 110, 300, 15)];
     label.textColor=Color_NavBarBg;
     label.font=[UIFont systemFontOfSize:14];
     label.textAlignment=UITextAlignmentCenter;
@@ -59,9 +59,15 @@
     }
     else
     {
-        label.text=@"";
+        User *user=[[BMNewsManager sharedManager]getMainUser];
+        label.text=@"name";
+        UIImageView *image;
+        [image setImageWithURL:[NSURL URLWithString:user.avatar] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType){
+        }];
+        [userButton setImage:image.image forState:UIControlStateNormal];
         [userButton setUserInteractionEnabled:NO];
     }
+    //NSLog(@"%@",[[NSUserDefaults standardUserDefaults] objectForKey:avatar]);
     
     [newsVC.view addSubview:userButton];
     [newsVC.view addSubview:label];
@@ -71,6 +77,11 @@
 }
 -(void)loginButtonClick
 {
+    UIView *bgView=[[UIView alloc]initWithFrame:self.view.bounds];
+    UIView *mask=[[UIView alloc]initWithFrame:self.view.bounds];
+    mask.alpha=0.5;
+    mask.backgroundColor=[UIColor whiteColor];
+    [bgView addSubview:mask];
     
 }
 

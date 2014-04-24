@@ -97,6 +97,17 @@
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    News *news = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    //NSLog(@"%@",news.nid);
+    if (news) {
+        
+    }
+    
+}
+
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
