@@ -256,6 +256,7 @@
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
         [formatter setDateFormat:@"yyyy-MM-dd"];
         self.news.history_day = [formatter stringFromDate:date];
+        [[BMNewsManager sharedManager] saveContext];
         
         MPMoviePlayerViewController *vc = [[MPMoviePlayerViewController alloc] initWithContentURL:url];
         UIViewController *rootVC = [UIApplication sharedApplication].keyWindow.rootViewController;

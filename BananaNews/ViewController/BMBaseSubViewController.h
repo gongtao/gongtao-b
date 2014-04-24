@@ -10,4 +10,8 @@
 
 @interface BMBaseSubViewController : UIViewController
 
+@property (nonatomic, strong) UIView *customNavigationBar;
+
+@property (nonatomic, strong) UILabel *customNavigationTitle;
+
 @end
