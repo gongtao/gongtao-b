@@ -12,6 +12,8 @@
 
 @interface BMSubUserViewController ()
 
+@property (nonatomic, strong) BMHistoryTableViewController *newsVC;
+
 @end
 
 @implementation BMSubUserViewController
@@ -40,49 +42,20 @@
     
     [request setSortDescriptors:[NSArray arrayWithObject:sortDesciptor]];
     
-    BMHistoryTableViewController *newsVC = [[BMHistoryTableViewController alloc] initWithRequest:request cacheName:@"cacheCollection"];
-    newsVC.view.frame=CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height);
-    newsVC.tableView.frame=CGRectMake(0, 160, self.view.bounds.size.width, self.view.bounds.size.height);
-    //newsVC.tableView.contentInset=UIEdgeInsetsMake(-160, 0.0f, 0.0f, 0.0f);
-    newsVC.view.backgroundColor=[UIColor clearColor];
-    UIButton *userButton=[[UIButton alloc]initWithFrame:CGRectMake(130, 30, 60, 60)];
-    
-    [userButton addTarget:self action:@selector(loginButtonClick) forControlEvents:UIControlEventTouchUpInside];
-    UILabel *label=[[UILabel alloc]initWithFrame:CGRectMake(10, 110, 300, 15)];
-    label.textColor=Color_NavBarBg;
-    label.font=[UIFont systemFontOfSize:14];
-    label.textAlignment=UITextAlignmentCenter;
-    if (![[NSUserDefaults standardUserDefaults] objectForKey:kLoginKey])
-    {
-        label.text=@"请登录";
-        [userButton setImage:[UIImage imageNamed:@"工具栏我的高亮.png"] forState:UIControlStateNormal];
-    }
-    else
-    {
-        User *user=[[BMNewsManager sharedManager]getMainUser];
-        label.text=@"name";
-        UIImageView *image;
-        [image setImageWithURL:[NSURL URLWithString:user.avatar] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType){
-        }];
-        [userButton setImage:image.image forState:UIControlStateNormal];
-        [userButton setUserInteractionEnabled:NO];
-    }
-    //NSLog(@"%@",[[NSUserDefaults standardUserDefaults] objectForKey:avatar]);
-    
-    [newsVC.view addSubview:userButton];
-    [newsVC.view addSubview:label];
-    [self addChildViewController:newsVC];
-    [self.view addSubview:newsVC.view];
+    _newsVC = [[BMHistoryTableViewController alloc] initWithRequest:request cacheName:@"cacheCollection"];
+    _newsVC.view.frame=CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height);
+    _newsVC.tableView.frame=CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height);
+    _newsVC.view.backgroundColor=[UIColor clearColor];
+    [self addChildViewController:_newsVC];
+    [self.view addSubview:_newsVC.view];
 
 }
--(void)loginButtonClick
+
+- (void)viewDidLayoutSubviews
 {
-    UIView *bgView=[[UIView alloc]initWithFrame:self.view.bounds];
-    UIView *mask=[[UIView alloc]initWithFrame:self.view.bounds];
-    mask.alpha=0.5;
-    mask.backgroundColor=[UIColor whiteColor];
-    [bgView addSubview:mask];
-    
+    [super viewDidLayoutSubviews];
+    _newsVC.view.frame = self.view.bounds;
+    _newsVC.tableView.frame = self.view.bounds;
 }
 
 - (void)didReceiveMemoryWarning

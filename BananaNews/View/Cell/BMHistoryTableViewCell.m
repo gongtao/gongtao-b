@@ -8,15 +8,17 @@
 
 #import "BMHistoryTableViewCell.h"
 
+#import "BMCustomButton.h"
+
 @interface BMHistoryTableViewCell()
 
 @property(nonatomic,strong)UIImageView *image;
 
 @property(nonatomic,strong)UILabel *label;
 
-@property(nonatomic,strong)UIButton *delete;
+@property(nonatomic,strong)BMCustomButton *delete;
 
-@property(nonatomic,strong)UIButton *share;
+@property(nonatomic,strong)BMCustomButton *share;
 
 @property(nonatomic,strong)News *news;
 
@@ -33,20 +35,21 @@
         self.selectionStyle=UITableViewCellSelectionStyleNone;
         UIView *bgView=[[UIView alloc]initWithFrame:CGRectMake(10,5, 300, 70)];
         bgView.backgroundColor=[UIColor whiteColor];
-        //_imageView=[[UIImageView alloc]initWithFrame:CGRectMake(10, 5, 90, 60)];
-        //[self addSubview:self.imageView];
-        _delete=[[UIButton alloc]initWithFrame:CGRectMake(250, 50, 13, 15)];
+        
+        _delete=[[BMCustomButton alloc]initWithFrame:CGRectMake(242, 43, 29, 29)];
+        _delete.imageRect = CGRectMake(8, 7, 13, 15);
         [_delete setImage:[UIImage imageNamed:@"评论删除.png"] forState:UIControlStateNormal];
         [_delete addTarget:self action:@selector(deleteButtonClick) forControlEvents:UIControlEventTouchUpInside];
         [bgView addSubview:self.delete];
-        _share=[[UIButton alloc]initWithFrame:CGRectMake(280, 50, 13, 15)];
+        
+        _share=[[BMCustomButton alloc]initWithFrame:CGRectMake(272, 43, 29, 29)];
+        _share.imageRect = CGRectMake(8, 7, 13, 15);
         [_share setImage:[UIImage imageNamed:@"评论顶.png"] forState:UIControlStateNormal];
         [_share addTarget:self action:@selector(shareButtonClick) forControlEvents:UIControlEventTouchUpInside];
         [bgView addSubview:self.share];
         _label=[[UILabel alloc] initWithFrame:CGRectMake(90, 20, 150, 40)];
         _label.numberOfLines=0;
         _label.font=[UIFont boldSystemFontOfSize:12.0f];
-        _label.lineBreakMode=UILineBreakModeCharacterWrap;
         _label.textColor=Color_NewsSmallFont;
         [bgView addSubview:_label];
         
@@ -66,7 +69,7 @@
     _news=news;
     CGSize labelSize = [news.title sizeWithFont:[UIFont boldSystemFontOfSize:12.0f]
                        constrainedToSize:CGSizeMake(160, 40)
-                           lineBreakMode:UILineBreakModeCharacterWrap];
+                           lineBreakMode:NSLineBreakByCharWrapping];
     _label.frame=CGRectMake(110, 20, labelSize.width, labelSize.height);
     _label.text=news.title;
     [_news.medias enumerateObjectsUsingBlock:^(Media *obj, NSUInteger idx, BOOL *stop){
