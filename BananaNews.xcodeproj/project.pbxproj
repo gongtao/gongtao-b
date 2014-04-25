@@ -454,8 +454,6 @@
 				D821E854187560AF005C1604 /* BMCollectViewController.m */,
 				D821E85618757A80005C1604 /* BMSettingViewController.h */,
 				D821E85718757A80005C1604 /* BMSettingViewController.m */,
-				42C4E77C18866B5500E650BE /* BMFeedbackViewController.h */,
-				42C4E77D18866B5500E650BE /* BMFeedbackViewController.m */,
 				D8C503B5189536650092CAC0 /* BMUserInfoViewController.h */,
 				D8C503B6189536650092CAC0 /* BMUserInfoViewController.m */,
 				D88A31901897E3A80054FD7B /* BMUsersViewController.h */,
@@ -647,6 +645,8 @@
 				26B2AA3618E809E600D134D0 /* BMCommentTableViewController.m */,
 				26989CB81907AC2A00A8A4BB /* BMHistoryTableViewController.h */,
 				26989CB91907AC2B00A8A4BB /* BMHistoryTableViewController.m */,
+				42C4E77C18866B5500E650BE /* BMFeedbackViewController.h */,
+				42C4E77D18866B5500E650BE /* BMFeedbackViewController.m */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";

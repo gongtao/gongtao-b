@@ -6,13 +6,11 @@
 //  Copyright (c) 2012年 Jike. All rights reserved.
 //
 
-#import "BMRootViewController.h"
+#import "BMBaseSubViewController.h"
 
 #import <UMFeedback.h>
 
-@class JKPlaceHolderTextView;
-
-@interface BMFeedbackViewController : BMRootViewController <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, UMFeedbackDataDelegate>
+@interface BMFeedbackViewController : BMBaseSubViewController <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, UMFeedbackDataDelegate>
 {
     UMFeedback *feedbackClient;
     UIView *_feedbackView;

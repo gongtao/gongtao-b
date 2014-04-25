@@ -47,6 +47,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    self.customNavigationTitle.text = self.title;
     CGFloat y = CGRectGetMaxY(self.customNavigationBar.frame);
     _feedbackView = [[UIView alloc] initWithFrame:CGRectMake(0.0, y, self.view.bounds.size.width, self.view.bounds.size.height-y)];
     _feedbackView.backgroundColor = [UIColor clearColor];
@@ -71,11 +72,11 @@
     self.mTextField.textColor = [UIColor colorWithHexString:@"333333"];
     [editView addSubview:self.mTextField];
     
-    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0., 0., 44., 44.)];
+    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(276., 0., 44., 44.)];
     [button setImage:[UIImage imageNamed:@"反馈投递.png"] forState:UIControlStateNormal];
     [button setImage:[UIImage imageNamed:@"反馈投递.png"] forState:UIControlStateHighlighted];
     [button addTarget:self action:@selector(sendFeedback) forControlEvents:UIControlEventTouchUpInside];
-    self.customNavigationBar.rightView = button;
+    [self.customNavigationBar addSubview:button];
     
     [self.mToolBar setItems:@[editBtnItem]];
     

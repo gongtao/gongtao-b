@@ -38,7 +38,10 @@
     [self.view addSubview:self.customNavigationBar];
     
     _customNavigationTitle = [[UILabel alloc] initWithFrame:CGRectMake(0.0, y-44.0, 320.0, 44.0)];
+    _customNavigationTitle.font = [UIFont systemFontOfSize:17.0];
+    _customNavigationTitle.textColor = [UIColor whiteColor];
     _customNavigationTitle.backgroundColor = [UIColor clearColor];
+    _customNavigationTitle.textAlignment = NSTextAlignmentCenter;
     [self.customNavigationBar addSubview:_customNavigationTitle];
 }
 

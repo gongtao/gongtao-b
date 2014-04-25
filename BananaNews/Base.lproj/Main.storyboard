@@ -189,9 +189,6 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="9bM-JB-OaF"/>
-                    <connections>
-                        <segue destination="9yW-45-bNG" kind="push" id="la6-cE-QOr"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PQm-J9-bA7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -218,25 +215,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="p7l-iP-SVG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="5019" y="598"/>
-        </scene>
-        <!--Feedback View Controller - 意见反馈-->
-        <scene sceneID="LI8-9Z-Q7I">
-            <objects>
-                <viewController storyboardIdentifier="feedbackViewController" title="意见反馈" id="9yW-45-bNG" customClass="BMFeedbackViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="8w3-hv-SxZ"/>
-                        <viewControllerLayoutGuide type="bottom" id="Bqj-y1-lTp"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="wNS-SL-qgy">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="6m3-To-S3c"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="TZG-cZ-gpE" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="5575" y="1314"/>
         </scene>
         <!--Right View Controller-->
         <scene sceneID="AEy-4k-Alx">
@@ -448,10 +426,32 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="gQW-mR-5Vq"/>
+                    <connections>
+                        <segue destination="PLp-2L-0FO" kind="push" id="uBN-Ll-M0e"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hd8-CP-tKM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-904" y="784"/>
+        </scene>
+        <!--Feedback View Controller - 反馈-->
+        <scene sceneID="wif-qJ-SkP">
+            <objects>
+                <viewController storyboardIdentifier="feedbackViewController" title="反馈" id="PLp-2L-0FO" customClass="BMFeedbackViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="mWx-kS-GUZ"/>
+                        <viewControllerLayoutGuide type="bottom" id="aGf-ve-4K7"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="zAb-ti-s9Z">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="RnH-4X-mZU"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="itO-7Y-aFw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-138" y="784"/>
         </scene>
         <!--Comment View Controller-->
         <scene sceneID="4HQ-UL-mSl">
