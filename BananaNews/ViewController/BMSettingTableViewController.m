@@ -10,10 +10,18 @@
 
 #import "BMFeedbackViewController.h"
 
+#import "MobClick.h"
+
+#import <MMProgressHUD.h>
+
 @interface BMSettingTableViewController ()
 {
     CGFloat cellHeight;
 }
+
+- (void)_checkUpdateFinish:(NSDictionary *)dic;
+
+- (void)_clearCache;
 
 @end
 
@@ -121,8 +129,58 @@ static NSString *cellIdentifier = @"settingCell";
             [self.navigationController pushViewController:vc animated:YES];
             break;
         }
+        case 1: {
+            NSString *url = @"itms-apps://ax.itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=831101575";
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
+            break;
+        }
+        case 2: {
+            [MMProgressHUD setDisplayStyle:MMProgressHUDDisplayStylePlain];
+            [MMProgressHUD setPresentationStyle:MMProgressHUDPresentationStyleFade];
+            [MMProgressHUD showWithTitle:@"新版本" status:@"正在获取更新。。。"];
+            [MobClick checkUpdateWithDelegate:self selector:@selector(_checkUpdateFinish:)];
+            break;
+        }
+        case 3: {
+            [self _clearCache];
+            break;
+        }
+        case 4: {
+            break;
+        }
+        case 5: {
+            break;
+        }
         default:
             break;
+    }
+}
+
+- (void)_clearCache
+{
+    [MMProgressHUD setDisplayStyle:MMProgressHUDDisplayStylePlain];
+    [MMProgressHUD setPresentationStyle:MMProgressHUDPresentationStyleFade];
+    [MMProgressHUD showWithTitle:nil status:@"清除缓存中。。。"];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
+        //清除图片缓存
+        [[SDImageCache sharedImageCache] clearMemory];
+        [[SDImageCache sharedImageCache] clearDisk];
+        
+        [[BMNewsManager sharedManager] clearCacheData:^(void){
+            [MMProgressHUD dismissWithSuccess:@"已清除缓存" title:nil afterDelay:2];
+        }];
+    });
+}
+
+- (void)_checkUpdateFinish:(NSDictionary *)dic
+{
+    NSLog(@"app update:%@", dic);
+    NSNumber *update = dic[@"update"];
+    if (!update.boolValue) {
+        [MMProgressHUD dismissWithError:@"没有可用更新" afterDelay:2];
+    }
+    else {
+        [MMProgressHUD dismissWithSuccess:@"" title:nil afterDelay:0];
     }
 }
 

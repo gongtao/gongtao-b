@@ -69,7 +69,7 @@
 {
     [MMProgressHUD setDisplayStyle:MMProgressHUDDisplayStylePlain];
     [MMProgressHUD setPresentationStyle:MMProgressHUDPresentationStyleFade];
-    [MMProgressHUD showWithTitle:@"" status:@""];
+    [MMProgressHUD showWithTitle:toast status:@""];
     [MMProgressHUD dismissWithSuccess:toast title:nil afterDelay:2];
 }
 
@@ -77,7 +77,7 @@
 {
     [MMProgressHUD setDisplayStyle:MMProgressHUDDisplayStylePlain];
     [MMProgressHUD setPresentationStyle:MMProgressHUDPresentationStyleFade];
-    [MMProgressHUD showWithTitle:@"" status:@""];
+    [MMProgressHUD showWithTitle:toast status:@""];
     [MMProgressHUD dismissWithError:toast afterDelay:2];
 }
 
