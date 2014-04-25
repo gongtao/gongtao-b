@@ -10,7 +10,7 @@
 
 #import "BMHistoryTableViewCell.h"
 
-@interface BMHistoryTableViewController : GTTableViewController<BMHistoryTableViewCellDelegate>
+@interface BMHistoryTableViewController : GTTableViewController<BMHistoryTableViewCellDelegate, UMSocialUIDelegate>
 
 - (id)initWithRequest:(NSFetchRequest *)request cacheName:(NSString *)cache;
 

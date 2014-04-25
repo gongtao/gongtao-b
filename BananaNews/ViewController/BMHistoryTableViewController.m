@@ -8,14 +8,22 @@
 
 #import "BMHistoryTableViewController.h"
 
+#import "BMSNSLoginView.h"
+
 #import <MediaPlayer/MediaPlayer.h>
 
 @interface BMHistoryTableViewController ()
 {
     NSString *_cache;
+    News *_shareNews;
+    UIButton *_userButton;
+    UILabel *_userLabel;
+    UIImageView *_userImageView;
 }
 
 @property (nonatomic,strong)NSFetchRequest* fetchRequest;
+
+- (void)_loginSuccess:(NSNotification *)notice;
 
 @end
 
@@ -50,7 +58,12 @@
     self.tableView.backgroundColor = [UIColor clearColor];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;    
     [NSFetchedResultsController deleteCacheWithName:[self cacheName]];
-    //[self.tableView registerClass:[QFHistorySectionView class] forHeaderFooterViewReuseIdentifier:@"headerView"];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_loginSuccess:) name:kLoginSuccessNotification object:nil];
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)deleteButtonClickAtNews:(News *)news
@@ -61,7 +74,8 @@
 
 -(void)shareButtonClickAtNews:(News *)news
 {
-    [[BMNewsManager sharedManager] dingToSite:news.nid.integerValue success:nil failure:nil];
+    _shareNews = news;
+    [[BMNewsManager sharedManager] shareNews:news delegate:self];
 }
 
 - (NSFetchRequest *)fetchRequest
@@ -151,7 +165,18 @@
 
 - (void)loginButtonClick:(UIButton *)button
 {
-    
+    UIView *rootView = [UIApplication sharedApplication].keyWindow.rootViewController.view;
+    BMSNSLoginView *loginView = [[BMSNSLoginView alloc] initWithFrame:rootView.bounds];
+    [loginView showInView:rootView];
+}
+
+- (void)_loginSuccess:(NSNotification *)notice
+{
+    _userButton.hidden = YES;
+    User *user=[[BMNewsManager sharedManager] getMainUser];
+    _userLabel.text=user.name;
+    [_userImageView setImageWithURL:[NSURL URLWithString:user.avatar] placeholderImage:[UIImage imageNamed:@"我的未登陆头像.png"]];
+    _userImageView.hidden = NO;
 }
 
 #pragma mark - UITableViewDataSource
@@ -164,30 +189,35 @@
             sectionView = [[UITableViewHeaderFooterView alloc] initWithReuseIdentifier:@"firtsHeaderView"];
             sectionView.contentView.backgroundColor = Color_ViewBg;
             
-            UIButton *userButton=[[UIButton alloc]initWithFrame:CGRectMake(130, 30, 60, 60)];
-            [userButton addTarget:self action:@selector(loginButtonClick:) forControlEvents:UIControlEventTouchUpInside];
-            UILabel *label=[[UILabel alloc]initWithFrame:CGRectMake(10, 110, 300, 15)];
-            label.textColor=Color_NavBarBg;
-            label.font=[UIFont systemFontOfSize:14];
-            label.textAlignment=NSTextAlignmentCenter;
+            _userButton=[[UIButton alloc]initWithFrame:CGRectMake(120, 20, 80, 80)];
+            [_userButton addTarget:self action:@selector(loginButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+            
+            _userLabel=[[UILabel alloc]initWithFrame:CGRectMake(10, 105, 300, 25)];
+            _userLabel.backgroundColor = [UIColor clearColor];
+            _userLabel.textColor=Color_NavBarBg;
+            _userLabel.font=[UIFont systemFontOfSize:16];
+            _userLabel.textAlignment=NSTextAlignmentCenter;
+            
+            _userImageView = [[UIImageView alloc] initWithFrame:CGRectMake(120, 20, 80, 80)];
+            [sectionView addSubview:_userImageView];
+            
             if (![[NSUserDefaults standardUserDefaults] objectForKey:kLoginKey])
             {
-                label.text=@"请登录";
-                [userButton setImage:[UIImage imageNamed:@"工具栏我的高亮.png"] forState:UIControlStateNormal];
+                _userLabel.text=@"请登录";
+                [_userButton setImage:[UIImage imageNamed:@"我的未登陆头像.png"] forState:UIControlStateNormal];
+                [_userButton setImage:[UIImage imageNamed:@"我的未登陆头像.png"] forState:UIControlStateHighlighted];
+                _userImageView.hidden = YES;
             }
             else
             {
                 User *user=[[BMNewsManager sharedManager] getMainUser];
-                label.text=user.name;
-                UIImageView *image;
-                [image setImageWithURL:[NSURL URLWithString:user.avatar] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType){
-                }];
-                [userButton setImage:image.image forState:UIControlStateNormal];
-                [userButton setUserInteractionEnabled:NO];
+                _userLabel.text=user.name;
+                [_userImageView setImageWithURL:[NSURL URLWithString:user.avatar] placeholderImage:[UIImage imageNamed:@"我的未登陆头像.png"]];
+                _userButton.hidden = YES;
             }
             
-            [sectionView addSubview:userButton];
-            [sectionView addSubview:label];
+            [sectionView addSubview:_userButton];
+            [sectionView addSubview:_userLabel];
         }
         return sectionView;
     }
@@ -195,14 +225,17 @@
     UITableViewHeaderFooterView *sectionView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"headerView"];
     if (!sectionView) {
         sectionView = [[UITableViewHeaderFooterView alloc] initWithReuseIdentifier:@"headerView"];
-    }
-    if (section==1) {
         UILabel *label=[[UILabel alloc]initWithFrame:CGRectMake(10, 0, 60, 20)];
         label.font=[UIFont systemFontOfSize:14];
         label.textColor=Color_NewsSmallFont;
         label.text=@"历史记录";
+        label.tag=100;
         [sectionView addSubview:label];
     }
+    
+    UILabel *infoLabel = (UILabel *)[sectionView viewWithTag:100];
+    infoLabel.hidden = (section!=1);
+    
     UILabel *label=[[UILabel alloc]initWithFrame:CGRectMake(240, 5, 80, 15)];
     label.font=[UIFont systemFontOfSize:12];
     label.textColor=Color_NewsSmallFont;
@@ -305,6 +338,16 @@
             //            [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:self.rowAnimation];
             break;
             
+    }
+}
+
+#pragma mark - UMSocialUIDelegate
+
+- (void)didFinishGetUMSocialDataInViewController:(UMSocialResponseEntity *)response
+{
+    if ((response.responseCode == UMSResponseCodeSuccess) &&
+        _shareNews) {
+        [[BMNewsManager sharedManager] shareToSite:_shareNews.nid.integerValue success:nil failure:nil];
     }
 }
 

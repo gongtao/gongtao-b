@@ -38,13 +38,15 @@
         
         _delete=[[BMCustomButton alloc]initWithFrame:CGRectMake(242, 43, 29, 29)];
         _delete.imageRect = CGRectMake(8, 7, 13, 15);
-        [_delete setImage:[UIImage imageNamed:@"评论删除.png"] forState:UIControlStateNormal];
+        [_delete setImage:[UIImage imageNamed:@"我的垃圾桶.png"] forState:UIControlStateNormal];
+        [_delete setImage:[UIImage imageNamed:@"我的垃圾桶点击.png"] forState:UIControlStateHighlighted];
         [_delete addTarget:self action:@selector(deleteButtonClick) forControlEvents:UIControlEventTouchUpInside];
         [bgView addSubview:self.delete];
         
         _share=[[BMCustomButton alloc]initWithFrame:CGRectMake(272, 43, 29, 29)];
-        _share.imageRect = CGRectMake(8, 7, 13, 15);
-        [_share setImage:[UIImage imageNamed:@"评论顶.png"] forState:UIControlStateNormal];
+        _share.imageRect = CGRectMake(7, 9.5, 15, 10);
+        [_share setImage:[UIImage imageNamed:@"我的分享.png"] forState:UIControlStateNormal];
+        [_share setImage:[UIImage imageNamed:@"我的分享点击.png"] forState:UIControlStateHighlighted];
         [_share addTarget:self action:@selector(shareButtonClick) forControlEvents:UIControlEventTouchUpInside];
         [bgView addSubview:self.share];
         _label=[[UILabel alloc] initWithFrame:CGRectMake(90, 20, 150, 40)];
@@ -53,8 +55,15 @@
         _label.textColor=Color_NewsSmallFont;
         [bgView addSubview:_label];
         
-        _image=[[UIImageView alloc]initWithFrame:CGRectMake(10, 5, 80, 60)];
+        _image=[[UIImageView alloc]initWithFrame:CGRectMake(10, 8, 87, 54)];
+        _image.contentMode = UIViewContentModeScaleAspectFill;
+        _image.clipsToBounds = YES;
         [bgView addSubview:_image];
+        
+        UIImageView *frameView=[[UIImageView alloc]initWithFrame:CGRectMake(10, 8, 87, 54)];
+        frameView.image = [UIImage imageNamed:@"我的图片蒙版.png"];
+        [bgView addSubview:frameView];
+        
         bgView.layer.cornerRadius=6;
         bgView.layer.borderWidth=1;
         bgView.layer.borderColor=Color_NavBarBg.CGColor;
