@@ -72,7 +72,7 @@
     self.mTextField.textColor = [UIColor colorWithHexString:@"333333"];
     [editView addSubview:self.mTextField];
     
-    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(276., 0., 44., 44.)];
+    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(276., self.customNavigationBar.frame.size.height-44., 44., 44.)];
     [button setImage:[UIImage imageNamed:@"反馈投递.png"] forState:UIControlStateNormal];
     [button setImage:[UIImage imageNamed:@"反馈投递.png"] forState:UIControlStateHighlighted];
     [button addTarget:self action:@selector(sendFeedback) forControlEvents:UIControlEventTouchUpInside];

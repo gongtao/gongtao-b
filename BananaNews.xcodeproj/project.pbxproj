@@ -487,10 +487,6 @@
 				42EC5AAF188CB57600FC00F9 /* BMCommentCell.m */,
 				D8F72B9A1897465E0093978C /* BMSettingCell.h */,
 				D8F72B9B1897465E0093978C /* BMSettingCell.m */,
-				42C4E77F18866B8E00E650BE /* L_FeedbackTableViewCell.h */,
-				42C4E78018866B8E00E650BE /* L_FeedbackTableViewCell.m */,
-				42C4E78118866B8E00E650BE /* R_FeedbackTableViewCell.h */,
-				42C4E78218866B8E00E650BE /* R_FeedbackTableViewCell.m */,
 			);
 			name = old;
 			sourceTree = "<group>";
@@ -670,6 +666,10 @@
 				2691053018DC365B00CFDB3A /* BMCommonScrollorView.m */,
 				42C7F19C18E006DC00250D0D /* BMMovieItemView.h */,
 				42C7F19D18E006DC00250D0D /* BMMovieItemView.m */,
+				42C4E77F18866B8E00E650BE /* L_FeedbackTableViewCell.h */,
+				42C4E78018866B8E00E650BE /* L_FeedbackTableViewCell.m */,
+				42C4E78118866B8E00E650BE /* R_FeedbackTableViewCell.h */,
+				42C4E78218866B8E00E650BE /* R_FeedbackTableViewCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
