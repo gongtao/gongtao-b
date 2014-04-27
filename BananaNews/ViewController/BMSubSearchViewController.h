@@ -8,6 +8,6 @@
 
 #import "BMBaseSubViewController.h"
 
-@interface BMSubSearchViewController : BMBaseSubViewController
+@interface BMSubSearchViewController : BMBaseSubViewController <UITextFieldDelegate>
 
 @end

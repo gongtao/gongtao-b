@@ -8,17 +8,11 @@
 
 #import "BMHistoryTableViewCell.h"
 
-#import "BMCustomButton.h"
-
 @interface BMHistoryTableViewCell()
 
 @property(nonatomic,strong)UIImageView *image;
 
 @property(nonatomic,strong)UILabel *label;
-
-@property(nonatomic,strong)BMCustomButton *delete;
-
-@property(nonatomic,strong)BMCustomButton *share;
 
 @property(nonatomic,strong)News *news;
 
@@ -36,19 +30,19 @@
         UIView *bgView=[[UIView alloc]initWithFrame:CGRectMake(10,5, 300, 70)];
         bgView.backgroundColor=[UIColor whiteColor];
         
-        _delete=[[BMCustomButton alloc]initWithFrame:CGRectMake(242, 43, 29, 29)];
-        _delete.imageRect = CGRectMake(8, 7, 13, 15);
-        [_delete setImage:[UIImage imageNamed:@"我的垃圾桶.png"] forState:UIControlStateNormal];
-        [_delete setImage:[UIImage imageNamed:@"我的垃圾桶点击.png"] forState:UIControlStateHighlighted];
-        [_delete addTarget:self action:@selector(deleteButtonClick) forControlEvents:UIControlEventTouchUpInside];
-        [bgView addSubview:self.delete];
+        _deleteButton=[[BMCustomButton alloc]initWithFrame:CGRectMake(242, 43, 29, 29)];
+        _deleteButton.imageRect = CGRectMake(8, 7, 13, 15);
+        [_deleteButton setImage:[UIImage imageNamed:@"我的垃圾桶.png"] forState:UIControlStateNormal];
+        [_deleteButton setImage:[UIImage imageNamed:@"我的垃圾桶点击.png"] forState:UIControlStateHighlighted];
+        [_deleteButton addTarget:self action:@selector(deleteButtonClick) forControlEvents:UIControlEventTouchUpInside];
+        [bgView addSubview:self.deleteButton];
         
-        _share=[[BMCustomButton alloc]initWithFrame:CGRectMake(272, 43, 29, 29)];
-        _share.imageRect = CGRectMake(7, 9.5, 15, 10);
-        [_share setImage:[UIImage imageNamed:@"我的分享.png"] forState:UIControlStateNormal];
-        [_share setImage:[UIImage imageNamed:@"我的分享点击.png"] forState:UIControlStateHighlighted];
-        [_share addTarget:self action:@selector(shareButtonClick) forControlEvents:UIControlEventTouchUpInside];
-        [bgView addSubview:self.share];
+        _shareButton=[[BMCustomButton alloc]initWithFrame:CGRectMake(272, 43, 29, 29)];
+        _shareButton.imageRect = CGRectMake(7, 9.5, 15, 10);
+        [_shareButton setImage:[UIImage imageNamed:@"我的分享.png"] forState:UIControlStateNormal];
+        [_shareButton setImage:[UIImage imageNamed:@"我的分享点击.png"] forState:UIControlStateHighlighted];
+        [_shareButton addTarget:self action:@selector(shareButtonClick) forControlEvents:UIControlEventTouchUpInside];
+        [bgView addSubview:self.shareButton];
         _label=[[UILabel alloc] initWithFrame:CGRectMake(90, 20, 150, 40)];
         _label.numberOfLines=0;
         _label.font=[UIFont boldSystemFontOfSize:12.0f];

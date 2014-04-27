@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+#import "BMCustomButton.h"
+
 @protocol BMHistoryTableViewCellDelegate <NSObject>
 
 -(void)deleteButtonClickAtNews:(News *)news;
@@ -17,6 +19,10 @@
 @end
 
 @interface BMHistoryTableViewCell : UITableViewCell
+
+@property(nonatomic,strong)BMCustomButton *deleteButton;
+
+@property(nonatomic,strong)BMCustomButton *shareButton;
 
 @property(nonatomic,strong)id<BMHistoryTableViewCellDelegate>delegate;
 

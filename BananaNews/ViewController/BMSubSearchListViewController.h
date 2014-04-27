@@ -10,4 +10,6 @@
 
 @interface BMSubSearchListViewController : GTTableViewController
 
+- (void)searchNews:(NSString *)key;
+
 @end
