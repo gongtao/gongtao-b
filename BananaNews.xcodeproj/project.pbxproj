@@ -127,6 +127,7 @@
 		D899D37C190CB4A0008D8669 /* BMSubSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D899D37B190CB4A0008D8669 /* BMSubSearchViewController.m */; };
 		D899D37F190CD891008D8669 /* BMSubMovieItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = D899D37E190CD891008D8669 /* BMSubMovieItemView.m */; };
 		D899D382190CD8B4008D8669 /* BMMoviePageView.m in Sources */ = {isa = PBXBuildFile; fileRef = D899D381190CD8B4008D8669 /* BMMoviePageView.m */; };
+		D899D385190CD9F6008D8669 /* BMSubSearchListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D899D384190CD9F6008D8669 /* BMSubSearchListViewController.m */; };
 		D8C503AE189360BF0092CAC0 /* BMCollectListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8C503AD189360BF0092CAC0 /* BMCollectListViewController.m */; };
 		D8C503B11894F85C0092CAC0 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = D8C503B01894F85C0092CAC0 /* User.m */; };
 		D8C503B41894F85D0092CAC0 /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = D8C503B31894F85D0092CAC0 /* Comment.m */; };
@@ -368,6 +369,8 @@
 		D899D37E190CD891008D8669 /* BMSubMovieItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMSubMovieItemView.m; sourceTree = "<group>"; };
 		D899D380190CD8B4008D8669 /* BMMoviePageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMMoviePageView.h; sourceTree = "<group>"; };
 		D899D381190CD8B4008D8669 /* BMMoviePageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMMoviePageView.m; sourceTree = "<group>"; };
+		D899D383190CD9F6008D8669 /* BMSubSearchListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMSubSearchListViewController.h; sourceTree = "<group>"; };
+		D899D384190CD9F6008D8669 /* BMSubSearchListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMSubSearchListViewController.m; sourceTree = "<group>"; };
 		D8C503AC189360BF0092CAC0 /* BMCollectListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMCollectListViewController.h; sourceTree = "<group>"; };
 		D8C503AD189360BF0092CAC0 /* BMCollectListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMCollectListViewController.m; sourceTree = "<group>"; };
 		D8C503AF1894F85C0092CAC0 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
@@ -664,6 +667,8 @@
 				269BE2F0190CC80100EC93D0 /* BMAboutViewController.m */,
 				D899D37A190CB4A0008D8669 /* BMSubSearchViewController.h */,
 				D899D37B190CB4A0008D8669 /* BMSubSearchViewController.m */,
+				D899D383190CD9F6008D8669 /* BMSubSearchListViewController.h */,
+				D899D384190CD9F6008D8669 /* BMSubSearchListViewController.m */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -1137,6 +1142,7 @@
 				42C6D2AE1872AA8600F796FB /* BMSearchView.m in Sources */,
 				269BE2F1190CC80100EC93D0 /* BMAboutViewController.m in Sources */,
 				42C6D2951872843800F796FB /* BMBaseViewController.m in Sources */,
+				D899D385190CD9F6008D8669 /* BMSubSearchListViewController.m in Sources */,
 				42C7BAEF18710C2000BD6382 /* BMSidePanelController.m in Sources */,
 				D8F72B9718969CFF0093978C /* BMUserDetailViewController.m in Sources */,
 				42E3AD6B187F872400ADFAD9 /* BMPageViewController.m in Sources */,
