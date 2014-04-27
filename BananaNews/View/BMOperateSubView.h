@@ -10,9 +10,7 @@
 
 @protocol BMOperateSubViewDelegate <NSObject>
 
-//-(void)didSelectButtonAtTag:(NSUInteger)tag;
-
-//-(void)videoOperation:(UIButton *)button buttonState:(BOOL *)clicked;
+@optional
 
 -(void)videoDelete;
 
@@ -34,6 +32,8 @@
 @property (nonatomic,strong) UIButton *buttonGood;
 
 @property (nonatomic,strong) UIButton *buttonComment;
+
+@property (nonatomic,strong) UIButton *buttonDelete;
 
 
 @end

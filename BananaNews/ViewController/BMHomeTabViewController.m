@@ -10,7 +10,11 @@
 
 #import "BMRecommendViewController.h"
 
+#import "BMSubSearchViewController.h"
+
 #import "AFDownloadRequestOperation.h"
+
+#import "BMCustomButton.h"
 
 #import <MediaPlayer/MediaPlayer.h>
 
@@ -18,7 +22,11 @@
 
 @property (nonatomic, strong) BMToolBar *toolBar;
 
+@property (nonatomic, strong) BMCustomButton *searchButton;
+
 - (void)_selectSubVCAtIndex:(NSUInteger)index;
+
+- (void)_searchButtonPressed:(UIButton *)button;
 
 @end
 
@@ -77,6 +85,9 @@
 - (void)_selectSubVCAtIndex:(NSUInteger)index
 {
     NSString *identifier = nil;
+    if (_searchButton && _searchButton.superview) {
+        [_searchButton removeFromSuperview];
+    }
     switch (index) {
         case 0: {
             identifier = @"recommendViewController";
@@ -84,6 +95,14 @@
         }
         case 1: {
             identifier = @"subCategoryViewController";
+            if (!_searchButton) {
+                _searchButton = [[BMCustomButton alloc] initWithFrame:CGRectMake(276.0, self.customNavigationBar.frame.size.height-44.0, 44.0, 44.0)];
+                _searchButton.imageRect = CGRectMake(12.0, 12.0, 20.0, 20.0);
+                [_searchButton setImage:[UIImage imageNamed:@"搜索放大镜.png"] forState:UIControlStateNormal];
+                [_searchButton setImage:[UIImage imageNamed:@"搜索放大镜.png"] forState:UIControlStateHighlighted];
+                [_searchButton addTarget:self action:@selector(_searchButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+            }
+            [self.customNavigationBar addSubview:_searchButton];
             break;
         }
         case 2: {
@@ -113,6 +132,12 @@
         [self addChildViewController:self.currentVC];
         self.index = index;
     }
+}
+
+- (void)_searchButtonPressed:(UIButton *)button
+{
+    BMSubSearchViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"subSearchViewController"];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma mark - BMToolBarDelegate

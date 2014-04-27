@@ -387,6 +387,7 @@
                     <navigationItem key="navigationItem" id="Bw5-wH-B1C"/>
                     <connections>
                         <segue destination="T16-p7-UMP" kind="push" id="6e1-fk-cIu"/>
+                        <segue destination="nwf-YD-y6D" kind="push" id="lrQ-Hb-sri"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Srh-6T-Jd8" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -490,6 +491,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YXS-4M-EDt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-138" y="-648"/>
+        </scene>
+        <!--Sub Search View Controller - 搜索-->
+        <scene sceneID="Vkd-bL-3Ha">
+            <objects>
+                <viewController storyboardIdentifier="subSearchViewController" title="搜索" id="nwf-YD-y6D" customClass="BMSubSearchViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="tVj-j4-YQV"/>
+                        <viewControllerLayoutGuide type="bottom" id="2RR-IA-i3Y"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="CV5-L3-soQ">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="fI5-BE-sDZ"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5lJ-hf-ZCq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="625" y="-648"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

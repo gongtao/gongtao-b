@@ -8,7 +8,9 @@
 
 #import "BMBaseSubViewController.h"
 
-@interface BMSubCategoryDetailViewController : BMBaseSubViewController
+#import "BMOperateSubView.h"
+
+@interface BMSubCategoryDetailViewController : BMBaseSubViewController <BMOperateSubViewDelegate>
 
 @property (nonatomic, strong) NewsCategory *category;
 

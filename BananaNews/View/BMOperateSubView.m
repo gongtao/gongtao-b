@@ -50,6 +50,9 @@
             [button addTarget:self action:@selector(_buttonDidPush:) forControlEvents:UIControlEventTouchUpInside];
             button.tag = idx+50;
             [self addSubview:button];
+            if ([obj isEqualToString:@"视频删除"]) {
+                _buttonDelete = button;
+            }
             x += 75;
         }];
     }

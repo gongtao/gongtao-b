@@ -122,6 +122,7 @@
 		D88A31921897E3A80054FD7B /* BMUsersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D88A31911897E3A80054FD7B /* BMUsersViewController.m */; };
 		D88A31981898A3A90054FD7B /* News.m in Sources */ = {isa = PBXBuildFile; fileRef = D88A31971898A3A90054FD7B /* News.m */; };
 		D88A319B1898A3AA0054FD7B /* NewsCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = D88A319A1898A3AA0054FD7B /* NewsCategory.m */; };
+		D899D37C190CB4A0008D8669 /* BMSubSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D899D37B190CB4A0008D8669 /* BMSubSearchViewController.m */; };
 		D8C503AE189360BF0092CAC0 /* BMCollectListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8C503AD189360BF0092CAC0 /* BMCollectListViewController.m */; };
 		D8C503B11894F85C0092CAC0 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = D8C503B01894F85C0092CAC0 /* User.m */; };
 		D8C503B41894F85D0092CAC0 /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = D8C503B31894F85D0092CAC0 /* Comment.m */; };
@@ -353,6 +354,8 @@
 		D88A31971898A3A90054FD7B /* News.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = News.m; sourceTree = "<group>"; };
 		D88A31991898A3AA0054FD7B /* NewsCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsCategory.h; sourceTree = "<group>"; };
 		D88A319A1898A3AA0054FD7B /* NewsCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsCategory.m; sourceTree = "<group>"; };
+		D899D37A190CB4A0008D8669 /* BMSubSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMSubSearchViewController.h; sourceTree = "<group>"; };
+		D899D37B190CB4A0008D8669 /* BMSubSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMSubSearchViewController.m; sourceTree = "<group>"; };
 		D8C503AC189360BF0092CAC0 /* BMCollectListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMCollectListViewController.h; sourceTree = "<group>"; };
 		D8C503AD189360BF0092CAC0 /* BMCollectListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMCollectListViewController.m; sourceTree = "<group>"; };
 		D8C503AF1894F85C0092CAC0 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
@@ -643,6 +646,8 @@
 				26989CB91907AC2B00A8A4BB /* BMHistoryTableViewController.m */,
 				42C4E77C18866B5500E650BE /* BMFeedbackViewController.h */,
 				42C4E77D18866B5500E650BE /* BMFeedbackViewController.m */,
+				D899D37A190CB4A0008D8669 /* BMSubSearchViewController.h */,
+				D899D37B190CB4A0008D8669 /* BMSubSearchViewController.m */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -1112,6 +1117,7 @@
 				D8F72B9718969CFF0093978C /* BMUserDetailViewController.m in Sources */,
 				42E3AD6B187F872400ADFAD9 /* BMPageViewController.m in Sources */,
 				D88A31981898A3A90054FD7B /* News.m in Sources */,
+				D899D37C190CB4A0008D8669 /* BMSubSearchViewController.m in Sources */,
 				42C4E78418866B8E00E650BE /* R_FeedbackTableViewCell.m in Sources */,
 				42C6D2A81872A11C00F796FB /* IIViewDeckController.m in Sources */,
 				424C36C518D9439600B693F5 /* BMRecommendViewController.m in Sources */,
