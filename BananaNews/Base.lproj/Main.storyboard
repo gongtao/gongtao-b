@@ -456,10 +456,10 @@
             </objects>
             <point key="canvasLocation" x="-138" y="784"/>
         </scene>
-        <!--About View Controller - 关于-->
+        <!--About View Controller - 关于我们-->
         <scene sceneID="Rdq-me-kbx">
             <objects>
-                <viewController storyboardIdentifier="aboutViewController" title="关于" id="FMq-P1-Jrb" customClass="BMAboutViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="aboutViewController" title="关于我们" id="FMq-P1-Jrb" customClass="BMAboutViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="tPv-19-2kO"/>
                         <viewControllerLayoutGuide type="bottom" id="3zL-IZ-c3I"/>
