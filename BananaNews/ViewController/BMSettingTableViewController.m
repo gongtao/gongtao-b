@@ -10,6 +10,10 @@
 
 #import "BMFeedbackViewController.h"
 
+#import "BMAboutViewController.h"
+
+#import "BMDeclarationViewController.h"
+
 #import "MobClick.h"
 
 #import <MMProgressHUD.h>
@@ -146,9 +150,13 @@ static NSString *cellIdentifier = @"settingCell";
             break;
         }
         case 4: {
+            BMAboutViewController *vc=[self.parentViewController.storyboard instantiateViewControllerWithIdentifier:@"aboutViewController"];
+            [self.navigationController pushViewController:vc animated:YES];
             break;
         }
         case 5: {
+            BMDeclarationViewController *vc=[self.parentViewController.storyboard instantiateViewControllerWithIdentifier:@"declarationViewController"];
+            [self.navigationController pushViewController:vc animated:YES];
             break;
         }
         default:
