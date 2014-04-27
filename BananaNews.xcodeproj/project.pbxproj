@@ -125,6 +125,8 @@
 		D88A31981898A3A90054FD7B /* News.m in Sources */ = {isa = PBXBuildFile; fileRef = D88A31971898A3A90054FD7B /* News.m */; };
 		D88A319B1898A3AA0054FD7B /* NewsCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = D88A319A1898A3AA0054FD7B /* NewsCategory.m */; };
 		D899D37C190CB4A0008D8669 /* BMSubSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D899D37B190CB4A0008D8669 /* BMSubSearchViewController.m */; };
+		D899D37F190CD891008D8669 /* BMSubMovieItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = D899D37E190CD891008D8669 /* BMSubMovieItemView.m */; };
+		D899D382190CD8B4008D8669 /* BMMoviePageView.m in Sources */ = {isa = PBXBuildFile; fileRef = D899D381190CD8B4008D8669 /* BMMoviePageView.m */; };
 		D8C503AE189360BF0092CAC0 /* BMCollectListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8C503AD189360BF0092CAC0 /* BMCollectListViewController.m */; };
 		D8C503B11894F85C0092CAC0 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = D8C503B01894F85C0092CAC0 /* User.m */; };
 		D8C503B41894F85D0092CAC0 /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = D8C503B31894F85D0092CAC0 /* Comment.m */; };
@@ -362,6 +364,10 @@
 		D88A319A1898A3AA0054FD7B /* NewsCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsCategory.m; sourceTree = "<group>"; };
 		D899D37A190CB4A0008D8669 /* BMSubSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMSubSearchViewController.h; sourceTree = "<group>"; };
 		D899D37B190CB4A0008D8669 /* BMSubSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMSubSearchViewController.m; sourceTree = "<group>"; };
+		D899D37D190CD891008D8669 /* BMSubMovieItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMSubMovieItemView.h; sourceTree = "<group>"; };
+		D899D37E190CD891008D8669 /* BMSubMovieItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMSubMovieItemView.m; sourceTree = "<group>"; };
+		D899D380190CD8B4008D8669 /* BMMoviePageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMMoviePageView.h; sourceTree = "<group>"; };
+		D899D381190CD8B4008D8669 /* BMMoviePageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMMoviePageView.m; sourceTree = "<group>"; };
 		D8C503AC189360BF0092CAC0 /* BMCollectListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMCollectListViewController.h; sourceTree = "<group>"; };
 		D8C503AD189360BF0092CAC0 /* BMCollectListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMCollectListViewController.m; sourceTree = "<group>"; };
 		D8C503AF1894F85C0092CAC0 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
@@ -685,6 +691,10 @@
 				42C4E78018866B8E00E650BE /* L_FeedbackTableViewCell.m */,
 				42C4E78118866B8E00E650BE /* R_FeedbackTableViewCell.h */,
 				42C4E78218866B8E00E650BE /* R_FeedbackTableViewCell.m */,
+				D899D37D190CD891008D8669 /* BMSubMovieItemView.h */,
+				D899D37E190CD891008D8669 /* BMSubMovieItemView.m */,
+				D899D380190CD8B4008D8669 /* BMMoviePageView.h */,
+				D899D381190CD8B4008D8669 /* BMMoviePageView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1116,7 +1126,9 @@
 				42D05F76187E417700DC5E7E /* BMDetailViewController.m in Sources */,
 				D8C503B11894F85C0092CAC0 /* User.m in Sources */,
 				42C6D2A71872A11C00F796FB /* IISideController.m in Sources */,
+				D899D37F190CD891008D8669 /* BMSubMovieItemView.m in Sources */,
 				42C7F19E18E006DC00250D0D /* BMMovieItemView.m in Sources */,
+				D899D382190CD8B4008D8669 /* BMMoviePageView.m in Sources */,
 				42CA255618769C4A00FB1764 /* BMNewsListCell.m in Sources */,
 				42C4E79618891F9200E650BE /* Media.m in Sources */,
 				D821E85E18759AC6005C1604 /* BMUtils.m in Sources */,

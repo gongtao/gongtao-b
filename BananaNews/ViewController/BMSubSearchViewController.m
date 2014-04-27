@@ -10,6 +10,8 @@
 
 @interface BMSubSearchViewController ()
 
+- (void)_cancelButtonPressed:(UIButton *)button;
+
 @end
 
 @implementation BMSubSearchViewController
@@ -27,6 +29,19 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    CGFloat y = CGRectGetMaxY(self.customNavigationBar.frame);
+    
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(42.0, y+150.0, 236.0, 45.0)];
+    imageView.image = [UIImage imageNamed:@"搜索没找到.png"];
+    [self.view addSubview:imageView];
+    
+    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(255.0, CGRectGetHeight(self.customNavigationBar.frame)-44.0, 65.0, 44.0)];
+    [button setTitle:@"取消" forState:UIControlStateNormal];
+    button.titleLabel.font = [UIFont systemFontOfSize:17.0];
+    [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [button addTarget:self action:@selector(_cancelButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    [self.customNavigationBar addSubview:button];
 }
 
 - (void)didReceiveMemoryWarning
@@ -35,15 +50,12 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+#pragma mark - Private
+
+- (void)_cancelButtonPressed:(UIButton *)button
 {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    [self.navigationController popViewControllerAnimated:YES];
 }
-*/
 
 @end
