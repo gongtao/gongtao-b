@@ -14,6 +14,8 @@
 		26989CBD1907AC9F00A8A4BB /* BMHistoryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 26989CBC1907AC9F00A8A4BB /* BMHistoryTableViewCell.m */; };
 		269A85EA19061AF600D96DB3 /* BMCategoryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 269A85E919061AF600D96DB3 /* BMCategoryTableViewController.m */; };
 		269A85ED19063B9500D96DB3 /* BMNewsCategoryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 269A85EC19063B9500D96DB3 /* BMNewsCategoryTableViewCell.m */; };
+		269BE2F1190CC80100EC93D0 /* BMAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 269BE2F0190CC80100EC93D0 /* BMAboutViewController.m */; };
+		269BE2F4190CC85D00EC93D0 /* BMDeclarationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 269BE2F3190CC85D00EC93D0 /* BMDeclarationViewController.m */; };
 		26B2AA3718E809E600D134D0 /* BMCommentTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26B2AA3618E809E600D134D0 /* BMCommentTableViewController.m */; };
 		26B2AA3A18E80DED00D134D0 /* BMVideoCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 26B2AA3918E80DED00D134D0 /* BMVideoCommentCell.m */; };
 		424C36BA18D92F5500B693F5 /* BMBaseSubViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 424C36B918D92F5500B693F5 /* BMBaseSubViewController.m */; };
@@ -171,6 +173,10 @@
 		269A85E919061AF600D96DB3 /* BMCategoryTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMCategoryTableViewController.m; sourceTree = "<group>"; };
 		269A85EB19063B9500D96DB3 /* BMNewsCategoryTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMNewsCategoryTableViewCell.h; sourceTree = "<group>"; };
 		269A85EC19063B9500D96DB3 /* BMNewsCategoryTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMNewsCategoryTableViewCell.m; sourceTree = "<group>"; };
+		269BE2EF190CC80100EC93D0 /* BMAboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMAboutViewController.h; sourceTree = "<group>"; };
+		269BE2F0190CC80100EC93D0 /* BMAboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMAboutViewController.m; sourceTree = "<group>"; };
+		269BE2F2190CC85D00EC93D0 /* BMDeclarationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMDeclarationViewController.h; sourceTree = "<group>"; };
+		269BE2F3190CC85D00EC93D0 /* BMDeclarationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMDeclarationViewController.m; sourceTree = "<group>"; };
 		26B2AA3518E809E600D134D0 /* BMCommentTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMCommentTableViewController.h; sourceTree = "<group>"; };
 		26B2AA3618E809E600D134D0 /* BMCommentTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMCommentTableViewController.m; sourceTree = "<group>"; };
 		26B2AA3818E80DED00D134D0 /* BMVideoCommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMVideoCommentCell.h; sourceTree = "<group>"; };
@@ -645,7 +651,11 @@
 				26989CB81907AC2A00A8A4BB /* BMHistoryTableViewController.h */,
 				26989CB91907AC2B00A8A4BB /* BMHistoryTableViewController.m */,
 				42C4E77C18866B5500E650BE /* BMFeedbackViewController.h */,
+				269BE2F2190CC85D00EC93D0 /* BMDeclarationViewController.h */,
+				269BE2F3190CC85D00EC93D0 /* BMDeclarationViewController.m */,
 				42C4E77D18866B5500E650BE /* BMFeedbackViewController.m */,
+				269BE2EF190CC80100EC93D0 /* BMAboutViewController.h */,
+				269BE2F0190CC80100EC93D0 /* BMAboutViewController.m */,
 				D899D37A190CB4A0008D8669 /* BMSubSearchViewController.h */,
 				D899D37B190CB4A0008D8669 /* BMSubSearchViewController.m */,
 			);
@@ -1099,6 +1109,7 @@
 				42C7BB0118710E7F00BD6382 /* BMRightViewController.m in Sources */,
 				269628CD18FD7D5500A11DD3 /* BMSettingTableViewController.m in Sources */,
 				42C5844A187A73A700D919EB /* BMCategoryViewController.m in Sources */,
+				269BE2F4190CC85D00EC93D0 /* BMDeclarationViewController.m in Sources */,
 				D821E85218752D02005C1604 /* BMCustomButton.m in Sources */,
 				42C7BB1F18715D8000BD6382 /* BMRootViewController.m in Sources */,
 				D8C503B41894F85D0092CAC0 /* Comment.m in Sources */,
@@ -1112,6 +1123,7 @@
 				D8EA591E1881381E00EEB573 /* EGORefreshTableHeaderView.m in Sources */,
 				424C36D218D98F8900B693F5 /* AFDownloadRequestOperation.m in Sources */,
 				42C6D2AE1872AA8600F796FB /* BMSearchView.m in Sources */,
+				269BE2F1190CC80100EC93D0 /* BMAboutViewController.m in Sources */,
 				42C6D2951872843800F796FB /* BMBaseViewController.m in Sources */,
 				42C7BAEF18710C2000BD6382 /* BMSidePanelController.m in Sources */,
 				D8F72B9718969CFF0093978C /* BMUserDetailViewController.m in Sources */,
