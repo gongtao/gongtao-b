@@ -10,4 +10,6 @@
 
 @interface BMSubSearchViewController : BMBaseSubViewController <UITextFieldDelegate>
 
+@property (nonatomic, strong) UIButton *button;
+
 @end

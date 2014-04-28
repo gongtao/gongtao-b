@@ -14,8 +14,6 @@
 
 @property (nonatomic, strong) BMSubSearchListViewController *searchVC;
 
-- (void)_cancelButtonPressed:(UIButton *)button;
-
 @end
 
 @implementation BMSubSearchViewController
@@ -49,12 +47,11 @@
     textField.returnKeyType = UIReturnKeySearch;
     [searchTextBgView addSubview:textField];
     
-    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(255.0, CGRectGetHeight(self.customNavigationBar.frame)-44.0, 65.0, 44.0)];
-    [button setTitle:@"取消" forState:UIControlStateNormal];
-    button.titleLabel.font = [UIFont systemFontOfSize:17.0];
-    [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [button addTarget:self action:@selector(_cancelButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-    [self.customNavigationBar addSubview:button];
+    _button = [[UIButton alloc] initWithFrame:CGRectMake(255.0, CGRectGetHeight(self.customNavigationBar.frame)-44.0, 65.0, 44.0)];
+    [_button setTitle:@"取消" forState:UIControlStateNormal];
+    _button.titleLabel.font = [UIFont systemFontOfSize:17.0];
+    [_button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [self.customNavigationBar addSubview:_button];
     
     _searchVC = [[BMSubSearchListViewController alloc] initWithNibName:nil bundle:nil];
     _searchVC.view.frame = CGRectMake(0.0, y, 320.0, self.view.frame.size.height-y);
@@ -67,14 +64,6 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-#pragma mark - Private
-
-- (void)_cancelButtonPressed:(UIButton *)button
-{
-    [self.view endEditing:YES];
-    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - UITextFieldDelegate

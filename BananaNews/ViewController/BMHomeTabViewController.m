@@ -28,6 +28,8 @@
 
 - (void)_searchButtonPressed:(UIButton *)button;
 
+- (void)_cancelButtonPressed:(UIButton *)button;
+
 @end
 
 @implementation BMHomeTabViewController
@@ -137,7 +139,15 @@
 - (void)_searchButtonPressed:(UIButton *)button
 {
     BMSubSearchViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"subSearchViewController"];
-    [self.navigationController pushViewController:vc animated:YES];
+    [self presentViewController:vc animated:YES completion:^(void){
+        [vc.button addTarget:self action:@selector(_cancelButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    }];
+}
+
+- (void)_cancelButtonPressed:(UIButton *)button
+{
+    [self.view endEditing:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - BMToolBarDelegate
