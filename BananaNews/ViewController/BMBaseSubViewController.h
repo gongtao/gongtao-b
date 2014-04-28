@@ -8,10 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+#import "BMCustomButton.h"
+
 @interface BMBaseSubViewController : UIViewController
 
 @property (nonatomic, strong) UIView *customNavigationBar;
 
 @property (nonatomic, strong) UILabel *customNavigationTitle;
+
+@property (nonatomic, strong) BMCustomButton *customNavigationReturn;
 
 @end

@@ -39,6 +39,10 @@
     searchTextBgView.layer.cornerRadius = 3.0;
     [self.customNavigationBar addSubview:searchTextBgView];
     
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(5.5, 6.0, 14.0, 14.0)];
+    imageView.image = [UIImage imageNamed:@"搜索输入icon.png"];
+    [searchTextBgView addSubview:imageView];
+    
     UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(25.0, 2.0, CGRectGetWidth(searchTextBgView.frame)-25.0, 24.0)];
     textField.delegate = self;
     textField.placeholder = @"请输入查找内容";
@@ -58,6 +62,8 @@
     _searchVC.tableView.frame = _searchVC.view.bounds;
     [self addChildViewController:_searchVC];
     [self.view addSubview:_searchVC.view];
+    
+    self.customNavigationReturn.hidden = YES;
 }
 
 - (void)didReceiveMemoryWarning

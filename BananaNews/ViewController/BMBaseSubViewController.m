@@ -10,6 +10,8 @@
 
 @interface BMBaseSubViewController ()
 
+- (void)_backButtonPressed:(UIButton *)button;
+
 @end
 
 @implementation BMBaseSubViewController
@@ -43,12 +45,26 @@
     _customNavigationTitle.backgroundColor = [UIColor clearColor];
     _customNavigationTitle.textAlignment = NSTextAlignmentCenter;
     [self.customNavigationBar addSubview:_customNavigationTitle];
+    
+    _customNavigationReturn = [[BMCustomButton alloc] initWithFrame:CGRectMake(0.0, y-44.0, 44.0, 44.0)];
+    _customNavigationReturn.imageRect = CGRectMake(0.0, 0.0, 44.0, 44.0);
+    [_customNavigationReturn addTarget:self action:@selector(_backButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    [_customNavigationReturn setImage:[UIImage imageNamed:@"导航返回.png"] forState:UIControlStateNormal];
+    [_customNavigationReturn setImage:[UIImage imageNamed:@"导航返回.png"] forState:UIControlStateHighlighted];
+    [self.customNavigationBar addSubview:_customNavigationReturn];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - Private
+
+- (void)_backButtonPressed:(UIButton *)button
+{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 @end

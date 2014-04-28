@@ -29,7 +29,6 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    CGFloat y = IS_IOS7?64.0:44.0;
     self.view.backgroundColor = Color_ViewBg;
     BMSettingTableViewController *tvc=[[BMSettingTableViewController alloc]initWithStyle:UITableViewStylePlain];
     tvc.view.frame=CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
