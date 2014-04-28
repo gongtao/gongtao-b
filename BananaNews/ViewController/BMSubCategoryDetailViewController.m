@@ -8,6 +8,8 @@
 
 #import "BMSubCategoryDetailViewController.h"
 
+#import "BMUtils.h"
+
 @interface BMSubCategoryDetailViewController ()
 {
     News *_shareNews;
@@ -105,7 +107,9 @@
 {
     News *news = [_pageView currentNews];
     if (news) {
-        [[BMNewsManager sharedManager] dingToSite:news.nid.integerValue success:nil failure:nil];
+        [[BMNewsManager sharedManager] dingToSite:news.nid.integerValue success:^(void){
+            [BMUtils showToast:@"顶+1"];
+        } failure:nil];
     }
 }
 

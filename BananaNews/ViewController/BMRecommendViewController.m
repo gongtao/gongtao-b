@@ -12,6 +12,8 @@
 
 #import "BMSNSLoginView.h"
 
+#import "BMUtils.h"
+
 @interface BMRecommendViewController ()
 
 @property (nonatomic, strong) BMCommonScrollorView *scView;
@@ -265,7 +267,9 @@
 {
     BMMovieItemView *item = [_scView currentSelectedView];
     if (item.news) {
-        [[BMNewsManager sharedManager] dingToSite:item.news.nid.integerValue success:nil failure:nil];
+        [[BMNewsManager sharedManager] dingToSite:item.news.nid.integerValue success:^(void){
+            [BMUtils showToast:@"顶+1"];
+        } failure:nil];
     }
 }
 

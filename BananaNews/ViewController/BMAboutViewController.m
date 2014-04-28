@@ -48,7 +48,7 @@
     
     UIFont *font = [UIFont systemFontOfSize:12];
     CGSize size = CGSizeMake(259,NSIntegerMax);
-    NSString *newContent=@"jaingssbgsn";
+    NSString *newContent=@"      “芝麻短片”的团队是一支拥有丰富创业及成熟公司经验的靠谱团队，聚集了来自一流学校和一流公司的顶尖人才，信奉lean startup精益创业，热爱geek文化，我们相信移动短视频分发是Next Big Thing ，团队专注自己擅长的挖掘和制作有意思的小短片，期望成为中国最大的移动短视频分发平台；我们有丰富的内容运营经验和强大的微博微信推广资源。有白富美，无土肥圆，有梦想有激情，对产品充满爱。已经获得创新工场的投资！“芝麻短片”的口号：每天三分钟，生活更轻松！";
     CGSize labelsize = [newContent boundingRectWithSize:size options:NSStringDrawingTruncatesLastVisibleLine|NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName:font} context:nil].size;
     //UILineBreakModeWordWrap:以空格为界,保留整个单词
     labelAbout.frame = CGRectMake(36, 134, 259, labelsize.height );
