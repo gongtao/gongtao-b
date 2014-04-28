@@ -34,14 +34,13 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     self.view.backgroundColor = Color_ViewBg;
-    CGFloat y = IS_IOS7?64.0:44.0;
     
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     id appDelegate = [UIApplication sharedApplication].delegate;
     
     NSEntityDescription *entity = [NSEntityDescription entityForName: NewsCategory_Entity inManagedObjectContext:[appDelegate managedObjectContext]];
     [request setEntity:entity];
-    NSSortDescriptor *sortDesciptor = [NSSortDescriptor sortDescriptorWithKey:@"category_id" ascending:NO];
+    NSSortDescriptor *sortDesciptor = [NSSortDescriptor sortDescriptorWithKey:@"category_id" ascending:YES];
     request.predicate = [NSPredicate predicateWithFormat:@"isHead == NO"];
     
     [request setSortDescriptors:[NSArray arrayWithObject:sortDesciptor]];

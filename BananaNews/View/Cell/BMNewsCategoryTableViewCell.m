@@ -37,7 +37,7 @@
     return self;
 };
 
--(void)configCellWithString:(NSString *)name atButton:(int )tag isHidden:(BOOL)is_hidden
+-(void)configCellWithString:(NSString *)name atButton:(int)tag isHidden:(BOOL)is_hidden
 {
     if (tag==0) {
         [_button1 setImage:[UIImage imageNamed:[NSString stringWithFormat:@"分类_%@.png",name]] forState:UIControlStateNormal];

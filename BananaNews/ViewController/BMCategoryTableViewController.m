@@ -16,7 +16,6 @@
 {
     NSString *_cache;
     NSArray *nCategoryArray;
-    int categoryCount;
 }
 
 @property (nonatomic,strong)NSFetchRequest* fetchRequest;
@@ -55,9 +54,7 @@
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     [NSFetchedResultsController deleteCacheWithName:[self cacheName]];
-    categoryCount = [[[self.fetchedResultsController sections] objectAtIndex:0] numberOfObjects];
-    //[self reloadTableViewDataSource];
-    
+    [[[self.fetchedResultsController sections] objectAtIndex:0] numberOfObjects];
 }
 
 - (NSFetchRequest *)fetchRequest
@@ -68,7 +65,7 @@
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:NewsCategory_Entity inManagedObjectContext:[self managedObjectContext]];
     [request setEntity:entity];
-    NSSortDescriptor *sortDesciptor = [NSSortDescriptor sortDescriptorWithKey:@"category_id" ascending:NO];
+    NSSortDescriptor *sortDesciptor = [NSSortDescriptor sortDescriptorWithKey:@"category_id" ascending:YES];
     request.predicate = [NSPredicate predicateWithFormat:@"isHead == NO"];
     [request setSortDescriptors:[NSArray arrayWithObject:sortDesciptor]];
     return request;
@@ -94,8 +91,9 @@
 {
     BMNewsCategoryTableViewCell *categoryCell = (BMNewsCategoryTableViewCell *)cell;
     int row=[indexPath row];
-    if ([indexPath row]==categoryCount) {
-        [categoryCell configCellWithString:Nil atButton:row%2 isHidden:YES];
+    int count = [[[self.fetchedResultsController sections] objectAtIndex:0] numberOfObjects];
+    if ([indexPath row] == count) {
+        [categoryCell configCellWithString:nil atButton:row%2 isHidden:YES];
     }
     else
     {
@@ -139,6 +137,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    int categoryCount = [[[self.fetchedResultsController sections] objectAtIndex:0] numberOfObjects];
     int count=categoryCount/2;
     count=count+(categoryCount%2==0?0:1);
     return count;
@@ -149,5 +148,21 @@
     return 150;
 }
 
+#pragma mark - NSFetchedResultsControllerDelegate
+
+- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller
+{
+    
+}
+
+- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
+{
+    [self.tableView reloadData];
+}
+
+- (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath
+{
+    
+}
 
 @end

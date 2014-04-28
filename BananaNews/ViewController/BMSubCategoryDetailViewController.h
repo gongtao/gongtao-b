@@ -8,9 +8,13 @@
 
 #import "BMBaseSubViewController.h"
 
+#import "BMCommentViewController.h"
+
 #import "BMOperateSubView.h"
 
-@interface BMSubCategoryDetailViewController : BMBaseSubViewController <BMOperateSubViewDelegate>
+#import "BMMoviePageView.h"
+
+@interface BMSubCategoryDetailViewController : BMBaseSubViewController <BMOperateSubViewDelegate, BMMoviePageViewDelegate, BMCommentViewControllerDelegate, UMSocialUIDelegate>
 
 @property (nonatomic, strong) NewsCategory *category;
 

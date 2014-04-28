@@ -532,9 +532,16 @@
         }
         else {
             NSString *url = dic[@"url"];
-            video_id = [[url componentsSeparatedByString:@"sid/"] objectAtIndex:1];
-            video_id = [[video_id componentsSeparatedByString:@"/"] objectAtIndex:0];
-            media.url = video_id;
+            NSArray *array = [url componentsSeparatedByString:@"sid/"];
+            if (array.count > 1) {
+                video_id = [[url componentsSeparatedByString:@"sid/"] objectAtIndex:1];
+                video_id = [[video_id componentsSeparatedByString:@"/"] objectAtIndex:0];
+                media.url = video_id;
+            }
+            else {
+                media.url = url;
+            }
+            NSLog(@"url : %@", media.url);
         }
     }
     else {

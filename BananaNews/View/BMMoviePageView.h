@@ -8,6 +8,27 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BMMoviePageView : UIView
+@protocol BMMoviePageViewDelegate <NSObject>
+
+- (void)moviePageDidChange:(NSUInteger)page pageCount:(NSUInteger)count;
+
+@end
+
+@interface BMMoviePageView : UIView <UIScrollViewDelegate, NSFetchedResultsControllerDelegate>
+{
+    UIScrollView *_scrollView;
+    
+    NSMutableArray *_movieItems;
+}
+
+@property (nonatomic, readonly) NSInteger currentPage;
+
+@property (nonatomic, strong) NewsCategory *category;
+
+@property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
+
+@property (nonatomic, weak) id<BMMoviePageViewDelegate> delegate;
+
+- (News *)currentNews;
 
 @end
