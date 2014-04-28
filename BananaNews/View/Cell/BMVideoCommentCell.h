@@ -16,6 +16,8 @@
 
 @property (nonatomic,strong)UIButton *deleteButton;
 
+@property (nonatomic,strong)UIButton *reportButton;
+
 @property (nonatomic,strong)UIImageView *userImage;
 
 @property (nonatomic,strong)UIImageView *userFrameImage;

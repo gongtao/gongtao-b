@@ -149,6 +149,18 @@
                               success:(void (^)(User *user))success
                               failure:(void (^)(NSError *error))failure;
 
+- (AFHTTPRequestOperation *)deleteComments:(NSInteger)commentId
+                                   success:(void (^)(void))success
+                                   failure:(void (^)(NSError *error))failure;
+
+- (AFHTTPRequestOperation *)dingToComments:(NSInteger)commentId
+                                   success:(void (^)(void))success
+                                   failure:(void (^)(NSError *error))failure;
+
+- (AFHTTPRequestOperation *)reportComments:(NSInteger)commentId
+                                   success:(void (^)(void))success
+                                   failure:(void (^)(NSError *error))failure;
+
 - (AFHTTPRequestOperation *)shareToSite:(NSInteger)postId
                                 success:(void (^)(void))success
                                 failure:(void (^)(NSError *error))failure;

@@ -1082,6 +1082,89 @@
     return op;
 }
 
+- (AFHTTPRequestOperation *)deleteComments:(NSInteger)commentId
+                                   success:(void (^)(void))success
+                                   failure:(void (^)(NSError *error))failure
+{
+    void (^requestSuccess)(AFHTTPRequestOperation *, id) = ^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"%@", responseObject);
+        
+        NSManagedObjectContext *temporaryContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
+        temporaryContext.parentContext = [self managedObjectContext];
+        
+        [temporaryContext performBlock:^{
+            Comment *comment = [self getCommentById:commentId context:temporaryContext];
+            [temporaryContext delete:comment];
+            [self saveContext:temporaryContext];
+            // save parent to disk asynchronously
+            [temporaryContext.parentContext performBlock:^{
+                [self saveContext:temporaryContext.parentContext];
+                if (success) {
+                    success();
+                }
+            }];
+        }];
+    };
+    
+    void (^requestFailure)(AFHTTPRequestOperation *, NSError *) = ^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+        NSLog(@"data: %@", operation.responseString);
+        if (failure) {
+            failure(error);
+        }
+    };
+    NSString *token = [[NSUserDefaults standardUserDefaults] objectForKey:kLoginKey];
+    AFHTTPRequestOperation *op = [_manager POST:@"wp_api/v1/comments/delete" parameters:@{@"comment_id": [NSNumber numberWithInteger:commentId], @"token": token} success:requestSuccess failure:requestFailure];
+    NSLog(@"request: %@", op.request.URL.absoluteString);
+    return op;
+}
+
+- (AFHTTPRequestOperation *)dingToComments:(NSInteger)commentId
+                                   success:(void (^)(void))success
+                                   failure:(void (^)(NSError *error))failure
+{
+    void (^requestSuccess)(AFHTTPRequestOperation *, id) = ^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"%@", responseObject);
+        if (success) {
+            success();
+        }
+    };
+    
+    void (^requestFailure)(AFHTTPRequestOperation *, NSError *) = ^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+        NSLog(@"data: %@", operation.responseString);
+        if (failure) {
+            failure(error);
+        }
+    };
+    AFHTTPRequestOperation *op = [_manager POST:@"api/v1/index.php/comment/commentZan" parameters:@{@"comment_id": [NSNumber numberWithInteger:commentId]} success:requestSuccess failure:requestFailure];
+    NSLog(@"request: %@", op.request.URL.absoluteString);
+    return op;
+}
+
+- (AFHTTPRequestOperation *)reportComments:(NSInteger)commentId
+                                   success:(void (^)(void))success
+                                   failure:(void (^)(NSError *error))failure
+{
+    void (^requestSuccess)(AFHTTPRequestOperation *, id) = ^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"%@", responseObject);
+        if (success) {
+            success();
+        }
+    };
+    
+    void (^requestFailure)(AFHTTPRequestOperation *, NSError *) = ^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+        NSLog(@"data: %@", operation.responseString);
+        if (failure) {
+            failure(error);
+        }
+    };
+    AFHTTPRequestOperation *op = [_manager POST:@"api/v1/index.php/comment/denounce" parameters:@{@"comment_id": [NSNumber numberWithInteger:commentId], @"reason": @"举报"} success:requestSuccess failure:requestFailure];
+    NSLog(@"request: %@", op.request.URL.absoluteString);
+    return op;
+}
+
 - (AFHTTPRequestOperation *)shareToSite:(NSInteger)postId
                                 success:(void (^)(void))success
                                 failure:(void (^)(NSError *error))failure

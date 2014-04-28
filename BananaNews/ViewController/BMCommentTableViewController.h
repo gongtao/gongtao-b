@@ -18,7 +18,7 @@
 
 @end
 
-@interface BMCommentTableViewController : GTTableViewController<EGORefreshTableHeaderDelegate>
+@interface BMCommentTableViewController : GTTableViewController<EGORefreshTableHeaderDelegate, UIAlertViewDelegate>
 {
     EGORefreshTableHeaderView *_refreshHeaderView;
     

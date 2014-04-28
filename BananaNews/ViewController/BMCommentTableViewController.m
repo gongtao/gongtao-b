@@ -8,7 +8,7 @@
 
 #import "BMCommentTableViewController.h"
 
-
+#import "BMUtils.h"
 
 @interface BMCommentTableViewController ()
 {
@@ -27,14 +27,21 @@
     UILabel *_emptyLabel;
     
     NSInteger _page;
-
+    
+    Comment *_reportComment;
 }
 
 @property (nonatomic,strong) NSFetchRequest* fetchRequest;
 
+@property (nonatomic,strong) User *user;
+
 - (void)reloadTableViewDataSource;
 
 - (void)_dingButtonPressed:(UIButton *)sender;
+
+- (void)_deleteButtonPressed:(UIButton *)sender;
+
+- (void)_reportButtonPressed:(UIButton *)sender;
 
 - (void)_finishLoadMore:(BOOL)isFinished;
 
@@ -42,6 +49,7 @@
 
 - (void)_initFooterView;
 
+- (void)_loginSuccess:(NSNotification *)notice;
 
 @end
 
@@ -96,7 +104,13 @@
     [self _initFooterView];
     
     [NSFetchedResultsController deleteCacheWithName:[self cacheName]];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_loginSuccess:) name:kLoginSuccessNotification object:nil];
+}
 
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [NSFetchedResultsController deleteCacheWithName:[self cacheName]];
 }
 
 - (void)viewDidLayoutSubviews
@@ -109,11 +123,6 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-- (void)dealloc
-{
-    [NSFetchedResultsController deleteCacheWithName:[self cacheName]];
 }
 
 #pragma mark - Public
@@ -217,6 +226,11 @@
     }
 }
 
+- (void)_loginSuccess:(NSNotification *)notice
+{
+    self.user = [[BMNewsManager sharedManager] getMainUser];
+    [self.tableView reloadData];
+}
 
 - (NSFetchRequest *)fetchRequest
 {
@@ -244,22 +258,35 @@
     [commentCell configCellComment:comment];
     
     commentCell.dingButton.tag = row;
+    if (self.user && (comment.author.uid.integerValue==self.user.uid.integerValue)) {
+        commentCell.deleteButton.hidden = NO;
+    }
+    else {
+        commentCell.deleteButton.hidden = YES;
+    }
     commentCell.deleteButton.tag = row;
-   /* if (BMNewsListCellCollect == newCell.type) {
-        newCell.collectButton.tag = row;
-        [newCell.collectButton addTarget:self action:@selector(_collectButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-    }*/
+    commentCell.reportButton.tag = row;
 }
 
 - (void)_dingButtonPressed:(UIButton *)sender
 {
     Comment *comment = [self.fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:sender.tag inSection:0]];
-    [[BMNewsManager sharedManager] dingToSite:comment.cid.integerValue success:nil failure:nil];
+    [[BMNewsManager sharedManager] dingToComments:comment.cid.integerValue success:^(void){
+        [BMUtils showToast:@"顶+1"];
+    } failure:nil];
 }
 
--(void)_deleteButtonPressed:(UIButton *)sender
+- (void)_deleteButtonPressed:(UIButton *)sender
 {
-    
+    Comment *comment = [self.fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:sender.tag inSection:0]];
+    [[BMNewsManager sharedManager] deleteComments:comment.cid.integerValue success:nil failure:nil];
+}
+
+- (void)_reportButtonPressed:(UIButton *)sender
+{
+    _reportComment = [self.fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:sender.tag inSection:0]];
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"举报" message:[NSString stringWithFormat:@"您是否要举报用户“%@”？", _reportComment.author.name] delegate:self cancelButtonTitle:@"算了" otherButtonTitles:@"举报", nil];
+    [alertView show];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath fetchedResultsController:(NSFetchedResultsController *)fetchedResultsController
@@ -274,9 +301,9 @@
     
     if (!cell) {
         cell = [[BMVideoCommentCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-       // cell.type = self.type;
         [cell.dingButton addTarget:self action:@selector(_dingButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
         [cell.deleteButton addTarget:self action:@selector(_deleteButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+        [cell.reportButton addTarget:self action:@selector(_reportButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     }
     
     [self configCell:cell cellForRowAtIndexPath:indexPath fetchedResultsController:fetchedResultsController];
@@ -402,6 +429,17 @@
     Comment *comment = [self.fetchedResultsController objectAtIndexPath:indexPath];
     if ([self.delegate respondsToSelector:@selector(willReplyComment:)]) {
         [self.delegate willReplyComment:comment];
+    }
+}
+
+#pragma mark - UIAlertViewDelegate
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if ([[alertView buttonTitleAtIndex:buttonIndex] isEqualToString:@"举报"]) {
+        [[BMNewsManager sharedManager] reportComments:_reportComment.cid.integerValue success:^(void){
+            [BMUtils showToast:@"举报成功"];
+        } failure:nil];
     }
 }
 

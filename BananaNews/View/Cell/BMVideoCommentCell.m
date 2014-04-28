@@ -22,16 +22,20 @@
         _lineView.backgroundColor=[UIColor colorWithHexString:@"cccccc"];
         [self.contentView addSubview:_lineView];
         
-        _dingButton=[[UIButton alloc]initWithFrame:CGRectMake(270, 70, 15, 15)];
+        _dingButton=[[UIButton alloc]initWithFrame:CGRectMake(250, 70, 15, 15)];
         [_dingButton setImage:[UIImage imageNamed:@"评论顶.png"]  forState:UIControlStateNormal];
-        _dingButton.hidden = YES;
         [self.contentView addSubview:_dingButton];
         
-        
-        _deleteButton=[[UIButton alloc]initWithFrame:CGRectMake(240, 70, 13, 15)];
+        _deleteButton=[[UIButton alloc]initWithFrame:CGRectMake(220, 70, 13, 15)];
         [_deleteButton setImage:[UIImage imageNamed:@"评论删除.png"] forState:UIControlStateNormal];
         _deleteButton.hidden = YES;
         [self.contentView addSubview:_deleteButton];
+        
+        _reportButton=[[UIButton alloc]initWithFrame:CGRectMake(280, 70, 30, 15)];
+        [_reportButton setTitle:@"举报" forState:UIControlStateNormal];
+        _reportButton.titleLabel.font = [UIFont systemFontOfSize:12.0];
+        [_reportButton setTitleColor:[UIColor colorWithHexString:@"cccccc"] forState:UIControlStateNormal];
+        [self.contentView addSubview:_reportButton];
         
         _userImage=[[UIImageView alloc]initWithFrame:CGRectMake(15, 15, 60, 60)];
         [self.contentView addSubview:_userImage];
