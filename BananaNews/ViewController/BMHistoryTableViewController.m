@@ -19,6 +19,7 @@
     UIButton *_userButton;
     UILabel *_userLabel;
     UIImageView *_userImageView;
+    UIImageView *_userView;
 }
 
 @property (nonatomic,strong)NSFetchRequest* fetchRequest;
@@ -177,6 +178,7 @@
     _userLabel.text=user.name;
     [_userImageView setImageWithURL:[NSURL URLWithString:user.avatar] placeholderImage:[UIImage imageNamed:@"我的未登陆头像.png"]];
     _userImageView.hidden = NO;
+    _userView.hidden = NO;
 }
 
 #pragma mark - UITableViewDataSource
@@ -201,12 +203,17 @@
             _userImageView = [[UIImageView alloc] initWithFrame:CGRectMake(120, 20, 80, 80)];
             [sectionView addSubview:_userImageView];
             
+            _userView = [[UIImageView alloc] initWithFrame:CGRectMake(120, 20, 80, 80)];
+            _userView.image = [UIImage imageNamed:@"我的头像.png"];
+            [sectionView addSubview:_userView];
+            
             if (![[NSUserDefaults standardUserDefaults] objectForKey:kLoginKey])
             {
                 _userLabel.text=@"请登录";
                 [_userButton setImage:[UIImage imageNamed:@"我的未登陆头像.png"] forState:UIControlStateNormal];
                 [_userButton setImage:[UIImage imageNamed:@"我的未登陆头像.png"] forState:UIControlStateHighlighted];
                 _userImageView.hidden = YES;
+                _userView.hidden = YES;
             }
             else
             {
