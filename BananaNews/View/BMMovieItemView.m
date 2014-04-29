@@ -174,6 +174,10 @@
 {
     self.news.status = [NSNumber numberWithInteger:-1];
     [[BMNewsManager sharedManager] saveContext];
+    if (_request) {
+        [_request cancel];
+        _request = nil;
+    }
 }
 
 - (void)updateNetworking:(AFNetworkReachabilityStatus)status

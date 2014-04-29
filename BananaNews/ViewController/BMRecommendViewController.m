@@ -171,7 +171,6 @@
     int count = [[[self.fetchedResultsController sections] objectAtIndex:0] numberOfObjects];
     if (count == 0) {
         if (_isLastPage) {
-            NSLog(@"最后一页了");
             return;
         }
         if (_isDownloading) {
@@ -187,14 +186,51 @@
                                   _isDownloading = NO;
                                   _isLastPage = isLast;
                                   self.page = newPage;
-                                  
                                   if (_isLastPage) {
-                                      NSLog(@"最后一页了");
+                                      NSManagedObjectContext *temporaryContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
+                                      temporaryContext.parentContext = [self managedObjectContext];
+                                      
+                                      [temporaryContext performBlock:^{
+                                          NewsCategory *newsCategory = [manager getNewsCategoryById:category.category_id context:temporaryContext];
+                                          [newsCategory.list enumerateObjectsUsingBlock:^(News *obj, NSUInteger idx, BOOL *stop){
+                                              if (obj.status.integerValue == -1) {
+                                                  obj.status = [NSNumber numberWithInteger:0];
+                                              }
+                                          }];
+                                          
+                                          [manager saveContext:temporaryContext];
+                                          // save parent to disk asynchronously
+                                          [temporaryContext.parentContext performBlock:^{
+                                              [manager saveContext:temporaryContext.parentContext];
+                                              _isLastPage = NO;
+                                              [_scView updateSubViewData:self.fetchedResultsController];
+                                          }];
+                                      }];
                                   }
-                                  [_scView updateSubViewData:self.fetchedResultsController];
+                                  else {
+                                      [_scView updateSubViewData:self.fetchedResultsController];
+                                  }
                               }
                               failure:^(NSError *error){
                                   _isDownloading = NO;
+                                  NSManagedObjectContext *temporaryContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
+                                  temporaryContext.parentContext = [self managedObjectContext];
+                                  
+                                  [temporaryContext performBlock:^{
+                                      NewsCategory *newsCategory = [manager getNewsCategoryById:category.category_id context:temporaryContext];
+                                      [newsCategory.list enumerateObjectsUsingBlock:^(News *obj, NSUInteger idx, BOOL *stop){
+                                          if (obj.status.integerValue == -1) {
+                                              obj.status = [NSNumber numberWithInteger:0];
+                                          }
+                                      }];
+                                      
+                                      [manager saveContext:temporaryContext];
+                                      // save parent to disk asynchronously
+                                      [temporaryContext.parentContext performBlock:^{
+                                          [manager saveContext:temporaryContext.parentContext];
+                                          [_scView updateSubViewData:self.fetchedResultsController];
+                                      }];
+                                  }];
                               }];
         }
     }
