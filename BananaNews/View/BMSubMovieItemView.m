@@ -158,12 +158,7 @@
 
 - (void)_buttonPressed:(UIButton *)button
 {
-    if (_news) {
-        [self _playVideo];
-    }
-    else {
-        
-    }
+    [self _playVideo];
 }
 
 @end

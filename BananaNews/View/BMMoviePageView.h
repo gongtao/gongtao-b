@@ -12,6 +12,8 @@
 
 - (void)moviePageDidChange:(NSUInteger)page pageCount:(NSUInteger)count;
 
+- (void)moviePageDidBeginRefresh;
+
 @end
 
 @interface BMMoviePageView : UIView <UIScrollViewDelegate, NSFetchedResultsControllerDelegate>
@@ -30,5 +32,9 @@
 @property (nonatomic, weak) id<BMMoviePageViewDelegate> delegate;
 
 - (News *)currentNews;
+
+- (void)refresh;
+
+- (void)finishPageViewRefresh:(BOOL)success;
 
 @end

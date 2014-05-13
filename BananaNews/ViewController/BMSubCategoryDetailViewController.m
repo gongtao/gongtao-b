@@ -55,6 +55,7 @@
     _pageView.delegate = self;
     _pageView.category = _category;
     [self.view addSubview:_pageView];
+    [_pageView refresh];
     
     self.operateSubview = [[BMOperateSubView alloc] initWithFrame:CGRectMake(65.0, CGRectGetMaxY(self.customNavigationBar.frame)+275.0, 190.0, 120.0)];
     self.operateSubview.delegate = self;
@@ -62,8 +63,6 @@
     [self.view addSubview:self.operateSubview];
     
     self.customNavigationTitle.text = _category.cname;
-    
-    [[BMNewsManager sharedManager] getDownloadList:_category.category_id page:1 success:nil failure:nil];
 }
 
 - (void)didReceiveMemoryWarning
@@ -122,7 +121,24 @@
 
 - (void)moviePageDidChange:(NSUInteger)page pageCount:(NSUInteger)count
 {
-    self.pageLabel.text = [NSString stringWithFormat:@"%i/%i", page+1, count];
+    if (0 == count) {
+        self.pageLabel.text = @"0/0";
+    }
+    else {
+        self.pageLabel.text = [NSString stringWithFormat:@"%i/%i", page+1, count];
+    }
+}
+
+- (void)moviePageDidBeginRefresh
+{
+    [[BMNewsManager sharedManager] getDownloadList:_category.category_id
+                                              page:1
+                                           success:^(NSArray *array){
+                                               [_pageView finishPageViewRefresh:YES];
+                                           }
+                                           failure:^(NSError *error){
+                                               [_pageView finishPageViewRefresh:NO];
+                                           }];
 }
 
 #pragma mark - UMSocialUIDelegate

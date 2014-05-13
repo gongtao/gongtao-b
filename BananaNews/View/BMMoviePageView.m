@@ -12,6 +12,10 @@
 
 @interface BMMoviePageView ()
 
+@property (nonatomic, strong) UIButton *refreshButton;
+
+@property (nonatomic, strong) UIActivityIndicatorView *indicatorView;
+
 - (NSManagedObjectContext *)managedObjectContext;
 
 - (NSFetchRequest *)fetchRequest;
@@ -21,6 +25,8 @@
 - (void)_updatePage;
 
 - (void)_reloadData;
+
+- (void)_refreshButtonPressed:(UIButton *)button;
 
 @end
 
@@ -54,6 +60,23 @@
         return [self.fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:_currentPage inSection:0]];
     }
     return nil;
+}
+
+- (void)refresh
+{
+    [self _refreshButtonPressed:nil];
+}
+
+- (void)finishPageViewRefresh:(BOOL)success
+{
+    if (_indicatorView) {
+        [_indicatorView stopAnimating];
+        _indicatorView.hidden = YES;
+    }
+    int count = [[[self.fetchedResultsController sections] objectAtIndex:0] numberOfObjects];
+    if (!success && 0==count) {
+        _refreshButton.hidden = NO;
+    }
 }
 
 #pragma mark - Private
@@ -110,6 +133,9 @@
 
 - (void)_reloadData
 {
+    if (_refreshButton) {
+        _refreshButton.hidden = YES;
+    }
     [_movieItems enumerateObjectsUsingBlock:^(BMSubMovieItemView *obj, NSUInteger idx, BOOL *stop){
         obj.news = nil;
         [obj removeFromSuperview];
@@ -117,13 +143,23 @@
     int count = [[[self.fetchedResultsController sections] objectAtIndex:0] numberOfObjects];
     if (count == 0) {
         _currentPage = 0;
-        if (_movieItems.count == 0) {
-            BMSubMovieItemView *item = [[BMSubMovieItemView alloc] initWithFrame:CGRectMake(45.0, 0.0, 230.0, self.frame.size.height)];
-            [_movieItems addObject:item];
+        if (!_refreshButton) {
+            _refreshButton = [[UIButton alloc] initWithFrame:CGRectMake(45.0, 0.0, 230.0, self.frame.size.height)];
+            [_refreshButton setTitle:@"网络不给力，点击重新加载" forState:UIControlStateNormal];
+            [_refreshButton setTitleColor:Color_NewsSmallFont forState:UIControlStateNormal];
+            [_refreshButton addTarget:self action:@selector(_refreshButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+            [_scrollView addSubview:_refreshButton];
         }
-        BMSubMovieItemView *item = (BMSubMovieItemView *)[_movieItems objectAtIndex:0];
-        item.frame = CGRectMake(45.0, 0.0, 230.0, self.frame.size.height);
-        [_scrollView addSubview:item];
+        _refreshButton.hidden = NO;
+        
+//        if (_movieItems.count == 0) {
+//            BMSubMovieItemView *item = [[BMSubMovieItemView alloc] initWithFrame:CGRectMake(45.0, 0.0, 230.0, self.frame.size.height)];
+//            [_movieItems addObject:item];
+//        }
+//        BMSubMovieItemView *item = (BMSubMovieItemView *)[_movieItems objectAtIndex:0];
+//        item.frame = CGRectMake(45.0, 0.0, 230.0, self.frame.size.height);
+//        [_scrollView addSubview:item];
+        
         _scrollView.contentSize = CGSizeMake(self.frame.size.width, self.frame.size.height);
         _scrollView.contentOffset = CGPointMake(0.0, 0.0);
     }
@@ -183,6 +219,26 @@
     }
     if ([self.delegate respondsToSelector:@selector(moviePageDidChange:pageCount:)]) {
         [self.delegate moviePageDidChange:_currentPage pageCount:count];
+    }
+}
+
+- (void)_refreshButtonPressed:(UIButton *)button
+{
+    if ([self.delegate respondsToSelector:@selector(moviePageDidBeginRefresh)]) {
+        if (!_indicatorView) {
+            _indicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+            _indicatorView.center = CGPointMake(160.0, self.frame.size.height/2.0);
+            _indicatorView.hidden = YES;
+            [_scrollView addSubview:_indicatorView];
+        }
+        if (0 == [[[self.fetchedResultsController sections] objectAtIndex:0] numberOfObjects]) {
+            [_indicatorView startAnimating];
+            _indicatorView.hidden = NO;
+        }
+        if (_refreshButton) {
+            _refreshButton.hidden = YES;
+        }
+        [self.delegate moviePageDidBeginRefresh];
     }
 }
 
