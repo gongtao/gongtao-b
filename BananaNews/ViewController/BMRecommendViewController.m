@@ -203,12 +203,12 @@
                                           [temporaryContext.parentContext performBlock:^{
                                               [manager saveContext:temporaryContext.parentContext];
                                               _isLastPage = NO;
-                                              [_scView updateSubViewData:self.fetchedResultsController];
+//                                              [_scView updateSubViewData:self.fetchedResultsController];
                                           }];
                                       }];
                                   }
                                   else {
-                                      [_scView updateSubViewData:self.fetchedResultsController];
+//                                      [_scView updateSubViewData:self.fetchedResultsController];
                                   }
                               }
                               failure:^(NSError *error){
@@ -228,7 +228,7 @@
                                       // save parent to disk asynchronously
                                       [temporaryContext.parentContext performBlock:^{
                                           [manager saveContext:temporaryContext.parentContext];
-                                          [_scView updateSubViewData:self.fetchedResultsController];
+//                                          [_scView updateSubViewData:self.fetchedResultsController];
                                       }];
                                   }];
                               }];
@@ -354,6 +354,7 @@
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
 {
     [self _updateData];
+    [_scView updateSubViewData:self.fetchedResultsController];
 }
 
 #pragma mark - BMMovieItemViewDelegate

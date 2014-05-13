@@ -93,7 +93,7 @@
         self.videoMedia = nil;
         self.imageMedia = nil;
         if (!_news) {
-            _titleLabel.text = @"WIFI时自动下载视频，不费流量";
+            _titleLabel.text = @"当前无视频，联网后自动加载最新视频";
             self.status = BMMovieItemStatusNone;
             return;
         }
