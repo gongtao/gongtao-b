@@ -8,6 +8,7 @@
 
 #import "BMOperateSubView.h"
 #import "BMCustomButton.h"
+#import "MobClick.h"
 
 @interface BMOperateSubView ()
 
@@ -38,6 +39,9 @@
         [_buttonComment addTarget:self action:@selector(_buttonDidPush:) forControlEvents:UIControlEventTouchUpInside];
         _buttonComment.tag = 54;
         _buttonComment.alpha = 0.0;
+        [MobClick updateOnlineConfig];
+        NSString *str = [MobClick getConfigParams:@"isComment"];
+        _buttonComment.hidden = [str isEqualToString:@"NO"];
         [self addSubview:_buttonComment];
         
         _isHidden = YES;
@@ -66,41 +70,47 @@
     NSInteger tag = button.tag-50;
     switch (tag) {
         case 0:
-            {
-                [UIView animateWithDuration:0.3 animations:^(void){
-                    if (_isHidden) {
-                        _buttonGood.alpha = 1.0;
-                        _buttonComment.alpha = 1.0;
-                    }
-                    else {
-                        _buttonGood.alpha = 0.0;
-                        _buttonComment.alpha = 0.0;
-                    }
-                }];
-                _isHidden = !_isHidden;
-                break;
-            }
-        case 1:
+        {
+            [MobClick updateOnlineConfig];
+            NSString *str = [MobClick getConfigParams:@"isComment"];
+            _buttonComment.hidden = [str isEqualToString:@"NO"];
+            [UIView animateWithDuration:0.3 animations:^(void){
+                if (_isHidden) {
+                    _buttonGood.alpha = 1.0;
+                    _buttonComment.alpha = 1.0;
+                }
+                else {
+                    _buttonGood.alpha = 0.0;
+                    _buttonComment.alpha = 0.0;
+                }
+            }];
+            _isHidden = !_isHidden;
+            break;
+        }
+        case 1: {
             if ([self.delegate respondsToSelector:@selector(videoDelete)]) {
                 [self.delegate videoDelete];
             }
             break;
-        case 2:
+        }
+        case 2: {
             if ([self.delegate respondsToSelector:@selector(videoShare)]) {
                 [self.delegate videoShare];
             }
             break;
-        case 3:
+        }
+        case 3: {
             if ([self.delegate respondsToSelector:@selector(videoGood)]) {
                 [self.delegate videoGood];
                 break;
             }
-        case 4:
+        }
+        case 4: {
             if ([self.delegate respondsToSelector:@selector(videoBad)]) {
                 [self.delegate videoBad];
             }
             break;
-            
+        }
         default:
             break;
     }

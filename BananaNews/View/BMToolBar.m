@@ -61,6 +61,9 @@
 
 - (void)selectedTagAtIndex:(NSUInteger)index
 {
+    if (index == _lastIndex) {
+        return;
+    }
     if (_lastIndex!=-1) {
         UIButton *lastButton = (UIButton *)[self viewWithTag:_lastIndex+100];
         NSString *title = _titleArray[_lastIndex];

@@ -94,4 +94,14 @@
     return scaledImage;
 }
 
++ (NSString *)urlStringRevertFrom:(NSString *)string
+{
+    int count = string.length;
+    unichar *str = (unichar *)malloc(count*sizeof(unichar));
+    [string getCharacters:str];
+    NSString *url = [[NSString stringWithCharacters:str length:count] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    free(str);
+    return url;
+}
+
 @end

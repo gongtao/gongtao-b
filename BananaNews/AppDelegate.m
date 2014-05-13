@@ -35,6 +35,7 @@
     
     //App Store
     [MobClick startWithAppkey:kAppKey reportPolicy:BATCH channelId:nil];
+    [MobClick updateOnlineConfig];
     
     [UMSocialData setAppKey:kAppKey];
     

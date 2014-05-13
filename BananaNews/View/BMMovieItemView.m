@@ -61,7 +61,7 @@
         _titleLabel.font = [UIFont systemFontOfSize:17.0];
         _titleLabel.numberOfLines = 0;
         _titleLabel.textAlignment = NSTextAlignmentCenter;
-        _titleLabel.text = @"WIFI时自动下载视频，不费流量";
+        _titleLabel.text = @"当前无视频，联网后自动加载最新视频";
         [self addSubview:_titleLabel];
         
         _button = [[BMCustomButton alloc] initWithFrame:frame];
@@ -240,7 +240,9 @@
             _request = nil;
             self.status = BMMovieItemStatusNormal;
         }];
-    } failure:nil];
+    } failure:^(NSError *error){
+        self.status = BMMovieItemStatusNormal;
+    }];
 }
 
 - (void)_playVideo

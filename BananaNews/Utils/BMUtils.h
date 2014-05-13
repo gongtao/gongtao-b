@@ -26,4 +26,6 @@
 
 + (UIImage *)scaleImage:(UIImage *)image size:(CGSize)size;
 
++ (NSString *)urlStringRevertFrom:(NSString *)string;
+
 @end

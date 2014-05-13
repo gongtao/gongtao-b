@@ -550,13 +550,13 @@
             for (NSDictionary *obj in array) {
                 NSString *size = obj[@"name"];
                 if (!media.small && ([size isEqualToString:@"medium"] || [size isEqualToString:@"hot"] || [size isEqualToString:@"show"])) {
-                    media.small = obj[@"url"];
+                    media.small = [BMUtils urlStringRevertFrom:obj[@"url"]];
                     media.small_width = obj[@"width"];
                     media.small_height = obj[@"height"];
                     continue;
                 }
                 if (!media.large && [size isEqualToString:@"full"]) {
-                    media.large = obj[@"url"];
+                    media.large = [BMUtils urlStringRevertFrom:obj[@"url"]];
                     media.large_width = obj[@"width"];
                     media.large_height = obj[@"height"];
                     continue;
