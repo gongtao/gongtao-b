@@ -70,7 +70,7 @@ static NSString *cellIdentifier = @"settingCell";
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return 6;
+    return 5;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -91,26 +91,22 @@ static NSString *cellIdentifier = @"settingCell";
     [cell addSubview:lineView];
     switch ([indexPath row]) {
         case 0:
-            label.text=@"意见反馈";
-            //[button setTitle:@"意见反馈" forState:UIControlStateNormal];
-            break;
-        case 1:
             label.text=@"给我评分";
             //[button setTitle:@"给我评分" forState:UIControlStateNormal];
             break;
-        case 2:
+        case 1:
             label.text=@"检查更新";
             //[button setTitle:@"检查更新" forState:UIControlStateNormal];
             break;
-        case 3:
+        case 2:
             label.text=@"清除缓存";
             //[button setTitle:@"清除缓存" forState:UIControlStateNormal];
             break;
-        case 4:
+        case 3:
             label.text=@"关于我们";
             //[button setTitle:@"关于我们" forState:UIControlStateNormal];
             break;
-        case 5:
+        case 4:
             label.text=@"免责声明";
         {//[button setTitle:@"免责声明" forState:UIControlStateNormal];
             UIView *lineView=[[UIView alloc]initWithFrame:CGRectMake(0, cellHeight-1, self.view.frame.size.width, 1)];
@@ -128,33 +124,33 @@ static NSString *cellIdentifier = @"settingCell";
 {
     int row=[indexPath row];
     switch (row) {
+//        case 0: {
+//            BMFeedbackViewController *vc = [self.parentViewController.storyboard instantiateViewControllerWithIdentifier:@"feedbackViewController"];
+//            [self.navigationController pushViewController:vc animated:YES];
+//            break;
+//        }
         case 0: {
-            BMFeedbackViewController *vc = [self.parentViewController.storyboard instantiateViewControllerWithIdentifier:@"feedbackViewController"];
-            [self.navigationController pushViewController:vc animated:YES];
-            break;
-        }
-        case 1: {
             NSString *url = @"itms-apps://ax.itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=831101575";
             [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
             break;
         }
-        case 2: {
+        case 1: {
             [MMProgressHUD setDisplayStyle:MMProgressHUDDisplayStylePlain];
             [MMProgressHUD setPresentationStyle:MMProgressHUDPresentationStyleFade];
             [MMProgressHUD showWithTitle:@"新版本" status:@"正在获取更新。。。"];
             [MobClick checkUpdateWithDelegate:self selector:@selector(_checkUpdateFinish:)];
             break;
         }
-        case 3: {
+        case 2: {
             [self _clearCache];
             break;
         }
-        case 4: {
+        case 3: {
             BMAboutViewController *vc=[self.parentViewController.storyboard instantiateViewControllerWithIdentifier:@"aboutViewController"];
             [self.navigationController pushViewController:vc animated:YES];
             break;
         }
-        case 5: {
+        case 4: {
             BMDeclarationViewController *vc=[self.parentViewController.storyboard instantiateViewControllerWithIdentifier:@"declarationViewController"];
             [self.navigationController pushViewController:vc animated:YES];
             break;
