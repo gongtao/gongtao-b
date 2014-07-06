@@ -1077,7 +1077,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD)";
+				ARCHS = (
+					armv7,
+					armv7s,
+				);
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -1118,7 +1121,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD)";
+				ARCHS = (
+					armv7,
+					armv7s,
+				);
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -1154,7 +1160,10 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = CA26BFD3CEFE45ABAC84ECBE /* Pods.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD)";
+				ARCHS = (
+					armv7s,
+					armv7,
+				);
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COMPRESS_PNG_FILES = YES;
@@ -1169,8 +1178,9 @@
 					"$(inherited)",
 					BananaNews/ThirdParty/UmengSocial3.3.3/UMSocial_Sdk_3.3.3,
 					BananaNews/ThirdParty/UmengSocial3.3.3/UMSocial_Sdk_3.3.3/frameworks/Wechat,
-					"/Users/gongtao/Desktop/gongtao-b/BananaNews/ThirdParty/UMAnalytics_Sdk_2.2.2.OpenUDID",
+					BananaNews/ThirdParty/UMAnalytics_Sdk_2.2.2.OpenUDID,
 				);
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				VALID_ARCHS = "armv7 armv7s";
@@ -1182,7 +1192,10 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = CA26BFD3CEFE45ABAC84ECBE /* Pods.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD)";
+				ARCHS = (
+					armv7s,
+					armv7,
+				);
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COMPRESS_PNG_FILES = YES;
@@ -1197,7 +1210,7 @@
 					"$(inherited)",
 					BananaNews/ThirdParty/UmengSocial3.3.3/UMSocial_Sdk_3.3.3,
 					BananaNews/ThirdParty/UmengSocial3.3.3/UMSocial_Sdk_3.3.3/frameworks/Wechat,
-					"/Users/gongtao/Desktop/gongtao-b/BananaNews/ThirdParty/UMAnalytics_Sdk_2.2.2.OpenUDID",
+					BananaNews/ThirdParty/UMAnalytics_Sdk_2.2.2.OpenUDID,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
